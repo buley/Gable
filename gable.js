@@ -71,11 +71,13 @@ Gable.data.types.input.transform.interateObjectColumns = function(value) {
 	if (!Gable.utils.isArray(value)) {
 		//set column_id if data is keyed object, null
 		for (var attr in value) {
-			var column_id = attr;
+
 			if (Gable.utils.isArray(value[attr])) {
 				var valuelen = value[ attr ].length;
+				var column_id = null;
 				for (var x = 0; x < valuelen; x += 1) {
 					var val = value[attr][x];
+
 					console.log('typing ',val);
 					var column_type = Gable.data.column.type(val);
 					console.log('col type', column_type, 'col_id',column_id,'col_meta',column_meta);
@@ -88,6 +90,7 @@ Gable.data.types.input.transform.interateObjectColumns = function(value) {
 			} else {
 				var val = value[attr];
 				console.log('typing ',val);
+				var column_id = attr;
 				var column_type = Gable.data.column.type(val);
 				console.log('col type', column_type, 'col_id',column_id,'col_meta',column_meta);
 				var col = Gable.data.column.create(column_type, column_id, column_meta);
