@@ -86,8 +86,6 @@ Gable.data.types.input.transform.iterateObjectColumns = function(value) {
 					biggest_total = valuelen;
 				}
 			}
-		}
-
 
 			var valuelen = biggest.length;
 				var column_id = null;
@@ -114,7 +112,9 @@ Gable.data.types.input.transform.iterateObjectColumns = function(value) {
 						columns.push(col);
 					}*/
 				}
+
 				//break;
+
 			} else if( 'object' === typeof value[ attr ]  && !( value[ attr ] instanceof Date ) ) {
 				return Gable.data.types.input.transform.iterateObjectColumns(value[attr]);
 				/*var newcols = Gable.data.types.input.transform.iterateObjectColumns(value[attr]);
