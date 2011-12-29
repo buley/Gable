@@ -129,6 +129,9 @@ Gable.data.types.input.transform.interateArrayColumns = function(value) {
 			columns.push(col);
 		}
 
+	} else {
+
+		return Gable.data.types.input.transform.interateArrayColumns( value );
 	}
 	return columns;
 };
