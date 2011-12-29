@@ -140,6 +140,7 @@ Gable.data.types.input.transform.interateArrayColumns = function(value) {
 
 Gable.data.types.input.transform.interateObjectRows = function(value, row_id ) {
 	var rows = [];
+	var do_value = false;
 	if (!Gable.utils.isArray(value)) {
 		//set row_id if data is keyed object, null
 		for (var attr in value) {
@@ -157,14 +158,19 @@ Gable.data.types.input.transform.interateObjectRows = function(value, row_id ) {
 			} else if( 'object' === typeof value[ attr ] ) {
 				return Gable.data.types.input.transform.interateObjectRows(value[attr], attr );
 			} else {
-				var val = value[attr];
-				console.log('typing ',val);
-				var row_meta = {};
-				console.log('val',val,'rw_id',row_id,'rw_meta',row_meta);
-				var rw = Gable.data.row.create(val, row_id, row_meta);
-				console.log('rw arr',rw);
-				rows.push(rw);
+				do_value = true;
 			}
+
+		}
+		if( true === do_value ) {
+
+			var val = value;
+			console.log('typing ',val);
+			var row_meta = {};
+			console.log('val',val,'rw_id',row_id,'rw_meta',row_meta);
+			var rw = Gable.data.row.create(val, row_id, row_meta);
+			console.log('rw arr',rw);
+			rows.push(rw);
 
 		}
 		return rows;
