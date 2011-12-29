@@ -91,6 +91,33 @@ Gable.data.types.input.transform.raw = function(value) {
 	//Gable.data.table.create(columns, rows, table_meta);
 };
 
+Gable.data.types.input.transform.interateArrayColumns = function(value) {
+	return value;
+};
+
+Gable.data.types.input.transform.interateArrayColumns = function(value) {
+ 	column_meta = {};
+	var columns = [];
+	if (Gable.utils.isArray(value)) {	
+		var valuelen = value.length;
+		for (var x = 0; x < valuelen; x += 1) {
+			var column_id = null;
+			var val = value[x];
+			var column_type = Gable.data.column.type(val);
+			if( 'undefined' === typeof column_type || null === column_type && 'object' === typeof val ) {
+				console.log('BAILING';
+				return Gable.data.types.input.transform.interateObjectColumns( val );
+			}
+			console.log('iterate col type', column_type, 'col_id',column_id,'col_meta',column_meta);
+			var col = Gable.data.column.create(column_type, column_id, column_meta);
+			console.log('iterate col arr',col);
+			columns.push(col);
+		}
+
+	}
+	return columns;
+};
+
 Gable.data.types.raw.transform.csv = function(obj) {
 
 };
