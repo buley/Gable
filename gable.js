@@ -113,8 +113,8 @@ Gable.data.types.input.transform.iterateObjectColumns = function(value) {
 						columns.push(col);
 			
 					}
-
-				}*/
+				*/
+				}
 
 			}
 			if( true === big_flag ) {
