@@ -67,7 +67,6 @@ Gable.data.types.input.transform.raw = function(value) {
 	}
 	var table_meta = { 'label': 'international' };
 	var table = Gable.data.table.create(columns, rows, table_meta );
-	console.log( table );
 	return table;
 };
 
