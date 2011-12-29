@@ -157,7 +157,7 @@ Gable.data.types.input.transform.interateObjectRows = function(value, row_id ) {
 				rows.push(rw);
 
 
-			} else if( 'object' === typeof value[ attr ] ) {
+			} else if( 'object' === typeof value[ attr ] && !(  value[ attr ] instanceof Date ) ) {
 				var newrows = Gable.data.types.input.transform.interateObjectRows(value[attr], attr );
 				for( var x = 0; x < newrows.length; x += 1 ) {
 					rows.push( newrows[ x ] );
