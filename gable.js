@@ -91,7 +91,7 @@ Gable.data.types.input.transform.interateObjectColumns = function(value) {
 					columns.push(col);
 				}
 				break;
-			} else if( 'object' === typeof value[ attr ] ) {
+			} else if( 'object' === typeof value[ attr ]  && !( value[ attr ] instanceof Date ) ) {
 				return Gable.data.types.input.transform.interateObjectColumns(value[attr]);
 			} else {
 				var val = value[attr];
