@@ -53,6 +53,7 @@ Gable.data.types.input = Gable.data.types.input || {};
 Gable.data.types.input.transform = Gable.data.types.input.transform || {};
 Gable.data.types.input.transform.raw = function(value) {
  	column_meta = {};
+
 	if (Gable.utils.isArray(value)) {
 		//set column_id if data is keyed object, null
 		for (var attr in value) {
@@ -62,7 +63,8 @@ Gable.data.types.input.transform.raw = function(value) {
 			columns.push(col);
 		}
 	} else {
-		for (var x = 0; x < cols; x += 1) {
+		var valuelen = value.length;
+		for (var x = 0; x < valuelen; x += 1) {
 			var column_id = null;
 			var val = cols[x];
 			var column_type = Gable.data.column.type(val);
