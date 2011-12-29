@@ -90,7 +90,7 @@ Gable.data.types.input.transform.interateObjectColumns = function(value) {
 					console.log('col arr',col);
 					columns.push(col);
 				}
-				//break;
+				break;
 			} else if( 'object' === typeof value[ attr ] ) {
 				return Gable.data.types.input.transform.interateObjectColumns(value[attr]);
 			} else {
@@ -158,7 +158,10 @@ Gable.data.types.input.transform.interateObjectRows = function(value, row_id ) {
 
 
 			} else if( 'object' === typeof value[ attr ] ) {
-				return Gable.data.types.input.transform.interateObjectRows(value[attr], attr );
+				var newrows = Gable.data.types.input.transform.interateObjectRows(value[attr], attr );
+				for( var x = 0; x < newrows.length; x += 1 ) {
+					rows.push( newrows[ x ] );
+				}
 			} else {
 				do_value = true;
 			}
