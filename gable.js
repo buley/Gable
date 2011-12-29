@@ -54,11 +54,16 @@ Gable.data.types.input.transform = Gable.data.types.input.transform || {};
 Gable.data.types.input.transform.raw = function(value) {
  	column_meta = {};
 	var columns = [];
-	if (!Gable.utils.isArray(value)) {
+	var isarray = Gable.utils.isArray(value);
+	if ( false === isarray && 'object' === typeof value ) {
 		columns = Gable.data.types.input.transform.interateObjectColumns( value );
-	} else {
+		rows = Gable.data.types.input.transform.interateObjectRows( value );
+	} else if( true === isarray && 'object' === typeof value ) {
 		columns = Gable.data.types.input.transform.interateArrayColumns( value );
+		rows = Gable.data.types.input.transform.interateArrayRows( value );
 
+	} else {
+		//shouldn't happen but what if
 	}
 
 	console.log("INPUT",value,"COLUMNS",columns);
@@ -131,6 +136,75 @@ Gable.data.types.input.transform.interateArrayColumns = function(value) {
 	}
 	return columns;
 };
+
+
+Gable.data.types.input.transform.interateObjectRows = function(value) {
+	var rows = [];
+	if (!Gable.utils.isArray(value)) {
+		//set row_id if data is keyed object, null
+		for (var attr in value) {
+
+			if (Gable.utils.isArray(value[attr])) {
+				var valuelen = value[ attr ].length;
+				var row_id = null;
+				for (var x = 0; x < valuelen; x += 1) {
+					var val = value[attr][x];
+
+					console.log('typing ',val);
+					var row_type = Gable.data.row.type(val);
+					console.log('rw type', row_type, 'rw_id',row_id,'rw_meta',row_meta);
+					var rw = Gable.data.row.create(row_type, row_id, row_meta);
+					console.log('rw arr',rw);
+					rows.push(rw);
+				}
+			} else if( 'object' === typeof value[ attr ] ) {
+				return Gable.data.types.input.transform.interateObjectRows(value[attr]);
+			} else {
+				var val = value[attr];
+				console.log('typing ',val);
+				var row_id = attr;
+				var row_type = Gable.data.row.type(val);
+				console.log('rw type', row_type, 'rw_id',row_id,'rw_meta',row_meta);
+				var rw = Gable.data.row.create(row_type, row_id, row_meta);
+				console.log('rw arr',rw);
+				rows.push(rw);
+			}
+
+		}
+		return rows;
+	} else {
+		return Gable.data.types.input.transform.interateArrayRows( value );
+	}
+	return null;
+};
+
+Gable.data.types.input.transform.interateArrayRows = function(value) {
+ 	row_meta = {};
+	var rows = [];
+	if (Gable.utils.isArray(value)) {	
+		var valuelen = value.length;
+		for (var x = 0; x < valuelen; x += 1) {
+			var row_id = null;
+			var val = value[x];
+			var row_type = Gable.data.row.type(val);
+			if( 'undefined' === typeof row_type || null === row_type && 'object' === typeof val ) {
+				console.log('BAILING');
+				return Gable.data.types.input.transform.interateObjectRows( val );
+			}
+			console.log('iterate rw type', row_type, 'rw_id',row_id,'rw_meta',row_meta);
+			var rw = Gable.data.row.create(row_type, row_id, row_meta);
+			console.log('iterate rw arr',rw);
+			rows.push(rw);
+		}
+
+	} else {
+
+		return Gable.data.types.input.transform.interateArrayRows( value );
+	}
+	return rows;
+};
+
+
 
 Gable.data.types.raw.transform.csv = function(obj) {
 
