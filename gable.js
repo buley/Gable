@@ -63,6 +63,7 @@ Gable.data.types.input.transform.raw = function(value) {
 				var valuelen = value[ attr ];
 				for (var x = 0; x < valuelen; x += 1) {
 					var val = value[x];
+					console.log('typing ',val);
 					var column_type = Gable.data.column.type(val);
 					console.log('col type', column_type, 'col_id',column_id,'col_meta',column_meta);
 					var col = Gable.data.column.create(column_type, column_id, column_meta);
@@ -71,11 +72,6 @@ Gable.data.types.input.transform.raw = function(value) {
 				}
 			}
 
-
-			console.log('col type', column_type, 'col_id',column_id,'col_meta',column_meta);
-			var col = Gable.data.column.create(column_type, column_id, column_meta);
-			console.log('col obj',col);
-			columns.push(col);
 		}
 	} else {
 		var valuelen = value.length;
