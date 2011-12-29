@@ -84,7 +84,7 @@ Gable.data.types.input.transform.iterateObjectColumns = function(value) {
 				var nonulls = true;
 				if ( null !==  value[ attr ][ x ] ) {
 					for( var x = 0; x < valuelen; x += 1 ) {
-						if( 'object' === typeof value[ attr ][ x ]  && !Gable.utils.isArray( value[ attr ][ x ] ) && !( value[ attr ][ x ] instanceof Date ) ) { 
+						if( null !== value[ attr ][ x ] && 'object' === typeof value[ attr ][ x ]  && !Gable.utils.isArray( value[ attr ][ x ] ) && !( value[ attr ][ x ] instanceof Date ) ) { 
 							for( var attr2 in value[ attr ][ x ] ) {
 								if( null === value[ attr ][ x ][ attr2 ] ) {
 									nonulls = false;
@@ -99,7 +99,7 @@ Gable.data.types.input.transform.iterateObjectColumns = function(value) {
 					biggest = value[attr];
 					biggest_total = valuelen;
 				}
-			} else if( 'object' === typeof value[ attr ]  && !( value[ attr ] instanceof Date ) ) {
+			} else if( null !== value[attr] && 'object' === typeof value[ attr ]  && !( value[ attr ] instanceof Date ) ) {
 				return Gable.data.types.input.transform.iterateObjectColumns(value[attr]);
 				/*var newcols = Gable.data.types.input.transform.iterateObjectColumns(value[attr]);
 				for( var x = 0; x < newcols.length; x += 1 ) {
@@ -175,7 +175,7 @@ Gable.data.types.input.transform.iterateObjectRows = function(value, row_id ) {
 				var row_meta = {};
 				var rw = Gable.data.row.create(val, row_meta, row_id);
 				rows.push(rw);
-			} else if( 'object' === typeof value[ attr ] && !(  value[ attr ] instanceof Date ) ) {
+			} else if( null !== value[attr] && 'object' === typeof value[ attr ] && !(  value[ attr ] instanceof Date ) ) {
 				var newrows = Gable.data.types.input.transform.iterateObjectRows(value[attr], attr );
 				for( var x = 0; x < newrows.length; x += 1 ) {
 					rows.push( newrows[ x ] );
