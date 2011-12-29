@@ -85,23 +85,6 @@ Gable.data.types.input.transform.iterateObjectColumns = function(value) {
 					biggest = value[attr];
 					biggest_total = valuelen;
 				}
-			}
-		}
-			var valuelen = biggest.length;
-				var column_id = null;
-				for (var x = 0; x < valuelen; x += 1) {
-					var val = biggest[x];
-
-					console.log('typing ',val);
-					var column_type = Gable.data.column.type(val);
-					console.log('col type', column_type, 'col_id',column_id,'col_meta',column_meta);
-					var col = Gable.data.column.create(column_type, column_id, column_meta);
-					console.log('col arr',col);
-					columns.push(col);
-				}
-
-				//break;
-
 			} else if( 'object' === typeof value[ attr ]  && !( value[ attr ] instanceof Date ) ) {
 				return Gable.data.types.input.transform.iterateObjectColumns(value[attr]);
 				/*var newcols = Gable.data.types.input.transform.iterateObjectColumns(value[attr]);
@@ -128,9 +111,23 @@ Gable.data.types.input.transform.iterateObjectColumns = function(value) {
 			
 					}
 
+				}
+
+		i	}
+		var valuelen = biggest.length;
+			var column_id = null;
+			for (var x = 0; x < valuelen; x += 1) {
+				var val = biggest[x];
+
+				console.log('typing ',val);
+				var column_type = Gable.data.column.type(val);
+				console.log('col type', column_type, 'col_id',column_id,'col_meta',column_meta);
+				var col = Gable.data.column.create(column_type, column_id, column_meta);
+				console.log('col arr',col);
+				columns.push(col);
 			}
-		}
-		return columns;
+
+			return columns;
 	} else {
 		return Gable.data.types.input.transform.iterateArrayColumns( value );
 	}
