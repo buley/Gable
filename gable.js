@@ -74,8 +74,9 @@ Gable.data.types.input.transform.raw = function(value) {
 Gable.data.types.input.transform.iterateObjectColumns = function(value) {
 	var columns = [];
 	if (!Gable.utils.isArray(value)) {
-		var biggest = {};
+		var biggest = null;
 		var biggest_total = 0;
+		var fallback = {};
 		var big_flag = true;
 		//set column_id if data is keyed object, null
 		for (var attr in value) {
@@ -85,11 +86,10 @@ Gable.data.types.input.transform.iterateObjectColumns = function(value) {
 				var nonulls = true;
 				for( var x = 0; x < valuelen; x += 1 ) {
 					if( null === value[ attr ][ x ] ) {
-						console.log("NULL",attr);
 						nonulls = false;
 					}
 				}
-				if( true === nonulls && valuelen > biggest_total ) {
+				if( null === biggest || ( true === nonulls && valuelen > biggest_total ) ) {
 					biggest = value[attr];
 					biggest_total = valuelen;
 				}
