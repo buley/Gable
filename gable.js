@@ -78,7 +78,7 @@ Gable.data.types.input.transform.interateObjectColumns = function(value) {
 		for (var attr in value) {
 
 			if (Gable.utils.isArray(value[attr])) {
-/*				var valuelen = value[ attr ].length;
+				var valuelen = value[ attr ].length;
 				var column_id = null;
 				for (var x = 0; x < valuelen; x += 1) {
 					var val = value[attr][x];
@@ -86,16 +86,10 @@ Gable.data.types.input.transform.interateObjectColumns = function(value) {
 					console.log('typing ',val);
 					var column_type = Gable.data.column.type(val);
 					console.log('col type', column_type, 'col_id',column_id,'col_meta',column_meta);
-*/
-					var column_id = attr;
-					var column_type = Gable.data.column.type(value[attr]);
-					var column_meta = {};
 					var col = Gable.data.column.create(column_type, column_id, column_meta);
 					console.log('col arr',col);
 					columns.push(col);
-			//	}
-
-
+				}
 			} else if( 'object' === typeof value[ attr ] ) {
 				return Gable.data.types.input.transform.interateObjectColumns(value[attr]);
 			} else {
