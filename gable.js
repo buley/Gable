@@ -100,8 +100,9 @@ Gable.data.types.input.transform.iterateObjectColumns = function(value) {
 				var column_type = Gable.data.column.type(val);
 				console.log('col type', column_type, 'col_id',column_id,'col_meta',column_meta);
 				var col = Gable.data.column.create(column_type, column_id, column_meta);
+				columns.push(col);
 				console.log('col arr',col);
-					var seen = false;
+				/*	var seen = false;
 					for( var onecol in columns ) {
 						if( columns[ onecol ].id === col.id ) {
 							seen = true;
@@ -113,7 +114,7 @@ Gable.data.types.input.transform.iterateObjectColumns = function(value) {
 			
 					}
 
-				}
+				}*/
 
 			}
 			if( true === big_flag ) {
