@@ -91,9 +91,11 @@ Gable.data.types.input.transform.iterateObjectColumns = function(value) {
 				}
 				console.log("NONULL?",attr,nonulls);
 				if( null === biggest || ( true === nonulls && valuelen > biggest_total ) ) {
+					console.log("PASS");
 					biggest = value[attr];
 					biggest_total = valuelen;
 				}
+				console.log("??P?");
 			} else if( 'object' === typeof value[ attr ]  && !( value[ attr ] instanceof Date ) ) {
 				return Gable.data.types.input.transform.iterateObjectColumns(value[attr]);
 				/*var newcols = Gable.data.types.input.transform.iterateObjectColumns(value[attr]);
