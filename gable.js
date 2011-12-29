@@ -361,6 +361,24 @@ Gable.data.row.create = function( value, meta, timestamp ) {
 /* type is required */
 /* types: boolean, number, string, date, datetime */
 Gable.data.column.types = [ 'boolean', 'number', 'string', 'date', 'datetime' ];
+
+Gable.data.column.type = function( obj ) {
+	if( 'boolean' === typeof obj ) {
+		return 'boolean';
+	} if( 'number' === typeof obj ) {
+		return 'number';
+	} if( 'string' === typeof obj ) {
+		return 'string';
+	} if( 'date' === typeof obj ) {
+		if( 0 === obj.getHours() ) {
+			return 'date';
+		} else {
+			return 'datetime';
+		}	
+	}
+	return null;
+};
+
 Gable.data.column.create = function( type, id, meta, timestamp ) {
 	//type is required
 	if( 'undefined' === typeof type ||  null === type ) {
