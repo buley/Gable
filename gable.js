@@ -566,8 +566,11 @@ Gable.data.row.create = function( value, meta, id, timestamp ) {
 /* types: boolean, number, string, date, datetime */
 Gable.data.column.types = [ 'boolean', 'number', 'string', 'date', 'datetime' ];
 
+//null will become a string if it has to
 Gable.data.column.type = function( obj ) {
-	if( 'boolean' === typeof obj ) {
+	if( null === obj ) {
+		return 'string';	
+	} if( 'boolean' === typeof obj ) {
 		return 'boolean';
 	} if( 'number' === typeof obj ) {
 		return 'number';
