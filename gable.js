@@ -369,7 +369,7 @@ Gable.data.column.type = function( obj ) {
 		return 'number';
 	} if( 'string' === typeof obj ) {
 		return 'string';
-	} if( 'date' === typeof obj ) {
+	} if( obj instanceof Date ) {
 		if( 0 === obj.getHours() ) {
 			return 'date';
 		} else {
