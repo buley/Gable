@@ -550,7 +550,7 @@ Gable.data.table.create = function( columns, rows, meta, id, timestamp ) {
 		meta = null;
 	}
 	//id is optional
-u	if( 'undefined' === typeof id ) {
+	if( 'undefined' === typeof id ) {
 		id = null;
 	}
 	//timestamp can be faked
