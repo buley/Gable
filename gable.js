@@ -66,7 +66,7 @@ Gable.data.types.input.transform.raw = function(value) {
 		//shouldn't happen but what if
 	}
 
-	console.log("INPUT",value,"COLUMNS",columns);
+	console.log("INPUT",value,"COLUMNS",columns,"ROWS",rows);
 
 	//Gable.data.table.create(columns, rows, table_meta);
 };
