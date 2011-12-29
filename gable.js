@@ -151,7 +151,7 @@ Gable.data.types.input.transform.interateObjectRows = function(value, row_id ) {
 				console.log('typing ',val);
 				var row_meta = {};
 				console.log('val',val,'rw_id',row_id,'rw_meta',row_meta);
-				var rw = Gable.data.row.create(val, row_id, row_meta);
+				var rw = Gable.data.row.create(val, row_meta, row_id);
 				console.log('rw arr',rw);
 				rows.push(rw);
 
@@ -172,7 +172,7 @@ Gable.data.types.input.transform.interateObjectRows = function(value, row_id ) {
 			console.log('typing ',val);
 			var row_meta = {};
 			console.log('val',val,'rw_id',row_id,'rw_meta',row_meta);
-			var rw = Gable.data.row.create(val, row_id, row_meta);
+			var rw = Gable.data.row.create(val, row_meta, row_id);
 			console.log('rw arr',rw);
 			rows.push(rw);
 
