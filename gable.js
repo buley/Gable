@@ -143,13 +143,12 @@ Gable.data.types.input.transform.interateObjectRows = function(value) {
 	if (!Gable.utils.isArray(value)) {
 		//set row_id if data is keyed object, null
 		for (var attr in value) {
-
 			if (Gable.utils.isArray(value[attr])) {
 				var valuelen = value[ attr ].length;
 				var row_id = null;
 				for (var x = 0; x < valuelen; x += 1) {
 					var val = value[attr][x];
-
+					var row_meta = {};
 					console.log('rw_id',row_id,'rw_meta',row_meta);
 					var rw = Gable.data.row.create(row_type, row_id, row_meta);
 					console.log('rw arr',rw);
@@ -161,6 +160,7 @@ Gable.data.types.input.transform.interateObjectRows = function(value) {
 				var val = value[attr];
 				console.log('typing ',val);
 				var row_id = attr;
+					var row_meta = {};
 				console.log('rw_id',row_id,'rw_meta',row_meta);
 				var rw = Gable.data.row.create(row_id, row_meta);
 				console.log('rw arr',rw);
@@ -187,8 +187,8 @@ Gable.data.types.input.transform.interateArrayRows = function(value) {
 				console.log('BAILING');
 				return Gable.data.types.input.transform.interateObjectRows( val );
 			}
-			console.log('iterate rw type', row_type, 'rw_id',row_id,'rw_meta',row_meta);
-			var rw = Gable.data.row.create(row_type, row_id, row_meta);
+			console.log('val',val,'iterate rw_id',row_id,'rw_meta',row_meta);
+			var rw = Gable.data.row.create( val, row_meta, row_id );
 			console.log('iterate rw arr',rw);
 			rows.push(rw);
 		}
