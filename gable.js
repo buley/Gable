@@ -45,14 +45,39 @@ Gable.data.types = {
         'transform': {
             'raw': function() {},
         },
-        'validate': function() {}
+        'validate': function() {}	
     }
 };
 
-Gable.data.types.raw.transform.table = function(obj) {
-    var newobj = obj;
+Gable.data.types.input = Gable.data.types.input || {};
+Gable.data.types.input.transform = Gable.data.types.input.transform || {};
+Gable.data.types.input.transform.raw = function(value) {
+ 	column_meta = {};
+	if (Gable.utils.isArray(value)) {
+		//set column_id if data is keyed object, null
+		for (var attr in value) {
+			var column_type = Gable.data.column.type(obj);
+			var column_id = attr;
+			var col = Gable.data.column.create(column_type, column_id, column_meta);
+			columns.push(col);
+		}
+	} else {
+		for (var x = 0; x < cols; x += 1) {
+			var column_id = null;
+			var val = cols[x];
+			var column_type = Gable.data.column.type(val);
+			var column_meta = {};
+			var col = Gable.data.column.create(column_type, column_id, column_meta);
+			columns.push(col);
+		}
+	}
 
-    
+	console.log("INPUT",value,"COLUMNS",columns;
+
+
+
+	//Gable.data.table.create(columns, rows, table_meta);
+		
     return newobj;
 };
 
