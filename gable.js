@@ -88,9 +88,17 @@ Gable.data.types.input.transform.interateObjectColumns = function(value) {
 					console.log('col type', column_type, 'col_id',column_id,'col_meta',column_meta);
 					var col = Gable.data.column.create(column_type, column_id, column_meta);
 					console.log('col arr',col);
-					columns.push(col);
+					var seen = false;
+					for( var onecol in columns ) {
+						if( columns[ onecol ].id === col.id ) {
+							seen = true;
+						}
+					}
+					if( false === seen ) {
+						columns.push(col);
+					}
 				}
-				break;
+				//break;
 			} else if( 'object' === typeof value[ attr ]  && !( value[ attr ] instanceof Date ) ) {
 				return Gable.data.types.input.transform.interateObjectColumns(value[attr]);
 			} else {
