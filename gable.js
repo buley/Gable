@@ -147,6 +147,7 @@ Gable.data.types.input.transform.interateObjectRows = function(value, row_id ) {
 			if (Gable.utils.isArray(value[attr])) {
 				var valuelen = value[ attr ].length;
 				var val = value[attr];
+				row_id = attr;
 				console.log('typing ',val);
 				var row_meta = {};
 				console.log('val',val,'rw_id',row_id,'rw_meta',row_meta);
