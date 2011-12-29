@@ -59,10 +59,10 @@ Gable.data.types.input.transform.raw = function(value) {
 		for (var attr in value) {
 
 			var column_id = attr;
-			if (!Gable.utils.isArray(value)) {
-				var valuelen = value[ attr ];
+			if (Gable.utils.isArray(value[attr])) {
+				var valuelen = value[ attr ].length;
 				for (var x = 0; x < valuelen; x += 1) {
-					var val = value[x];
+					var val = value[attr][x];
 					console.log('typing ',val);
 					var column_type = Gable.data.column.type(val);
 					console.log('col type', column_type, 'col_id',column_id,'col_meta',column_meta);
