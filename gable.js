@@ -466,6 +466,53 @@ Gable.charts.types = {
 };
 
 
+/* Data utilities */
+
+Gable.data.add = function( id, value, meta ) {
+	meta = ( 'undefined' === typeof meta || 'object' !== typeof meta ) ? {} : meta;
+	if( Gable.data.type.tranformsTo( 'input', 'raw' ) ) {
+		var raw = Gable.data.type.transform( 'input', 'raw', value );
+	}
+	var table = Gable.data.table.create( raw.columns, raw.rows, meta, id );
+	Gable.data.table.add( table );
+	//zzz
+	
+};
+
+Gable.data.put = function( id, value, meta ) {
+	meta = ( 'undefined' === typeof meta || 'object' !== typeof meta ) ? {} : meta;
+
+};
+
+Gable.data.get = function( id ) {
+
+};
+
+Gable.data.remove = function( id ) {
+
+};
+
+Gable.data.update = function( id, value, meta ) {
+	meta = ( 'undefined' === typeof meta || 'object' !== typeof meta ) ? {} : meta;
+
+};
+
+
+//extras
+
+Gable.data.type = function(value) {
+
+};
+
+Gable.data.exists = function(id) {
+
+};
+
+
+
+//xxx
+
+
 /* Chart utilities */
 
 Gable.charts.add = function(type, target) {
@@ -487,7 +534,7 @@ Gable.charts.remove = function(id) {
 //Create
 
 /* returns a well formatted data object for data type or null if there was some sort of error. columns and rows are arrays of column and row objects, respectively.  */
-Gable.data.table.create = function( columns, rows, meta, timestamp ) {
+Gable.data.table.create = function( columns, rows, meta, id, timestamp ) {
 	//columns are rows are required
 	if( 'undefined' === typeof columns || 'undefined' === typeof rows ||  null === columns || null === rows ) {
 		return null;	
@@ -502,12 +549,17 @@ Gable.data.table.create = function( columns, rows, meta, timestamp ) {
 	if( 'undefined' === typeof meta ) {
 		meta = null;
 	}
+	//id is optional
+u	if( 'undefined' === typeof id ) {
+		id = null;
+	}
 	//timestamp can be faked
 	timestamp = ( 'number' !== typeof timestamp ) ? new Date().getTime() : timestamp;
 	return { 
 		'columns': columns
 		, 'rows': rows
 		, 'meta': meta
+		, 'id': id
 		, 'timestamp': timestamp
 	};
 };
@@ -620,12 +672,13 @@ Gable.data.cell.create = function( value, meta, id, timestamp) {
 	};
 };
     
-Gable.data.table.add = function( table_id, table ) {
+Gable.data.table.add = function( table ) {
 	//TODO: validate table
-	if( 'undefined' === typeof Gable.cache[ table_id ] ) {
-		Gable.cache[ table_id ] = table;
+	if( 'undefined' === typeof Gable.cache[ table.id ] ) {
+		Gable.cache[ table.id ] = table;
 	} 
 };
+
 
 Gable.data.row.add = function( table_id, row ) {
 	//TODO: validate row 
