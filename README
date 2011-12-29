@@ -1,0 +1,163 @@
+===
+Input
+===
+
+Anything columnar*
+
+* Hopefully
+
+===
+Namespace.data.types.raw
+===
+
+---
+validate
+---
+
+{
+'key': string or number
+, 'value':  //zero-based indexed array or object w/unique id keys
+//e.g. indexed array:
+//zero-based index
+//[ [ 1, 2, 3, 4 ], [ 5, 6, 7, 8 ], [ 9, 10, 11, 12 ] ]; 
+//e.g. unique_ids
+//unique id
+//{ 'row_1': [ 1, 2, 3, 4 ], 'row_2': [ 5, 6, 7, 8 ], 'row_3': [ 9, 10, 11, 12 ] };
+
+
+}, 'meta': { 'string': mixed }
+, 'timestamp': GMT date
+}
+
+---
+translate
+---
+
+//Raw to CSV
+//Raw to Table
+
+==
+Namespace.data.types.csv
+==
+
+---
+validate
+---
+
+//comma seperated values of strings or numbers
+
+---
+translate
+---
+
+//CSV to Raw
+//CSV to Table (convenience: CSV->Raw, Raw->Table)
+
+===
+Namespace.data.types.table
+===
+
+----
+validate
+----
+
+Format of Google Library Data Table JavaScript Literal
+via
+http://code.google.com/apis/chart/interactive/docs/reference.html#dataparam
+
+{
+  cols: [{id: 'A', label: 'NEW A', type: 'string'},
+         {id: 'B', label: 'B-label', type: 'number'},
+         {id: 'C', label: 'C-label', type: 'date'}
+        ],
+  rows: [{c:[{v: 'a'}, {v: 1.0, f: 'One'}, {v: new Date(2008, 1, 28, 0, 31, 26), f: '2/28/08 12:31 AM'}]},
+         {c:[{v: 'b'}, {v: 2.0, f: 'Two'}, {v: new Date(2008, 2, 30, 0, 31, 26), f: '3/30/08 12:31 AM'}]},
+         {c:[{v: 'c'}, {v: 3.0, f: 'Three'}, {v: new Date(2008, 3, 30, 0, 31, 26), f: '4/30/08 12:31 AM'}]}
+        ],
+  p: {foo: 'hello', bar: 'world!'}
+}
+   row is a zero-based row index
+   column is either a zero-based column index or a unique ID
+
+---
+transform 
+---
+
+//Table to raw
+//Table to CSV (convenience: Table->Raw, Raw->CSV)
+
+===
+Example input
+===
+
+//scalars
+var ex3 = {
+'one': 1
+, 'two': 2
+, 'three': 3
+};
+
+//Scalars are recast to single element arrays,
+//Object ex3 is the same as:
+var ex6 = {
+'one': [ 1 ]
+, 'two': [ 2 ]
+, 'three': [ 3 ]
+};
+
+var ex4 = [ 1, 2, 3 ];
+
+//Object ex4 is the same as (recast to):
+var ex5 = { 0: [ 1 ], 1: [ 2 ], 2: [ 3 ] };
+
+//unique id
+var ex1 = { 'row_1': [ 1, 2, 3, 4 ]
+  , 'row_2': [ 5, 6, 7, 8 ]
+  , 'row_3': [ 9, 10, 11, 12 ]
+};
+
+//zero-based index
+var ex2 = [ [ 1, 2, 3, 4 ]
+             , [ 5, 6, 7, 8 ]
+             , [ 9, 10, 11, 12 ] ];
+
+//multi-part/type (unique id)
+var wx2pt1 = {
+  'row_1': [ 1, 2, 3, 4 ]
+  , 'row_2': [ 5, 6, 7, 8 ]
+};
+
+//multi-part (zero-based index)
+var ex2pt2 = [ [ 9, 10, 11, 12 ] ];
+
+//header ids are false by default
+//header_ids can be provided explicitly or left null but cannot be undefined
+var headers = [ 'col_vid1', 'col_id2', null, 'colid_4' ];
+
+
+//columns with column ids can be accessed at row/column level via setters/getters
+Namespace.data.column.get( { 'table': 'foo', 'column': 'colid_2' } ); 
+> !null
+Namespace.data.column.get( { 'table': 'foo', 'column': 'colid_3' } );
+> null
+
+//header ids can be provided inline
+
+===
+Example invocation
+===
+
+Namespace.data.set( 'data_id_1', ex1 );
+> this
+
+Namespace.data.get( 'data_id_1', 'raw' | 'table' );
+Namespace.data.get = function( data_id, type = null ) {
+if( 'raw' ) {
+  return Namespace.data.fetch( data_id );
+} else {
+    return Namespace.data.transform( result, 'table' );
+}
+}
+
+Namespace.data.set('data_id_2', ex2pt1);
+Namespace.data.add('data_id_2', ex2pt2);
