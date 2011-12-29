@@ -109,16 +109,14 @@ Gable.data.types.input.transform.iterateObjectColumns = function(value) {
 		if( true === big_flag ) {
 			var valuelen = biggest.length;
 			var column_id = null;
+			var column_type = null;
 			if (Gable.utils.isArray(biggest)) {
 				for (var x = 0; x < valuelen; x += 1) {
-
 					var val = biggest[x];
-					if (Gable.utils.isArray(biggest)) {
-						var column_type = Gable.data.column.type(val);
-					
-					} else {
+					if (!Gable.utils.isArray(val)) {
 						return Gable.data.types.input.transform.iterateObjectColumns(val, attr);
-										}
+					}						}
+					column_type = Gable.data.column.type(val);	
 					var col = Gable.data.column.create(column_type, column_id, column_meta);
 					columns.push(col);
 				}
