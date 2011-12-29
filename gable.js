@@ -160,11 +160,8 @@ Gable.data.types.input.transform.iterateObjectRows = function(value, row_id ) {
 				var valuelen = value[ attr ].length;
 				var val = value[attr];
 				row_id = attr;
-				console.log('typing ',val);
 				var row_meta = {};
-				console.log('val',val,'rw_id',row_id,'rw_meta',row_meta);
 				var rw = Gable.data.row.create(val, row_meta, row_id);
-				console.log('rw arr',rw);
 				rows.push(rw);
 			} else if( 'object' === typeof value[ attr ] && !(  value[ attr ] instanceof Date ) ) {
 				var newrows = Gable.data.types.input.transform.iterateObjectRows(value[attr], attr );
@@ -180,11 +177,8 @@ Gable.data.types.input.transform.iterateObjectRows = function(value, row_id ) {
 			for( var attr in value ) {
 				val.push( value[attr] );
 			}
-			console.log('typing ',val);
 			var row_meta = {};
-			console.log('val',val,'rw_id',row_id,'rw_meta',row_meta);
 			var rw = Gable.data.row.create(val, row_meta, row_id);
-			console.log('rw arr',rw);
 			rows.push(rw);
 		}
 		return rows;
@@ -202,7 +196,6 @@ Gable.data.types.input.transform.iterateArrayRows = function(value,row_id) {
 		for (var x = 0; x < valuelen; x += 1) {
 			var val = value[x];
 			if(  'object' === typeof val ) {
-				console.log('BAILING');
 				if( Gable.utils.isArray(value) ) {
 					return Gable.data.types.input.transform.iterateArrayRows( val );
 
@@ -211,9 +204,7 @@ Gable.data.types.input.transform.iterateArrayRows = function(value,row_id) {
 
 				}
 			}
-			console.log('val',val,'iterate rw_id',row_id,'rw_meta',row_meta);
 			var rw = Gable.data.row.create( val, row_meta, row_id );
-			console.log('iterate rw arr',rw);
 			rows.push(rw);
 		}
 
