@@ -65,10 +65,10 @@ Gable.data.types.input.transform.raw = function(value) {
 	} else {
 		//shouldn't happen but what if
 	}
-
-	console.log("INPUT",value,"COLUMNS",columns,"ROWS",rows);
-
-	//Gable.data.table.create(columns, rows, table_meta);
+	var table_meta = { 'label': 'international' };
+	var table = Gable.data.table.create(columns, rows, table_meta );
+	console.log( table );
+	return table;
 };
 
 Gable.data.types.input.transform.iterateObjectColumns = function(value) {
