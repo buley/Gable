@@ -74,29 +74,45 @@ Gable.data.types.input.transform.raw = function(value) {
 Gable.data.types.input.transform.iterateObjectColumns = function(value) {
 	var columns = [];
 	if (!Gable.utils.isArray(value)) {
+		var biggest = {};
+		var biggest_total = 0;
 		//set column_id if data is keyed object, null
 		for (var attr in value) {
 
 			if (Gable.utils.isArray(value[attr])) {
 				var valuelen = value[ attr ].length;
+				if( valuelen > biggest_total ) {
+					biggest = value[attr];
+					biggest_total = valuelen;
+				}
+			}
+		}
+
+
+			var valuelen = biggest.length;
 				var column_id = null;
 				for (var x = 0; x < valuelen; x += 1) {
-					var val = value[attr][x];
+					var val = biggest[x];
 
 					console.log('typing ',val);
 					var column_type = Gable.data.column.type(val);
 					console.log('col type', column_type, 'col_id',column_id,'col_meta',column_meta);
 					var col = Gable.data.column.create(column_type, column_id, column_meta);
 					console.log('col arr',col);
-					var seen = false;
+					columns.push(col);
+
+					/*var seen = false;
 					for( var onecol in columns ) {
 						if( columns[ onecol ].id === col.id ) {
 							seen = true;
 						}
 					}
-					if( 'undefined' !== typeof column_id && false === seen ) {
+					if( null === column_id || 'undefined' !== typeof column_id || {
+						false === seen ) {
+
+						
 						columns.push(col);
-					}
+					}*/
 				}
 				//break;
 			} else if( 'object' === typeof value[ attr ]  && !( value[ attr ] instanceof Date ) ) {
