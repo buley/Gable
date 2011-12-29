@@ -145,15 +145,17 @@ Gable.data.types.input.transform.interateObjectRows = function(value) {
 		for (var attr in value) {
 			if (Gable.utils.isArray(value[attr])) {
 				var valuelen = value[ attr ].length;
-				var row_id = null;
-				for (var x = 0; x < valuelen; x += 1) {
-					var val = value[attr][x];
-					var row_meta = {};
-					console.log('val',val,'rw_id',row_id,'rw_meta',row_meta);
-					var rw = Gable.data.row.create( val, row_meta, row_id );
-					console.log('rw arr',rw);
-					rows.push(rw);
-				}
+				var row_id = attr;
+				var val = value[attr];
+				console.log('typing ',val);
+				var row_id = attr;
+				var row_meta = {};
+				console.log('val',val,'rw_id',row_id,'rw_meta',row_meta);
+				var rw = Gable.data.row.create(val, row_id, row_meta);
+				console.log('rw arr',rw);
+				rows.push(rw);
+
+
 			} else if( 'object' === typeof value[ attr ] ) {
 				return Gable.data.types.input.transform.interateObjectRows(value[attr]);
 			} else {
