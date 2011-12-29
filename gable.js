@@ -117,7 +117,7 @@ Gable.data.types.input.transform.iterateObjectColumns = function(value) {
 					columns.push(col);
 				}
 			} else {
-				for (var attr in biggest {
+				for (var attr in biggest ) {
 					var val = biggest[attr];
 					var column_type = Gable.data.column.type(val);
 					column_id = attr;
