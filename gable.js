@@ -72,13 +72,12 @@ Gable.data.types.input.transform.raw = function(value) {
 		}
 	}
 
-	console.log("INPUT",value,"COLUMNS",columns;
+	console.log("INPUT",value,"COLUMNS",columns);
 
 
 
 	//Gable.data.table.create(columns, rows, table_meta);
-		
-    return newobj;
+	    return newobj;
 };
 
 Gable.data.types.raw.transform.csv = function(obj) {
