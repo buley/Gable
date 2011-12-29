@@ -100,7 +100,10 @@ Gable.data.types.input.transform.interateObjectColumns = function(value) {
 				}
 				//break;
 			} else if( 'object' === typeof value[ attr ]  && !( value[ attr ] instanceof Date ) ) {
-				return Gable.data.types.input.transform.interateObjectColumns(value[attr]);
+				var newcols = Gable.data.types.input.transform.interateObjectColumns(value[attr]);
+				for( var x = 0; x < newcols.length; x += 1 ) {
+					columns.push( newcols[ x ] );
+				}
 			} else {
 				var val = value[attr];
 				console.log('typing ',val);
