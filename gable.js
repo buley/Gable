@@ -147,7 +147,6 @@ Gable.data.types.input.transform.interateObjectRows = function(value, row_id ) {
 				var valuelen = value[ attr ].length;
 				var val = value[attr];
 				console.log('typing ',val);
-				var row_id = attr;
 				var row_meta = {};
 				console.log('val',val,'rw_id',row_id,'rw_meta',row_meta);
 				var rw = Gable.data.row.create(val, row_id, row_meta);
@@ -160,7 +159,6 @@ Gable.data.types.input.transform.interateObjectRows = function(value, row_id ) {
 			} else {
 				var val = value[attr];
 				console.log('typing ',val);
-				var row_id = attr;
 				var row_meta = {};
 				console.log('val',val,'rw_id',row_id,'rw_meta',row_meta);
 				var rw = Gable.data.row.create(val, row_id, row_meta);
@@ -176,13 +174,12 @@ Gable.data.types.input.transform.interateObjectRows = function(value, row_id ) {
 	return null;
 };
 
-Gable.data.types.input.transform.interateArrayRows = function(value) {
+Gable.data.types.input.transform.interateArrayRows = function(value,row_id) {
  	var row_meta = {};
 	var rows = [];
 	if (Gable.utils.isArray(value)) {	
 		var valuelen = value.length;
 		for (var x = 0; x < valuelen; x += 1) {
-			var row_id = null;
 			var val = value[x];
 			if(  'object' === typeof val ) {
 				console.log('BAILING');
