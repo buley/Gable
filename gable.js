@@ -150,9 +150,7 @@ Gable.data.types.input.transform.interateObjectRows = function(value) {
 				for (var x = 0; x < valuelen; x += 1) {
 					var val = value[attr][x];
 
-					console.log('typing ',val);
-					var row_type = Gable.data.row.type(val);
-					console.log('rw type', row_type, 'rw_id',row_id,'rw_meta',row_meta);
+					console.log('rw_id',row_id,'rw_meta',row_meta);
 					var rw = Gable.data.row.create(row_type, row_id, row_meta);
 					console.log('rw arr',rw);
 					rows.push(rw);
@@ -163,9 +161,8 @@ Gable.data.types.input.transform.interateObjectRows = function(value) {
 				var val = value[attr];
 				console.log('typing ',val);
 				var row_id = attr;
-				var row_type = Gable.data.row.type(val);
-				console.log('rw type', row_type, 'rw_id',row_id,'rw_meta',row_meta);
-				var rw = Gable.data.row.create(row_type, row_id, row_meta);
+				console.log('rw_id',row_id,'rw_meta',row_meta);
+				var rw = Gable.data.row.create(row_id, row_meta);
 				console.log('rw arr',rw);
 				rows.push(rw);
 			}
@@ -186,7 +183,6 @@ Gable.data.types.input.transform.interateArrayRows = function(value) {
 		for (var x = 0; x < valuelen; x += 1) {
 			var row_id = null;
 			var val = value[x];
-			var row_type = Gable.data.row.type(val);
 			if( 'undefined' === typeof row_type || null === row_type && 'object' === typeof val ) {
 				console.log('BAILING');
 				return Gable.data.types.input.transform.interateObjectRows( val );
@@ -490,7 +486,8 @@ Gable.data.table.create = function( columns, rows, meta, timestamp ) {
 		, 'timestamp': timestamp
 	};
 };
-Gable.data.row.create = function( value, meta, timestamp ) {
+
+Gable.data.row.create = function( value, meta, id, timestamp ) {
 	//value is required
 	if( 'undefined' === typeof value || null === value ) {
 		return null;	
@@ -499,10 +496,15 @@ Gable.data.row.create = function( value, meta, timestamp ) {
 	if( 'undefined' === typeof meta ) {
 		meta = null;
 	}
+	//id is optional
+	if( 'undefined' === typeof id ) {
+		id = null;
+	}
 	//timestamp can be faked
 	timestamp = ( 'number' !== typeof timestamp ) ? new Date().getTime() : timestamp;
     	return { 
         	'value': value
+		, 'id': id
 		, 'meta': meta
        		, 'timestamp': timestamp
 	};
