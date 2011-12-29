@@ -82,15 +82,17 @@ Gable.data.types.input.transform.iterateObjectColumns = function(value) {
 			if (Gable.utils.isArray(value[attr])) {
 				var valuelen = value[ attr ].length;
 				var nonulls = true;
-				for( var x = 0; x < valuelen; x += 1 ) {
-					if( 'object' === typeof value[ attr ][ x ]  && !Gable.utils.isArray( value[ attr ][ x ] ) && !( value[ attr ][ x ] instanceof Date ) ) { 
-						for( var attr2 in value[ attr ][ x ] ) {
-							if( null === value[ attr ][ x ][ attr2 ] ) {
-								nonulls = false;
+				if ( null !==  value[ attr ][ x ] ) {
+					for( var x = 0; x < valuelen; x += 1 ) {
+						if( 'object' === typeof value[ attr ][ x ]  && !Gable.utils.isArray( value[ attr ][ x ] ) && !( value[ attr ][ x ] instanceof Date ) ) { 
+							for( var attr2 in value[ attr ][ x ] ) {
+								if( null === value[ attr ][ x ][ attr2 ] ) {
+									nonulls = false;
+								}
 							}
+						} else if( null === value[ attr ][ x ] ) {
+							nonulls = false;
 						}
-					} else if( null === value[ attr ][ x ] ) {
-						nonulls = false;
 					}
 				}
 				if( null === biggest || ( true === nonulls && valuelen >= biggest_total ) ) {
