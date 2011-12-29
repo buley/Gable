@@ -90,7 +90,7 @@ Gable.data.types.input.transform.iterateObjectColumns = function(value) {
 					}
 				}
 				console.log("NONULL?",attr,nonulls);
-				if( null === biggest || ( true === nonulls && valuelen > biggest_total ) ) {
+				if( null === biggest || ( true === nonulls && valuelen >= biggest_total ) ) {
 					console.log("PASS");
 					biggest = value[attr];
 					biggest_total = valuelen;
