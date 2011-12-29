@@ -85,7 +85,7 @@ Gable.data.types.input.transform.iterateObjectColumns = function(value) {
 				for( var x = 0; x < valuelen; x += 1 ) {
 					if( 'object' === typeof value[ attr ][ x ]  && !Gable.utils.isArray( value[ attr ][ x ] ) && !( value[ attr ][ x ] instanceof Date ) ) { 
 						for( var attr2 in value[ attr ][ x ] ) {
-							if( null === value[ attr ][ x ] ) {
+							if( null === value[ attr ][ x ][ attr2 ] ) {
 								nonulls = false;
 							}
 						}
@@ -231,7 +231,7 @@ Gable.data.types.raw.transform.csv = function(obj) {
 
 };
 
-Gable.data.types.raw.transform.filter = function(obj) {
+Gable.data.types.input.transform.filter = function(obj) {
     var newobj = (null !== obj && 'undefined' !== typeof obj) ? obj : {},
         objlen = obj.length,
         x, current, attr;
@@ -467,7 +467,7 @@ Gable.charts.types = {
 
 
 /* Data utilities */
-
+/*
 Gable.data.add = function( id, value, meta ) {
 	meta = ( 'undefined' === typeof meta || 'object' !== typeof meta ) ? {} : meta;
 	if( Gable.data.type.tranformsTo( 'input', 'raw' ) ) {
@@ -508,7 +508,7 @@ Gable.data.exists = function(id) {
 
 };
 
-
+*/
 
 //xxx
 
