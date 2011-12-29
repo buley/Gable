@@ -62,7 +62,6 @@ Gable.data.types.input.transform.raw = function(value) {
 			if (!Gable.utils.isArray(value)) {
 				var valuelen = value[ attr ];
 				for (var x = 0; x < valuelen; x += 1) {
-					var column_id = null;
 					var val = value[x];
 					var column_type = Gable.data.column.type(val);
 					console.log('col type', column_type, 'col_id',column_id,'col_meta',column_meta);
