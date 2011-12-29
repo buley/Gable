@@ -79,10 +79,16 @@ Gable.data.types.input.transform.iterateObjectColumns = function(value) {
 		var big_flag = true;
 		//set column_id if data is keyed object, null
 		for (var attr in value) {
-
+			var maybe_biggest = false;
 			if (Gable.utils.isArray(value[attr])) {
 				var valuelen = value[ attr ].length;
-				if( valuelen > biggest_total ) {
+				var nonulls = true;
+				for( var x = 0; x < valuelen; x += 1 ) {
+					if( null === value[ attr][ x ] ) {
+						nonulls = false;
+					}
+				}
+				if( true == nonulls && valuelen > biggest_total ) {
 					biggest = value[attr];
 					biggest_total = valuelen;
 				}
