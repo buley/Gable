@@ -93,7 +93,7 @@ Gable.data.types.input.transform.interateObjectColumns = function(value) {
 					var col = Gable.data.column.create(column_type, column_id, column_meta);
 					console.log('col arr',col);
 					columns.push(col);
-				}
+			//	}
 
 
 			} else if( 'object' === typeof value[ attr ] ) {
