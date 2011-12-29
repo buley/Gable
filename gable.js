@@ -74,7 +74,7 @@ Gable.data.types.input.transform.raw = function(value) {
 
 		}
 	} else {
-		columns = Gable.data.types.input.transform.interateArrayColumns( val );
+		columns = Gable.data.types.input.transform.interateArrayColumns( value );
 
 	}
 
@@ -83,7 +83,7 @@ Gable.data.types.input.transform.raw = function(value) {
 	//Gable.data.table.create(columns, rows, table_meta);
 };
 
-Gable.data.types.input.transform.interateArrayColumns = function(value) {
+Gable.data.types.input.transform.interateObjectColumns = function(value) {
 	return value;
 };
 
