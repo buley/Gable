@@ -59,7 +59,9 @@ Gable.data.types.input.transform.raw = function(value) {
 		for (var attr in value) {
 			var column_type = Gable.data.column.type(obj);
 			var column_id = attr;
+			console.log('col type', column_type, 'col_id',column_id,'col_meta',column_meta);
 			var col = Gable.data.column.create(column_type, column_id, column_meta);
+			console.log('col obj',col);
 			columns.push(col);
 		}
 	} else {
@@ -68,18 +70,16 @@ Gable.data.types.input.transform.raw = function(value) {
 			var column_id = null;
 			var val = cols[x];
 			var column_type = Gable.data.column.type(val);
-			var column_meta = {};
+			console.log('col type', column_type, 'col_id',column_id,'col_meta',column_meta);
 			var col = Gable.data.column.create(column_type, column_id, column_meta);
+			console.log('col arr',col);
 			columns.push(col);
 		}
 	}
 
 	console.log("INPUT",value,"COLUMNS",columns);
 
-
-
 	//Gable.data.table.create(columns, rows, table_meta);
-	    return newobj;
 };
 
 Gable.data.types.raw.transform.csv = function(obj) {
