@@ -115,7 +115,7 @@ Gable.data.types.input.transform.iterateObjectColumns = function(value) {
 					var val = biggest[x];
 					if (!Gable.utils.isArray(val)) {
 						return Gable.data.types.input.transform.iterateObjectColumns(val, attr);
-					}						}
+					}
 					column_type = Gable.data.column.type(val);	
 					var col = Gable.data.column.create(column_type, column_id, column_meta);
 					columns.push(col);
