@@ -76,6 +76,7 @@ Gable.data.types.input.transform.iterateObjectColumns = function(value) {
 	if (!Gable.utils.isArray(value)) {
 		var biggest = {};
 		var biggest_total = 0;
+		var big_flag = true;
 		//set column_id if data is keyed object, null
 		for (var attr in value) {
 
@@ -92,6 +93,7 @@ Gable.data.types.input.transform.iterateObjectColumns = function(value) {
 					columns.push( newcols[ x ] );
 				}*/
 			} else {
+				big_flag = false;
 				var val = value[attr];
 				console.log('typing ',val);
 				var column_id = attr;
@@ -114,17 +116,19 @@ Gable.data.types.input.transform.iterateObjectColumns = function(value) {
 				}
 
 			}
-			var valuelen = biggest.length;
-			var column_id = null;
-			for (var x = 0; x < valuelen; x += 1) {
-				var val = biggest[x];
+			if( true === big_flag ) {
+				var valuelen = biggest.length;
+				var column_id = null;
+				for (var x = 0; x < valuelen; x += 1) {
+					var val = biggest[x];
 
-				console.log('typing ',val);
-				var column_type = Gable.data.column.type(val);
-				console.log('col type', column_type, 'col_id',column_id,'col_meta',column_meta);
-				var col = Gable.data.column.create(column_type, column_id, column_meta);
-				console.log('col arr',col);
-				columns.push(col);
+					console.log('typing ',val);
+					var column_type = Gable.data.column.type(val);
+					console.log('col type', column_type, 'col_id',column_id,'col_meta',column_meta);
+					var col = Gable.data.column.create(column_type, column_id, column_meta);
+					console.log('col arr',col);
+					columns.push(col);
+				}
 			}
 
 			return columns;
