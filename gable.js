@@ -100,8 +100,16 @@ Gable.data.types.input.transform.interateObjectColumns = function(value) {
 					console.log('col arr',col);
 					columns.push(col);
 				}
-			} else {
+			} else if( 'obj' === typeof value[ attr ] ) {
 				return Gable.data.types.input.transform.interateObjectColumns(value[attr]);
+			} else {
+				var val = value[attr];
+				console.log('typing ',val);
+				var column_type = Gable.data.column.type(val);
+				console.log('col type', column_type, 'col_id',column_id,'col_meta',column_meta);
+				var col = Gable.data.column.create(column_type, column_id, column_meta);
+				console.log('col arr',col);
+				columns.push(col);
 			}
 
 		}
