@@ -89,13 +89,10 @@ Gable.data.types.input.transform.iterateObjectColumns = function(value) {
 						nonulls = false;
 					}
 				}
-				console.log("NONULL?",attr,nonulls);
 				if( null === biggest || ( true === nonulls && valuelen >= biggest_total ) ) {
-					console.log("PASS");
 					biggest = value[attr];
 					biggest_total = valuelen;
 				}
-				console.log("??P?",true === nonulls, valuelen > biggest_total, nonulls, valuelen, biggest_total);
 			} else if( 'object' === typeof value[ attr ]  && !( value[ attr ] instanceof Date ) ) {
 				return Gable.data.types.input.transform.iterateObjectColumns(value[attr]);
 				/*var newcols = Gable.data.types.input.transform.iterateObjectColumns(value[attr]);
@@ -105,44 +102,24 @@ Gable.data.types.input.transform.iterateObjectColumns = function(value) {
 			} else {
 				big_flag = false;
 				var val = value[attr];
-				console.log('typing ',val);
 				var column_id = attr;
 				var column_type = Gable.data.column.type(val);
-				console.log('col type', column_type, 'col_id',column_id,'col_meta',column_meta);
 				var col = Gable.data.column.create(column_type, column_id, column_meta);
 				columns.push(col);
-				console.log('col arr',col);
-				/*	var seen = false;
-					for( var onecol in columns ) {
-						if( columns[ onecol ].id === col.id ) {
-							seen = true;
-						}
-					}
-					if( 'undefined' !== typeof column_id && false === seen ) {
-						
-						columns.push(col);
-			
-					}
-				*/
-				}
-
 			}
-			if( true === big_flag ) {
-				var valuelen = biggest.length;
-				var column_id = null;
-				for (var x = 0; x < valuelen; x += 1) {
-					var val = biggest[x];
-
-					console.log('typing ',val);
-					var column_type = Gable.data.column.type(val);
-					console.log('col type', column_type, 'col_id',column_id,'col_meta',column_meta);
-					var col = Gable.data.column.create(column_type, column_id, column_meta);
-					console.log('col arr',col);
-					columns.push(col);
-				}
+		}
+		if( true === big_flag ) {
+			var valuelen = biggest.length;
+			var column_id = null;
+			for (var x = 0; x < valuelen; x += 1) {
+				var val = biggest[x];
+				var column_type = Gable.data.column.type(val);
+				var col = Gable.data.column.create(column_type, column_id, column_meta);
+				columns.push(col);
 			}
+		}
 
-			return columns;
+		return columns;
 	} else {
 		return Gable.data.types.input.transform.iterateArrayColumns( value );
 	}
@@ -159,12 +136,9 @@ Gable.data.types.input.transform.iterateArrayColumns = function(value) {
 			var val = value[x];
 			var column_type = Gable.data.column.type(val);
 			if( 'undefined' === typeof column_type || null === column_type && 'object' === typeof val ) {
-				console.log('BAILING');
 				return Gable.data.types.input.transform.iterateObjectColumns( val );
 			}
-			console.log('iterate col type', column_type, 'col_id',column_id,'col_meta',column_meta);
 			var col = Gable.data.column.create(column_type, column_id, column_meta);
-			console.log('iterate col arr',col);
 			columns.push(col);
 		}
 
@@ -192,8 +166,6 @@ Gable.data.types.input.transform.iterateObjectRows = function(value, row_id ) {
 				var rw = Gable.data.row.create(val, row_meta, row_id);
 				console.log('rw arr',rw);
 				rows.push(rw);
-
-
 			} else if( 'object' === typeof value[ attr ] && !(  value[ attr ] instanceof Date ) ) {
 				var newrows = Gable.data.types.input.transform.iterateObjectRows(value[attr], attr );
 				for( var x = 0; x < newrows.length; x += 1 ) {
@@ -202,10 +174,8 @@ Gable.data.types.input.transform.iterateObjectRows = function(value, row_id ) {
 			} else {
 				do_value = true;
 			}
-
 		}
 		if( true === do_value ) {
-
 			var val = [];
 			for( var attr in value ) {
 				val.push( value[attr] );
@@ -216,7 +186,6 @@ Gable.data.types.input.transform.iterateObjectRows = function(value, row_id ) {
 			var rw = Gable.data.row.create(val, row_meta, row_id);
 			console.log('rw arr',rw);
 			rows.push(rw);
-
 		}
 		return rows;
 	} else {
