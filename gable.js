@@ -231,7 +231,7 @@ Gable.data.types.raw.transform.csv = function(obj) {
 
 };
 
-Gable.data.types.input.transform.filter = function(obj) {
+Gable.data.types.raw.transform.filter = function(obj) {
     var newobj = (null !== obj && 'undefined' !== typeof obj) ? obj : {},
         objlen = obj.length,
         x, current, attr;
