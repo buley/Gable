@@ -55,7 +55,7 @@ Gable.data.types.input.transform.raw = function(value) {
  	column_meta = {};
 	var columns = [];
 	if (!Gable.utils.isArray(value)) {
-		return Gable.data.types.input.transform.interateObjectColumns( value );
+		columns = Gable.data.types.input.transform.interateObjectColumns( value );
 	} else {
 		columns = Gable.data.types.input.transform.interateArrayColumns( value );
 
