@@ -84,11 +84,12 @@ Gable.data.types.input.transform.iterateObjectColumns = function(value) {
 				var valuelen = value[ attr ].length;
 				var nonulls = true;
 				for( var x = 0; x < valuelen; x += 1 ) {
-					if( null === value[ attr][ x ] ) {
+					if( null === value[ attr ][ x ] ) {
+						console.log("NULL",attr);
 						nonulls = false;
 					}
 				}
-				if( true == nonulls && valuelen > biggest_total ) {
+				if( true === nonulls && valuelen > biggest_total ) {
 					biggest = value[attr];
 					biggest_total = valuelen;
 				}
