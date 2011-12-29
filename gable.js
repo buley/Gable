@@ -121,7 +121,7 @@ Gable.data.types.input.transform.iterateObjectColumns = function(value) {
 			if (Gable.utils.isArray(biggest)) {
 				for (var x = 0; x < valuelen; x += 1) {
 					var val = biggest[x];
-					if ('object' === typeof val && !( val instanceof Date ) && !Gable.utils.isArray(val)) {
+					if (null !== val && 'object' === typeof val && !( val instanceof Date ) && !Gable.utils.isArray(val)) {
 						return Gable.data.types.input.transform.iterateObjectColumns(val, attr);
 					}
 					column_type = Gable.data.column.type(val);	
