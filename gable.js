@@ -51,7 +51,7 @@ Gable.data.types = {
 
 Gable.data.types.input = Gable.data.types.input || {};
 Gable.data.types.input.transform = Gable.data.types.input.transform || {};
-Gable.data.types.input.transform.raw = function(value) {
+Gable.data.types.input.transform.raw = function(value, table_id, table) {
  	column_meta = {};
 	var columns = [];
 	var isarray = Gable.utils.isArray(value);
@@ -65,9 +65,8 @@ Gable.data.types.input.transform.raw = function(value) {
 	} else {
 		//shouldn't happen but what if
 	}
-	var table_meta = { 'label': 'international' };
-	var table = Gable.data.table.create(columns, rows, table_meta );
-	return table;
+	
+	return { 'rows': rows, 'columns': columns };
 };
 
 Gable.data.types.input.transform.iterateObjectColumns = function(value) {
