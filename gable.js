@@ -113,8 +113,8 @@ Gable.data.types.input.transform.iterateObjectColumns = function(value) {
 
 				}
 
-		i	}
-		var valuelen = biggest.length;
+			}
+			var valuelen = biggest.length;
 			var column_id = null;
 			for (var x = 0; x < valuelen; x += 1) {
 				var val = biggest[x];
