@@ -57,7 +57,7 @@ Gable.data.types.input.transform.raw = function(value) {
 	if (!Gable.utils.isArray(value)) {
 		//set column_id if data is keyed object, null
 		for (var attr in value) {
-			var column_type = Gable.data.column.type(obj);
+
 			var column_id = attr;
 			if (!Gable.utils.isArray(value)) {
 				var valuelen = value[ attr ];
@@ -94,23 +94,6 @@ Gable.data.types.input.transform.raw = function(value) {
 	console.log("INPUT",value,"COLUMNS",columns);
 
 	//Gable.data.table.create(columns, rows, table_meta);
-};
-
-Gable.data.types.input.transform.iterateCols = function( value, columns ) {
-	var columns = ( null === columns || 'undefined' === typeof columns ) ? [] : columns;
-	if (!Gable.utils.isArray(value)) {
-		var valuelen = value.length;
-		for (var x = 0; x < valuelen; x += 1) {
-			var column_id = null;
-			var val = value[x];
-			var column_type = Gable.data.column.type(val);
-			console.log('col type', column_type, 'col_id',column_id,'col_meta',column_meta);
-			var col = Gable.data.column.create(column_type, column_id, column_meta);
-			console.log('col arr',col);
-			columns.push(col);
-		}
-	}
-	return null;
 };
 
 Gable.data.types.raw.transform.csv = function(obj) {
