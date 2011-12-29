@@ -105,7 +105,7 @@ Gable.data.types.input.transform.interateArrayColumns = function(value) {
 			var val = value[x];
 			var column_type = Gable.data.column.type(val);
 			if( 'undefined' === typeof column_type || null === column_type && 'object' === typeof val ) {
-				console.log('BAILING';
+				console.log('BAILING');
 				return Gable.data.types.input.transform.interateObjectColumns( val );
 			}
 			console.log('iterate col type', column_type, 'col_id',column_id,'col_meta',column_meta);
