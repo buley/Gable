@@ -322,7 +322,7 @@ Gable.data.table.create = function( columns, rows, meta, timestamp ) {
 		return null;	
 	} else {
 		//columns and rows are formatted as arrays in raw
-		if( !Gable.utils.isArray( columns ) || !Gable.utils.isArray( rows ) {
+		if( !Gable.utils.isArray( columns ) || !Gable.utils.isArray( rows ) ) {
 			//columns and rows must be arrays
 			return null;
 		}
