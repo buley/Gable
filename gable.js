@@ -598,8 +598,8 @@ Gable.data.cell.draw = function() {};
 /* Utilities */
 
 Gable.utils.isArray = function(obj) {
-    if (!obj.isArray) {
-        return Object.prototype.toString.call(arg) == '[object Array]';
+    if ( 'undefined' === typeof obj.isArray ) {
+        return Object.prototype.toString.call( obj ) === '[object Array]';
     } else {
         return obj.isArray();
     }
