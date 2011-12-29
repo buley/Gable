@@ -54,7 +54,7 @@ Gable.data.types.input.transform = Gable.data.types.input.transform || {};
 Gable.data.types.input.transform.raw = function(value) {
  	column_meta = {};
 	var columns = [];
-	if (Gable.utils.isArray(value)) {
+	if (!Gable.utils.isArray(value)) {
 		//set column_id if data is keyed object, null
 		for (var attr in value) {
 			var column_type = Gable.data.column.type(obj);
