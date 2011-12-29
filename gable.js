@@ -100,6 +100,8 @@ Gable.data.types.input.transform.interateObjectColumns = function(value) {
 					console.log('col arr',col);
 					columns.push(col);
 				}
+			} else {
+				return Gable.data.types.input.transform.interateArrayColumns = function(value[attr]);
 			}
 
 		}
