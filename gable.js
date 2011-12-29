@@ -86,7 +86,7 @@ Gable.data.types.input.transform.iterateObjectColumns = function(value) {
 					biggest_total = valuelen;
 				}
 			}
-
+		}
 			var valuelen = biggest.length;
 				var column_id = null;
 				for (var x = 0; x < valuelen; x += 1) {
@@ -98,19 +98,6 @@ Gable.data.types.input.transform.iterateObjectColumns = function(value) {
 					var col = Gable.data.column.create(column_type, column_id, column_meta);
 					console.log('col arr',col);
 					columns.push(col);
-
-					/*var seen = false;
-					for( var onecol in columns ) {
-						if( columns[ onecol ].id === col.id ) {
-							seen = true;
-						}
-					}
-					if( null === column_id || 'undefined' !== typeof column_id || {
-						false === seen ) {
-
-						
-						columns.push(col);
-					}*/
 				}
 
 				//break;
