@@ -94,7 +94,7 @@ Gable.data.types.input.transform.iterateObjectColumns = function(value) {
 							seen = true;
 						}
 					}
-					if( false === seen ) {
+					if( 'undefined' !== typeof column_id && false === seen ) {
 						columns.push(col);
 					}
 				}
@@ -119,7 +119,7 @@ Gable.data.types.input.transform.iterateObjectColumns = function(value) {
 							seen = true;
 						}
 					}
-					if( false === seen ) {
+					if( 'undefined' !== typeof column_id && false === seen ) {
 						
 						columns.push(col);
 			
