@@ -271,7 +271,7 @@ Gable.data.types.input.transform.iterateObjectRows = function(value, row_id ) {
 					var val = value[attr][ w ];
 					row_id = attr;
 					var row_meta = {};
-					if( 'object' === typeof val && !( val instanceof Date ) && !Gable.utils.isArray( val ) ) {
+					if( null !== val && 'object' === typeof val && !( val instanceof Date ) && !Gable.utils.isArray( val ) ) {
 						var tmp_val = [];
 						for( var attr2 in val ) {
 							if( val.hasOwnProperty(attr2) ) {
