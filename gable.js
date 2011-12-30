@@ -77,7 +77,7 @@ Gable.data.types.raw.transform.table = function( obj ) {
 			addition[ 'label' ] = item.meta.label;
 		}
 
-		if( 'undefined' !== typeof item.meta.label ) {
+		if( 'undefined' !== typeof item.meta && 'undefined' !== typeof item.meta.label ) {
 			delete item.meta.label;
 		}
 
