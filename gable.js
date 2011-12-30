@@ -325,7 +325,14 @@ Gable.data.types.input.transform.iterateArrayRows = function(value,row_id) {
 			var val = value[x];
 			if(  'object' === typeof val ) {
 				if( Gable.utils.isArray(value) ) {
-					return Gable.data.types.input.transform.iterateArrayRows( val );
+					
+					var values = ( 'undefined' !== typeof value[0] && null !== Gable.data.column.type ) ? true : false;
+					if( true === values ) {
+
+					} else {
+						return Gable.data.types.input.transform.iterateArrayRows( val );
+					}
+					
 				} else {
 					return Gable.data.types.input.transform.iterateObjectRows( val );
 				}
