@@ -325,7 +325,6 @@ Gable.data.types.input.transform.iterateArrayRows = function(value,row_id) {
 			var val = value[x];
 			if(  'object' === typeof val ) {
 				if( Gable.utils.isArray(value) ) {
-					return Gable.data.types.input.transform.iterateObjectRows( val );
 					wasarray = true;
 					tmpstack.push( val );
 				} else {
