@@ -396,10 +396,16 @@ Gable.data.types.input.transform.iterateArrayRows = function(value,row_id) {
 									}
 
 									rw = Gable.data.row.create( tmpstack, row_meta, row_id );
+									if( tmpstack.length > 0 ) {
+										rows.push(rw);
+										tmpstack = [];
+
+									}
 								} else {
 									rw = Gable.data.row.create( val[y][z], row_meta, row_id );
+									rows.push(rw);
 								}
-								rows.push(rw);
+
 							}
 
 						} else if( 'object' === typeof val[y] && !( val[y] instanceof Date ) ) {
@@ -418,12 +424,12 @@ Gable.data.types.input.transform.iterateArrayRows = function(value,row_id) {
 						}
 					}
 
-					if( true === wasarray && tmpstack.length > 0 ) {
+						if( true === wasarray && tmpstack.length > 0 ) {
 							var rw = Gable.data.row.create( tmpstack, row_meta, row_id );
 							rows.push(rw);
 							tmpstack = [];
 
-					}
+						}
 					}
 					
 				} else {
@@ -439,10 +445,15 @@ Gable.data.types.input.transform.iterateArrayRows = function(value,row_id) {
 						}
 
 						rw = Gable.data.row.create( tmpstack, row_meta, row_id );
+						if( tmpstack > 0 ) {
+							rows.push(rw);
+							tmpstack = [];
+						}
 					} else {
 						rw = Gable.data.row.create( val, row_meta, row_id );
+						rows.push(rw);
 					}
-					rows.push(rw);
+
 }
 			} else {
 				var rw = Gable.data.row.create( val, row_meta, row_id );
@@ -453,7 +464,10 @@ Gable.data.types.input.transform.iterateArrayRows = function(value,row_id) {
 
 		if( true === wasarray ) {
 			var rw = Gable.data.row.create( tmpstack, row_meta, row_id);
-			rows.push(rw);
+			if( tmpstack > 0 ) {
+				rows.push(rw);
+				tmpstack = [];
+			}
 		}
 
 	} else {
