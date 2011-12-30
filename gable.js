@@ -319,6 +319,7 @@ Gable.data.types.input.transform.iterateArrayRows = function(value,row_id) {
 	var rows = [];
 	if (Gable.utils.isArray(value)) {	
 		var valuelen = value.length;
+		var wasarray = false;
 		for (var x = 0; x < valuelen; x += 1) {
 			var val = value[x];
 			if(  'object' === typeof val ) {
@@ -329,8 +330,20 @@ Gable.data.types.input.transform.iterateArrayRows = function(value,row_id) {
 					return Gable.data.types.input.transform.iterateObjectRows( val );
 
 				}
+			} else {
+
+				wasarray = true;
+				tmpstack.push( val );
+
 			}
-			var rw = Gable.data.row.create( val, row_meta, row_id );
+
+			if( false === wasarray ) {
+				var rw = Gable.data.row.create( val, row_meta, row_id );
+				rows.push(rw);
+			}
+		}
+		if( true === wasarray ) {
+			var rw = Gable.data.row.create( tmpstack, row_meta, row_id);
 			rows.push(rw);
 		}
 
