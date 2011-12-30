@@ -53,8 +53,8 @@ Gable.data.types.raw = Gable.data.types.raw || {};
 Gable.data.types.raw.transform = Gable.data.types.raw.transform || {};
 Gable.data.types.raw.transform.table = function( obj ) {
 
-	var cols = [];
-	var rows = [];
+	var newcols = [];
+	var newrows = [];
 	var meta = obj.meta;
 	var x
 	  , columns = obj.columns
@@ -89,7 +89,7 @@ Gable.data.types.raw.transform.table = function( obj ) {
 			addition[ 'type' ] = item.type;
 		}
 
-		cols.push( addition );
+		newcols.push( addition );
 
 	}
 
@@ -115,13 +115,13 @@ Gable.data.types.raw.transform.table = function( obj ) {
 			addition[ 'p' ] = item.meta;
 		}
 
-		rows.push( addition );
+		newrows.push( addition );
 
 	}
 
 	var newobj = {
-		'cols': cols
-		, 'rows': rows
+		'cols': newcols
+		, 'rows': newrows
 		, 'p': meta
 	};
 
