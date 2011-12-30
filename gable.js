@@ -359,11 +359,11 @@ Gable.data.types.input.transform.iterateArrayRows = function(value,row_id) {
 								rows.push(rw);
 							}
 
-						} else if( 'object' === typeof val[0] && !( val[0] instanceof Date ) ) {
+						} else if( 'object' === typeof val[y] && !( val[y] instanceof Date ) ) {
 							var colatters = [];
-							for( var zattr in val ) {
+							for( var zattr in val[y] ) {
 								if( value.hasOwnProperty( zattr ) ) {
-									colatters.push( val[zattr] );
+									colatters.push( val[y][zattr] );
 								}
 							}
 							var rw = Gable.data.row.create( colatters, row_meta, row_id );
