@@ -509,12 +509,12 @@ Gable.data.put = function( id, value, meta ) {
 
 Gable.data.get = function( id, type ) {
 	var table = Gable.data.table.get( id );
-	var result;
+	var result = table;
 	if( null === type || 'undefined' !== typeof type || 'raw' === type ) {
 		result = table;	
-	} else if( 'table' ) {
+	} else if( type === 'table' ) {
 		result = Gable.data.types.raw.transform.table( Gable.data.types.table.transform.filter( table ) );
-	} else if( 'csv' ) {
+	} else if( type === 'csv' ) {
 		result = Gable.data.types.raw.transform.csv( Gable.data.types.csv.transform.filter( table ) );
 	}
 	return result;
