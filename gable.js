@@ -53,6 +53,51 @@ Gable.data.types.raw = Gable.data.types.raw || {};
 Gable.data.types.raw.transform = Gable.data.types.raw.transform || {};
 Gable.data.types.raw.transform.table = function( obj ) {
 	console.log('Transform: table',obj);
+	var cols = [];
+	var rows = [];
+	var meta = {};
+	var x
+	  , columns = obj.columns
+	  , colcount = columns.length
+	  , rows = obj.rows
+	  , rowcount = rows.length
+	  , item;
+
+	for( x = 0; x < colcount; x += 1 ) {
+		item = columns[ x ];
+		var addition = {};
+		if( 'undefined' !== typeof item.id ) {
+			addition[ 'id' ] = item.id;
+		}
+		if( 'undefined' !== typeof item.meta.label ) {
+			addition[ 'label' ] = item.meta.label;
+			delete item.meta.label;
+		}
+		if( 'undefined' !== typeof item.type ) {
+			addition[ 'type' ] = item.type;
+		}
+		cols.push( addition );
+	}
+	for( x = 0; x < rowcount; x += 1 ) {
+		item = rows[ x ];
+		var addition = {};
+		if( 'undefined' !== typeof item.id ) {
+			addition[ 'id' ] = item.id;
+		}
+		if( 'undefined' !== typeof item.meta.label ) {
+			addition[ 'label' ] = item.meta.label;
+			delete item.meta.label;
+		}
+		if( 'undefined' !== typeof item.type ) {
+			addition[ 'type' ] = item.type;
+		}
+		rows.push( addition );
+	}
+	var newobj = {
+		'cols': cols
+		, 'rows': rows
+		, 'p': meta
+	};
 	return obj;
 }
 
@@ -504,7 +549,6 @@ Gable.data.add = function( id, value, meta ) {
 
 Gable.data.put = function( id, value, meta ) {
 	meta = ( 'undefined' === typeof meta || 'object' !== typeof meta ) ? {} : meta;
-
 };
 
 Gable.data.get = function( id, type ) {
