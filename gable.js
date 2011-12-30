@@ -52,7 +52,7 @@ Gable.data.types = {
 Gable.data.types.raw = Gable.data.types.raw || {};
 Gable.data.types.raw.transform = Gable.data.types.raw.transform || {};
 Gable.data.types.raw.transform.table = function( obj ) {
-	console.log('Transform: table',obj);
+
 	var cols = [];
 	var rows = [];
 	var meta = obj.meta;
@@ -90,9 +90,13 @@ Gable.data.types.raw.transform.table = function( obj ) {
 		}
 
 		cols.push( addition );
+
 	}
+
 	for( x = 0; x < rowcount; x += 1 ) {
+
 		item = rows[ x ];
+
 		var addition = {};
 		
 		if( 'undefined' !== typeof item.value && null !== item.value ) {
@@ -112,14 +116,18 @@ Gable.data.types.raw.transform.table = function( obj ) {
 		}
 
 		rows.push( addition );
+
 	}
+
 	var newobj = {
 		'cols': cols
 		, 'rows': rows
 		, 'p': meta
 	};
+
 	return newobj;
-}
+
+};
 
 Gable.data.types.input = Gable.data.types.input || {};
 Gable.data.types.input.transform = Gable.data.types.input.transform || {};
