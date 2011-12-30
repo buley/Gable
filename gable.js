@@ -112,10 +112,6 @@ Gable.data.types.raw.transform.table = function( obj ) {
 
 					if( 'undefined' !== typeof item.meta && 'undefined' !== typeof item.meta.label && null !== item.meta.label ) {
 						addition[ 'f' ] = item.meta.label;
-					} else {
-						if( 'undefined' !== typeof item.id ) {
-							addition[ 'f' ] = item.id;
-						}		
 					}
 	
 					if( 'undefined' !== typeof item.meta && 'undefined' !== typeof item.meta.label ) {
