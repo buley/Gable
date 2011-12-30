@@ -71,14 +71,15 @@ Gable.data.types.raw.transform.table = function( obj ) {
 		
 		if( 'undefined' !== typeof item.id && null !== item.id ) {
 			addition[ 'id' ] = item.id;
-		}
-
-		if( 'undefined' !== typeof item.meta && 'undefined' !== typeof item.meta.label && null !== item.meta.label ) {
-			addition[ 'label' ] = item.meta.label;
+			addition[ 'label' ] = item.id;
 		}
 
 		if( 'undefined' !== typeof item.meta && 'undefined' !== typeof item.meta.label ) {
 			delete item.meta.label;
+		}
+
+		if( 'undefined' !== typeof item.meta && 'undefined' !== typeof item.meta.label && null !== item.meta.label ) {
+			addition[ 'label' ] = item.meta.label;
 		}
 
 		if( 'undefined' !== typeof item.meta && !Gable.utils.isEmpty( item.meta ) ) {
