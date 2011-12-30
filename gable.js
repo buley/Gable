@@ -336,7 +336,21 @@ Gable.data.types.input.transform.iterateObjectRows = function(value, row_id ) {
 		}
 		return rows;
 	} else {
-		return Gable.data.types.input.transform.iterateArrayRows( value );
+
+		if( Gable.utils.isArray( value ) && 'object' !== typeof val[ 0 ] && !Gable.utils.isArray( value[ 0 ] ] ) && !( value[0] instanceof Date ) ) {
+			tmpstack = [];
+			for( var attrz in value ) {
+				if( value.hasOwnProperty( attrz ) ) {
+					tmpstack.push( value[ attrz ] );	
+				}
+			}	
+			if( tmpstack.length > 0 ) {
+				var rw = Gable.data.row.create( tmpstack, row_meta, row_id );
+				rows.push(rw);
+			}
+		} else {
+			return Gable.data.types.input.transform.iterateArrayRows( value );
+		}
 	}
 	return null;
 };
