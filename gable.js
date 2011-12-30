@@ -194,8 +194,10 @@ Gable.data.types.input.transform.iterateObjectColumns = function(value) {
 				}
 				if( null === biggest || ( true === nonulls && valuelen >= biggest_total && false === haveId ) ) {
 					biggest = value[attr];
-					if( 'undefined' !== typeof value[attr].id || 'object' === typeof value[attr] && !Gable.utils.isArray( value[attr] ) ) {
-						haveId = true;
+					if( 'undefined' !== typeof value[attr].id || 'object' === typeof value[attr] ) {
+						if( !Gable.utils.isArray( value[attr] ) ) {
+							haveId = true;
+						}
 					}
 					biggest_total = valuelen;
 				}
