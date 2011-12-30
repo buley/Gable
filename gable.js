@@ -98,7 +98,7 @@ Gable.data.types.raw.transform.table = function( obj ) {
 		, 'rows': rows
 		, 'p': meta
 	};
-	return obj;
+	return newobj;
 }
 
 Gable.data.types.input = Gable.data.types.input || {};
