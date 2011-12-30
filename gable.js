@@ -338,7 +338,7 @@ Gable.data.types.raw.transform.filter = function(obj) {
         x, current, attr;
     if (Gable.utils.isArray(obj)) {
         //zero-indexed array
-        for (x = objlen; x !== 0; x -= 1) {
+        for (x = objlen - 1; x !== 0; x -= 1) {
             current = obj[x];
             //forgive non arrays by coercing them into a single item list
             if (Gable.utils.isArray(current)) {
