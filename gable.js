@@ -73,7 +73,7 @@ Gable.data.types.raw.transform.table = function( obj ) {
 			addition[ 'label' ] = item.meta.label;
 			delete item.meta.label;
 		}
-		if( 'undefined' !== typeof item.type && null !== item.meta.label ) {
+		if( 'undefined' !== typeof item.type && null !== item.type ) {
 			addition[ 'type' ] = item.type;
 		}
 		cols.push( addition );
@@ -88,7 +88,7 @@ Gable.data.types.raw.transform.table = function( obj ) {
 			addition[ 'label' ] = item.meta.label;
 			delete item.meta.label;
 		}
-		if( 'undefined' !== typeof item.type && null !== item.meta.type ) {
+		if( 'undefined' !== typeof item.type && null !== item.type ) {
 			addition[ 'type' ] = item.type;
 		}
 		rows.push( addition );
