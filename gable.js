@@ -172,6 +172,7 @@ Gable.data.types.input.transform.iterateObjectColumns = function(value) {
 		var fallback = {};
 		var big_flag = true;
 		var haveId = false;
+
 		//set column_id if data is keyed object, null
 		for (var attr in value) {
 			var maybe_biggest = false;
@@ -179,6 +180,7 @@ Gable.data.types.input.transform.iterateObjectColumns = function(value) {
 				var valuelen = value[ attr ].length;
 				var nonulls = true;
 				for( var x = 0; x < valuelen; x += 1 ) {
+					var hasId = false;
 					if( null !== value[ attr ][ x ] && 'object' === typeof value[ attr ][ x ]  && !Gable.utils.isArray( value[ attr ][ x ] ) && !( value[ attr ][ x ] instanceof Date ) ) { 
 						valuelen = 0;
 						for( var attr2 in value[ attr ][ x ] ) {
@@ -189,11 +191,10 @@ Gable.data.types.input.transform.iterateObjectColumns = function(value) {
 								for( var attr3 in value[attr] ) {
 									if( value[attr].hasOwnProperty(attr3) ) {
 										valuelen++;
-										haveId = true;
+										hasId = true;
 									}
 								}
 							} else {
-								haveId = true;
 								valuelen++;
 							}
 						}
@@ -202,7 +203,7 @@ Gable.data.types.input.transform.iterateObjectColumns = function(value) {
 						valuelen++;
 					}
 				}
-				if( null === biggest || ( true === nonulls && ( ( valuelen >= biggest_total && false === haveId ) || ( valuelen > biggest_total && true === haveId ) ) ) ) {
+				if( null === biggest || ( true === nonulls && ( ( valuelen >= biggest_total && true === hasId ) || ( valuelen > biggest_total && true === haveId ) ) ) ) {
 					biggest = value[attr];
 					if( 'undefined' !== typeof value[attr].id || 'object' === typeof value[attr] ) {
 						if( !Gable.utils.isArray( value[attr] ) ) {
