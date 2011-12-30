@@ -328,7 +328,8 @@ Gable.data.types.input.transform.iterateArrayRows = function(value,row_id) {
 					
 					var values = ( 'undefined' !== typeof value[0] && null !== Gable.data.column.type ) ? true : false;
 					if( true === values ) {
-
+						var rw = Gable.data.row.create( value, row_meta, row_id );
+						rows.push(rw);
 					} else {
 						return Gable.data.types.input.transform.iterateArrayRows( val );
 					}
@@ -343,10 +344,10 @@ Gable.data.types.input.transform.iterateArrayRows = function(value,row_id) {
 
 		}
 
-		/*if( true === wasarray ) {
+		if( true === wasarray ) {
 			var rw = Gable.data.row.create( tmpstack, row_meta, row_id);
 			rows.push(rw);
-		}*/
+		}
 
 	} else {
 
