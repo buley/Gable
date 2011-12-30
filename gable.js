@@ -263,6 +263,15 @@ Gable.data.types.input.transform.iterateObjectRows = function(value, row_id ) {
 				var val = value[attr];
 				row_id = attr;
 				var row_meta = {};
+				if( 'object' === typeof val && !( val instanceof Date ) && !Gable.utils.isArray( val ) ) {
+					var tmp_val = [];
+					for( var attr2 in val ) {
+						if( val.hasOwnProperty(attr2) ) {
+							tmp_val[] = val[attr2];
+						}
+					}
+					val = tmp_val;
+				}
 				var rw = Gable.data.row.create(val, row_meta, row_id);
 				rows.push(rw);
 			} else if( null !== value[attr] && 'object' === typeof value[ attr ] && !(  value[ attr ] instanceof Date ) ) {
