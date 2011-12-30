@@ -260,17 +260,35 @@ Gable.data.types.input.transform.iterateObjectRows = function(value, row_id ) {
 		for (var attr in value) {
 			if (Gable.utils.isArray(value[attr])) {
 				var valuelen = value[ attr ].length;
-				var val = value[attr];
-				row_id = attr;
-				var row_meta = {};
-				if( 'object' === typeof val && !( val instanceof Date ) && !Gable.utils.isArray( val ) ) {
-					var tmp_val = [];
-					for( var attr2 in val ) {
-						if( val.hasOwnProperty(attr2) ) {
-							tmp_val.push( val[attr2] );
-						}
+				for( var w = 0; w < valuelen; w += 1 ) {
+					var val = value[attr][ w ];
+					var addition = {};
+
+
+				
+					if( 'undefined' !== typeof item.meta && 'undefined' !== typeof item.meta.label && null !== item.meta.label ) {
+						addition[ 'f' ] = item.meta.label;
 					}
-					val = tmp_val;
+					
+					if( 'undefined' !== typeof item.meta && 'undefined' !== typeof item.meta.label ) {
+						delete item.meta.label;
+					}
+
+					if( 'undefined' !== typeof item.meta && !Gable.utils.isEmpty( item.meta ) ) {
+						addition[ 'p' ] = item.meta;
+					}
+
+					row_id = attr;
+					var row_meta = {};
+					if( 'object' === typeof val && !( val instanceof Date ) && !Gable.utils.isArray( val ) ) {
+						var tmp_val = [];
+						for( var attr2 in val ) {
+							if( val.hasOwnProperty(attr2) ) {
+								tmp_val.push( val[attr2] );
+							}
+						}
+						val = tmp_val;
+					}
 				}
 				var rw = Gable.data.row.create(val, row_meta, row_id);
 				rows.push(rw);
