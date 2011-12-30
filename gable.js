@@ -66,14 +66,14 @@ Gable.data.types.raw.transform.table = function( obj ) {
 	for( x = 0; x < colcount; x += 1 ) {
 		item = columns[ x ];
 		var addition = {};
-		if( 'undefined' !== typeof item.id ) {
+		if( 'undefined' !== typeof item.id && null !== item.id ) {
 			addition[ 'id' ] = item.id;
 		}
-		if( 'undefined' !== typeof item.meta.label ) {
+		if( 'undefined' !== typeof item.meta.label && null !== item.meta.label ) {
 			addition[ 'label' ] = item.meta.label;
 			delete item.meta.label;
 		}
-		if( 'undefined' !== typeof item.type ) {
+		if( 'undefined' !== typeof item.type && null !== item.meta.label ) {
 			addition[ 'type' ] = item.type;
 		}
 		cols.push( addition );
@@ -81,14 +81,14 @@ Gable.data.types.raw.transform.table = function( obj ) {
 	for( x = 0; x < rowcount; x += 1 ) {
 		item = rows[ x ];
 		var addition = {};
-		if( 'undefined' !== typeof item.id ) {
+		if( 'undefined' !== typeof item.id && null !== item.id ) {
 			addition[ 'id' ] = item.id;
 		}
-		if( 'undefined' !== typeof item.meta.label ) {
+		if( 'undefined' !== typeof item.meta.label && null !== item.meta.label ) {
 			addition[ 'label' ] = item.meta.label;
 			delete item.meta.label;
 		}
-		if( 'undefined' !== typeof item.type ) {
+		if( 'undefined' !== typeof item.type && null !== item.meta.type ) {
 			addition[ 'type' ] = item.type;
 		}
 		rows.push( addition );
