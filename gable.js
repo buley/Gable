@@ -189,6 +189,7 @@ Gable.data.types.input.transform.iterateObjectColumns = function(value) {
 						}
 					} else if( null === value[ attr ][ x ] ) {
 						nonulls = false;
+						valuelen++;
 					}
 				}
 				if( null === biggest || ( true === nonulls && valuelen >= biggest_total && false === haveId ) ) {
