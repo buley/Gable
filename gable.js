@@ -286,7 +286,7 @@ Gable.data.types.input.transform.iterateObjectRows = function(value, row_id ) {
 				}
 				if( true === wasarray ) {
 					var rw = Gable.data.row.create( tmpstack, row_meta, row_id);
-					rows.push(tmpstack);
+					rows.push(rw);
 				}
 
 			} else if( null !== value[attr] && 'object' === typeof value[ attr ] && !(  value[ attr ] instanceof Date ) ) {
