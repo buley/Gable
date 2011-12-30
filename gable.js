@@ -398,7 +398,7 @@ Gable.data.types.input.transform.iterateArrayRows = function(value,row_id) {
 						}
 					}
 
-					if( true === wasarray ) {
+					if( true === wasarray && tmpstack.length > 0 ) {
 							var rw = Gable.data.row.create( tmpstack, row_meta, row_id );
 							rows.push(rw);
 							tmpstack = [];
