@@ -262,22 +262,6 @@ Gable.data.types.input.transform.iterateObjectRows = function(value, row_id ) {
 				var valuelen = value[ attr ].length;
 				for( var w = 0; w < valuelen; w += 1 ) {
 					var val = value[attr][ w ];
-					var addition = {};
-
-
-				
-					if( 'undefined' !== typeof item.meta && 'undefined' !== typeof item.meta.label && null !== item.meta.label ) {
-						addition[ 'f' ] = item.meta.label;
-					}
-					
-					if( 'undefined' !== typeof item.meta && 'undefined' !== typeof item.meta.label ) {
-						delete item.meta.label;
-					}
-
-					if( 'undefined' !== typeof item.meta && !Gable.utils.isEmpty( item.meta ) ) {
-						addition[ 'p' ] = item.meta;
-					}
-
 					row_id = attr;
 					var row_meta = {};
 					if( 'object' === typeof val && !( val instanceof Date ) && !Gable.utils.isArray( val ) ) {
