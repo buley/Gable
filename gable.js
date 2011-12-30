@@ -238,7 +238,7 @@ Gable.data.types.input.transform.iterateArrayColumns = function(value) {
 			var column_id = null;
 			var val = value[x];
 			var column_type = Gable.data.column.type(val);
-			if( 'undefined' === typeof column_type || null === column_type && 'object' === typeof val  &&  !( Gable.utils.isArray( val ) ) ) {
+			if( 'undefined' === typeof column_type || null === column_type && 'object' === typeof val ) {
 				return Gable.data.types.input.transform.iterateObjectColumns( val );
 			}
 			var col = Gable.data.column.create(column_type, column_id, column_meta);
@@ -329,13 +329,10 @@ Gable.data.types.input.transform.iterateArrayRows = function(value,row_id) {
 
 				} else {
 					return Gable.data.types.input.transform.iterateObjectRows( val );
+					wasarray = true;
+					tmpstack.push( val );
 
 				}
-			} else {
-
-				wasarray = true;
-				tmpstack.push( val );
-
 			}
 
 			if( false === wasarray ) {
