@@ -339,9 +339,22 @@ Gable.data.types.input.transform.iterateArrayRows = function(value,row_id) {
 						//return Gable.data.types.input.transform.iterateArrayRows( value );
 						if( Gable.utils.isArray(value) ) {
 							for( var z = 0; z < value.length; z += 1 ) {
-								var rw = Gable.data.row.create( value[z], row_meta, row_id );
+							
+								if( 'object' === typeof value[ z ] && !Gable.utils.isArray( value[ z ] ) && !( value[ z ] instanceof Date ) ) {
+									tmpstack = [];
+									for( var attrz in value[ z ] ) {
+										if( value[ z ].hasOwnProperty( attrz ) ) {
+											tmpstack.push( value[ z ] );	
+										}
+									}
+
+									var rw = Gable.data.row.create( tmpstack, row_meta, row_id );
+								} else {
+									var rw = Gable.data.row.create( value[z], row_meta, row_id );
+								}
 								rows.push(rw);
 							}
+
 						} else if( 'object' === typeof value && !( value instanceof Date ) ) {
 							var colattrs = [];
 							for( var zattr in value ) {
