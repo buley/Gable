@@ -189,7 +189,7 @@ Gable.data.types.input.transform.iterateObjectColumns = function(value) {
 						nonulls = false;
 					}
 				}
-				if( null === biggest || ( true === nonulls && valuelen >= biggest_total && false === haveId ) ) {
+				if( null === biggest || ( true === nonulls && valuelen > biggest_total && false === haveId ) ) {
 					biggest = value[attr];
 					if( 'undefined' !== typeof value[attr].id ) {
 						haveId = true;
