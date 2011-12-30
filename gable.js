@@ -351,7 +351,7 @@ Gable.data.types.input.transform.iterateArrayRows = function(value,row_id) {
 
 	} else {
 
-		return Gable.data.types.input.transform.iterateArrayRows( value );
+		return Gable.data.types.input.transform.iterateObjectRows( value );
 	}
 	return rows;
 };
