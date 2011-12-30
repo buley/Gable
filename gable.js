@@ -360,7 +360,7 @@ Gable.data.types.input.transform.iterateArrayRows = function(value,row_id) {
 							}
 
 						} else if( 'object' === typeof val[0] && !( val[0] instanceof Date ) ) {
-							var colattrs = [];
+							var colatters = [];
 							for( var zattr in val ) {
 								if( value.hasOwnProperty( zattr ) ) {
 									colattrs.push( val[zattr] );
