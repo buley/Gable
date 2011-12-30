@@ -113,7 +113,7 @@ Gable.data.types.raw.transform.table = function( obj ) {
 			addition[ 'p' ] = item.meta;
 		}
 		
-		if( Gable.utils.isArray( item.value ) {
+		if( Gable.utils.isArray( item.value ) ) {
 			var z, arrlen = item.value.length;
 			for( var x = 0; x < arrlen; x += 1 ) {
 				if( 'undefined' !== typeof item.value && null !== item.value ) {
