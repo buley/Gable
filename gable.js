@@ -337,7 +337,7 @@ Gable.data.types.input.transform.iterateObjectRows = function(value, row_id ) {
 		return rows;
 	} else {
 
-		if( Gable.utils.isArray( value ) && 'object' !== typeof val[ 0 ] && !Gable.utils.isArray( value[ 0 ] ] ) && !( value[0] instanceof Date ) ) {
+		if( true === Gable.utils.isArray( value ) && 'object' !== typeof val[ 0 ] && !Gable.utils.isArray( value[ 0 ] ) && !( value[0] instanceof Date ) ) {
 			tmpstack = [];
 			for( var attrz in value ) {
 				if( value.hasOwnProperty( attrz ) ) {
