@@ -317,6 +317,9 @@ Gable.data.types.input.transform.iterateObjectRows = function(value, row_id ) {
 Gable.data.types.input.transform.iterateArrayRows = function(value,row_id) {
  	var row_meta = {};
 	var rows = [];
+	if( 'undefined' === typeof row_id ) {
+		row_id = null;
+	}
 	if (Gable.utils.isArray(value)) {	
 		var valuelen = value.length;
 		var wasarray = false;
