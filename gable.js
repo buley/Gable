@@ -49,6 +49,13 @@ Gable.data.types = {
     }
 };
 
+Gable.data.types.raw = Gable.data.types.raw || {};
+Gable.data.types.raw.transform = Gable.data.types.raw.transform || {};
+Gable.data.types.raw.transform.table = function( obj ) {
+	console.log('Transform: table',obj);
+	return obj;
+}
+
 Gable.data.types.input = Gable.data.types.input || {};
 Gable.data.types.input.transform = Gable.data.types.input.transform || {};
 Gable.data.types.input.transform.raw = function(value, table_id, table) {
@@ -230,6 +237,7 @@ Gable.data.types.input.transform.iterateArrayRows = function(value,row_id) {
 
 
 Gable.data.types.raw.transform.csv = function(obj) {
+	console.log("Transform: CSV",obj);
 	return obj;
 };
 
