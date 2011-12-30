@@ -81,7 +81,7 @@ Gable.data.types.raw.transform.table = function( obj ) {
 			delete item.meta.label;
 		}
 
-		if( 'undefined' !== typeof item.meta && null !== item.meta ) {
+		if( 'undefined' !== typeof item.meta && !Gable.utils.isEmpty( item.meta ) ) {
 			addition[ 'p' ] = item.meta;
 		}
 
@@ -109,7 +109,7 @@ Gable.data.types.raw.transform.table = function( obj ) {
 			delete item.meta.label;
 		}
 
-		if( 'undefined' !== typeof item.meta && null !== item.meta ) {
+		if( 'undefined' !== typeof item.meta && !Gable.utils.isEmpty( item.meta ) ) {
 			addition[ 'p' ] = item.meta;
 		}
 		
