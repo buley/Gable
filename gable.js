@@ -64,36 +64,53 @@ Gable.data.types.raw.transform.table = function( obj ) {
 	  , item;
 
 	for( x = 0; x < colcount; x += 1 ) {
+		
 		item = columns[ x ];
+		
 		var addition = {};
+		
 		if( 'undefined' !== typeof item.id && null !== item.id ) {
 			addition[ 'id' ] = item.id;
 		}
+
 		if( 'undefined' !== typeof item.meta.label && null !== item.meta.label ) {
 			addition[ 'label' ] = item.meta.label;
+		}
+
+		if( 'undefined' !== typeof item.meta.label ) {
 			delete item.meta.label;
 		}
+
 		if( 'undefined' !== typeof item.meta && null !== item.meta ) {
 			addition[ 'p' ] = item.meta;
 		}
+
 		if( 'undefined' !== typeof item.type && null !== item.type ) {
 			addition[ 'type' ] = item.type;
 		}
+
 		cols.push( addition );
 	}
 	for( x = 0; x < rowcount; x += 1 ) {
 		item = rows[ x ];
 		var addition = {};
+		
 		if( 'undefined' !== typeof item.value && null !== item.value ) {
 			addition[ 'v' ] = item.value;
 		}
+		
 		if( 'undefined' !== typeof item.meta.label && null !== item.meta.label ) {
 			addition[ 'f' ] = item.meta.label;
+		}
+		
+		if( 'undefined' !== typeof item.meta.label ) {
 			delete item.meta.label;
 		}
+
 		if( 'undefined' !== typeof item.meta && null !== item.meta ) {
 			addition[ 'p' ] = item.meta;
 		}
+
 		rows.push( addition );
 	}
 	var newobj = {
