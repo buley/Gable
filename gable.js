@@ -370,8 +370,23 @@ Gable.data.types.input.transform.iterateArrayRows = function(value,row_id) {
 					}
 					
 				} else {
-					return Gable.data.types.input.transform.iterateObjectRows( val );
-				}
+					//
+			
+					var rw;	
+					if( !( val instanceof Date ) ) {
+						tmpstack = [];
+						for( var attrz in val ) {
+							if( val.hasOwnProperty( attrz ) ) {
+								tmpstack.push( val[ attrz ] );	
+							}
+						}
+
+						rw = Gable.data.row.create( tmpstack, row_meta, row_id );
+					} else {
+						rw = Gable.data.row.create( val, row_meta, row_id );
+					}
+					rows.push(rw);
+}
 			} else {
 				var rw = Gable.data.row.create( val, row_meta, row_id );
 				rows.push(rw);
