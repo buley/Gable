@@ -471,13 +471,18 @@ Gable.charts.types = {
 /* Data utilities */
 
 Gable.data.add = function( id, value, meta ) {
+
 	meta = ( 'undefined' === typeof meta || 'object' !== typeof meta ) ? {} : meta;
+
+	var raw;
 	if( Gable.data.type.tranformsTo( 'input', 'raw' ) ) {
-		var raw = Gable.data.type.transform( 'input', 'raw', value );
+		raw = Gable.data.types.input.transform.raw( Gable.data.types.raw.transform.filter( value ) );
 	}
+
 	var table = Gable.data.table.create( raw.columns, raw.rows, meta, id );
 	Gable.data.table.add( table );
-	//zzz
+
+	console.log('Hows that sound to you.', table, id );
 	
 };
 
@@ -487,7 +492,7 @@ Gable.data.put = function( id, value, meta ) {
 };
 
 Gable.data.get = function( id ) {
-
+	return Gable.data.table.get( id );
 };
 
 Gable.data.remove = function( id ) {
