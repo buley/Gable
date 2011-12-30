@@ -115,9 +115,9 @@ Gable.data.types.raw.transform.table = function( obj ) {
 		
 		if( Gable.utils.isArray( item.value ) ) {
 			var z, arrlen = item.value.length;
-			for( var x = 0; x < arrlen; x += 1 ) {
+			for( z = 0; z < arrlen; z += 1 ) {
 				if( 'undefined' !== typeof item.value && null !== item.value ) {
-					addition[ 'v' ] = item.value;
+					addition[ 'v' ] = item.value[  z ];
 					colcells.push( addition );
 				}
 			}	
