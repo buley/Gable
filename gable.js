@@ -193,6 +193,7 @@ Gable.data.types.input.transform.iterateObjectColumns = function(value) {
 									}
 								}
 							} else {
+								haveId = true;
 								valuelen++;
 							}
 						}
