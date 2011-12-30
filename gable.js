@@ -98,11 +98,9 @@ Gable.data.types.raw.transform.table = function( obj ) {
 		item = rows[ x ];
 
 		var addition = {};
-		
-		if( 'undefined' !== typeof item.value && null !== item.value ) {
-			addition[ 'v' ] = item.value;
-		}
-		
+		var colcells = [];
+
+	
 		if( 'undefined' !== typeof item.meta && 'undefined' !== typeof item.meta.label && null !== item.meta.label ) {
 			addition[ 'f' ] = item.meta.label;
 		}
@@ -114,8 +112,19 @@ Gable.data.types.raw.transform.table = function( obj ) {
 		if( 'undefined' !== typeof item.meta && null !== item.meta ) {
 			addition[ 'p' ] = item.meta;
 		}
+		
+		if( Gable.utils.isArray( item.value ) {
+			var z, arrlen = item.value.length;
+			for( var x = 0; x < arrlen; x += 1 ) {
+				if( 'undefined' !== typeof item.value && null !== item.value ) {
+					addition[ 'v' ] = item.value;
+					colcells.push( addition );
+				}
+			}	
+		
+		}
 
-		newrows.push( { 'c': addition } );
+		newrows.push( { 'c': colcells } );
 
 	}
 
