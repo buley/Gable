@@ -505,21 +505,6 @@ Gable.data.update = function( id, value, meta ) {
 };
 
 
-//extras
-
-Gable.data.type = function(value) {
-
-};
-
-Gable.data.exists = function(id) {
-
-};
-
-
-
-//xxx
-
-
 /* Chart utilities */
 
 Gable.charts.add = function(type, target) {
