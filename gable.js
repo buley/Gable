@@ -346,7 +346,7 @@ Gable.data.types.input.transform.iterateArrayRows = function(value,row_id) {
 									tmpstack = [];
 									for( var attrz in val[y][ z ] ) {
 										if( val[y][ z ].hasOwnProperty( attrz ) ) {
-											tmpstack.push( val[y][ z ] );	
+											tmpstack.push( val[y][ attrz ] );	
 										}
 									}
 
