@@ -363,7 +363,7 @@ Gable.data.types.input.transform.iterateArrayRows = function(value,row_id) {
 							var colatters = [];
 							for( var zattr in val ) {
 								if( value.hasOwnProperty( zattr ) ) {
-									colattrs.push( val[zattr] );
+									colatters.push( val[zattr] );
 								}
 							}
 							var rw = Gable.data.row.create( colatters, row_meta, row_id );
