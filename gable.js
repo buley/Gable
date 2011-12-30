@@ -190,7 +190,7 @@ Gable.data.types.input.transform.iterateObjectColumns = function(value) {
 									if( value[attr].hasOwnProperty(attr3) ) {
 										valuelen++;
 									}
-								{
+								}
 							} else {
 								valuelen++;
 							}
