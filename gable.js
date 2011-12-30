@@ -171,6 +171,7 @@ Gable.data.types.input.transform.iterateObjectColumns = function(value) {
 		var biggest_total = 0;
 		var fallback = {};
 		var big_flag = true;
+		var haveId = false;
 		//set column_id if data is keyed object, null
 		for (var attr in value) {
 			var maybe_biggest = false;
@@ -188,8 +189,11 @@ Gable.data.types.input.transform.iterateObjectColumns = function(value) {
 						nonulls = false;
 					}
 				}
-				if( null === biggest || ( true === nonulls && valuelen >= biggest_total ) ) {
+				if( null === biggest || ( true === nonulls && valuelen >= biggest_total && false === haveId ) ) {
 					biggest = value[attr];
+					if( 'undefined' !== typeof value[attr].id ) {
+						haveId = true;
+					}
 					biggest_total = valuelen;
 				}
 			} else if( null !== value[attr] && 'object' === typeof value[ attr ]  && !( value[ attr ] instanceof Date ) ) {
