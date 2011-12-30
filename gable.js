@@ -337,11 +337,23 @@ Gable.data.types.input.transform.iterateArrayRows = function(value,row_id) {
 						rows.push(rw);
 					} else {
 						//return Gable.data.types.input.transform.iterateArrayRows( value );
-						console.log("WAAA",value);
-						for( var z = 0; z < value.length; z += 1 ) {
-							var rw = Gable.data.row.create( value[z], row_meta, row_id );
+						if( Gable.utils.isArray(value) ) {
+							for( var z = 0; z < value.length; z += 1 ) {
+								var rw = Gable.data.row.create( value[z], row_meta, row_id );
+								rows.push(rw);
+							}
+						} else if( 'object' === typeof value && !( value instanceof Date ) ) {
+							var colattrs = [];
+							for( var zattr in value ) {
+								if( value.hasOwnProperty( zattr ) ) {
+									colattrs.push( value[zattr] );
+								}
+							}
+							var rw = Gable.data.row.create( colatters, row_meta, row_id );
 							rows.push(rw);
+
 						}
+
 					}
 					
 				} else {
