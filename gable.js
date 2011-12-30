@@ -189,6 +189,7 @@ Gable.data.types.input.transform.iterateObjectColumns = function(value) {
 								for( var attr3 in value[attr] ) {
 									if( value[attr].hasOwnProperty(attr3) ) {
 										valuelen++;
+										haveId = true;
 									}
 								}
 							} else {
