@@ -313,13 +313,17 @@ Gable.data.types.input.transform.iterateObjectRows = function(value, row_id ) {
 				}
 				if( true === wasarray ) {
 					var rw = Gable.data.row.create( tmpstack, row_meta, row_id);
-					rows.push(rw);
+					if( tmpstack > 0 ) {
+						rows.push(rw);
+					}
 				}
 
 			} else if( null !== value[attr] && 'object' === typeof value[ attr ] && !(  value[ attr ] instanceof Date ) ) {
 				var newrows = Gable.data.types.input.transform.iterateObjectRows(value[attr], attr );
 				for( var x = 0; x < newrows.length; x += 1 ) {
-					rows.push( newrows[ x ] );
+					
+					var rw = Gable.data.row.create( newrows[x], row_meta, row_id);
+					rows.push( rw );
 				}
 			} else {
 				do_value = true;
@@ -331,8 +335,10 @@ Gable.data.types.input.transform.iterateObjectRows = function(value, row_id ) {
 				val.push( value[attr] );
 			}
 			var row_meta = {};
-			var rw = Gable.data.row.create(val, row_meta, row_id);
-			rows.push(rw);
+			if( val.length > 0 ) {
+				var rw = Gable.data.row.create(val, row_meta, row_id);
+				rows.push(rw);
+			}
 		}
 		return rows;
 	} else {
