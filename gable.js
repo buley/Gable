@@ -320,6 +320,7 @@ Gable.data.types.input.transform.iterateArrayRows = function(value,row_id) {
 	if (Gable.utils.isArray(value)) {	
 		var valuelen = value.length;
 		var wasarray = false;
+		var tmpstack = [];
 		for (var x = 0; x < valuelen; x += 1) {
 			var val = value[x];
 			if(  'object' === typeof val ) {
