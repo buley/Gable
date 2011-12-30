@@ -331,7 +331,7 @@ Gable.data.types.input.transform.iterateArrayRows = function(value,row_id) {
 						var rw = Gable.data.row.create( value, row_meta, row_id );
 						rows.push(rw);
 					} else {
-						return Gable.data.types.input.transform.iterateArrayRows( val );
+						return Gable.data.types.input.transform.iterateArrayRows( value );
 					}
 					
 				} else {
