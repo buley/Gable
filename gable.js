@@ -115,7 +115,7 @@ Gable.data.types.raw.transform.table = function( obj ) {
 			addition[ 'p' ] = item.meta;
 		}
 
-		newrows.push( addition );
+		newrows.push( { 'c': addition } );
 
 	}
 
