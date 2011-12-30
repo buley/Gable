@@ -326,7 +326,7 @@ Gable.data.types.input.transform.iterateArrayRows = function(value,row_id) {
 			if(  'object' === typeof val ) {
 				if( Gable.utils.isArray(value) ) {
 					
-					var values = ( 'undefined' !== typeof value[0] && null !== Gable.data.column.type ) ? true : false;
+					var values = ( 'undefined' !== typeof value[0] && null !== Gable.data.column.type( value[0] ) && !( Gable.utils.isArray( value[0] ) ) ) ? true : false;
 					if( true === values ) {
 						var rw = Gable.data.row.create( value, row_meta, row_id );
 						rows.push(rw);
