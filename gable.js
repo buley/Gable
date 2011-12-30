@@ -175,12 +175,13 @@ Gable.data.types.input.transform.iterateObjectColumns = function(value) {
 
 		//set column_id if data is keyed object, null
 		for (var attr in value) {
+			var hasId = false;
 			var maybe_biggest = false;
 			if (Gable.utils.isArray(value[attr])) {
 				var valuelen = value[ attr ].length;
 				var nonulls = true;
 				for( var x = 0; x < valuelen; x += 1 ) {
-					var hasId = false;
+
 					if( null !== value[ attr ][ x ] && 'object' === typeof value[ attr ][ x ]  && !Gable.utils.isArray( value[ attr ][ x ] ) && !( value[ attr ][ x ] instanceof Date ) ) { 
 						valuelen = 0;
 						for( var attr2 in value[ attr ][ x ] ) {
