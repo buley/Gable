@@ -362,7 +362,7 @@ Gable.data.types.input.transform.iterateArrayRows = function(value,row_id) {
 						} else if( 'object' === typeof val[y] && !( val[y] instanceof Date ) ) {
 							var colatters = [];
 							for( var zattr in val[y] ) {
-								if( value.hasOwnProperty( zattr ) ) {
+								if( val[y].hasOwnProperty( zattr ) ) {
 									colatters.push( val[y][zattr] );
 								}
 							}
