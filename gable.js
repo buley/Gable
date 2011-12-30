@@ -510,7 +510,7 @@ Gable.data.put = function( id, value, meta ) {
 Gable.data.get = function( id, type ) {
 	var table = Gable.data.table.get( id );
 	var result = table;
-	if( null === type || 'undefined' !== typeof type || 'raw' === type ) {
+	if( null === type || 'undefined' === typeof type || 'raw' === type ) {
 		result = table;	
 	} else if( type === 'table' ) {
 		result = Gable.data.types.raw.transform.table( Gable.data.types.table.transform.filter( table ) );
