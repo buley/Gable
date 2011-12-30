@@ -185,7 +185,15 @@ Gable.data.types.input.transform.iterateObjectColumns = function(value) {
 							if( null === value[ attr ][ x ][ attr2 ] ) {
 								nonulls = false;
 							}
-							valuelen++;
+							if ( null !== value[attr] && 'object' === typeof value[ attr ]  && !( value[ attr ] instanceof Date ) ) {
+								for( var attr3 in value[attr] ) {
+									if( value[attr].hasOwnProperty(attr3) ) {
+										valuelen++;
+									}
+								{
+							} else {
+								valuelen++;
+							}
 						}
 					} else if( null === value[ attr ][ x ] ) {
 						nonulls = false;
