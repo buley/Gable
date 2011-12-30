@@ -96,27 +96,27 @@ Gable.data.types.raw.transform.table = function( obj ) {
 	for( x = 0; x < rowcount; x += 1 ) {
 
 		item = rows[ x ];
-
-		var addition = {};
 		var colcells = [];
-
-	
-		if( 'undefined' !== typeof item.meta && 'undefined' !== typeof item.meta.label && null !== item.meta.label ) {
-			addition[ 'f' ] = item.meta.label;
-		}
-		
-		if( 'undefined' !== typeof item.meta && 'undefined' !== typeof item.meta.label ) {
-			delete item.meta.label;
-		}
-
-		if( 'undefined' !== typeof item.meta && !Gable.utils.isEmpty( item.meta ) ) {
-			addition[ 'p' ] = item.meta;
-		}
 		
 		if( Gable.utils.isArray( item.value ) ) {
 			var z, arrlen = item.value.length;
 			for( z = 0; z < arrlen; z += 1 ) {
 				if( 'undefined' !== typeof item.value && null !== item.value ) {
+
+					var addition = {};
+
+					if( 'undefined' !== typeof item.meta && 'undefined' !== typeof item.meta.label && null !== item.meta.label ) {
+						addition[ 'f' ] = item.meta.label;
+					}
+					
+					if( 'undefined' !== typeof item.meta && 'undefined' !== typeof item.meta.label ) {
+						delete item.meta.label;
+					}
+
+					if( 'undefined' !== typeof item.meta && !Gable.utils.isEmpty( item.meta ) ) {
+						addition[ 'p' ] = item.meta;
+					}
+
 					addition[ 'v' ] = item.value[  z ];
 					colcells.push( addition );
 				}
