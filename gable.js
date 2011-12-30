@@ -127,12 +127,13 @@ Gable.data.types.raw.transform.table = function( obj ) {
 		newrows.push( { 'c': colcells } );
 
 	}
-
 	var newobj = {
 		'cols': newcols
 		, 'rows': newrows
-		, 'p': meta
 	};
+	if( !Gable.utils.isEmpty( meta ) ) {
+		newobj[ 'p' ] = meta;
+	}
 
 	return newobj;
 
