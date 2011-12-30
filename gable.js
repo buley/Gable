@@ -333,6 +333,10 @@ Gable.data.types.input.transform.iterateArrayRows = function(value,row_id) {
 					} else {
 						//return Gable.data.types.input.transform.iterateArrayRows( value );
 						console.log("WAAA",value);
+						for( var z = 0; z < value.length; z += 1 ) {
+							var rw = Gable.data.row.create( value[z], row_meta, row_id );
+							rows.push(rw);
+						}
 					}
 					
 				} else {
