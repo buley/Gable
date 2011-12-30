@@ -55,7 +55,7 @@ Gable.data.types.raw.transform.table = function( obj ) {
 	console.log('Transform: table',obj);
 	var cols = [];
 	var rows = [];
-	var meta = {};
+	var meta = obj.meta;
 	var x
 	  , columns = obj.columns
 	  , colcount = columns.length
