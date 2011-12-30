@@ -80,6 +80,8 @@ Gable.data.types.raw.transform.table = function( obj ) {
 
 		if( 'undefined' !== typeof item.meta && 'undefined' !== typeof item.meta.label && null !== item.meta.label ) {
 			addition[ 'label' ] = item.meta.label;
+		} else {
+			addition[ 'label' ] = null;
 		}
 
 		if( 'undefined' !== typeof item.meta && !Gable.utils.isEmpty( item.meta ) ) {
