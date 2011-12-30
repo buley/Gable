@@ -203,6 +203,15 @@ Gable.data.types.input.transform.iterateObjectColumns = function(value) {
 				}
 				if( null === biggest || ( true === nonulls && ( ( valuelen >= biggest_total && false === haveId ) || ( valuelen > biggest_total && true === haveId ) ) ) ) {
 					biggest = value[attr];
+					if( 'undefined' !== typeof value[attr].id || 'object' === typeof value[attr] ) {
+						if( !Gable.utils.isArray( value[attr] ) ) {
+							haveId = true;
+						} else {
+							if('object' === typeof value[attr][0] && !Gable.utils.isArray( value[attr][0] ) ) {
+								haveId = true;
+							}
+						}
+					}
 					biggest_total = valuelen;
 				}
 			} else if( null !== value[attr] && 'object' === typeof value[ attr ]  && !( value[ attr ] instanceof Date ) ) {
