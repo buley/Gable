@@ -180,16 +180,18 @@ Gable.data.types.input.transform.iterateObjectColumns = function(value) {
 				var nonulls = true;
 				for( var x = 0; x < valuelen; x += 1 ) {
 					if( null !== value[ attr ][ x ] && 'object' === typeof value[ attr ][ x ]  && !Gable.utils.isArray( value[ attr ][ x ] ) && !( value[ attr ][ x ] instanceof Date ) ) { 
+						valuelen = 0;
 						for( var attr2 in value[ attr ][ x ] ) {
 							if( null === value[ attr ][ x ][ attr2 ] ) {
 								nonulls = false;
 							}
+							valuelen++;
 						}
 					} else if( null === value[ attr ][ x ] ) {
 						nonulls = false;
 					}
 				}
-				if( null === biggest || ( true === nonulls && valuelen > biggest_total && false === haveId ) ) {
+				if( null === biggest || ( true === nonulls && valuelen >= biggest_total && false === haveId ) ) {
 					biggest = value[attr];
 					if( 'undefined' !== typeof value[attr].id ) {
 						haveId = true;
