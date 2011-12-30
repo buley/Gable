@@ -329,37 +329,37 @@ Gable.data.types.input.transform.iterateArrayRows = function(value,row_id) {
 		for (var x = 0; x < valuelen; x += 1) {
 			var val = value[x];
 			if(  'object' === typeof val ) {
-				if( Gable.utils.isArray(value) ) {
+				if( Gable.utils.isArray(val) ) {
 					
-					var values = ( 'undefined' !== typeof value[0] && null !== Gable.data.column.type( value[0] ) && !( Gable.utils.isArray( value[0] ) ) ) ? true : false;
+					var values = ( 'undefined' !== typeof val && null !== Gable.data.column.type( val ) && !( Gable.utils.isArray( val ) ) ) ? true : false;
 					if( true === values ) {
 						var rw = Gable.data.row.create( value, row_meta, row_id );
 						rows.push(rw);
 					} else {
 						//return Gable.data.types.input.transform.iterateArrayRows( value );
-						if( Gable.utils.isArray(value) ) {
-							for( var z = 0; z < value.length; z += 1 ) {
+						if( Gable.utils.isArray(val) ) {
+							for( var z = 0; z < val.length; z += 1 ) {
 								var rw;	
-								if( 'object' === typeof value[ z ] && !Gable.utils.isArray( value[ z ] ) && !( value[ z ] instanceof Date ) ) {
+								if( 'object' === typeof val[ z ] && !Gable.utils.isArray( val[ z ] ) && !( val[ z ] instanceof Date ) ) {
 									tmpstack = [];
-									for( var attrz in value[ z ] ) {
-										if( value[ z ].hasOwnProperty( attrz ) ) {
-											tmpstack.push( value[ z ] );	
+									for( var attrz in val[ z ] ) {
+										if( val[ z ].hasOwnProperty( attrz ) ) {
+											tmpstack.push( val[ z ] );	
 										}
 									}
 
 									rw = Gable.data.row.create( tmpstack, row_meta, row_id );
 								} else {
-									rw = Gable.data.row.create( value[z], row_meta, row_id );
+									rw = Gable.data.row.create( val[z], row_meta, row_id );
 								}
 								rows.push(rw);
 							}
 
-						} else if( 'object' === typeof value && !( value instanceof Date ) ) {
+						} else if( 'object' === typeof val && !( val instanceof Date ) ) {
 							var colattrs = [];
-							for( var zattr in value ) {
+							for( var zattr in val ) {
 								if( value.hasOwnProperty( zattr ) ) {
-									colattrs.push( value[zattr] );
+									colattrs.push( val[zattr] );
 								}
 							}
 							var rw = Gable.data.row.create( colatters, row_meta, row_id );
