@@ -230,7 +230,11 @@ Gable.data.types.input.transform.iterateArrayRows = function(value,row_id) {
 
 
 Gable.data.types.raw.transform.csv = function(obj) {
+	return obj;
+};
 
+Gable.data.types.table.transform.filter = function(obj) {
+	return obj;
 };
 
 Gable.data.types.raw.transform.filter = function(obj) {
@@ -491,8 +495,15 @@ Gable.data.put = function( id, value, meta ) {
 
 };
 
-Gable.data.get = function( id ) {
-	return Gable.data.table.get( id );
+Gable.data.get = function( id, type ) {
+	var table = Gable.data.table.get( id );
+	var result;
+	if( null === type || 'undefined' !== typeof type || 'raw' === type ) {
+		result = table;	
+	} else if( 'table' ) {
+		Gable.data.types.raw.transform.table( Gable.data.types.table.transform.filter( table ) );
+	}
+	return result;
 };
 
 Gable.data.remove = function( id ) {
