@@ -267,7 +267,7 @@ Gable.data.types.input.transform.iterateObjectRows = function(value, row_id ) {
 					var tmp_val = [];
 					for( var attr2 in val ) {
 						if( val.hasOwnProperty(attr2) ) {
-							tmp_val[] = val[attr2];
+							tmp_val.push( val[attr2] );
 						}
 					}
 					val = tmp_val;
