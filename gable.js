@@ -392,7 +392,17 @@ Gable.data.types.input.transform.iterateArrayRows = function(value,row_id) {
 							var rw = Gable.data.row.create( colatters, row_meta, row_id );
 							rows.push(rw);
 
+						} else {
+							tmpstack.push( val[y];
+							wasarray = true;
 						}
+					}
+
+					if( true === wasarray ) {
+							var rw = Gable.data.row.create( tmpstack, row_meta, row_id );
+							rows.push(rw);
+							tmpstack = [];
+
 					}
 					}
 					
