@@ -52,7 +52,7 @@
 			<p class='subdesc'>The above code would attempt to append a pie chart to an HTML element with the id `dullard`. If the `id` argument (second parameter) is omitted, Gable will attempt to target a DOM element using its own unique identifier. </p>
 			<h4>4. Update</h4>
 			<p class='subdesc'>You can update columns, rows and cells by index. Pass the `update` method a row index, column index or both to update a row, column or cell with a given value.</p>
-			<p class='codedesc'><code>Gable( 'jill' ).update( { 'row': 1, 'column': 2, 'value': .8  );</code></p>
+			<p class='codedesc'><code>Gable( 'jill' ).update( { 'row': 1, 'column': 2, 'value': .8 } );</code></p>
 			<p class='subdesc'>Data tables are automatically wired to visualizations so any changes you make will be reflected live immediately. To manually control these updates, use the `stage` and `commit` methods on a per-table basis.<p>
 			<p class='codedesc'><code>var table = Gable( 'jill' );<br>table.delay();<br>table.update( { row: 1, column: 2, value: .8 } );<br/>table.update( { row: 2, column: 2, meta: { label: 'play' } } );<br>table.commit();</code></p>
 			<p class='subdesc'>The above code updates two rows before making a change live. You can optionally give the `delay` method a number of milliseconds and it will `commit` automatically. Use the `cancel` method to interrupt this invocation pattern and forget all non-commited changes.</p>
