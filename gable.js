@@ -78,15 +78,15 @@ var Gable = (function(){
 		};
 
 		Find.prototype.get = function() {
-
+			console.log('get',arguments);
 		};
 
 		Find.prototype.remove = function() {
-
+			console.log('remove',arguments);
 		};
 
 		Find.prototype.update = function() {
-
+			console.log('update',arguments);
 		};
 
 		return new Find();
