@@ -35,15 +35,21 @@ var Gable = (function(){
 		return Public.prototype;
 	};
 
-	Public.prototype.remove = function() {
+	Public.prototype.remove = function( args ) {
 		console.log( 'remove', current_table, arguments );
 		return Public.prototype;
 	};
 
-	Public.prototype.delay = function() {
+	Public.prototype.delay = function( milliseconds ) {
 		console.log( 'delay', current_table, arguments );
 		return Public.prototype;
 	};
+
+	Public.prototype.cancel = function( milliseconds ) {
+		console.log( 'delay', current_table, arguments );
+		return Public.prototype;
+	};
+
 
 	Public.prototype.commit = function() {
 		console.log( 'commit', current_table, arguments );

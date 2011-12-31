@@ -52,7 +52,7 @@
 			<p class='codedesc'><code>Gable( 'jill' ).update( { 'row': 1, 'column': 2, 'value': .8  );</code></p>
 			<p class='subdesc'>Data tables are automatically wired to visualizations so any changes you make will be reflected live immediately. To manually control these updates, use the `stage` and `commit` methods on a per-table basis.<p>
 			<p class='codedesc'><code>var table = Gable( 'jill' );<br>table.delay();<br>table.update( { row: 1, column: 2, value: .8  );<br/>table.update( { row: 2, column: 2, value: .2 } );<br>table.commit();</code></p>
-			<p class='subdesc'>The above code updates two rows before making a change live.</p>
+			<p class='subdesc'>The above code updates two rows before making a change live. You can optionally give the `delay` method a number of milliseconds and it will `commit` automatically. Use the `cancel` method to interrupt this invocation pattern and forget all non-commited changes.</p>
 			<p class='desc'><strong>Note</strong>: All calls to Gable are chainable so the preceding code could be rewritten as <code class='inlinecode'>Gable( 'jill' ).delay().update( { row: 1, column: 2, value: .8  ).update( { row: 2, column: 2, value: .2 } ).commit();</code></p>
 
 			<h4>5. Export</h4>
