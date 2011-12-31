@@ -50,7 +50,9 @@ background:#FDF6E3;
 font-size:22px;
 margin-bottom:0px;
 }
-
+.inlinecode {
+color:#586E75;
+}
 .codedesc {
 background:#586E75;
 border-left:1px dashed #FDF6E3;
