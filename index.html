@@ -47,28 +47,33 @@
 			<p class='codedesc'><code>var success_callback = function( id ) {<br/>&nbsp;&nbsp;&nbsp;&nbsp;console.log( 'Added', id );<br/>};<br/>var error_callback = function( context ) {<br>&nbsp;&nbsp;&nbsp;&nbsp;console.log( 'Error', context );<br/>};<br/>var request_object = {<br>&nbsp;&nbsp;&nbsp;&nbsp;on_success: success_callback<br/>&nbsp;&nbsp;, on_error: error_callback<br/>};<br>Gable( 'jack' ).add( { value: [ [ 'work', .9 ], [ 'play', .1 ] ], meta: { label: 'Redrum' }, on_success: success_callback, on_error: error_callback } );</code></p>
 			<p class='desc'><strong>Note</strong>: Because of ever-increasing function parameters, and for future-proofing reasons, functions use a request object. With the sole exception of the `Gable` function, which takes a unique table id, the standard style is that keyed request objects are used with commonsense key names when passing more than one argument. This makes functions with many parameters easier to call and prevents brittleness around future argument order changes.</p>
 			<h4>3. Draw</h4>
-			<p class='subdesc'>Pass Gable a data table's unique id, a target DOM id and visualization type to draw it on page. Valid visualization types include `table`, `pie`, TK.</p>
-			<p class='codedesc'><code>Gable( 'jack' ).draw( 'dullard', 'pie' );</code></p>
+			<p class='subdesc'>Pass Gable a data table's unique id, a `target` DOM id and visualization `type` to create on the page. Valid visualization types include `table`, `pie`, TK.</p>
+			<p class='codedesc'><code>Gable( 'jack' ).draw( { target: 'dullard', type: 'pie' } );</code></p>
 			<p class='subdesc'>The above code would attempt to append a pie chart to an HTML element with the id `dullard`. If the `id` argument (second parameter) is omitted, Gable will attempt to target a DOM element using its own unique identifier. </p>
 			<h4>4. Update</h4>
-			<p class='subdesc'>You can update columns, rows and cells by index. Pass the `update` method a row id, column id or both to update a row, column or cell with a given value.</p>
+			<p class='subdesc'>You can update columns, rows and cells by index. Pass the `update` method a row index, column index or both to update a row, column or cell with a given value.</p>
 			<p class='codedesc'><code>Gable( 'jill' ).update( { 'row': 1, 'column': 2, 'value': .8  );</code></p>
 			<p class='subdesc'>Data tables are automatically wired to visualizations so any changes you make will be reflected live immediately. To manually control these updates, use the `stage` and `commit` methods on a per-table basis.<p>
 			<p class='codedesc'><code>var table = Gable( 'jill' );<br>table.delay();<br>table.update( { row: 1, column: 2, value: .8 } );<br/>table.update( { row: 2, column: 2, meta: { label: 'play' } } );<br>table.commit();</code></p>
 			<p class='subdesc'>The above code updates two rows before making a change live. You can optionally give the `delay` method a number of milliseconds and it will `commit` automatically. Use the `cancel` method to interrupt this invocation pattern and forget all non-commited changes.</p>
-			<p class='desc'><strong>Note</strong>: All calls to Gable are chainable so the preceding code could be rewritten as <code class='inlinecode'>Gable( 'jill' ).delay().update( { row: 1, column: 2, value: .8 } ).update( { column: 2, meta: { label: 'play' } } ).commit();</code></p>
-
-			<h4>5. Dump</h4>
+			<p class='desc'><strong>Note</strong>: All calls to Gable are chainable so the preceding code could be rewritten as <code class='inlinecode'>Gable( 'jill' ).delay().update( { row: 1, column: 2, value: .8 } ).update( { column: 2, id: 'happiness', meta: { label: 'play' } } ).commit();</code></p>
+			<h4>5. Get</h4>
+			<p class='subdesc'>You can access a single row, column or cell by passing a request object to the `get` method with a row index, column index or both.</p>
+			<p class='codedesc'><code>Gable( 'jill' ).get( { target: 'dullard', type: 'pie' } );</code></p>
+			<p class='subdesc'>Rows and columns with unique ids can be accessed for a table via the `find` method. The next call chained to the resulting object, which can be `get`, `update` or `remove`, will be applied to the particular element it found, if any.
+			<p class='codedesc'><code>Gable( 'jill' ).find( 'happiness' ).remove();</code></p>
+			<p class='subdesc'>The above code removed a column with the id 'happiness' -- an id added via the `update` method in an earlier example.</p>
+			<h4>6. Dump</h4>
 			<p class='subdesc'>Gable stores tables in its own format and exports high-fidelity copies into Google's standard data table format. This approach allows for flexible, fast and easy <a href='http://code.google.com/apis/chart/interactive/docs/datatables_dataviews.html#javascriptliteral'>loading</a>.</p>
 			<p class='subdesc'>To export a table to Google's Data Table format, pass Gable the unique id and call its `dump` method.</p>
 			<p class='codedesc'><code>var dump = Gable( 'jill' ).dump();</code></p>
 			<p class='subdesc'>To export the table to a .CSV string representation, pass the `dump` method the string 'csv' for the key `type`. To see how Gable stores the data internally, use the type string `raw`.</p>
 			<!-- Git embed samples TK -->
 			<p class='codedesc'><code>var dump = Gable( 'jill' ).dump( { type: 'csv' } );</code></p>
-			<h4>6. Destroy</h4>
+			<h4>7. Destroy</h4>
 			<p class='subdesc'>To remove a table, call the `remove` method after passing Gable its unique id. Any corresponding charts will be removed from the DOM.</p>
 			<p class='codedesc'><code>Gable( 'jill' ).remove();</code></p>
-			<p class='subdesc'>Rows, columns and cells can be destroyed invidiually by passing the destroy method an object with keys representing either a row id, column id or both.</p>
+			<p class='subdesc'>Rows, columns and cells can be destroyed invidiually by passing the destroy method an object with keys representing either a row , column id or both.</p>
 			<p class='codedesc'><code>Gable( 'jill' ).remove( { row: 1, column: 2 } );</code></p>
 			<p class='subdesc'>The above code "removes" a single cell by turning it into a `null` value. The code below removes a single row.</p>
 			<p class='codedesc'><code>Gable( 'jill' ).remove( { row: 2 } );</code></p>

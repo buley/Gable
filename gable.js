@@ -22,6 +22,12 @@ var Gable = (function(){
 		//on_error
 	};
 
+	Public.prototype.get = function() {
+		console.log( 'get', current_table, arguments );
+		return Public.prototype;
+	};
+
+
 	Public.prototype.draw = function() {
 		console.log( 'draw', current_table, arguments );
 		return Public.prototype;
