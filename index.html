@@ -36,12 +36,14 @@
 			<p class='subdesc'>Gable depends on the JavaScript <a href='http://code.google.com/apis/chart/interactive/docs/reference.html'>Google Visualization API</a> but will always take care of loading the right files. To enable Gable, simply include the script tag.</p>
 			<p class='codedesc'><code>&lt;script type='text/javascript' src='https://raw.github.com/editor/Gable/master/gable.js'&gt;&lt;/script&gt;</code></p>
 			<p class='desc'><strong>Note</strong>: It's not a great idea to serve the file directly from Github on a live website, but the above script tag will get you going.</p>
-			<p class='subdesc'>Gable has not yet been tested across various modern browsers, but its creator promises to do so soon.</p>
+			<p class='subdesc'>Gable has not yet been tested across all browsers.</p>
 			<h4>2. Create</h4>
 			<p class='subdesc'>To create a data table, pass Gable the data and a unique string to identify it.</p>
 			<p class='codedesc'><code>Gable( 'jack' ).create( [ [ 'work', .9 ], [ 'play', .1 ] ] );</code></p>
 			<h4>3. Draw</h4>
 			<p class='subdesc'>Pass Gable a data table's unique id, a target DOM id and visualization type to draw it on page.</p>
+			<p class='codedesc'><code>Gable( 'jack' ).draw( 'dullard', 'pie' );</code></p>
+			<p class='subdesc'>The above code would attempt to append a pie chart to an HTML element with the id `dullard`.</p>
 			<h4>4. Update</h4>
 			<h4>5. Destroy</h4>
 
