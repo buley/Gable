@@ -48,7 +48,7 @@
 			<h4>4. Update</h4>
 			<p class='subdesc'>You can update columns, rows and cells by index. Pass the `update` method a row id, column id or both to update a row, column or cell with a given value.</p>
 			<p class='codedesc'><code>Gable( 'jack' ).update( { 'row': 1, 'column': 2, 'value': .8  );</code></p>
-			<p class='subdesc'>Data tables are automatically wired to visualizations so any changes you make will be automatically reflected live. To manually control these updates for a particular table, use the `stage` and `commit` methods.<p>
+			<p class='subdesc'>Data tables are automatically wired to visualizations so any changes you make will be reflected live immediately. To manually control these updates for a particular table, use the `stage` and `commit` methods.<p>
 			<p class='codedesc'><code>var table = Gable( 'jack' );<br>table.delay();<br>table.update( { row: 1, column: 2, value: .8  );<br/>table.update( { row: 2, column: 2, value: .2 } );<br>table.commit();</code></p>
 			<p class='subdesc'>The above code updates two rows before making a change live.</p>
 			<p class='desc'><strong>Note</strong>: All calls to Gable are chainable so the preceding code could be rewritten as <code class='inlinecode'>Gable( 'jack' ).delay().update( { row: 1, column: 2, value: .8  ).update( { row: 2, column: 2, value: .2 } ).commit();</code></p>
