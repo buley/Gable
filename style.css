@@ -1,6 +1,8 @@
 body {
-
 	color: #586E75;
 	background:#FDF6E3;
 }
 
+h1 {
+	font: 32px normal 'Georgia', 'Tahoma', 'Helvetica';
+}
