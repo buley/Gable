@@ -8,17 +8,17 @@ var Gable = (function(){
 	var Public = function( table_id ) {
 		that = this;
 		console.log('engaged', table_id);
-		return Public;
+		return Public.prototype;
 	};
 
 	Public.prototype.test = function() {
 		console.log( 'called', arguments );
-		return Public;
+		return Public.prototype;
 	};
 
 	Public.prototype.test2 = function() {
 		console.log( 'called again', arguments );
-		return Public;
+		return Public.prototype;
 	};
 
 
