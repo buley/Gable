@@ -49,7 +49,7 @@
 			<h4>3. Draw</h4>
 			<p class='subdesc'>Pass Gable a data table's unique id, a target DOM id and visualization type to draw it on page. Valid visualization types include `table`, `pie`, TK.</p>
 			<p class='codedesc'><code>Gable( 'jack' ).draw( 'dullard', 'pie' );</code></p>
-			<p class='subdesc'>The above code would attempt to append a pie chart to an HTML element with the id `dullard`.</p>
+			<p class='subdesc'>The above code would attempt to append a pie chart to an HTML element with the id `dullard`. If the `id` argument (second parameter) is omitted, Gable will attempt to target a DOM element using its own unique identifier. </p>
 			<h4>4. Update</h4>
 			<p class='subdesc'>You can update columns, rows and cells by index. Pass the `update` method a row id, column id or both to update a row, column or cell with a given value.</p>
 			<p class='codedesc'><code>Gable( 'jill' ).update( { 'row': 1, 'column': 2, 'value': .8  );</code></p>
