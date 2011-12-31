@@ -31,7 +31,7 @@ float:right;
 }
 .promo a:hover {
 color:#000;
-clear:both;
+padding-left:20px;
 float:right;
 text-transform:none;
 }
