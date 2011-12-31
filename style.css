@@ -11,11 +11,11 @@ float:left;
 padding:20px;
 }
 #container {
-width:950px;
-float:left;
+width:800px;
+margin:auto;
 }
-#results {
-float:left;
+code {
+background: #EEE8D5;
 padding-left:10px;
 margin-left:10px;
 border-left:1px dashed #000;
