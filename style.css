@@ -37,10 +37,12 @@ h1, h2, h3, h4, h5, h6 {
 }
 .desc {
 font-size:22px;
+margin-bottom:0px;
 }
 .subdesc {
 background:#FDF6E3;
 font-size:22px;
+margin-bottom:0px;
 }
 .promo a {
 color:#000;
