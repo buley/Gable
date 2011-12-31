@@ -40,7 +40,7 @@
 			<p class='subdesc'>Gable has not yet been tested across all browsers.</p>
 			<h4>2. Create</h4>
 			<p class='subdesc'>To create a data table, give Gable the data via the `add` method and pass a unique string to identify it.</p>
-			<p class='codedesc'><code>Gable( 'jack' ).add( [ [ 'work', .9 ], [ 'play', .1 ] ] );</code></p>
+			<p class='codedesc'><code>Gable( 'jill' ).add( [ [ 'work', .5 ], [ 'play', .5 ] ] );</code></p>
 			<p class='subdesc'>Pass in a keyed `meta` object to control <a href='http://code.google.com/apis/chart/interactive/docs/customizing_charts.html'>visualization options</a> like chart labels and height and width.</p>
 			<p class='codedesc'><code>Gable( 'jack' ).add( [ [ 'work', .9 ], [ 'play', .1 ] ], { 'label': 'Redrum' } );</code></p>
 			<h4>3. Draw</h4>
@@ -49,27 +49,27 @@
 			<p class='subdesc'>The above code would attempt to append a pie chart to an HTML element with the id `dullard`.</p>
 			<h4>4. Update</h4>
 			<p class='subdesc'>You can update columns, rows and cells by index. Pass the `update` method a row id, column id or both to update a row, column or cell with a given value.</p>
-			<p class='codedesc'><code>Gable( 'jack' ).update( { 'row': 1, 'column': 2, 'value': .8  );</code></p>
+			<p class='codedesc'><code>Gable( 'jill' ).update( { 'row': 1, 'column': 2, 'value': .8  );</code></p>
 			<p class='subdesc'>Data tables are automatically wired to visualizations so any changes you make will be reflected live immediately. To manually control these updates, use the `stage` and `commit` methods on a per-table basis.<p>
-			<p class='codedesc'><code>var table = Gable( 'jack' );<br>table.delay();<br>table.update( { row: 1, column: 2, value: .8  );<br/>table.update( { row: 2, column: 2, value: .2 } );<br>table.commit();</code></p>
+			<p class='codedesc'><code>var table = Gable( 'jill' );<br>table.delay();<br>table.update( { row: 1, column: 2, value: .8  );<br/>table.update( { row: 2, column: 2, value: .2 } );<br>table.commit();</code></p>
 			<p class='subdesc'>The above code updates two rows before making a change live.</p>
-			<p class='desc'><strong>Note</strong>: All calls to Gable are chainable so the preceding code could be rewritten as <code class='inlinecode'>Gable( 'jack' ).delay().update( { row: 1, column: 2, value: .8  ).update( { row: 2, column: 2, value: .2 } ).commit();</code></p>
+			<p class='desc'><strong>Note</strong>: All calls to Gable are chainable so the preceding code could be rewritten as <code class='inlinecode'>Gable( 'jill' ).delay().update( { row: 1, column: 2, value: .8  ).update( { row: 2, column: 2, value: .2 } ).commit();</code></p>
 
 			<h4>5. Export</h4>
 			<p class='subdesc'>Gable stores tables in its own format and exports high-fidelity copies into Google's standard data table format. This approach allows for flexible, fast and easy <a href='http://code.google.com/apis/chart/interactive/docs/datatables_dataviews.html#javascriptliteral'>loading</a>.</p>
 			<p class='subdesc'>To export a table to Google's Data Table format, pass Gable the unique id and call its `export` method.</p>
-			<p class='codedesc'><code>var export = Gable( 'jack' ).export();</code></p>
+			<p class='codedesc'><code>var export = Gable( 'jill' ).export();</code></p>
 			<p class='subdesc'>To export the table to a .CSV string representation, pass the `export` method the string 'csv'. To see how Gable stores the data internally, use the type string `raw`.</p>
 			<!-- Git embed samples TK -->
-			<p class='codedesc'><code>var export = Gable( 'jack' ).export( 'csv' );</code></p>
+			<p class='codedesc'><code>var export = Gable( 'jill' ).export( 'csv' );</code></p>
 			<h4>6. Destroy</h4>
 			<p class='subdesc'>To remove a table, call the `remove` method after passing Gable its unique id. Any corresponding charts will be removed from the DOM.</p>
-			<p class='codedesc'><code>Gable( 'jack' ).remove();</code></p>
+			<p class='codedesc'><code>Gable( 'jill' ).remove();</code></p>
 			<p class='subdesc'>Rows, columns and cells can be destroyed invidiually by passing the destroy method an object with keys representing either a row id, column id or both.</p>
-			<p class='codedesc'><code>Gable( 'jack' ).remove( { row: 1, column: 2 } );</code></p>
+			<p class='codedesc'><code>Gable( 'jill' ).remove( { row: 1, column: 2 } );</code></p>
 			<p class='subdesc'>The above code "removes" a single cell by turning it into a `null` value. The code below removes a single row.</p>
-			<p class='codedesc'><code>Gable( 'jack' ).remove( { row: 2 } );</code></p>
-			<p class='desc'><strong>Note</strong>: In the two examples above, two columns were removed from two column table (created and drawn in the first two examples). If a table has no rows, no columns or neither rows nor columns it will be destroyed automatically.</p>
+			<p class='codedesc'><code>Gable( 'jill' ).remove( { row: 2 } );</code></p>
+			<p class='desc'><strong>Note</strong>: In the two examples above, two columns were removed from two column table (created and drawn in the first example). If a table has no rows, no columns or neither rows nor columns it will be destroyed automatically.</p>
 
 	</div>
 	</body>
