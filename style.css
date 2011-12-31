@@ -27,6 +27,7 @@ h1, h2, h3, h4, h5, h6 {
 .promo a {
 color:#000;
 padding-left:20px;
+padding-top:20px;
 float:right;
 }
 .promo a:hover {
