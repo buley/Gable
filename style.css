@@ -24,6 +24,9 @@ border-left:10px dashed #000;
 h1, h2, h3, h4, h5, h6 {
 	color:#000;
 }
+.desc {
+font-size:18px;
+}
 .promo a {
 color:#000;
 padding-left:20px;
