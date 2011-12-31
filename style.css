@@ -22,6 +22,7 @@ text-decoration:underline;
 #container {
 width:800px;
 margin:auto;
+padding-bottom:30px;
 }
 code {
 background: #586E75;
