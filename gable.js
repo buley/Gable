@@ -19,6 +19,7 @@ var Gable = (function(){
 		console.log( 'add', current_table, arguments );
 		return Public.prototype;
 		//on_success
+		//on_error
 	};
 
 	Public.prototype.draw = function() {
@@ -30,18 +31,21 @@ var Gable = (function(){
 		console.log( 'update', current_table, arguments );
 		return Public.prototype;
 		//on_success
+		//on_error
 	};
 
 	Public.prototype.export = function() {
 		console.log( 'export', current_table, arguments );
 		return Public.prototype;
 		//on_success
+		//on_error
 	};
 
 	Public.prototype.remove = function( args ) {
 		console.log( 'remove', current_table, arguments );
 		return Public.prototype;
 		//on_success
+		//on_error
 	};
 
 	Public.prototype.delay = function( milliseconds ) {
