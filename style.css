@@ -20,13 +20,15 @@ background: #586E75;
 color:#FDF6E3;
 padding-left:10px;
 border-left:10px dashed #000;
+font-size:18px;
 }
 h1, h2, h3, h4, h5, h6 {
 	color:#000;
 }
 .desc {
-font-size:18px;
+font-size:22px;
 }
+
 .promo a {
 color:#000;
 padding-left:20px;
@@ -60,7 +62,7 @@ h3 {
 	font-size: 48px;
 }
 h4 {
-	font-size: 40px;
+	font-size: 36px;
 	margin-bottom:15px;
 	clear:both;
 }
