@@ -15,7 +15,8 @@ width:800px;
 margin:auto;
 }
 code {
-background: #EEE8D5;
+background: #586E75;
+color:#FDF6E3;
 padding-left:10px;
 margin-left:10px;
 border-left:1px dashed #000;
@@ -25,6 +26,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 p {
 background: #EEE8D5;
+clear:both;
 padding: 0 10px 0 10px;
 line-height: 42px;
 text-shadow: -0px -0px black;
