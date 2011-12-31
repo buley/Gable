@@ -1,4 +1,4 @@
-var Gable = (function(){
+var Private = (function(){
 
 	/* Public */
 	/* The public API. Uses the Private object to do the dirty work. */
@@ -18,20 +18,20 @@ var Gable = (function(){
 	*/
 
 	var Private = {};
-	Private.cache = Gable.cache || {};
-	Private.utils = Gable.utils || {};
-	Private.data = Gable.data || {};
-	Private.data.utils = Gable.data.utils || {};
-	Private.data.type = Gable.data.type || {};
-	Private.data.types = Gable.data.types || {};
-	Private.data.value = Gable.data.value || {};
-	Private.data.values = Gable.data.values || {};
-	Private.data.table = Gable.data.table || {};
-	Private.data.row = Gable.data.row || {};
-	Private.data.column = Gable.data.column || {};
-	Private.data.cell = Gable.data.cell || {};
-	Private.chart = Gable.chart || {};
-	Private.charts = Gable.charts || {};
+	Private.cache = Private.cache || {};
+	Private.utils = Private.utils || {};
+	Private.data = Private.data || {};
+	Private.data.utils = Private.data.utils || {};
+	Private.data.type = Private.data.type || {};
+	Private.data.types = Private.data.types || {};
+	Private.data.value = Private.data.value || {};
+	Private.data.values = Private.data.values || {};
+	Private.data.table = Private.data.table || {};
+	Private.data.row = Private.data.row || {};
+	Private.data.column = Private.data.column || {};
+	Private.data.cell = Private.data.cell || {};
+	Private.chart = Private.chart || {};
+	Private.charts = Private.charts || {};
 
 	/* CONFIG */
 
@@ -65,8 +65,8 @@ var Gable = (function(){
 	    }
 	};
 
-	Private.data.types.raw = Gable.data.types.raw || {};
-	Private.data.types.raw.transform = Gable.data.types.raw.transform || {};
+	Private.data.types.raw = Private.data.types.raw || {};
+	Private.data.types.raw.transform = Private.data.types.raw.transform || {};
 	Private.data.types.raw.transform.table = function( obj ) {
 
 		var newcols = [];
@@ -160,8 +160,8 @@ var Gable = (function(){
 
 	};
 
-	Private.data.types.input = Gable.data.types.input || {};
-	Private.data.types.input.transform = Gable.data.types.input.transform || {};
+	Private.data.types.input = Private.data.types.input || {};
+	Private.data.types.input.transform = Private.data.types.input.transform || {};
 	Private.data.types.input.transform.raw = function(value, table_id, table) {
 	 	column_meta = {};
 		var columns = [];
@@ -359,7 +359,7 @@ var Gable = (function(){
 			return rows;
 		} else {
 
-			if( true === Private.utils.isArray( value ) && 'object' !== typeof val[ 0 ] && !Gable.utils.isArray( value[ 0 ] ) && !( value[0] instanceof Date ) ) {
+			if( true === Private.utils.isArray( value ) && 'object' !== typeof val[ 0 ] && !Private.utils.isArray( value[ 0 ] ) && !( value[0] instanceof Date ) ) {
 				tmpstack = [];
 				for( var attrz in value ) {
 					if( value.hasOwnProperty( attrz ) ) {
@@ -392,7 +392,7 @@ var Gable = (function(){
 				if(  'object' === typeof val ) {
 					if( Private.utils.isArray(val) ) {
 						
-						var values = ( 'undefined' !== typeof val && null !== Private.data.column.type( val ) && !( Gable.utils.isArray( val ) ) ) ? true : false;
+						var values = ( 'undefined' !== typeof val && null !== Private.data.column.type( val ) && !( Private.utils.isArray( val ) ) ) ? true : false;
 						if( true === values ) {
 							var rw = Private.data.row.create( val, row_meta, row_id );
 							rows.push(rw);
@@ -583,7 +583,7 @@ var Gable = (function(){
 
 	/* returns true if a type can be converted from another type, else false */
 	Private.data.type.tranformsTo = function(type, other_type) {
-	    if ('undefined' !== typeof Private.data.types[type] && 'undefined' !== typeof Gable.data.types[type]['transform'] && 'function' === typeof Gable.data.types[type]['transform'][other_type]) {
+	    if ('undefined' !== typeof Private.data.types[type] && 'undefined' !== typeof Private.data.types[type]['transform'] && 'function' === typeof Private.data.types[type]['transform'][other_type]) {
 	        return true;
 	    }
 	    return false;
@@ -751,7 +751,7 @@ var Gable = (function(){
 
 		var raw;
 		if( Private.data.type.tranformsTo( 'input', 'raw' ) ) {
-			raw = Private.data.types.input.transform.raw( Gable.data.types.raw.transform.filter( value ) );
+			raw = Private.data.types.input.transform.raw( Private.data.types.raw.transform.filter( value ) );
 		}
 
 		var table = Private.data.table.create( raw.columns, raw.rows, meta, id );
@@ -771,9 +771,9 @@ var Gable = (function(){
 		if( null === type || 'undefined' === typeof type || 'raw' === type ) {
 			result = table;	
 		} else if( type === 'table' ) {
-			result = Private.data.types.raw.transform.table( Gable.data.types.table.transform.filter( table ) );
+			result = Private.data.types.raw.transform.table( Private.data.types.table.transform.filter( table ) );
 		} else if( type === 'csv' ) {
-			result = Private.data.types.raw.transform.csv( Gable.data.types.csv.transform.filter( table ) );
+			result = Private.data.types.raw.transform.csv( Private.data.types.csv.transform.filter( table ) );
 		}
 		return result;
 	};
@@ -815,7 +815,7 @@ var Gable = (function(){
 			return null;	
 		} else {
 			//columns and rows are formatted as arrays in raw
-			if( !Private.utils.isArray( columns ) || !Gable.utils.isArray( rows ) ) {
+			if( !Private.utils.isArray( columns ) || !Private.utils.isArray( rows ) ) {
 				//columns and rows must be arrays
 				return null;
 			}
