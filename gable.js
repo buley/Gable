@@ -96,7 +96,7 @@ var Gable = (function(){
 
 
 
-
+	//PRIVATE TO DO: load google script based on type rendering
 
 
 	/* Private */
