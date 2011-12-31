@@ -49,7 +49,8 @@ margin-bottom:0px;
 
 .codedesc {
 background:#586E75;
-border-top:5px dashed #FDF6E3;
+border-left:5px dashed #FDF6E3;
+border-right:5px dashed #FDF6E3;
 font-size:22px;
 margin-bottom:0px;
 }
