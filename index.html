@@ -30,8 +30,9 @@
 
 			</div>
 			<div class='subhead'>Gabel makes it easy to <strong>create Google data tables</strong>, which in turn make it easy to <strong>draw graphs and plot charts</strong>.<p>
-				<div class='subhead'>You take care of data and visualization. Gable covers the boring stuff.</div>
+			<div class='subhead'>You take care of data and visualization. Gable covers the boring stuff.</div>
 			<h4>Examples</h4>
+
 			<h5>1. Setup</h5>
 			<p class='subdesc'>Gable depends on the JavaScript <a href='http://code.google.com/apis/chart/interactive/docs/reference.html'>Google Visualization API</a> but will always take care of loading the right files. To enable Gable, include a script tag.</p>
 			<p class='codedesc'><code>&lt;script type='text/javascript' src='https://raw.github.com/editor/Gable/master/gable.js'&gt;&lt;/script&gt;</code></p>
@@ -42,7 +43,7 @@
 			<p class='codedesc'><code>Gable( 'jack' ).create( [ [ 'work', .9 ], [ 'play', .1 ] ] );</code></p>
 			<p class='subdesc'>Pass in a keyed object to control <a href='http://code.google.com/apis/chart/interactive/docs/customizing_charts.html'>visualization options</a>.</p>
 			<h4>3. Draw</h4>
-			<p class='subdesc'>Pass Gable a data table's unique id, a target DOM id and visualization type to draw it on page.</p>
+			<p class='subdesc'>Pass Gable a data table's unique id, a target DOM id and visualization type to draw it on page. Valid visualization types include `table`, `pie`, TK.</p>
 			<p class='codedesc'><code>Gable( 'jack' ).draw( 'dullard', 'pie' );</code></p>
 			<p class='subdesc'>The above code would attempt to append a pie chart to an HTML element with the id `dullard`.</p>
 			<h4>4. Update</h4>
