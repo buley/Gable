@@ -6,7 +6,7 @@ var Private = (function(){
 	/* This object is returned at the bottom of the function. In between lay the Private object code. */
 
 	var Public = function() {
-
+		console.log('inited');
 	};
 
 	Public.prototype.test = function() {
