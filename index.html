@@ -46,8 +46,11 @@
 			<p class='codedesc'><code>Gable( 'jack' ).draw( 'dullard', 'pie' );</code></p>
 			<p class='subdesc'>The above code would attempt to append a pie chart to an HTML element with the id `dullard`.</p>
 			<h4>4. Update</h4>
-			<p class='subdesc'>You can update columns, rows and cells by index. Pass a row id, column id or both The above code would attempt to append a pie chart to an HTML element with the id `dullard`.</p>
-			<p class='codedesc'><code>Gable( 'jack' ).draw( 'dullard', 'pie' );</code></p>
+			<p class='subdesc'>You can update columns, rows and cells by index. Pass the `update` method a row id, column id or both to update a row, column or cell with a given value.</p>
+			<p class='codedesc'><code>Gable( 'jack' ).update( { 'row': 1, 'column': 2, 'value': .8  );</code></p>
+			<p class='subdesc'>Data tables are automatically wired to visualizations so any changes you make will be automatically reflected live. To manually control these updates for a particular table, use the `stage` and `commit` methods.<p>
+			<p class='codedesc'><code>Gable( 'jack' ).delay().update( { row: 1, column: 2, value: .8  ).update( { row: 2, column: 2, value: .2 } ).commit();</code></p>
+			<p class='subdesc'>The above code updates two rows before making a change live.</p>
 			<h4>5. Destroy</h4>
 
 	</div>
