@@ -5,13 +5,21 @@ var Gable = (function(){
 
 	/* This object is returned at the bottom of the function. In between lay the Private object code. */
 
-	var Public = function() {
-		console.log('inited');
+	var Public = function( table_id ) {
+		console.log('engaged', table_id);
+		return this;
 	};
 
 	Public.prototype.test = function() {
-		console.log( arguments );
+		console.log( 'called', arguments );
+		return this;
 	};
+
+	Public.prototype.test2 = function() {
+		console.log( 'called again', arguments );
+		return this;
+	};
+
 
 	/* Private */
 	/* Goal: 1) Transform semi-structured JS objects into CSV and the standard Google Data Table object format, making it usable w/the Google Chart API. 2) Use the ChartWrapper class to create standard chart types (http://code.google.com/apis/chart/interactive/docs/reference.html#chartwrapperobject) based on Google Data Tables. 
