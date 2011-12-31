@@ -5,12 +5,14 @@ var Gable = (function(){
 
 	/* This object is returned at the bottom of the function. In between lay the Private object code. */
 
-	var current_table
-	  , delayed = false;
+	var current_table = {};
+	var current_element = {};
 
 	var Public = function( table_id ) {
 		that = this;
-		current_table = table_id;
+		current_table[ table_id ] = {};
+		current_table[ table_id ].delayed = false;
+		current_table[ table_id ].value = false;
 		console.log('engaged', table_id);
 		return Public.prototype;
 	};
