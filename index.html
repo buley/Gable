@@ -54,6 +54,13 @@
 			<p class='desc'><strong>Note</strong>: All calls to Gable are chainable so the preceding code could be rewritten as <code class='inlinecode'>Gable( 'jack' ).delay().update( { row: 1, column: 2, value: .8  ).update( { row: 2, column: 2, value: .2 } ).commit();</code></p>
 
 			<h4>5. Destroy</h4>
+			<p class='subdesc'>To remove a table, call the `destroy` method after passing Gable its unique id. Any corresponding charts will be removed from the DOM.</p>
+			<p class='codedesc'><code>Gable( 'jack' ).destroy();</code></p>
+			<p class='subdesc'>Rows, columns and cells can be destroyed invidiually by passing the destroy method an object with keys representing either a row id, column id or both.</p>
+			<p class='codedesc'><code>Gable( 'jack' ).destroy( { row: 1, column: 2 } );</code></p>
+			<p class='subdesc'>The above code removes a single cell, turning it into a null value. The code below removes a single row.</p>>
+			<p class='codedesc'><code>Gable( 'jack' ).destroy( { row: 2 } );</code></p>
+			<p class='desc'><strong>Note</strong>: In the two examples above, two columns were removed from two column table. If a table has no rows, no columns or neither rows nor columns it will be destroyed automatically.</p>
 
 	</div>
 	</body>
