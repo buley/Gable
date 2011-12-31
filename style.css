@@ -23,12 +23,18 @@ border-left:10px dashed #000;
 h1, h2, h3, h4, h5, h6 {
 	color:#000;
 }
-.promo {
+.promo a {
 color:#000;
 clear:both;
 float:right;
 }
-p {
+.promo a:hover {
+color:#000;
+clear:both;
+float:right;
+text-transform:none;
+}
+	p {
 background: #EEE8D5;
 clear:both;
 padding: 0 10px 0 10px;
