@@ -62,7 +62,7 @@
 			<p class='codedesc'><code>Gable( 'jill' ).get( { target: 'dullard', type: 'pie' } );</code></p>
 			<p class='subdesc'>Rows and columns with unique ids can be accessed for a table via the `find` method. The next call chained to the resulting object, which can be `get`, `update` or `remove`, will be applied to the particular element it found, if any.
 			<p class='codedesc'><code>Gable( 'jill' ).find( 'happiness' ).remove();</code></p>
-			<p class='subdesc'>The above code removes a column with the id 'happiness' -- a column which had an id added via the `update` method in an earlier example.</p>
+			<p class='subdesc'>The above code removes a column with the id 'happiness' -- a column which had an id added manually via the `update` method in an earlier example. Depending on the JavaScript object structure you pass into Gable in the `add` method, you can declare row and object ids inline as well.</p>
 			<h4>6. Dump</h4>
 			<p class='subdesc'>Gable stores tables in its own format and exports high-fidelity copies into Google's standard data table format. This approach allows for flexible, fast and easy <a href='http://code.google.com/apis/chart/interactive/docs/datatables_dataviews.html#javascriptliteral'>loading</a>.</p>
 			<p class='subdesc'>To export a table to Google's Data Table format, pass Gable the unique id and call its `dump` method.</p>
