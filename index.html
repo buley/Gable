@@ -39,9 +39,10 @@
 			<p class='desc'><strong>Note</strong>: It's not a great idea to serve the file directly from Github on a live website, but the above script tag will get you going.</p>
 			<p class='subdesc'>Gable has not yet been tested across all browsers.</p>
 			<h4>2. Create</h4>
-			<p class='subdesc'>To create a data table, pass Gable the data and a unique string to identify it.</p>
-			<p class='codedesc'><code>Gable( 'jack' ).create( [ [ 'work', .9 ], [ 'play', .1 ] ] );</code></p>
-			<p class='subdesc'>Pass in a keyed object to control <a href='http://code.google.com/apis/chart/interactive/docs/customizing_charts.html'>visualization options</a>.</p>
+			<p class='subdesc'>To create a data table, give Gable the data via the `add` method and pass a unique string to identify it.</p>
+			<p class='codedesc'><code>Gable( 'jack' ).add( [ [ 'work', .9 ], [ 'play', .1 ] ] );</code></p>
+			<p class='subdesc'>Pass in a keyed `meta` object to control <a href='http://code.google.com/apis/chart/interactive/docs/customizing_charts.html'>visualization options</a> like chart labels and height and width.</p>
+			<p class='codedesc'><code>Gable( 'jack' ).add( [ [ 'work', .9 ], [ 'play', .1 ] ], { 'label': 'Redrum' } );</code></p>
 			<h4>3. Draw</h4>
 			<p class='subdesc'>Pass Gable a data table's unique id, a target DOM id and visualization type to draw it on page. Valid visualization types include `table`, `pie`, TK.</p>
 			<p class='codedesc'><code>Gable( 'jack' ).draw( 'dullard', 'pie' );</code></p>
@@ -62,12 +63,12 @@
 			<!-- Git embed samples TK -->
 			<p class='codedesc'><code>var export = Gable( 'jack' ).export( 'csv' );</code></p>
 			<h4>6. Destroy</h4>
-			<p class='subdesc'>To remove a table, call the `destroy` method after passing Gable its unique id. Any corresponding charts will be removed from the DOM.</p>
-			<p class='codedesc'><code>Gable( 'jack' ).destroy();</code></p>
+			<p class='subdesc'>To remove a table, call the `remove` method after passing Gable its unique id. Any corresponding charts will be removed from the DOM.</p>
+			<p class='codedesc'><code>Gable( 'jack' ).remove();</code></p>
 			<p class='subdesc'>Rows, columns and cells can be destroyed invidiually by passing the destroy method an object with keys representing either a row id, column id or both.</p>
-			<p class='codedesc'><code>Gable( 'jack' ).destroy( { row: 1, column: 2 } );</code></p>
+			<p class='codedesc'><code>Gable( 'jack' ).remove( { row: 1, column: 2 } );</code></p>
 			<p class='subdesc'>The above code "removes" a single cell by turning it into a `null` value. The code below removes a single row.</p>
-			<p class='codedesc'><code>Gable( 'jack' ).destroy( { row: 2 } );</code></p>
+			<p class='codedesc'><code>Gable( 'jack' ).remove( { row: 2 } );</code></p>
 			<p class='desc'><strong>Note</strong>: In the two examples above, two columns were removed from two column table (created and drawn in the first two examples). If a table has no rows, no columns or neither rows nor columns it will be destroyed automatically.</p>
 
 	</div>

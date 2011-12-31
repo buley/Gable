@@ -5,7 +5,8 @@ var Gable = (function(){
 
 	/* This object is returned at the bottom of the function. In between lay the Private object code. */
 
-	var current_table;
+	var current_table
+	  , delayed = false;
 
 	var Public = function( table_id ) {
 		that = this;
@@ -14,15 +15,44 @@ var Gable = (function(){
 		return Public.prototype;
 	};
 
-	Public.prototype.test = function() {
-		console.log( 'called', current_table, arguments );
+	Public.prototype.add = function() {
+		console.log( 'add', current_table, arguments );
 		return Public.prototype;
 	};
 
-	Public.prototype.test2 = function() {
-		console.log( 'called again', current_table, arguments );
+	Public.prototype.draw = function() {
+		console.log( 'draw', current_table, arguments );
 		return Public.prototype;
 	};
+
+	Public.prototype.update = function() {
+		console.log( 'update', current_table, arguments );
+		return Public.prototype;
+	};
+
+	Public.prototype.export = function() {
+		console.log( 'export', current_table, arguments );
+		return Public.prototype;
+	};
+
+	Public.prototype.remove = function() {
+		console.log( 'remove', current_table, arguments );
+		return Public.prototype;
+	};
+
+	Public.prototype.delay = function() {
+		console.log( 'delay', current_table, arguments );
+		return Public.prototype;
+	};
+
+	Public.prototype.commit = function() {
+		console.log( 'commit', current_table, arguments );
+		return Public.prototype;
+	};
+
+
+
+
 
 
 	/* Private */
