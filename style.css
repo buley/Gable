@@ -12,7 +12,13 @@ padding:20px;
 }
 #container {
 width:950px;
-margin:auto;
+float:left;
+}
+#results {
+float:left;
+padding-left:10px;
+margin-left:10px;
+border-left:1px dashed #000;
 }
 h1, h2, h3, h4, h5, h6 {
 	color:#000;
