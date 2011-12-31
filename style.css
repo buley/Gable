@@ -10,7 +10,7 @@ padding-top: 22px;
 #logo-text {
 float:left;
 padding:20px;
-font-size:32px;
+font-size:48px;
 }
 #logo-text a {
 color:#000;
@@ -34,7 +34,7 @@ h1, h2, h3, h4, h5, h6 {
 	color:#000;
 }
 .subhead {
-font-size: 22px;
+font-size: 36px;
 margin-top: 15px;
 margin-bottom: 0px;
 clear: both;
