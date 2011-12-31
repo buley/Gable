@@ -40,11 +40,14 @@
 			<h4>2. Create</h4>
 			<p class='subdesc'>To create a data table, pass Gable the data and a unique string to identify it.</p>
 			<p class='codedesc'><code>Gable( 'jack' ).create( [ [ 'work', .9 ], [ 'play', .1 ] ] );</code></p>
+			<p class='subdesc'>Pass in a keyed object to control <a href='http://code.google.com/apis/chart/interactive/docs/customizing_charts.html'>visualization options</a>.</p>
 			<h4>3. Draw</h4>
 			<p class='subdesc'>Pass Gable a data table's unique id, a target DOM id and visualization type to draw it on page.</p>
 			<p class='codedesc'><code>Gable( 'jack' ).draw( 'dullard', 'pie' );</code></p>
 			<p class='subdesc'>The above code would attempt to append a pie chart to an HTML element with the id `dullard`.</p>
 			<h4>4. Update</h4>
+			<p class='subdesc'>You can update columns, rows and cells by index. Pass a row id, column id or both The above code would attempt to append a pie chart to an HTML element with the id `dullard`.</p>
+			<p class='codedesc'><code>Gable( 'jack' ).draw( 'dullard', 'pie' );</code></p>
 			<h4>5. Destroy</h4>
 
 	</div>
