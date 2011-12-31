@@ -18,6 +18,7 @@ var Gable = (function(){
 	Public.prototype.add = function() {
 		console.log( 'add', current_table, arguments );
 		return Public.prototype;
+		//on_success
 	};
 
 	Public.prototype.draw = function() {
@@ -28,28 +29,32 @@ var Gable = (function(){
 	Public.prototype.update = function() {
 		console.log( 'update', current_table, arguments );
 		return Public.prototype;
+		//on_success
 	};
 
 	Public.prototype.export = function() {
 		console.log( 'export', current_table, arguments );
 		return Public.prototype;
+		//on_success
 	};
 
 	Public.prototype.remove = function( args ) {
 		console.log( 'remove', current_table, arguments );
 		return Public.prototype;
+		//on_success
 	};
 
 	Public.prototype.delay = function( milliseconds ) {
 		console.log( 'delay', current_table, arguments );
 		return Public.prototype;
+		//on_success
+		//on_error
 	};
 
 	Public.prototype.cancel = function( milliseconds ) {
-		console.log( 'delay', current_table, arguments );
+		console.log( 'cancel', current_table, arguments );
 		return Public.prototype;
 	};
-
 
 	Public.prototype.commit = function() {
 		console.log( 'commit', current_table, arguments );
