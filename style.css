@@ -32,6 +32,7 @@ float:right;
 .promo a:hover {
 color:#000;
 padding-left:20px;
+padding-top:20px;
 float:right;
 text-transform:none;
 }
