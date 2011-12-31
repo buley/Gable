@@ -5,19 +5,21 @@ var Gable = (function(){
 
 	/* This object is returned at the bottom of the function. In between lay the Private object code. */
 
+	var that;
 	var Public = function( table_id ) {
+		that = this;
 		console.log('engaged', table_id);
-		return this;
+		return that;
 	};
 
 	Public.prototype.test = function() {
 		console.log( 'called', arguments );
-		return this;
+		return that;
 	};
 
 	Public.prototype.test2 = function() {
 		console.log( 'called again', arguments );
-		return this;
+		return that;
 	};
 
 
