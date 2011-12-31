@@ -26,7 +26,6 @@ padding-bottom:30px;
 }
 code {
 color:#FDF6E3;
-border-top:5px dashed #FDF6E3;
 line-height:38px;
 font-size:18px;
 }
@@ -50,6 +49,7 @@ margin-bottom:0px;
 
 .codedesc {
 background:#586E75;
+border-top:5px dashed #FDF6E3;
 font-size:22px;
 margin-bottom:0px;
 }
