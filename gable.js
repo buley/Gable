@@ -34,7 +34,7 @@ var Gable = (function(){
 		//on_error
 	};
 
-	Public.prototype.export = function() {
+	Public.prototype.dump = function() {
 		console.log( 'export', current_table, arguments );
 		return Public.prototype;
 		//on_success
