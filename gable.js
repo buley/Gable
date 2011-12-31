@@ -74,7 +74,7 @@ var Gable = (function(){
 	Public.prototype.find = function() {
 		console.log( 'find', current_table, arguments );
 		var Find = function() {
-
+			console.log('find',arguments);
 		};
 
 		Find.prototype.get = function() {
