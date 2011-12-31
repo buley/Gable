@@ -11,6 +11,14 @@ padding-top: 52px;
 float:left;
 padding:20px;
 }
+#logo-text a {
+color:#000;
+text-decoration:none;
+}
+#logo-text a:hover {
+color:#000;
+text-decoration:underline;
+}
 #container {
 width:800px;
 margin:auto;
