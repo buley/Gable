@@ -3,25 +3,36 @@ body {
 	background:#FDF6E3;
 }
 
+#logo-icon {
+float:left;
+}
+#logo-text {
+float:left;
+padding:20px;
+}
+#container {
+width:950px;
+margin:auto;
+}
 h1, h2, h3, h4, h5, h6 {
 	font-family: 'Tahoma', 'Helvetica';
 }
 
 h1 {
-	font-size: 32px;
+	font-size: 64px;
 }
 h2 {
-	font-size: 28px;
+	font-size: 56px;
 }
 h3 {
-	font-size: 24px;
+	font-size: 48px;
 }
 h4 {
-	font-size: 20px;
+	font-size: 40px;
 }
 h5, body {
-	font-size: 16px;
+	font-size: 32px;
 }
 h6 {
-	font-size: 12px;
+	font-size: 24px;
 }
