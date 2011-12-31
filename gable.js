@@ -77,19 +77,19 @@ var Gable = (function(){
 
 		};
 
-		Find.get = function() {
+		Find.prototype.get = function() {
 
 		};
 
-		Find.remove = function() {
+		Find.prototype.remove = function() {
 
 		};
 
-		Find.update = function() {
+		Find.prototype.update = function() {
 
 		};
 
-		return Find();
+		return new Find();
 	};
 
 
