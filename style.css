@@ -23,6 +23,11 @@ border-left:10px dashed #000;
 h1, h2, h3, h4, h5, h6 {
 	color:#000;
 }
+a.promo {
+color:#000;
+clear:both;
+float:right;
+}
 p {
 background: #EEE8D5;
 clear:both;
