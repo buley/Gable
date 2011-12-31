@@ -71,6 +71,29 @@ var Gable = (function(){
 		return Public.prototype;
 	};
 
+	Public.prototype.find = function() {
+		console.log( 'find', current_table, arguments );
+		var Find = function() {
+
+		};
+
+		Find.get = function() {
+
+		};
+
+		Find.remove = function() {
+
+		};
+
+		Find.update = function() {
+
+		};
+
+		return Find();
+	};
+
+
+
 
 
 
