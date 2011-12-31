@@ -1,4 +1,4 @@
-var Private = (function(){
+var Gable = (function(){
 
 	/* Public */
 	/* The public API. Uses the Private object to do the dirty work. */
