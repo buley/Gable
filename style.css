@@ -6,7 +6,6 @@ body {
 	padding-right:20px;
 }
 .example {
-clear:both;
 }
 #logo-icon {
 float:left;
@@ -116,6 +115,7 @@ h4 {
 h5 {
 	font-size: 32px;
 	margin-bottom: 0px;
+	clear:both;
 }
 
 h6 {
