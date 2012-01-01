@@ -7,31 +7,83 @@ var Gable = (function(){
 
 	var current_table = {};
 	var current_element = {};
+	var tables = {};
 
 	var Public = function( table_id ) {
 		that = this;
-		current_table[ table_id ] = {};
-		current_table[ table_id ].delayed = false;
-		current_table[ table_id ].value = false;
+		current_table = table_id ];
+		tables[ table_id ] = {};
+		tables[ table_id ].delayed = false;
+		tables[ table_id ].value = false;
 		console.log('engaged', table_id);
 		return Public.prototype;
 	};
 
 	Public.prototype.add = function() {
 		console.log( 'add', current_table, arguments );
+		if( 'undefined' !== arguments[ 0 ] ) {
+			if( 'function' === typeof req.on_error ) {
+				req.on_error( req );
+			}
+			return;
+		}
+		var req = arguments[ 0 ];
+		Gable.data.add( request.id, request.value );
+		if( 'function' === typeof req.on_success ) {
+			req.on_success( request.id );	
+		}
 		return Public.prototype;
-		//on_success
-		//on_error
 	};
 
 	Public.prototype.get = function() {
 		console.log( 'get', current_table, arguments );
+		var req = arguments[ 0 ];
+		var res = Gable.data.get( current_table );
+		if( 'function' === typeof req.on_success ) {
+			req.on_success( res );	
+		}
 		return Public.prototype;
 	};
 
-
+	//req.type
+	//req.meta
+	//req.target
 	Public.prototype.draw = function() {
 		console.log( 'draw', current_table, arguments );
+		var dt = new google.visualization.DataTable( Gable.data.get( current_table, 'table' ) ); 
+		var options = req.meta;
+		var chart;
+		//attempt to use table id if target not set
+		if( 'undefined' === typeof req.target ) {
+			req.target = current_table;
+		}
+		var target = document.getElementById( req.target ); 
+		if( 'line' === req.type ) {
+			chart = new google.visualization.LineChart( target );
+		} else if( 'pie' === req.type ) {
+			chart = new google.visualization.PieChart( target );
+		} else if( 'scatter' === req.type ) {
+			chart = new google.visualization.ScatterChart( target );
+		} else if( 'gauge' === req.type ) {
+			chart = new google.visualization.Gauge( target );
+		} else if( 'geo' === req.type ) {
+			chart = new google.visualization.GeoChart( target );
+		} else if( 'table' === req.type ) {
+			chart = new google.visualization.Table( target );
+		} else if( 'treemap' === req.type ) {
+			chart = new google.visualization.TreeMap( target );
+		} else if( 'candlestick' === req.type ) {
+			chart = new google.visualization.CandlestickChart( target );
+		} else if( 'bar' === req.type ) {
+			chart = new google.visualization.BarChart( target );
+		} else if( 'area' === req.type ) {
+			chart = new google.visualization.AreaChart( target );
+		} else if( 'column' === req.type ) {
+			chart = new google.visualization.ColumnChart( target );
+		} else if( 'combo' === req.type ) {
+			chart = new google.visualization.ComboChart( target );
+		}
+		chart.draw( dt, options );
 		return Public.prototype;
 	};
 
@@ -93,9 +145,6 @@ var Gable = (function(){
 
 		return new Find();
 	};
-
-
-
 
 
 	//PRIVATE TO DO: load google script based on type rendering
