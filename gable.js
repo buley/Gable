@@ -1065,6 +1065,7 @@ var Gable = (function(){
 		}
 
 		var table = Private.data.table.create( raw.columns, raw.rows, meta, id );
+		console.log('adding table',table);
 		Private.data.table.add( table );
 		
 	};
