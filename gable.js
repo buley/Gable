@@ -127,8 +127,10 @@ var Gable = (function(){
 		var already_loaded = function() {
 			if( !Private.utils.chartTypeIsLoaded( 'corechart' ) ) {
 				Private.utils.loadChartType( 'corechart', funBody );
+			} else {
+				funBody();
 			}
-			funBody();
+
 		};
 
 		if( 'undefined' === typeof google ||  'undefined' === typeof google.visualization ) {
