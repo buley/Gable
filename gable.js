@@ -18,7 +18,7 @@ var Gable = (function(){
 		console.log('engaged', table_id);
 		if( 'undefined' === typeof google ||  'undefined' === typeof google.visualization ) {
 			var coreload = function() {
-			//Private.utils.loadChartType( 'corechart' );
+				Private.utils.loadChartType( 'corechart' );
 				console.log('viz API loaded');
 			};
 			Private.utils.loadVisualizationAPI( { on_success: coreload } );
