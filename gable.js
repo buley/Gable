@@ -58,9 +58,8 @@ var Gable = (function(){
 	Public.prototype.draw = function() {
 		console.log( 'draw', current_table, arguments );
 		var req = arguments[ 0 ];
-		var ctype = Private.utils.chartType( req.type );
-		if( !Private.utils.chartTypeIsLoaded( ctype ) ) {
-			Private.utils.loadChartType( ctype );
+		if( !Private.utils.chartTypeIsLoaded( 'corechart' ) ) {
+			Private.utils.loadChartType( 'corechart );
 		}
 		var dt = new google.visualization.DataTable( Private.data.get( current_table, 'table' ) ); 
 		var options = req.meta;
@@ -71,7 +70,10 @@ var Gable = (function(){
 		if( 'undefined' === typeof req.target ) {
 			req.target = current_table;
 		}
-
+		var ctype = Private.utils.chartType( req.type );
+		if( !Private.utils.chartTypeIsLoaded( ctype ) ) {
+			Private.utils.loadChartType( ctype );
+		}
 		var target = document.getElementById( req.target ); 
 		if( 'line' === type_id ) {
 			chart = new google.visualization.LineChart( target );
