@@ -36,7 +36,7 @@ var Gable = (function(){
 			}
 			return;
 		}
-		Private.data.add( Private.utils.clone( current_table ), req.value, req.meta );
+		Private.data.add( current_table, req.value, req.meta );
 		if( 'function' === typeof req.on_success ) {
 			req.on_success( req.id );	
 		}
