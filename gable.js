@@ -1066,6 +1066,9 @@ var Gable = (function(){
 
 	Private.data.get = function( id, type ) {
 		var table = Private.data.table.get( id );
+		console.log("GOT",table);
+		console.log("GOTCLONE",Private.utils.clone(table));
+
 		var result = null;
 		if( null === type || 'undefined' === typeof type || 'raw' === type ) {
 			result = table;	
@@ -1074,8 +1077,6 @@ var Gable = (function(){
 		} else if( type === 'csv' ) {
 			result = Private.data.types.raw.transform.csv( Private.data.types.csv.transform.filter( table ) );
 		}
-		console.log("GOT",result);
-		console.log("GOTCLONE",Private.utils.clone(result));
 		return result;
 	};
 
