@@ -192,7 +192,7 @@ var Gable = (function(){
     var script = document.createElement( 'script' );
     	script.src = 'http://www.google.com/jsapi';
         script.type = "text/javascript";
-/*
+
         script.onload = function() { 
             if ( ! script.onloadDone ) {
                 script.onloadDone = true; 
@@ -209,7 +209,7 @@ var Gable = (function(){
 		}
             }
         }
-*/
+
     	var headID = document.getElementsByTagName("head")[0];         
 	headID.appendChild(script);
 
@@ -254,10 +254,10 @@ var Gable = (function(){
 		}
 	};
 
-	Private.utils.loadChartType = function( chart_type ) {
+	Private.utils.loadChartType = function( chart_type, on_success ) {
 
 		if( !Private.utils.chartTypeIsLoaded( chart_type ) ) {	
-			google.load( "visualization", "1", { packages: [ chart_type ] } );
+			google.load( "visualization", "1", { callback: on_success, packages: [ chart_type ] } );
 			Private.charts.loaded.push( chart_type );
 		} 
 		return null;
