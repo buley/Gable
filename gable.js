@@ -65,8 +65,12 @@ var Gable = (function(){
 			if( 'undefined' !== typeof raw && null !== raw && 'undefined' === typeof raw.meta ) {
 				raw.meta = {};
 			}
-			var dt = new google.visualization.DataTable( Private.data.get( current_table, 'table' ) ); 
-		console.log( 'draw', current_table, arguments, dt, raw );
+			var id = current_table;
+			if( 'undefined' !== typeof req && 'undefined' !== typeof req.id && null !== req.id ) {
+				id = req.id;
+			}
+			var dt = new google.visualization.DataTable( Private.data.get( id, 'table' ) ); 
+		console.log( 'draw', id, arguments, dt, raw );
 			var options;
 			if( 'undefined' !== typeof raw && null !== raw && raw.meta ) {
 				options = raw.meta;
@@ -84,7 +88,7 @@ var Gable = (function(){
 			//
 
 			if( 'undefined' === typeof req.target ) {
-				req.target = current_table;
+				req.target = id;
 			}
 			var target = document.getElementById( req.target );
 			
