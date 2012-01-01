@@ -47,7 +47,7 @@ var Gable = (function(){
 		console.log( 'get', current_table, arguments );
 		var req = arguments[ 0 ];
 		console.log('STR',JSON.stringify(current_table));
-		var res = Gable.data.get( ''+current_table );
+		var res = Gable.data.get( current_table );
 		if( 'function' === typeof req.on_success ) {
 			req.on_success( res );	
 		}
