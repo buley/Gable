@@ -61,6 +61,7 @@ var Gable = (function(){
 		if( !Private.utils.chartTypeIsLoaded( 'corechart' ) ) {
 			Private.utils.loadChartType( 'corechart' );
 		}
+		console.log('Full',Private.data.get(current_table, 'raw' ));
 		var dt = new google.visualization.DataTable( Private.data.get( current_table, 'table' ) ); 
 		var options = req.meta;
 		var chart;
