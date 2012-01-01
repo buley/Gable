@@ -8,6 +8,7 @@ var Gable = (function(){
 	var current_table = {};
 	var current_element = {};
 	var tables = {};
+	var charts = {};
 
 	var Public = function( table_id ) {
 		that = this;
@@ -122,6 +123,7 @@ var Gable = (function(){
 				}
 
 				chart.draw( dt, options );
+				
 
 			}
 
