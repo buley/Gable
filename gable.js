@@ -1248,8 +1248,9 @@ var Gable = (function(){
 	    
 	Private.data.table.add = function( table ) {
 		//TODO: validate table
+		console.log('adding',table);
 		if( 'undefined' === typeof Private.cache[ table.id ] ) {
-			Private.cache[ table.id ] = Private.utils.clone( table );
+			Private.cache[ table.id ] = table;
 		} 
 	};
 
