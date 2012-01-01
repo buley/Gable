@@ -67,10 +67,12 @@ var Gable = (function(){
 			}
 			var dt = new google.visualization.DataTable( Private.data.get( current_table, 'table' ) ); 
 		console.log( 'draw', current_table, arguments, dt, raw );
-			var options = raw.meta;
-			for( var attr in req.meta ) {
-				if( req.meta.hasOwnProperty( attr ) ) {
-					options[ attr ] = req.meta[ attr ];
+			var options;
+			if( 'undefined' !== typeof raw && null !== raw && raw.meta ) {
+				for( var attr in req.meta ) {
+					if( req.meta.hasOwnProperty( attr ) ) {
+						options[ attr ] = req.meta[ attr ];
+					}
 				}
 			}
 			var chart;
