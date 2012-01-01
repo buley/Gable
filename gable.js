@@ -1065,7 +1065,6 @@ var Gable = (function(){
 		}
 
 		var table = Private.data.table.create( raw.columns, raw.rows, meta, id );
-		console.log('adding table',table);
 		Private.data.table.add( table );
 		
 	};
@@ -1258,6 +1257,8 @@ var Gable = (function(){
 	    
 	Private.data.table.add = function( table ) {
 		//TODO: validate table
+	
+		console.log('adding table2',table.id,table);
 		if( 'undefined' === typeof Private.cache[ table.id ] ) {
 			Private.cache[ table.id ] = table;
 		} 
