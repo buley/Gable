@@ -58,14 +58,13 @@ var Gable = (function(){
 	//req.target
 	Public.prototype.draw = function() {
 
+		var request = that.arguments[ 0 ];
 
-		var that = this;
 		var funBody = function() {
 
+			var req = Private.utils.clone( request );
 			var doDraw = function() { 
 
-				var req = that.arguments[ 0 ];
-				
 				var raw = Private.data.get( current_table, 'raw' );
 
 				if( 'undefined' !== typeof raw && null !== raw && 'undefined' === typeof raw.meta ) {
