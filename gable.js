@@ -61,9 +61,17 @@ var Gable = (function(){
 		if( !Private.utils.chartTypeIsLoaded( 'corechart' ) ) {
 			Private.utils.loadChartType( 'corechart' );
 		}
-		console.log('Full',Private.data.get(current_table, 'raw' ));
+		var raw = Private.data.get(current_table, 'raw' );
+		if( 'undefined' === typeof raw.meta ) {
+			raw.meta = {};
+		}
 		var dt = new google.visualization.DataTable( Private.data.get( current_table, 'table' ) ); 
-		var options = req.meta;
+		var options = raw.meta;
+		for( var attr in req.meta ) {
+			if( req.meta.hasOwnProperty( attr ) ) {
+				options[ attr ] = req.meta[ attr ];
+			}
+		}
 		var chart;
 		//attempt to use table id if target not set
 		//
