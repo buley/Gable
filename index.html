@@ -211,7 +211,7 @@ document.getElementById( 'example5' ).parentNode.parentNode.childNodes[3].childN
 	var datetime = new Date();
 	var doGauge = function( data, id ) {	
 		Gable( 'time_gauges' + id )
-		.update( {
+		.add( {
 		    value: data
 		} )
 		.draw( {
