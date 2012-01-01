@@ -225,15 +225,14 @@ document.getElementById( 'example5' ).parentNode.parentNode.childNodes[3].childN
 		} );		
 	}	
 
-	doGauge( { 'Hours': datetime.getMinutes() }, 'example6hours' );
+	doGauge( { 'Hours': datetime.getHours() }, 'example6hours' );
 	doGauge( { 'Minutes': datetime.getMinutes() }, 'example6minutes' );
-	doGauge( { 'Seconds': datetime.getMinutes() }, 'example6seconds' );
-
-
+	doGauge( { 'Seconds': datetime.getSeconds() }, 'example6seconds' );
 
 };
 
-window.setInterval( tick, 1000*60 ); //change me
+tick();
+window.setInterval( tick, 1000 ); //change me
 
 </script>
 <script type='text/javascript'>
