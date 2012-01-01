@@ -72,6 +72,10 @@ document.getElementById( 'example1' ).parentNode.parentNode.childNodes[3].childN
 
 Gable( 'food_data' ).add( { 'value': data } ).draw( { 'target': 'example2', 'type': 'bar' } );
 </script>
+<script type='text/javascript'>
+document.getElementById( 'example2' ).parentNode.parentNode.childNodes[3].childNodes[0].innerHTML = document.getElementById( 'example1' ).parentNode.parentNode.childNodes[5].text;
+</script>
+
 				<span class='example'>
 					<span class='g1of2 exampleViz'><div id='example3'></div></span>
 					<span class='g1of2 exampleCode'></span>
