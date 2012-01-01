@@ -74,7 +74,7 @@ var Gable = (function(){
 		console.log( 'draw', id, arguments, dt, raw );
 			var options;
 			if( 'undefined' !== typeof raw && null !== raw && raw.meta ) {
-				options = raw.meta;
+				options = Private.utils.clone( raw.meta );
 			}
 
 			if( 'undefined' !== typeof req && null !== req && req.meta ) {
@@ -124,7 +124,7 @@ var Gable = (function(){
 
 				chart.draw( dt, options );
 				
-
+				if( 'undefined' === typeof charts.
 			}
 
 			var ctype = Private.utils.chartType( req.type );
@@ -236,6 +236,21 @@ var Gable = (function(){
 	Private.data.cell = Private.data.cell || {};
 	Private.chart = Private.chart || {};
 	Private.charts = Private.charts || {};
+	Private.utils.clone  = function ( obj ) {
+		var clone = {};
+		var num = 0;
+		if( 'number' === typeof obj ) {
+			return num + obj;
+		}
+		for( var x in obj ) {
+			if( "object" == typeof obj[ x ] ) {
+				clone[ x ] = Private.utils.clone( obj[ x ] );
+			} else {
+				clone[ x ] = obj[ x ];
+			}
+		}
+		return clone;
+	};
 
 	Private.utils.loadVisualizationAPI = function( request ) {
 
