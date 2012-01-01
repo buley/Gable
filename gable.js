@@ -20,7 +20,6 @@ var Gable = (function(){
 		if( 'undefined' === typeof google ||  'undefined' === typeof google.visualization ) {
 			var coreload = function() {
 				Private.utils.loadChartType( 'corechart' );
-				console.log('viz API loaded');
 			};
 			Private.utils.loadVisualizationAPI( { on_success: coreload } );
 		}
@@ -28,7 +27,6 @@ var Gable = (function(){
 	};
 
 	Public.prototype.add = function() {
-		console.log( 'add', current_table, arguments );
 		var req = arguments[ 0 ];
 		if( 'undefined' === typeof arguments[ 0 ] ) {
 			if( 'function' === typeof req.on_error ) {
@@ -44,9 +42,7 @@ var Gable = (function(){
 	};
 
 	Public.prototype.get = function() {
-		console.log( 'get', current_table, arguments );
 		var req = arguments[ 0 ];
-		console.log('STR',JSON.stringify(current_table));
 		var res = Gable.data.get( current_table );
 		if( 'function' === typeof req.on_success ) {
 			req.on_success( res );	
@@ -66,7 +62,7 @@ var Gable = (function(){
 			var req = Private.utils.clone( request );
 			var doDraw = function() { 
 
-				var raw = Private.data.get( current_table, 'raw' );
+				var raw = Private.data.get( ''+current_table, 'raw' );
 
 				if( 'undefined' !== typeof raw && null !== raw && 'undefined' === typeof raw.meta ) {
 					raw.meta = {};
