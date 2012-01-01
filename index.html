@@ -73,9 +73,18 @@ document.getElementById( 'example1' ).parentNode.parentNode.childNodes[3].childN
 Gable( 'food_data' )
 .add( {
     value: data
-  , meta: { 'title': 'USDA Nutrient Database' }
+  , meta: {
+        title: 'USDA Nutrient Database'
+  }
 } )
-.draw( { 'target': 'example2', 'type': 'bar' } );
+.draw( {
+    target: 'example2'
+  , type: 'bar'
+  , meta: {
+        titlePosition: 'in'
+      , isStacked: true
+    }
+} );
 </script>
 <script type='text/javascript'>
 document.getElementById( 'example2' ).parentNode.parentNode.childNodes[3].childNodes[0].innerHTML = document.getElementById( 'example2' ).parentNode.parentNode.childNodes[5].text;
