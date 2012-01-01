@@ -57,15 +57,13 @@ var Gable = (function(){
 
 		var request = arguments[ 0 ];
 		var table_id = current_table;
-		console.log('doing draw0',JSON.stringify(table_id));
+		
 		var funBody = function() {
 
 
-			console.log('doing draw1',JSON.stringify(table_id));
 			var req = Private.utils.clone( request );
 			var doDraw = function() { 
 
-				console.log('doing draw2',JSON.stringify(table_id));
 				var raw = Private.data.get( table_id, 'raw' );
 
 				if( 'undefined' !== typeof raw && null !== raw && 'undefined' === typeof raw.meta ) {
@@ -76,7 +74,6 @@ var Gable = (function(){
 					id = req.id;
 				}
 				var dt = new google.visualization.DataTable( Private.data.get( id, 'table' ) ); 
-			console.log( 'draw', id, arguments, dt, raw );
 				var options;
 				if( 'undefined' !== typeof raw && null !== raw && raw.meta ) {
 					options = Private.utils.clone( raw.meta );
