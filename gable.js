@@ -58,7 +58,7 @@ var Gable = (function(){
 	Public.prototype.draw = function() {
 		console.log( 'draw', current_table, arguments );
 		var req = arguments[ 0 ];
-		var dt = new google.visualization.DataTable( Gable.data.get( current_table, 'table' ) ); 
+		var dt = new google.visualization.DataTable( Private.data.get( current_table, 'table' ) ); 
 		var options = req.meta;
 		var chart;
 		//attempt to use table id if target not set
