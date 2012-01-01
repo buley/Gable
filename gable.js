@@ -29,7 +29,7 @@ var Gable = (function(){
 	Public.prototype.add = function() {
 		console.log( 'add', current_table, arguments );
 		var req = arguments[ 0 ];
-		if( 'undefined' !== arguments[ 0 ] ) {
+		if( 'undefined' === typeof arguments[ 0 ] ) {
 			if( 'function' === typeof req.on_error ) {
 				req.on_error( req );
 			}
