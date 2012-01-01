@@ -70,7 +70,7 @@ document.getElementById( 'example1' ).parentNode.parentNode.childNodes[3].childN
 	, [ 'Hamburger, 4oz Patty', 174, 445 ]
 ];
 
-Gable( 'food_data' ).add( { 'value': data } ).draw( { 'target': 'example2', 'type': 'bar' } );
+Gable( 'food_data' ).add( { value: data, title: 'USDA Nutrient Database' } ).draw( { 'target': 'example2', 'type': 'bar' } );
 </script>
 <script type='text/javascript'>
 document.getElementById( 'example2' ).parentNode.parentNode.childNodes[3].childNodes[0].innerHTML = document.getElementById( 'example2' ).parentNode.parentNode.childNodes[5].text;
