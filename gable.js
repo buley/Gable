@@ -58,67 +58,73 @@ var Gable = (function(){
 	Public.prototype.draw = function() {
 		console.log( 'draw', current_table, arguments );
 		var req = arguments[ 0 ];
+
+		var funBody = function() {
+
+			var raw = Private.data.get(current_table, 'raw' );
+			if( 'undefined' === typeof raw.meta ) {
+				raw.meta = {};
+			}
+			var dt = new google.visualization.DataTable( Private.data.get( current_table, 'table' ) ); 
+			var options = raw.meta;
+			for( var attr in req.meta ) {
+				if( req.meta.hasOwnProperty( attr ) ) {
+					options[ attr ] = req.meta[ attr ];
+				}
+			}
+			var chart;
+			//attempt to use table id if target not set
+			//
+
+			if( 'undefined' === typeof req.target ) {
+				req.target = current_table;
+			}
+			var target = document.getElementById( req.target );
+			
+
+			var doDraw = function() { 
+
+				if( 'line' === req.type ) {
+					chart = new google.visualization.LineChart( target );
+				} else if( 'pie' === req.type ) {
+					chart = new google.visualization.PieChart( target );
+				} else if( 'scatter' === req.type ) {
+					chart = new google.visualization.ScatterChart( target );
+				} else if( 'gauge' === req.type ) {
+					chart = new google.visualization.Gauge( target );
+				} else if( 'geo' === req.type ) {
+					chart = new google.visualization.GeoChart( target );
+				} else if( 'table' === req.type ) {
+					chart = new google.visualization.Table( target );
+				} else if( 'treemap' === req.type ) {
+					chart = new google.visualization.TreeMap( target );
+				} else if( 'candlestick' === req.type ) {
+					chart = new google.visualization.CandlestickChart( target );
+				} else if( 'bar' === req.type ) {
+					chart = new google.visualization.BarChart( target );
+				} else if( 'area' === req.type ) {
+					chart = new google.visualization.AreaChart( target );
+				} else if( 'column' === req.type ) {
+					chart = new google.visualization.ColumnChart( target );
+				} else if( 'combo' === req.type ) {
+					chart = new google.visualization.ComboChart( target );
+				}
+
+				chart.draw( dt, options );
+
+			}
+
+			var ctype = Private.utils.chartType( req.type );
+			if( !Private.utils.chartTypeIsLoaded( ctype ) ) {
+				Private.utils.loadChartType( ctype, doDraw );
+			} else {
+				doDraw();
+			}
+
+		}
+
 		if( !Private.utils.chartTypeIsLoaded( 'corechart' ) ) {
-			Private.utils.loadChartType( 'corechart' );
-		}
-		var raw = Private.data.get(current_table, 'raw' );
-		if( 'undefined' === typeof raw.meta ) {
-			raw.meta = {};
-		}
-		var dt = new google.visualization.DataTable( Private.data.get( current_table, 'table' ) ); 
-		var options = raw.meta;
-		for( var attr in req.meta ) {
-			if( req.meta.hasOwnProperty( attr ) ) {
-				options[ attr ] = req.meta[ attr ];
-			}
-		}
-		var chart;
-		//attempt to use table id if target not set
-		//
-
-		if( 'undefined' === typeof req.target ) {
-			req.target = current_table;
-		}
-		var target = document.getElementById( req.target );
-		
-
-		var doDraw = function() { 
-
-			if( 'line' === req.type ) {
-				chart = new google.visualization.LineChart( target );
-			} else if( 'pie' === req.type ) {
-				chart = new google.visualization.PieChart( target );
-			} else if( 'scatter' === req.type ) {
-				chart = new google.visualization.ScatterChart( target );
-			} else if( 'gauge' === req.type ) {
-				chart = new google.visualization.Gauge( target );
-			} else if( 'geo' === req.type ) {
-				chart = new google.visualization.GeoChart( target );
-			} else if( 'table' === req.type ) {
-				chart = new google.visualization.Table( target );
-			} else if( 'treemap' === req.type ) {
-				chart = new google.visualization.TreeMap( target );
-			} else if( 'candlestick' === req.type ) {
-				chart = new google.visualization.CandlestickChart( target );
-			} else if( 'bar' === req.type ) {
-				chart = new google.visualization.BarChart( target );
-			} else if( 'area' === req.type ) {
-				chart = new google.visualization.AreaChart( target );
-			} else if( 'column' === req.type ) {
-				chart = new google.visualization.ColumnChart( target );
-			} else if( 'combo' === req.type ) {
-				chart = new google.visualization.ComboChart( target );
-			}
-
-			chart.draw( dt, options );
-
-		}
-
-		var ctype = Private.utils.chartType( req.type );
-		if( !Private.utils.chartTypeIsLoaded( ctype ) ) {
-			Private.utils.loadChartType( ctype, doDraw );
-		} else {
-			doDraw();
+			Private.utils.loadChartType( 'corechart', funBody );
 		}
 
 		return Public.prototype;
