@@ -71,7 +71,6 @@ var Gable = (function(){
 				id = req.id;
 			}
 			var dt = new google.visualization.DataTable( Private.data.get( id, 'table' ) ); 
-		console.log( 'draw', id, arguments, dt, raw );
 			var options;
 			if( 'undefined' !== typeof raw && null !== raw && raw.meta ) {
 				options = Private.utils.clone( raw.meta );
@@ -122,7 +121,7 @@ var Gable = (function(){
 					chart = new google.visualization.ComboChart( target );
 				}
 
-				chart.draw( dt, options );
+				chart.draw( Private.utils.clone( dt ), options );
 				
 			}
 
