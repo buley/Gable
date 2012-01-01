@@ -17,7 +17,11 @@ var Gable = (function(){
 		tables[ table_id ].value = false;
 		console.log('engaged', table_id);
 		if( 'undefined' === typeof google.visualization ) {
-			Private.utils.loadVisualizationAPI();
+			var coreload = function() {
+			//Private.utils.loadChartType( 'corechart' );
+				console.log('viz API loaded');
+			};
+			Private.utils.loadVisualizationAPI( { on_success: coreload } );
 		}
 		return Public.prototype;
 	};
