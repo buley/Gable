@@ -298,6 +298,9 @@ var Gable = (function(){
 	Private.data.types.raw.transform = Private.data.types.raw.transform || {};
 	Private.data.types.raw.transform.table = function( obj ) {
 
+		if( null === obj || 'undefined' === typeof obj ) {
+			return obj;
+		}
 		var newcols = [];
 		var newrows = [];
 		var meta = obj.meta;
