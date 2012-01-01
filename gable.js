@@ -1066,9 +1066,6 @@ var Gable = (function(){
 
 	Private.data.get = function( id, type ) {
 		var table = Private.data.table.get( id );
-		console.log("GOT",table);
-		console.log("GOTCLONE",Private.utils.clone(table));
-
 		var result = null;
 		if( null === type || 'undefined' === typeof type || 'raw' === type ) {
 			result = table;	
@@ -1279,7 +1276,7 @@ var Gable = (function(){
 	//Read
 	Private.data.table.get = function( table_id ) {
 		if( 'undefined' !== typeof Private.cache[ table_id ] ) {
-			return Private.cache[ table_id ];
+			return Private.utils.clone( Private.cache[ table_id ] );
 		} 
 		return null;
 	};
