@@ -128,6 +128,7 @@ var Gable = (function(){
 			if( !Private.utils.chartTypeIsLoaded( 'corechart' ) ) {
 				Private.utils.loadChartType( 'corechart', funBody );
 			}
+			funBody();
 		};
 
 		if( 'undefined' === typeof google ||  'undefined' === typeof google.visualization ) {
