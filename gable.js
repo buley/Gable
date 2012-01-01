@@ -69,6 +69,10 @@ var Gable = (function(){
 		console.log( 'draw', current_table, arguments, dt, raw );
 			var options;
 			if( 'undefined' !== typeof raw && null !== raw && raw.meta ) {
+				options = raw.meta;
+			}
+
+			if( 'undefined' !== typeof req && null !== req && req.meta ) {
 				for( var attr in req.meta ) {
 					if( req.meta.hasOwnProperty( attr ) ) {
 						options[ attr ] = req.meta[ attr ];
