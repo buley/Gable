@@ -182,8 +182,11 @@ Gable( 'wine_quality' )
   , type: 'scatter'
   , meta: {
       backgroundColor: '#FDF6E3'
-      , series: [ { color: '#586E75' }, { color: '#EEE8D5' } ]
-    }
+      , series: [ { color: '#586E75' } ]
+      , hAxis: { title: 'Alcohol', minValue: 0, maxValue: 10 }
+      , vAxis: { title: 'Quality', minValue: 0, maxValue: 10 }
+      , legend: 'none'
+      }
 } );
 </script>
 <script type='text/javascript'>
