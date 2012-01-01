@@ -59,7 +59,7 @@ var Gable = (function(){
 		console.log( 'draw', current_table, arguments );
 		var req = arguments[ 0 ];
 		if( !Private.utils.chartTypeIsLoaded( 'corechart' ) ) {
-			Private.utils.loadChartType( 'corechart );
+			Private.utils.loadChartType( 'corechart' );
 		}
 		var dt = new google.visualization.DataTable( Private.data.get( current_table, 'table' ) ); 
 		var options = req.meta;
