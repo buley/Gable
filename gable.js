@@ -1057,8 +1057,6 @@ var Gable = (function(){
 
 		var table = Private.data.table.create( raw.columns, raw.rows, meta, id );
 		Private.data.table.add( table );
-
-		console.log('Hows that sound to you.', Private.utils.clone( table ), id );
 		
 	};
 
@@ -1076,6 +1074,7 @@ var Gable = (function(){
 		} else if( type === 'csv' ) {
 			result = Private.data.types.raw.transform.csv( Private.data.types.csv.transform.filter( table ) );
 		}
+		console.log("GOT",result);
 		return result;
 	};
 
