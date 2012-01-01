@@ -206,7 +206,7 @@ var Gable = (function(){
             }
         }
 
-    var headID = document.getElementsByTagName("head")[0];         
+    var headID = document.getElementsByTagName("body")[0];         
     headID.appendChild(script);
 
 	};
