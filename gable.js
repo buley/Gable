@@ -50,12 +50,19 @@ var Gable = (function(){
 	//req.target
 	Public.prototype.draw = function() {
 		console.log( 'draw', current_table, arguments );
+		var req = arguments[ 0 ];
 		var dt = new google.visualization.DataTable( Gable.data.get( current_table, 'table' ) ); 
 		var options = req.meta;
 		var chart;
 		//attempt to use table id if target not set
+		//
+
 		if( 'undefined' === typeof req.target ) {
 			req.target = current_table;
+		}
+		var ctype = Private.utils.chartType( req.type );
+		if( !Private.utils.chartTypeIsLoaded( ctype ) ) {
+			Private.utils.loadChartType( ctype );
 		}
 		var target = document.getElementById( req.target ); 
 		if( 'line' === req.type ) {
@@ -170,6 +177,49 @@ var Gable = (function(){
 	Private.chart = Private.chart || {};
 	Private.charts = Private.charts || {};
 
+	Private.charts.loaded = [];
+	Private.utils.chartType = function( type_id ) {
+		if( 'line' === req.type ) {
+			return 'corechart';
+		} else if( 'pie' === req.type ) {
+			return 'corechart';
+		} else if( 'scatter' === req.type ) {
+			return 'corechart';
+		} else if( 'gauge' === req.type ) {
+			return 'gauge';
+		} else if( 'geo' === req.type ) {
+			return 'geochart';
+		} else if( 'table' === req.type ) {
+			return 'table';
+		} else if( 'treemap' === req.type ) {
+			return 'treemap';
+		} else if( 'candlestick' === req.type ) {
+			return 'corechart';
+		} else if( 'bar' === req.type ) {
+			return 'corechart';
+		} else if( 'area' === req.type ) {
+			return 'corechart';
+		} else if( 'column' === req.type ) {
+			return 'corechart';
+		} else if( 'combo' === req.type ) {
+			return 'corechart';
+		} else {
+			return null;
+		}
+	};
+
+	Private.utils.chartTypeIsLoaded = function( chart_type ) {
+
+	};
+
+	Private.utils.loadChartType = function( chart_type ) {
+		if( -1 === Private.charts.loaded.indexOf( chart_type ) ) {
+			
+			google.load( "visualization", "1", { packages: [ chart_type ] } );
+			Private.charts.loaded.push( chart_type );
+		} 
+		return null;
+	};
 	/* CONFIG */
 
 	/* Data Types */
