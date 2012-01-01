@@ -57,12 +57,16 @@ var Gable = (function(){
 
 		var request = arguments[ 0 ];
 
+		error_log('doing draw0',JSON.stringify(current_table));
 		var funBody = function() {
 
+
+			error_log('doing draw1',JSON.stringify(current_table));
 			var req = Private.utils.clone( request );
 			var doDraw = function() { 
 
-				var raw = Private.data.get( ''+current_table, 'raw' );
+				error_log('doing draw2',JSON.stringify(current_table));
+				var raw = Private.data.get( current_table, 'raw' );
 
 				if( 'undefined' !== typeof raw && null !== raw && 'undefined' === typeof raw.meta ) {
 					raw.meta = {};
