@@ -123,8 +123,16 @@ var Gable = (function(){
 
 		}
 
-		if( !Private.utils.chartTypeIsLoaded( 'corechart' ) ) {
-			Private.utils.loadChartType( 'corechart', funBody );
+		var already_loaded = function() {
+			if( !Private.utils.chartTypeIsLoaded( 'corechart' ) ) {
+				Private.utils.loadChartType( 'corechart', funBody );
+			}
+		};
+
+		if( 'undefined' === typeof google ||  'undefined' === typeof google.visualization ) {
+			Private.utils.loadVisualizationAPI( { on_success: already_loaded } );
+		} else {
+			already_loaded();
 		}
 
 		return Public.prototype;
