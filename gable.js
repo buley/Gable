@@ -36,9 +36,9 @@ var Gable = (function(){
 			}
 			return;
 		}
-		Private.data.add( Private.utils.clone( current_table ), Private.utils.clone( req.value ), Private.utils.clone( req.meta ) );
+		Private.data.add( Private.utils.clone( current_table ), req.value, req.meta );
 		if( 'function' === typeof req.on_success ) {
-			req.on_success( Private.utils.clone( req.id ) );	
+			req.on_success( req.id );	
 		}
 		return Public.prototype;
 	};
