@@ -243,6 +243,15 @@ var Gable = (function(){
 		if( 'number' === typeof obj ) {
 			return num + obj;
 		}
+		if( 'string' === typeof obj ) {
+			return '' + obj;
+		}
+		if( obj instanceof Date ) {
+			return new Date( obj );
+		}
+		if( Private.utils.isArray( obj ) ) {
+			return obj.slice(0);
+		}
 		for( var x in obj ) {
 			if( "object" == typeof obj[ x ] ) {
 				clone[ x ] = Private.utils.clone( obj[ x ] );
@@ -1274,7 +1283,7 @@ var Gable = (function(){
 
 	//Read
 	Private.data.table.get = function( table_id ) {
-
+		table_id = Private.utils.clone(table_id);
 		console.log('getting',table_id,Private.cache[ table_id ]);
 		if( 'undefined' !== typeof Private.cache[ table_id ] ) {
 			return Private.cache[ table_id ];
