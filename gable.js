@@ -63,9 +63,6 @@ var Gable = (function(){
 		var funBody = function() {
 
 			var raw = Private.data.get( current_table, 'raw' );
-			console.log("RAW",raw);
-			raw = Private.utils.clone( raw );
-			console.log("RAW2",raw);
 
 			if( 'undefined' !== typeof raw && null !== raw && 'undefined' === typeof raw.meta ) {
 				raw.meta = {};
@@ -88,7 +85,7 @@ var Gable = (function(){
 					}
 				}
 			}
-			var chart;
+			var chart = {};
 			//attempt to use table id if target not set
 			//
 
