@@ -57,15 +57,15 @@ var Gable = (function(){
 
 		var request = arguments[ 0 ];
 		var table_id = current_table;
-		console.log('doing draw0',JSON.stringify(current_table));
+		console.log('doing draw0',JSON.stringify(table_id));
 		var funBody = function() {
 
 
-			console.log('doing draw1',JSON.stringify(current_table));
+			console.log('doing draw1',JSON.stringify(table_id));
 			var req = Private.utils.clone( request );
 			var doDraw = function() { 
 
-				console.log('doing draw2',JSON.stringify(current_table));
+				console.log('doing draw2',JSON.stringify(table_id));
 				var raw = Private.data.get( table_id, 'raw' );
 
 				if( 'undefined' !== typeof raw && null !== raw && 'undefined' === typeof raw.meta ) {
@@ -98,7 +98,6 @@ var Gable = (function(){
 				}
 				var target = document.getElementById( req.target );
 				
-
 				if( 'line' === req.type ) {
 					chart = new google.visualization.LineChart( target );
 				} else if( 'pie' === req.type ) {
