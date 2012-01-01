@@ -200,27 +200,38 @@ document.getElementById( 'example5' ).parentNode.parentNode.childNodes[3].childN
 				</span>
 				<h5>Gauge (<a href='http://jsfiddle.net/taylorbuley/HUG5V/'>fiddle</a>)</h5>
 				<span class='example'>
-					<span class='g1of2'><div class='exampleViz' id='example6'></div></span>
+					<span class='g1of2'><div class='exampleViz' id='example6'>
+						<div id='example6hours'></div>
+						<div id='example6minutes'></div>
+						<div id='example6seconds'></div>
+					</div></span>
 					<span class='g1of2 exampleCode'><pre>&nbsp;</pre></span>
 					<script type='text/javascript'>var tick = function() {
 
 	var datetime = new Date();
-	var data = [ { 'Hours': datetime.getHours() % 12 }, { 'Minutes': datetime.getMinutes() }, { 'Year': datetime.getSeconds() } ];
-	
-	Gable( 'time_gauges' )
-	.add( {
-	    value: data
-	} )
-	.draw( {
-	    target: 'example6'
-	  , type: 'gauge'
-	  , meta: {
-	      height: 600
-	      , width: 200
-	      , backgroundColor: '#FDF6E3'
-	    }
-	} );
-	
+	var doGauge = function( data, id ) {
+		
+		Gable( 'time_gauges' + id )
+		.add( {
+		    value: data
+		} )
+		.draw( {
+		    target: id
+		  , type: 'gauge'
+		  , meta: {
+		      height: 600
+		      , width: 200
+		      , backgroundColor: '#FDF6E3'
+		    }
+		} );		
+	}	
+
+	doGauge( { 'Hours': datetime.getMinutes() }, 'example6hours' );
+	doGauge( { 'Minutes': datetime.getMinutes() }, 'example6minutes' );
+	doGauge( { 'Seconds': datetime.getMinutes() }, 'example6seconds' );
+
+
+
 };
 
 window.setInterval( tick, 1000 );
