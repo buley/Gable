@@ -79,38 +79,48 @@ var Gable = (function(){
 		if( 'undefined' === typeof req.target ) {
 			req.target = current_table;
 		}
-		var ctype = Private.utils.chartType( req.type );
-		if( !Private.utils.chartTypeIsLoaded( ctype ) ) {
-			Private.utils.loadChartType( ctype );
-		}
-		var target = document.getElementById( req.target ); 
-		if( 'line' === req.type ) {
-			chart = new google.visualization.LineChart( target );
-		} else if( 'pie' === req.type ) {
-			chart = new google.visualization.PieChart( target );
-		} else if( 'scatter' === req.type ) {
-			chart = new google.visualization.ScatterChart( target );
-		} else if( 'gauge' === req.type ) {
-			chart = new google.visualization.Gauge( target );
-		} else if( 'geo' === req.type ) {
-			chart = new google.visualization.GeoChart( target );
-		} else if( 'table' === req.type ) {
-			chart = new google.visualization.Table( target );
-		} else if( 'treemap' === req.type ) {
-			chart = new google.visualization.TreeMap( target );
-		} else if( 'candlestick' === req.type ) {
-			chart = new google.visualization.CandlestickChart( target );
-		} else if( 'bar' === req.type ) {
-			chart = new google.visualization.BarChart( target );
-		} else if( 'area' === req.type ) {
-			chart = new google.visualization.AreaChart( target );
-		} else if( 'column' === req.type ) {
-			chart = new google.visualization.ColumnChart( target );
-		} else if( 'combo' === req.type ) {
-			chart = new google.visualization.ComboChart( target );
+		var target = document.getElementById( req.target );
+		
+
+		var doDraw = function() { 
+
+			if( 'line' === req.type ) {
+				chart = new google.visualization.LineChart( target );
+			} else if( 'pie' === req.type ) {
+				chart = new google.visualization.PieChart( target );
+			} else if( 'scatter' === req.type ) {
+				chart = new google.visualization.ScatterChart( target );
+			} else if( 'gauge' === req.type ) {
+				chart = new google.visualization.Gauge( target );
+			} else if( 'geo' === req.type ) {
+				chart = new google.visualization.GeoChart( target );
+			} else if( 'table' === req.type ) {
+				chart = new google.visualization.Table( target );
+			} else if( 'treemap' === req.type ) {
+				chart = new google.visualization.TreeMap( target );
+			} else if( 'candlestick' === req.type ) {
+				chart = new google.visualization.CandlestickChart( target );
+			} else if( 'bar' === req.type ) {
+				chart = new google.visualization.BarChart( target );
+			} else if( 'area' === req.type ) {
+				chart = new google.visualization.AreaChart( target );
+			} else if( 'column' === req.type ) {
+				chart = new google.visualization.ColumnChart( target );
+			} else if( 'combo' === req.type ) {
+				chart = new google.visualization.ComboChart( target );
+			}
+
+			chart.draw( dt, options );
+
 		}
 
-		chart.draw( dt, options );
+		var ctype = Private.utils.chartType( req.type );
+		if( !Private.utils.chartTypeIsLoaded( ctype ) ) {
+			Private.utils.loadChartType( ctype, doDraw );
+		} else {
+			doDraw();
+		}
+
 		return Public.prototype;
 	};
 
@@ -267,7 +277,7 @@ var Gable = (function(){
 	Private.utils.loadChartType = function( chart_type, on_success ) {
 
 		if( !Private.utils.chartTypeIsLoaded( chart_type ) ) {	
-			google.load( "visualization", "1", { callback: function() { console.log( 'test' ); }, packages: [ chart_type ] } );
+			google.load( "visualization", "1", { callback: function() { if( 'function' === typeof on_success ) { on_success(); } }, packages: [ chart_type ] } );
 			Private.charts.loaded.push( chart_type );
 		} 
 		return null;
