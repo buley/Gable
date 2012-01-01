@@ -1075,6 +1075,7 @@ var Gable = (function(){
 			result = Private.data.types.raw.transform.csv( Private.data.types.csv.transform.filter( table ) );
 		}
 		console.log("GOT",result);
+		console.log("GOT",Private.utils.clone(result));
 		return result;
 	};
 
