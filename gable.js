@@ -16,6 +16,9 @@ var Gable = (function(){
 		tables[ table_id ].delayed = false;
 		tables[ table_id ].value = false;
 		console.log('engaged', table_id);
+		if( 'undefined' === typeof google.visualization ) {
+			Private.utils.loadVisualizationAPI();
+		}
 		return Public.prototype;
 	};
 
@@ -177,6 +180,33 @@ var Gable = (function(){
 	Private.chart = Private.chart || {};
 	Private.charts = Private.charts || {};
 
+	Private.utils.loadVisualizationAPI = function( request ) {
+
+    var script = document.createElement( 'script' );
+    	script.src = 'http://www.google.com/jsapi';
+        script.type = "text/javascript";
+        script.onload = function() { 
+            if ( ! script.onloadDone ) {
+                script.onloadDone = true; 
+		if( 'undefined' !== typeof request && 'function' === typeof request.on_success ) {
+			request.on_success();
+		}
+            }
+        };
+        script.onreadystatechange = function() { 
+            if ( ( "loaded" === script.readyState || "complete" === script.readyState ) && ! script.onloadDone ) {
+                script.onloadDone = true; 
+		if( 'undefined' !== typeof request && 'function' === typeof request.on_success ) {
+			request.on_success();
+		}
+            }
+        }
+
+    var headID = document.getElementsByTagName("head")[0];         
+    headID.appendChild(script);
+
+	};
+
 	Private.charts.loaded = [];
 	Private.utils.chartType = function( type_id ) {
 		if( 'line' === req.type ) {
@@ -209,12 +239,16 @@ var Gable = (function(){
 	};
 
 	Private.utils.chartTypeIsLoaded = function( chart_type ) {
-
+		if( -1 === Private.charts.loaded.indexOf( chart_type ) ) {
+			return false;
+		} else {
+			return true;
+		}
 	};
 
 	Private.utils.loadChartType = function( chart_type ) {
-		if( -1 === Private.charts.loaded.indexOf( chart_type ) ) {
-			
+
+		if( !Private.utils.chartTypeIsLoaded( chart_type ) ) {	
 			google.load( "visualization", "1", { packages: [ chart_type ] } );
 			Private.charts.loaded.push( chart_type );
 		} 
