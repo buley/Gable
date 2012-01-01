@@ -58,12 +58,14 @@ var Gable = (function(){
 	//req.target
 	Public.prototype.draw = function() {
 
-		var req = arguments[ 0 ];
 
+		var that = this;
 		var funBody = function() {
 
 			var doDraw = function() { 
 
+				var req = that.arguments[ 0 ];
+				
 				var raw = Private.data.get( current_table, 'raw' );
 
 				if( 'undefined' !== typeof raw && null !== raw && 'undefined' === typeof raw.meta ) {
@@ -134,7 +136,7 @@ var Gable = (function(){
 				doDraw();
 			}
 
-		}
+		};
 
 		var already_loaded = function() {
 			if( !Private.utils.chartTypeIsLoaded( 'corechart' ) ) {
