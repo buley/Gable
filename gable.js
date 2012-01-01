@@ -56,7 +56,7 @@ var Gable = (function(){
 	//req.meta
 	//req.target
 	Public.prototype.draw = function() {
-		console.log( 'draw', current_table, arguments );
+
 		var req = arguments[ 0 ];
 
 		var funBody = function() {
@@ -66,6 +66,7 @@ var Gable = (function(){
 				raw.meta = {};
 			}
 			var dt = new google.visualization.DataTable( Private.data.get( current_table, 'table' ) ); 
+		console.log( 'draw', current_table, arguments, dt, raw );
 			var options = raw.meta;
 			for( var attr in req.meta ) {
 				if( req.meta.hasOwnProperty( attr ) ) {
