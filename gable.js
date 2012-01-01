@@ -1058,7 +1058,7 @@ var Gable = (function(){
 		var table = Private.data.table.create( raw.columns, raw.rows, meta, id );
 		Private.data.table.add( table );
 
-		console.log('Hows that sound to you.', InDB.utils.clone( datatable ), id );
+		console.log('Hows that sound to you.', Private.utils.clone( datatable ), id );
 		
 	};
 
