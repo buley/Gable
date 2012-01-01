@@ -75,31 +75,32 @@ var Gable = (function(){
 			Private.utils.loadChartType( ctype );
 		}
 		var target = document.getElementById( req.target ); 
-		if( 'line' === type_id ) {
+		if( 'line' === req.type ) {
 			chart = new google.visualization.LineChart( target );
-		} else if( 'pie' === type_id ) {
+		} else if( 'pie' === req.type ) {
 			chart = new google.visualization.PieChart( target );
-		} else if( 'scatter' === type_id ) {
+		} else if( 'scatter' === req.type ) {
 			chart = new google.visualization.ScatterChart( target );
-		} else if( 'gauge' === type_id ) {
+		} else if( 'gauge' === req.type ) {
 			chart = new google.visualization.Gauge( target );
-		} else if( 'geo' === type_id ) {
+		} else if( 'geo' === req.type ) {
 			chart = new google.visualization.GeoChart( target );
-		} else if( 'table' === type_id ) {
+		} else if( 'table' === req.type ) {
 			chart = new google.visualization.Table( target );
-		} else if( 'treemap' === type_id ) {
+		} else if( 'treemap' === req.type ) {
 			chart = new google.visualization.TreeMap( target );
-		} else if( 'candlestick' === type_id ) {
+		} else if( 'candlestick' === req.type ) {
 			chart = new google.visualization.CandlestickChart( target );
-		} else if( 'bar' === type_id ) {
+		} else if( 'bar' === req.type ) {
 			chart = new google.visualization.BarChart( target );
-		} else if( 'area' === type_id ) {
+		} else if( 'area' === req.type ) {
 			chart = new google.visualization.AreaChart( target );
-		} else if( 'column' === type_id ) {
+		} else if( 'column' === req.type ) {
 			chart = new google.visualization.ColumnChart( target );
-		} else if( 'combo' === type_id ) {
+		} else if( 'combo' === req.type ) {
 			chart = new google.visualization.ComboChart( target );
 		}
+
 		chart.draw( dt, options );
 		return Public.prototype;
 	};
