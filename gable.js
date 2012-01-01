@@ -56,7 +56,7 @@ var Gable = (function(){
 	Public.prototype.draw = function() {
 
 		var request = arguments[ 0 ];
-
+		var table_id = current_table;
 		console.log('doing draw0',JSON.stringify(current_table));
 		var funBody = function() {
 
@@ -66,12 +66,12 @@ var Gable = (function(){
 			var doDraw = function() { 
 
 				console.log('doing draw2',JSON.stringify(current_table));
-				var raw = Private.data.get( current_table, 'raw' );
+				var raw = Private.data.get( table_id, 'raw' );
 
 				if( 'undefined' !== typeof raw && null !== raw && 'undefined' === typeof raw.meta ) {
 					raw.meta = {};
 				}
-				var id = current_table;
+				var id = table_id;
 				if( 'undefined' !== typeof req && 'undefined' !== typeof req.id && null !== req.id ) {
 					id = req.id;
 				}
