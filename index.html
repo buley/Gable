@@ -26,9 +26,32 @@
 			<h4>Examples</h4>
 			<p class='desc'>Each of the following charts was created using Gable using the code that floats right of it. Double click the code to tweak it and hit enter to see the change in action.</p>
 			<div class='grids'>
+				<h5>Table</h5>
 				<span class='example'>
 					<span class='g1of2 exampleViz'><div id='example1'></div></span>
 					<span class='g1of2 exampleCode'></span>
+					<script type='text/javascript'>
+						// Data
+						var data = [ { Title: "A Midsummer Night's Dream", Type: 'COMEDY', Year: 1595 }, [ "All's Well That Ends Well", 'COMEDY', 1602 ]
+						, [ "Antony and Cleopatra", 'TRAGEDY', 1606 ]
+						, [ "As You Like It",'COMEDY', 1599 ]
+						, [ "Comedy of Errors",'COMEDY', 1589 ]
+						, [ "Coriolanus",'TRAGEDY', 1607 ]
+						, [ "Cymbeline",'HISTORY', 1609 ]
+						, [ "Hamlet",'TRAGEDY', 1600 ]
+						, [ "Henry IV,Part I", 'HISTORY', 1597 ]
+						, [ "Henry IV,Part II", 'HISTORY', 1597 ]
+						, [ "Henry V",'HISTORY', 1598 ]
+						, [ "Henry VI,Part I", 'HISTORY', 1591 ] ];
+						// Meta
+						var meta = {
+         						width: 450
+							, height: 300
+        					};
+
+						// Visualization
+						Gable( 'shakespere_works' ).add( { 'value': data } ).draw( {'target': 'container', 'type': 'table', 'meta': meta } )
+					</script>
 				</span>
 				<span class='example'>
 					<span class='g1of2 exampleViz'><div id='example2'></div></span>
