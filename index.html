@@ -202,7 +202,7 @@ document.getElementById( 'example5' ).parentNode.parentNode.childNodes[3].childN
 				<span class='example'>
 					<span class='g1of2'><div class='exampleViz' id='example6'></div></span>
 					<span class='g1of2 exampleCode'><pre>&nbsp;</pre></span>
-<script type='text/javascript'>var datetime = new Date(); var data = { 'Hours': datetime.getHours(), 'Minutes': datetime.getMinutes(), 'Year': datetime.getSeconds() };
+<script type='text/javascript'>var datetime = new Date(); var data = { 'Hours': datetime.getHours() % 12, 'Minutes': datetime.getMinutes(), 'Year': datetime.getSeconds() };
 
 Gable( 'time_gauges' )
 .add( {
