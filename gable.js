@@ -58,7 +58,7 @@ var Gable = (function(){
 	//req.target
 	Public.prototype.draw = function() {
 
-		var request = that.arguments[ 0 ];
+		var request = arguments[ 0 ];
 
 		var funBody = function() {
 
