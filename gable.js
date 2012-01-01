@@ -124,7 +124,6 @@ var Gable = (function(){
 
 				chart.draw( dt, options );
 				
-				if( 'undefined' === typeof charts.
 			}
 
 			var ctype = Private.utils.chartType( req.type );
