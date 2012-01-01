@@ -1050,11 +1050,12 @@ var Gable = (function(){
 
 		meta = ( 'undefined' === typeof meta || 'object' !== typeof meta ) ? {} : meta;
 
-		var raw;
+		var raw = {};
 		if( Private.data.type.tranformsTo( 'input', 'raw' ) ) {
 			raw = Private.data.types.input.transform.raw( Private.data.types.raw.transform.filter( value ) );
+			raw = Private.utils.clone( raw );
 		}
-		raw = Private.utils.clone( raw );
+
 		var table = Private.data.table.create( raw.columns, raw.rows, meta, id );
 		Private.data.table.add( table );
 
