@@ -1257,11 +1257,11 @@ var Gable = (function(){
 	    
 	Private.data.table.add = function( table ) {
 		//TODO: validate table
-	
-		console.log('adding table2',table.id,table);
 		if( 'undefined' === typeof Private.cache[ table.id ] ) {
 			Private.cache[ table.id ] = table;
 		} 
+
+		console.log('adding table2',Private.cache[table.id]);
 	};
 
 	Private.data.row.add = function( table_id, row ) {
