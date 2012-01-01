@@ -1283,7 +1283,8 @@ var Gable = (function(){
 
 	//Read
 	Private.data.table.get = function( table_id ) {
-		table_id = JSON.parse( JSON.stringify(table_id) );
+		console.log('STR',JSON.stringify(table_id));
+		table_id = Private.utils.clone(table_id);
 		console.log('getting',table_id,Private.cache[ table_id ]);
 		if( 'undefined' !== typeof Private.cache[ table_id ] ) {
 			return Private.cache[ table_id ];
