@@ -202,9 +202,9 @@ document.getElementById( 'example5' ).parentNode.parentNode.childNodes[3].childN
 				<span class='example'>
 					<span class='g1of2'><div class='exampleViz' id='example6'></div></span>
 					<span class='g1of2 exampleCode'><pre>&nbsp;</pre></span>
-<script type='text/javascript'>var datetime = new Date(); var data = { 'Day': datetime.getDays(), 'Month': datetime.getMonths(), 'Year': datetime.getFullYear() };
+<script type='text/javascript'>var datetime = new Date(); var data = { 'Hours': datetime.getHours(), 'Minutes': datetime.getMinutes(), 'Year': datetime.getSeconds() };
 
-Gable( 'date_gauges' )
+Gable( 'time_gauges' )
 .add( {
     value: data
 } )
