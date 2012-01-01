@@ -1248,12 +1248,10 @@ var Gable = (function(){
 	    
 	Private.data.table.add = function( table ) {
 		//TODO: validate table
-		console.log('adding',table);
 		if( 'undefined' === typeof Private.cache[ table.id ] ) {
 			Private.cache[ table.id ] = table;
 		} 
 	};
-
 
 	Private.data.row.add = function( table_id, row ) {
 		//TODO: validate row 
@@ -1276,6 +1274,8 @@ var Gable = (function(){
 
 	//Read
 	Private.data.table.get = function( table_id ) {
+
+		console.log('getting',table_id,Private.cache[ table_id ]);
 		if( 'undefined' !== typeof Private.cache[ table_id ] ) {
 			return Private.cache[ table_id ];
 		} 
