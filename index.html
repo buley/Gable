@@ -30,7 +30,7 @@
 				<span class='example'>
 					<span class='g1of2'><div class='exampleViz' id='example1'></div></span>
 					<span class='g1of2 exampleCode'><pre>&nbsp;</pre></span>
-<script type='text/javascript'>// Model
+<script type='text/javascript'>
 var data = [
 	{ Title: "A Midsummer Night's Dream"
 	, Type: 'COMEDY'
@@ -48,10 +48,9 @@ var data = [
 	, [ "Henry VI,Part I", 'HISTORY', 1591 ]
 ];
 
-// Controller
 Gable( 'shakespere_works' )
-.add( { 'value': data } )
-.draw( {'target': 'example1', 'type': 'table' } );
+.add( { value: data } )
+.draw( {target: 'example1', type: 'table' } );
 </script>
 <script type='text/javascript'>
 document.getElementById( 'example1' ).parentNode.parentNode.childNodes[3].childNodes[0].innerHTML = document.getElementById( 'example1' ).parentNode.parentNode.childNodes[5].text;
