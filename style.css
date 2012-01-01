@@ -5,6 +5,9 @@ body {
 .exampleViz {
 	padding-right:20px;
 }
+.example {
+clear:both;
+}
 #logo-icon {
 float:left;
 padding-top: 22px;
