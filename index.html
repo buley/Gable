@@ -29,7 +29,7 @@
 				<h5>Table</h5>
 				<span class='example'>
 					<span class='g1of2 exampleViz'><div id='example1'></div></span>
-					<span class='g1of2 exampleCode'></span>
+					<span class='g1of2 exampleCode'><pre></pre></span>
 <script type='text/javascript'>
 // Model
 var data = [
@@ -53,6 +53,9 @@ var meta = {
 };
 // Controller
 Gable( 'shakespere_works' ).add( { 'value': data } ).draw( {'target': 'example1', 'type': 'table', 'meta': meta } );
+</script>
+<script type='text/javascript' >
+document.getElementById( 'example1' ).parentNode.parentNode.childNodes[3].innerHTML = document.getElementById( 'example1' ).parentNode.parentNode.childNodes[5].text;
 </script>
 				</span>
 				<span class='example'><span class='g1of2 exampleViz'><div id='example2'></div></span><span class='g1of2 exampleCode'></span></span>
