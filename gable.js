@@ -46,7 +46,8 @@ var Gable = (function(){
 	Public.prototype.get = function() {
 		console.log( 'get', current_table, arguments );
 		var req = arguments[ 0 ];
-		var res = Gable.data.get( current_table );
+		console.log('STR',JSON.stringify(current_table));
+		var res = Gable.data.get( ''+current_table );
 		if( 'function' === typeof req.on_success ) {
 			req.on_success( res );	
 		}
@@ -1074,7 +1075,6 @@ var Gable = (function(){
 	};
 
 	Private.data.get = function( id, type ) {
-		console.log('STR',JSON.stringify(arguments));
 		var table = Private.data.table.get( id );
 		var result = null;
 		if( null === type || 'undefined' === typeof type || 'raw' === type ) {
