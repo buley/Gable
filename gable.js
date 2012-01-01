@@ -72,29 +72,29 @@ var Gable = (function(){
 			Private.utils.loadChartType( ctype );
 		}
 		var target = document.getElementById( req.target ); 
-		if( 'line' === req.type ) {
+		if( 'line' === type_id ) {
 			chart = new google.visualization.LineChart( target );
-		} else if( 'pie' === req.type ) {
+		} else if( 'pie' === type_id ) {
 			chart = new google.visualization.PieChart( target );
-		} else if( 'scatter' === req.type ) {
+		} else if( 'scatter' === type_id ) {
 			chart = new google.visualization.ScatterChart( target );
-		} else if( 'gauge' === req.type ) {
+		} else if( 'gauge' === type_id ) {
 			chart = new google.visualization.Gauge( target );
-		} else if( 'geo' === req.type ) {
+		} else if( 'geo' === type_id ) {
 			chart = new google.visualization.GeoChart( target );
-		} else if( 'table' === req.type ) {
+		} else if( 'table' === type_id ) {
 			chart = new google.visualization.Table( target );
-		} else if( 'treemap' === req.type ) {
+		} else if( 'treemap' === type_id ) {
 			chart = new google.visualization.TreeMap( target );
-		} else if( 'candlestick' === req.type ) {
+		} else if( 'candlestick' === type_id ) {
 			chart = new google.visualization.CandlestickChart( target );
-		} else if( 'bar' === req.type ) {
+		} else if( 'bar' === type_id ) {
 			chart = new google.visualization.BarChart( target );
-		} else if( 'area' === req.type ) {
+		} else if( 'area' === type_id ) {
 			chart = new google.visualization.AreaChart( target );
-		} else if( 'column' === req.type ) {
+		} else if( 'column' === type_id ) {
 			chart = new google.visualization.ColumnChart( target );
-		} else if( 'combo' === req.type ) {
+		} else if( 'combo' === type_id ) {
 			chart = new google.visualization.ComboChart( target );
 		}
 		chart.draw( dt, options );
@@ -214,29 +214,29 @@ var Gable = (function(){
 
 	Private.charts.loaded = [];
 	Private.utils.chartType = function( type_id ) {
-		if( 'line' === req.type ) {
+		if( 'line' === type_id ) {
 			return 'corechart';
-		} else if( 'pie' === req.type ) {
+		} else if( 'pie' === type_id ) {
 			return 'corechart';
-		} else if( 'scatter' === req.type ) {
+		} else if( 'scatter' === type_id ) {
 			return 'corechart';
-		} else if( 'gauge' === req.type ) {
+		} else if( 'gauge' === type_id ) {
 			return 'gauge';
-		} else if( 'geo' === req.type ) {
+		} else if( 'geo' === type_id ) {
 			return 'geochart';
-		} else if( 'table' === req.type ) {
+		} else if( 'table' === type_id ) {
 			return 'table';
-		} else if( 'treemap' === req.type ) {
+		} else if( 'treemap' === type_id ) {
 			return 'treemap';
-		} else if( 'candlestick' === req.type ) {
+		} else if( 'candlestick' === type_id ) {
 			return 'corechart';
-		} else if( 'bar' === req.type ) {
+		} else if( 'bar' === type_id ) {
 			return 'corechart';
-		} else if( 'area' === req.type ) {
+		} else if( 'area' === type_id ) {
 			return 'corechart';
-		} else if( 'column' === req.type ) {
+		} else if( 'column' === type_id ) {
 			return 'corechart';
-		} else if( 'combo' === req.type ) {
+		} else if( 'combo' === type_id ) {
 			return 'corechart';
 		} else {
 			return null;
