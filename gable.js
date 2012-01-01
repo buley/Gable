@@ -295,8 +295,11 @@ var Gable = (function(){
 	Private.utils.loadChartType = function( chart_type, on_success ) {
 
 		if( !Private.utils.chartTypeIsLoaded( chart_type ) ) {	
-			google.load( "visualization", "1", { callback: function() { if( 'function' === typeof on_success ) { on_success(); } }, packages: [ chart_type ] } );
-			Private.charts.loaded.push( chart_type );
+			google.load( "visualization", "1", { callback: function() { if( 'function' === typeof on_success ) {
+				on_success();
+				Private.charts.loaded.push( chart_type );
+ } }, packages: [ chart_type ] } );
+
 		} 
 		return null;
 	};
