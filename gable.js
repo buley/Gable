@@ -28,16 +28,16 @@ var Gable = (function(){
 
 	Public.prototype.add = function() {
 		console.log( 'add', current_table, arguments );
+		var req = arguments[ 0 ];
 		if( 'undefined' !== arguments[ 0 ] ) {
 			if( 'function' === typeof req.on_error ) {
 				req.on_error( req );
 			}
 			return;
 		}
-		var req = arguments[ 0 ];
-		Gable.data.add( request.id, request.value );
+		Gable.data.add( req.id, req.value );
 		if( 'function' === typeof req.on_success ) {
-			req.on_success( request.id );	
+			req.on_success( req.id );	
 		}
 		return Public.prototype;
 	};
