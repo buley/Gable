@@ -209,10 +209,9 @@ document.getElementById( 'example5' ).parentNode.parentNode.childNodes[3].childN
 					<script type='text/javascript'>var tick = function() {
 
 	var datetime = new Date();
-	var doGauge = function( data, id ) {
-		
+	var doGauge = function( data, id ) {	
 		Gable( 'time_gauges' + id )
-		.add( {
+		.update( {
 		    value: data
 		} )
 		.draw( {
@@ -234,7 +233,7 @@ document.getElementById( 'example5' ).parentNode.parentNode.childNodes[3].childN
 
 };
 
-window.setInterval( tick, 1000 );
+window.setInterval( tick, 1000*60 ); //change me
 
 </script>
 <script type='text/javascript'>
