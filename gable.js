@@ -62,40 +62,40 @@ var Gable = (function(){
 
 		var funBody = function() {
 
-			var raw = Private.data.get( current_table, 'raw' );
+			var doDraw = function() { 
 
-			if( 'undefined' !== typeof raw && null !== raw && 'undefined' === typeof raw.meta ) {
-				raw.meta = {};
-			}
-			var id = current_table;
-			if( 'undefined' !== typeof req && 'undefined' !== typeof req.id && null !== req.id ) {
-				id = req.id;
-			}
-			var dt = new google.visualization.DataTable( Private.data.get( id, 'table' ) ); 
-		console.log( 'draw', id, arguments, dt, raw );
-			var options;
-			if( 'undefined' !== typeof raw && null !== raw && raw.meta ) {
-				options = Private.utils.clone( raw.meta );
-			}
+				var raw = Private.data.get( current_table, 'raw' );
 
-			if( 'undefined' !== typeof req && null !== req && req.meta ) {
-				for( var attr in req.meta ) {
-					if( req.meta.hasOwnProperty( attr ) ) {
-						options[ attr ] = req.meta[ attr ];
+				if( 'undefined' !== typeof raw && null !== raw && 'undefined' === typeof raw.meta ) {
+					raw.meta = {};
+				}
+				var id = current_table;
+				if( 'undefined' !== typeof req && 'undefined' !== typeof req.id && null !== req.id ) {
+					id = req.id;
+				}
+				var dt = new google.visualization.DataTable( Private.data.get( id, 'table' ) ); 
+			console.log( 'draw', id, arguments, dt, raw );
+				var options;
+				if( 'undefined' !== typeof raw && null !== raw && raw.meta ) {
+					options = Private.utils.clone( raw.meta );
+				}
+
+				if( 'undefined' !== typeof req && null !== req && req.meta ) {
+					for( var attr in req.meta ) {
+						if( req.meta.hasOwnProperty( attr ) ) {
+							options[ attr ] = req.meta[ attr ];
+						}
 					}
 				}
-			}
-			var chart = {};
-			//attempt to use table id if target not set
-			//
+				var chart = {};
+				//attempt to use table id if target not set
+				//
 
-			if( 'undefined' === typeof req.target ) {
-				req.target = id;
-			}
-			var target = document.getElementById( req.target );
-			
-
-			var doDraw = function() { 
+				if( 'undefined' === typeof req.target ) {
+					req.target = id;
+				}
+				var target = document.getElementById( req.target );
+				
 
 				if( 'line' === req.type ) {
 					chart = new google.visualization.LineChart( target );
