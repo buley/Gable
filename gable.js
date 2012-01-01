@@ -62,7 +62,7 @@ var Gable = (function(){
 		var funBody = function() {
 
 			var raw = Private.data.get(current_table, 'raw' );
-			if( 'undefined' === typeof raw.meta ) {
+			if( 'undefined' !== typeof raw && null !== raw && 'undefined' === typeof raw.meta ) {
 				raw.meta = {};
 			}
 			var dt = new google.visualization.DataTable( Private.data.get( current_table, 'table' ) ); 
