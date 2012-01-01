@@ -1260,8 +1260,6 @@ var Gable = (function(){
 		if( 'undefined' === typeof Private.cache[ table.id ] ) {
 			Private.cache[ table.id ] = table;
 		} 
-
-		console.log('adding table2',Private.cache[table.id]);
 	};
 
 	Private.data.row.add = function( table_id, row ) {
@@ -1285,7 +1283,7 @@ var Gable = (function(){
 
 	//Read
 	Private.data.table.get = function( table_id ) {
-		table_id = Private.utils.clone(table_id);
+		table_id = JSON.parse( JSON.stringify(table_id) );
 		console.log('getting',table_id,Private.cache[ table_id ]);
 		if( 'undefined' !== typeof Private.cache[ table_id ] ) {
 			return Private.cache[ table_id ];
