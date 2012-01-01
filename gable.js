@@ -36,7 +36,7 @@ var Gable = (function(){
 			}
 			return;
 		}
-		Private.data.add( Private.utils.clone( current_table ), req.value, req.meta );
+		Private.data.add( Private.utils.clone( current_table, req.value, req.meta );
 		if( 'function' === typeof req.on_success ) {
 			req.on_success( req.id );	
 		}
@@ -62,7 +62,8 @@ var Gable = (function(){
 
 		var funBody = function() {
 
-			var raw = Private.data.get(current_table, 'raw' );
+			var raw = Private.data.get( current_table, 'raw' );
+			console.log("RAW",raw);
 			if( 'undefined' !== typeof raw && null !== raw && 'undefined' === typeof raw.meta ) {
 				raw.meta = {};
 			}
