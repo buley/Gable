@@ -1249,7 +1249,7 @@ var Gable = (function(){
 	Private.data.table.add = function( table ) {
 		//TODO: validate table
 		if( 'undefined' === typeof Private.cache[ table.id ] ) {
-			Private.cache[ table.id ] = table;
+			Private.cache[ table.id ] = Private.utils.clone( table );
 		} 
 	};
 
@@ -1276,7 +1276,7 @@ var Gable = (function(){
 	//Read
 	Private.data.table.get = function( table_id ) {
 		if( 'undefined' !== typeof Private.cache[ table_id ] ) {
-			return Private.utils.clone( Private.cache[ table_id ] );
+			return Private.cache[ table_id ];
 		} 
 		return null;
 	};
