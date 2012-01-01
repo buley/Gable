@@ -66,7 +66,7 @@ var Gable = (function(){
 			if( 'undefined' !== typeof raw && null !== raw && 'undefined' === typeof raw.meta ) {
 				raw.meta = {};
 			}
-			var id = Private.utils.clone( current_table );
+			var id = current_table;
 			if( 'undefined' !== typeof req && 'undefined' !== typeof req.id && null !== req.id ) {
 				id = req.id;
 			}
@@ -121,7 +121,7 @@ var Gable = (function(){
 					chart = new google.visualization.ComboChart( target );
 				}
 
-				chart.draw( dt, options );
+				chart.draw( Private.utils.clone( dt ), options );
 				
 			}
 
