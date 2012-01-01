@@ -11,7 +11,7 @@ var Gable = (function(){
 
 	var Public = function( table_id ) {
 		that = this;
-		current_table = table_id ];
+		current_table = table_id;
 		tables[ table_id ] = {};
 		tables[ table_id ].delayed = false;
 		tables[ table_id ].value = false;
