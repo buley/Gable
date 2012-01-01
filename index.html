@@ -70,7 +70,7 @@ document.getElementById( 'example1' ).parentNode.parentNode.childNodes[3].childN
 	, [ 'Hamburger, 4oz Patty', 174, 445 ]
 ];
 
-Gable( 'food_data' )
+Gable( 'food_data_bar' )
 .add( {
     value: data
   , meta: {
@@ -108,7 +108,7 @@ document.getElementById( 'example2' ).parentNode.parentNode.childNodes[3].childN
 	, [ 'Hamburger, 4oz Patty', 174, 445 ]
 ];
 
-Gable( 'food_data' )
+Gable( 'food_data_column' )
 .add( {
     value: data
   , meta: {
@@ -131,6 +131,42 @@ Gable( 'food_data' )
 document.getElementById( 'example3' ).parentNode.parentNode.childNodes[3].childNodes[0].innerHTML = document.getElementById( 'example3' ).parentNode.parentNode.childNodes[5].text;
 </script>
 				</span>
+<h5>Pie (<a href='http://jsfiddle.net/taylorbuley/HUG5V/'>fiddle</a>)</h5>
+				<span class='example'>
+					<span class='g1of2'><div class='exampleViz' id='example4'></div></span>
+					<span class='g1of2 exampleCode'><pre>&nbsp;</pre></span>
+<script type='text/javascript'>var data = [
+	{ 'Food': 'Apple Pie', 'kCal': 405 }
+	, [ 'Beer, Light', 95 ]
+	, [ 'Carrots, Raw, Whole', 30 ]
+	, [ 'Doughnuts, Cake Type, Plain', 210 ]
+	, [ 'Enchilada', 235 ]
+	, [ 'Froot Loops Cereal', 110 ]
+	, [ 'Grape Soda', 180 ]
+	, [ 'Hamburger, 4oz Patty', 445 ]
+];
+
+Gable( 'food_data_pie' )
+.add( {
+    value: data
+  , meta: {
+        title: 'USDA Nutrient Database'
+  }
+} )
+.draw( {
+    target: 'example4'
+  , type: 'pie'
+  , meta: {
+      , backgroundColor: '#FDF6E3'
+      , series: [ { color: '#586E75' }, { color: '#EEE8D5' } ]
+    }
+} );
+</script>
+<script type='text/javascript'>
+document.getElementById( 'example4' ).parentNode.parentNode.childNodes[3].childNodes[0].innerHTML = document.getElementById( 'example4' ).parentNode.parentNode.childNodes[5].text;
+</script>
+				</span>
+
 			</span>
 			<h4>Overview</h4>
 			<p class='desc'>A high-level look at the Gable API follows.</p>
