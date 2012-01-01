@@ -189,6 +189,7 @@ var Gable = (function(){
     var script = document.createElement( 'script' );
     	script.src = 'http://www.google.com/jsapi';
         script.type = "text/javascript";
+/*
         script.onload = function() { 
             if ( ! script.onloadDone ) {
                 script.onloadDone = true; 
@@ -205,7 +206,7 @@ var Gable = (function(){
 		}
             }
         }
-
+*/
     	var headID = document.getElementsByTagName("head")[0];         
 	headID.appendChild(script);
 
