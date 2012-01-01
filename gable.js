@@ -74,7 +74,7 @@ var Gable = (function(){
 					id = req.id;
 				}
 				var dt = new google.visualization.DataTable( Private.data.get( id, 'table' ) ); 
-				var options;
+				var options = {};
 				if( 'undefined' !== typeof raw && null !== raw && raw.meta ) {
 					options = Private.utils.clone( raw.meta );
 				}
