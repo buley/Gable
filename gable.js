@@ -1501,7 +1501,7 @@ var Gable = (function(){
 
 		var raw = {};
 		if( Private.data.type.tranformsTo( 'input', 'raw' ) ) {
-			raw = Private.data.types.input.transform.raw( Private.data.types.raw.transform.filter( value ) );
+			raw = Private.data.types.input.transform.raw( Private.data.types.raw.transform.filter( val ) );
 		}
 
 		val = raw.rows[ 0 ];
@@ -1535,7 +1535,7 @@ var Gable = (function(){
 
 	};
 
-	Private.data.column.update = function( value, table_id, column, column_id, column_meta, on_success, on_error ) {
+	Private.data.column.update = function( val, table_id, column, column_id, column_meta, on_success, on_error ) {
 		//TODO: validate column 
 		var table = Private.cache[ table_id ];
 		var col = table.columns[ column ];
@@ -1545,12 +1545,12 @@ var Gable = (function(){
 
 		var raw = {};
 		if( Private.data.type.tranformsTo( 'input', 'raw' ) ) {
-			raw = Private.data.types.input.transform.raw( Private.data.types.raw.transform.filter( value ) );
+			raw = Private.data.types.input.transform.raw( Private.data.types.raw.transform.filter( val ) );
 		}
-		value = raw.columns[ 0 ];
+		val = raw.columns[ 0 ];
 
 
-		console.log( "NEW", value, "COLUMN", table.columns[ column ].value );
+		console.log( "NEW", val, "COLUMN", table.columns[ column ] );
 		if( null === column_id || 'undefined' === typeof column_id ) {
 			column_id = col.id;
 		}
@@ -1564,16 +1564,16 @@ var Gable = (function(){
 			}
 		}
 
-		var column_type = Private.data.column.type(value);
-		value = Private.data.column.create(column_type, column_id, column_meta);
+		var column_type = Private.data.column.type(val);
+		//value = Private.data.column.create(column_type, column_id, column_meta);
 
-		table.columns[ column ]  = value;
+		table.columns[ column ]  = val;
 
 		if( 'function' === typeof on_success ) {
-			on_success( { 'table': table_id, 'column': column }  );	
+			on_success( { 'table': table_id, 'value': val, 'column': column }  );	
 		}
 		if( 'function' === typeof on_error ) {
-			on_error( { 'table': table_id, 'column': column } );	
+			on_error( { 'table': table_id, 'value': val, 'column': column } );	
 		}
 
 	};
