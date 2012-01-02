@@ -173,7 +173,6 @@ var Gable = (function(){
 		var column = req.column;
 		var chs = charts[ id ];
 		var on_success = function( res ) {
-			console.log('REDRAW',table_id);
 			Private.charts.redraw( table_id );
 			if( 'function' === typeof req.on_success ) {
 				req.on_success( res );
@@ -186,7 +185,6 @@ var Gable = (function(){
 				req.on_error();
 			}
 		};
-console.log('REQ', req, value, table_id, row, column, on_success, on_error);
 		if( 'undefined' !== typeof row && 'undefined' !== typeof column ) {
 			Private.data.cell.update( value, table_id, row, column, on_success, on_error );
 		} else if( 'undefined' !== typeof row ) {
@@ -1500,20 +1498,17 @@ console.log('REQ', req, value, table_id, row, column, on_success, on_error);
 		//TODO: validate row 
 		var table = Private.cache[ table_id ];
 
-		console.log('INPUT',value);
 		var raw = {};
 		if( Private.data.type.tranformsTo( 'input', 'raw' ) ) {
 			raw = Private.data.types.input.transform.raw( Private.data.types.raw.transform.filter( value ) );
 		}
 
 		value = raw.rows[ 0 ];
-		console.log('INPUT TO RAW',value);
 		var rw = table.rows[ row ];
 
 		if( null === rw || 'undefined' === typeof rw ) {
 			return null;
 		}
-		console.log( "NEW", value, "OLD ROW", table.rows[ row ] );
 		if( null === row_id || 'undefined' === typeof row_id ) {
 			row_id = rw.id;
 		}
