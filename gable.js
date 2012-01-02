@@ -1473,13 +1473,13 @@ var Gable = (function(){
 
 	};
 
-	Private.data.table.update = function( value, table_id, meta, on_success, on_error ) {
+	Private.data.table.update = function( val, table_id, meta, on_success, on_error ) {
 		//TODO: validate cell
 		meta = ( 'undefined' === typeof meta || 'object' !== typeof meta ) ? {} : meta;
 
 		var raw = {};
 		if( Private.data.type.tranformsTo( 'input', 'raw' ) ) {
-			raw = Private.data.types.input.transform.raw( Private.data.types.raw.transform.filter( value ) );
+			raw = Private.data.types.input.transform.raw( Private.data.types.raw.transform.filter( val ) );
 		}
 
 		var newtable = Private.data.table.create( raw.columns, raw.rows, meta, table_id );
