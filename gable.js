@@ -159,7 +159,6 @@ var Gable = (function(){
 	};
 
 	Public.prototype.update = function() {
-		console.log( 'update', current_table, arguments );
 		var req = arguments[ 0 ];
 		if( 'undefined' === typeof arguments[ 0 ] ) {
 			if( 'function' === typeof req.on_error ) {
@@ -169,12 +168,11 @@ var Gable = (function(){
 		}
 		var id = req.id || current_table;
 		var value = req.value;
-		console.log("ID",id,"VALUE",value);
 		var row = req.row;
 		var column = req.column;
 		var chs = charts[ id ];
 		var on_success = function( res ) {
-			console.log("CHARTS",chs);
+			Private.charts.redraw( id );
 			if( 'function' === typeof req.on_success ) {
 				req.on_success( res );
 			}
@@ -291,7 +289,7 @@ var Gable = (function(){
 	Private.chart = Private.chart || {};
 	Private.charts = Private.charts || {};
 
-	Private.charts.redraw = function( id, target ) {
+	Private.charts.redraw = function( id ) {
 		if( 'undefined' === typeof charts[ id ] ) {
 			for( var target in charts[ id ] ) {
 				req = charts[ id ][ target ];
