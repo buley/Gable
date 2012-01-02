@@ -220,13 +220,13 @@ document.getElementById( 'example5' ).parentNode.parentNode.childNodes[3].childN
 	       	      , min: 1
 		    }
 		};
-		if( 'undefined' === typeof data[ 'Hours' ] ) {
+		if( 'undefined' !== typeof data[ 'Hours' ] ) {
 			chart.meta.max = 24;
 		} else { 
 			chart.meta.max = 60;	
 		}	
 		Gable( 'time_gauges' + id )
-		.update( { //TODO: should be update
+		.update( { 
 		    value: data
 		} )
 		.draw( chart );		
