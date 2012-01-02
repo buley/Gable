@@ -1528,7 +1528,6 @@ console.log('REQ', req, value, table_id, row, column, on_success, on_error);
 		}
 
 		//value = Private.data.row.create( value, row_meta, row_id );
-		console.log("THE
 		table.rows[ row ] = value;
 
 		if( 'function' === typeof on_success ) {
