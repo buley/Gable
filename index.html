@@ -434,9 +434,7 @@ document.getElementById( 'example12' ).parentNode.parentNode.childNodes[3].child
 				<span class='example'>
 					<span class='g1of2'><div class='exampleViz' id='example13'></div></span>
 					<span class='g1of2 exampleCode'><pre>&nbsp;</pre></span>
-					<script type='text/javascript'>var data = [
-      ["Global",null,0,0] ];
-
+					<script type='text/javascript'>var data = { 'Something': [ 'one', null, 0, 0 ] };
 
 Gable( 'food_data_tree' )
 .add( {
@@ -448,13 +446,11 @@ Gable( 'food_data_tree' )
 .draw( {
     target: 'example13'
   , type: 'treemap'
-  , meta:{
-            minColor: '#f00',
-            midColor: '#ddd',
-            maxColor: '#0d0',
-            headerHeight: 15,
-            fontColor: 'black',
-            showScale: true}
+  , meta: {
+      height: 450
+      , width: 375
+      , backgroundColor: '#FDF6E3'
+    }
 } );
 </script>
 <script type='text/javascript'>
