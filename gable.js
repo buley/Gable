@@ -43,7 +43,7 @@ var Gable = (function(){
 
 	Public.prototype.get = function() {
 		var req = arguments[ 0 ];
-		var res = Gable.data.get( current_table );
+		var res = Private.data.get( current_table );
 		if( 'function' === typeof req.on_success ) {
 			req.on_success( res );	
 		}
