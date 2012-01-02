@@ -16,7 +16,6 @@ var Gable = (function(){
 		tables[ table_id ] = {};
 		tables[ table_id ].delayed = false;
 		tables[ table_id ].value = false;
-		console.log('engaged', table_id);
 		if( 'undefined' === typeof google ||  'undefined' === typeof google.visualization ) {
 			var coreload = function() {
 				Private.utils.loadChartType( 'corechart' );
