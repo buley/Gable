@@ -185,7 +185,7 @@ var Gable = (function(){
 				req.on_error();
 			}
 		};
-
+console.log('REQ', value, table_id, row, column, on_success, on_error);
 		if( 'undefined' !== typeof row && 'undefined' !== typeof column ) {
 			Private.data.cell.update( value, table_id, row, column, on_success, on_error );
 		} else if( 'undefined' !== typeof row ) {
