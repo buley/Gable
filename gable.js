@@ -1505,8 +1505,8 @@ console.log('REQ', req, value, table_id, row, column, on_success, on_error);
 			raw = Private.data.types.input.transform.raw( Private.data.types.raw.transform.filter( value ) );
 		}
 		value = raw.rows[ 0 ];
-
 		var rw = table.rows[ row ];
+
 		if( null === rw || 'undefined' === typeof rw ) {
 			return null;
 		}
@@ -1524,7 +1524,8 @@ console.log('REQ', req, value, table_id, row, column, on_success, on_error);
 			}
 		}
 
-		value = Private.data.row.create( value, row_meta, row_id );
+		//value = Private.data.row.create( value, row_meta, row_id );
+		console.log("THE
 		table.rows[ row ] = value;
 
 		if( 'function' === typeof on_success ) {
