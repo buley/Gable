@@ -173,7 +173,8 @@ var Gable = (function(){
 		var column = req.column;
 		var chs = charts[ id ];
 		var on_success = function( res ) {
-			Private.charts.redraw( id );
+			console.log('REDRAW',table_id);
+			Private.charts.redraw( table_id );
 			if( 'function' === typeof req.on_success ) {
 				req.on_success( res );
 			}
