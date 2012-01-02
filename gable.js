@@ -892,8 +892,8 @@ var Gable = (function(){
 	    var newobj = (null !== obj && 'undefined' !== typeof obj) ? obj : {},
 	        objlen = obj.length,
 	        x, current, attr;
-	/*
 	    if (Private.utils.isArray(obj)) {
+		/*
 	        //zero-indexed array
 	        for (x = objlen - 1; x !== 0; x -= 1) {
 	            current = obj[x];
@@ -903,7 +903,7 @@ var Gable = (function(){
 	            } else {
 	                newobj[x] = [current];
 	            }
-	        }
+	        } */
 	    } else {
 	        //unique id object
 	        for (attr in obj) {
@@ -916,7 +916,7 @@ var Gable = (function(){
 	                }
 	            }
 	        };
-	    } */
+	    }
 	    return newobj;
 	};
 
