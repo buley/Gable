@@ -448,11 +448,13 @@ Gable( 'food_data_tree' )
 .draw( {
     target: 'example13'
   , type: 'treemap'
-  , meta: {
-      height: 450
-      , width: 375
-      , backgroundColor: '#FDF6E3'
-    }
+  , meta:{
+            minColor: '#f00',
+            midColor: '#ddd',
+            maxColor: '#0d0',
+            headerHeight: 15,
+            fontColor: 'black',
+            showScale: true}
 } );
 </script>
 <script type='text/javascript'>
