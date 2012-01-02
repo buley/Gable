@@ -88,7 +88,6 @@ var Gable = (function(){
 				}
 				var chart = {};
 				//attempt to use table id if target not set
-				//
 
 				if( 'undefined' === typeof req.target ) {
 					req.target = id;
@@ -124,7 +123,15 @@ var Gable = (function(){
 				}
 
 				chart.draw( dt, options );
+				if( 'undefined' === typeof charts[ id ] ) {
+					charts[ id ] = {};
+				}
+				if( 'undefined' === typeof charts[ id ][ target ] ) {
+					charts[ id ][ target ]  = {};
+				}
 				
+				charts[ id ][ target ] = req;
+
 			}
 
 			var ctype = Private.utils.chartType( req.type );
@@ -1085,6 +1092,7 @@ var Gable = (function(){
 		}
 
 		var table = Private.data.table.create( raw.columns, raw.rows, meta, id );
+
 		Private.data.table.add( table );
 		
 	};
