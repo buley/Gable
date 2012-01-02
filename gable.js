@@ -464,7 +464,7 @@ var Gable = (function(){
 			
 			var addition = {};
 			if( null === item ) {
-				addition = null;
+				addition = { type: 'string', 'id': null, 'label':null, 'meta': null };
 			} else {
 			
 				if( 'undefined' !== typeof item && 'undefined' !== typeof item.id && null !== item.id ) {
