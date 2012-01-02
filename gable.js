@@ -212,6 +212,14 @@ var Gable = (function(){
 
 	Public.prototype.delay = function( milliseconds ) {
 		console.log( 'delay', current_table, arguments );
+		var id = current_table;
+		if( 'undefined' === typeof tables[ id ] ) {
+			tables[ id ] = {};
+		}
+		tables[ id ].delay = true;
+		if( 'number' === typeof milliseconds ) {
+			setTimeout( Public.prototype.commit, milliseconds );
+		}
 		return Public.prototype;
 		//on_success
 		//on_error
@@ -224,6 +232,13 @@ var Gable = (function(){
 
 	Public.prototype.commit = function() {
 		console.log( 'commit', current_table, arguments );
+		var id = current_table;
+		if( 'undefined' === typeof tables[ id ] && true === tables[ id ].delay  ) {
+			for( var attr in tables[ id ].pending ) {
+				Gable( id ).draw( tables[ id ][ attr ] );
+			}
+		}
+		tables[ id ].delay = false;
 		return Public.prototype;
 	};
 
@@ -276,7 +291,16 @@ var Gable = (function(){
 		if( 'undefined' === typeof charts[ id ] ) {
 			for( var target in charts[ id ] );
 				req = charts[ id ][ target ];
-				Public( id ).draw( req );
+				if( 'undefined' === typeof tables[ id ] || ( 'undefined' !== typeof tables[ id ] && tables[ id ].delay !== true ) {
+					Public( id ).draw( req );
+				} else {
+					if( 'undefined' === typeof tables[ id ].pending ) {
+						tables[ id ].pending = [];
+					}
+					var pend = {};
+					pend[ target ] = req;
+					tables[ id ].pending.push( pend );
+				}
 			}
 		}
 	};	
