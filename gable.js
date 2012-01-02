@@ -1499,11 +1499,17 @@ console.log('REQ', req, value, table_id, row, column, on_success, on_error);
 		//TODO: validate row 
 		var table = Private.cache[ table_id ];
 
+		var raw = {};
+		if( Private.data.type.tranformsTo( 'input', 'raw' ) ) {
+			raw = Private.data.types.input.transform.raw( Private.data.types.raw.transform.filter( value ) );
+		}
+		value = raw.rows[ 0 ];
+
 		var rw = table.rows[ row ];
 		if( null === rw || 'undefined' === typeof rw ) {
 			return null;
 		}
-		console.log( "ROW", table.rows[ row ].value );
+		console.log( "NEW", value, "ROW", table.rows[ row ].value );
 		if( null === row_id || 'undefined' === typeof row_id ) {
 			row_id = rw.id;
 		}
@@ -1536,7 +1542,15 @@ console.log('REQ', req, value, table_id, row, column, on_success, on_error);
 		if( null === col || 'undefined' === typeof col ) {
 			return null;
 		}
-		console.log( "COLUMN", table.columns[ column ].value );
+
+		var raw = {};
+		if( Private.data.type.tranformsTo( 'input', 'raw' ) ) {
+			raw = Private.data.types.input.transform.raw( Private.data.types.raw.transform.filter( value ) );
+		}
+		value = raw.columns[ 0 ];
+
+
+		console.log( "NEW", value, "COLUMN", table.columns[ column ].value );
 		if( null === column_id || 'undefined' === typeof column_id ) {
 			column_id = col.id;
 		}
