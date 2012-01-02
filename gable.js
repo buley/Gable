@@ -172,11 +172,11 @@ var Gable = (function(){
 		}
 		var id = req.id || current_table;
 		var value = req.value;
+		console.log("ID",id,"VALUE",value);
 		var row = req.row;
 		var column = req.column;
 		var chs = charts[ id ];
 		var on_success = function( res ) {
-			console.log("CHARTS",chs);
 			if( 'function' === typeof req.on_success ) {
 				req.on_success( res );
 			}
