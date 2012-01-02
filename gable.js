@@ -1486,7 +1486,7 @@ var Gable = (function(){
 
 		var newtable = Private.data.table.create( raw.columns, raw.rows, meta, table_id );
 
-		Private.cache[ table.id ] = newtable;
+		Private.cache[ table_id ] = newtable;
 
 		if( 'function' === typeof on_success ) {
 			on_success( { 'table': table_id, 'value': newtable, 'row': row, 'column': column }  );	
