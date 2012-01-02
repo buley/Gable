@@ -225,7 +225,7 @@ document.getElementById( 'example5' ).parentNode.parentNode.childNodes[3].childN
 			chart.meta.max = 60;	
 		}	
 		Gable( 'time_gauges' + id )
-		.add( { //TODO: should be update
+		.update( { //TODO: should be update
 		    value: data
 		} )
 		.draw( chart );		
@@ -237,8 +237,7 @@ document.getElementById( 'example5' ).parentNode.parentNode.childNodes[3].childN
 
 };
 
-tick();
-//window.setInterval( tick, 1000 ); //TODO: Uncomment me
+window.setInterval( tick, 1000 ); //TODO: Uncomment me
 
 </script>
 <script type='text/javascript'>
