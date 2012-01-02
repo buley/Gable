@@ -123,14 +123,7 @@ var Gable = (function(){
 				}
 
 				chart.draw( dt, options );
-				if( 'undefined' === typeof charts[ id ] ) {
-					charts[ id ] = {};
-				}
-				if( 'undefined' === typeof charts[ id ][ target ] ) {
-					charts[ id ][ target ]  = {};
-				}
-				
-				charts[ id ][ req.target ] = req;
+				Private.charts.redraw( id, req.target );
 
 			}
 
@@ -278,6 +271,16 @@ var Gable = (function(){
 	Private.data.cell = Private.data.cell || {};
 	Private.chart = Private.chart || {};
 	Private.charts = Private.charts || {};
+
+	Private.charts.redraw = function( id, target ) {
+		if( 'undefined' === typeof charts[ id ] ) {
+			for( var target in charts[ id ] );
+				req = charts[ id ][ target ];
+				Public( id ).draw( req );
+			}
+		}
+	};	
+
 	Private.utils.clone  = function ( obj ) {
 		var clone = {};
 		var num = 0;
