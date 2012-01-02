@@ -78,8 +78,7 @@ var Gable = (function(){
 				if( 'undefined' !== typeof raw && null !== raw && raw.meta ) {
 					options = Private.utils.clone( raw.meta );
 				}
-
-				if( 'undefined' !== typeof req && null !== req && req.meta ) {
+				if( 'undefined' !== typeof req && null !== req && 'undefined' !== typeof req.meta ) {
 					for( var attr in req.meta ) {
 						if( req.meta.hasOwnProperty( attr ) ) {
 							options[ attr ] = req.meta[ attr ];
