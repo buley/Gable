@@ -1495,7 +1495,7 @@ console.log('REQ', req, value, table_id, row, column, on_success, on_error);
 
 	};
 
-	Private.data.row.update = function( value, table_id, row, row_id, on_success, on_error ) {
+	Private.data.row.update = function( value, table_id, row, row_id, row_meta, on_success, on_error ) {
 		//TODO: validate row 
 		var table = Private.cache[ table_id ];
 
