@@ -1621,7 +1621,7 @@ var Gable = (function(){
 	/* Utilities */
 
 	Private.utils.isArray = function(obj) {
-		if( obj === null ) {
+		if( obj === null || 'undefined' === typeof obj ) {
 			return false;
 		}
 	    if ( 'undefined' === typeof obj.isArray ) {
