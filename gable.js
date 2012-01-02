@@ -167,6 +167,7 @@ var Gable = (function(){
 		var value = req.value;
 		var row;
 		var column;
+		console.log('REQ',req);
 		if( 'undefined' !== typeof req.row && 'undefined' !== typeof req.column ) {
 			Private.data.cell.update( value, id, row, column );
 		} else if( 'undefined' !== typeof req.row ) {
