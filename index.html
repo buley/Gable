@@ -434,7 +434,15 @@ document.getElementById( 'example12' ).parentNode.parentNode.childNodes[3].child
 				<span class='example'>
 					<span class='g1of2'><div class='exampleViz' id='example13'></div></span>
 					<span class='g1of2 exampleCode'><pre>&nbsp;</pre></span>
-<script type='text/javascript'>var data = { 'Beer, Light': [ 355, 95 ] };
+<script type='text/javascript'>var data = [
+	[ 'Beer, Light', 'Junk', 355, 95 ]
+	, [ 'Carrots, Raw, Whole', 'Healthy', 72, 30 ]
+	, [ 'Doughnuts, Cake Type, Plain', 'Junk', 50, 210 ]
+	, [ 'Enchilada', 'Healthy', 230, 235 ]
+	, [ 'Froot Loops Cereal', 'Junk', 28.35, 110 ]
+	, [ 'Grape Soda', 'Junk', 372, 180 ]
+	, [ 'Hamburger, 4oz Patty', 'Healthy', 174, 445 ]
+];
 
 Gable( 'food_data_tree' )
 .add( {
