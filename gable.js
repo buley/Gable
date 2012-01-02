@@ -1510,7 +1510,7 @@ console.log('REQ', req, value, table_id, row, column, on_success, on_error);
 		if( null === rw || 'undefined' === typeof rw ) {
 			return null;
 		}
-		console.log( "NEW", value, "ROW", table.rows[ row ].value );
+		console.log( "NEW", value, "OLD ROW", table.rows[ row ] );
 		if( null === row_id || 'undefined' === typeof row_id ) {
 			row_id = rw.id;
 		}
