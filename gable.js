@@ -186,7 +186,6 @@ var Gable = (function(){
 			}
 		};
 
-		console.log('REQ',req);
 		if( 'undefined' !== typeof row && 'undefined' !== typeof column ) {
 			Private.data.cell.update( value, table_id, row, column, id, meta, on_success, on_error );
 		} else if( 'undefined' !== typeof row ) {
