@@ -1524,7 +1524,7 @@ console.log('REQ', req, value, table_id, row, column, on_success, on_error);
 		}
 
 		value = Private.data.column.create( value, row_meta, row_id );
-		table.rows[ row ].value = value;
+		table.rows[ row ] = value;
 
 		if( 'function' === typeof on_success ) {
 			on_success( { 'table': table_id, 'row': row }  );	
@@ -1567,7 +1567,7 @@ console.log('REQ', req, value, table_id, row, column, on_success, on_error);
 		var column_type = Private.data.column.type(value);
 		value = Private.data.column.create(column_type, column_id, column_meta);
 
-		table.columns[ column ].value  = value;
+		table.columns[ column ]  = value;
 
 		if( 'function' === typeof on_success ) {
 			on_success( { 'table': table_id, 'column': column }  );	
