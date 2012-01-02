@@ -294,9 +294,11 @@ var Gable = (function(){
 		if( 'undefined' === typeof charts[ id ] ) {
 			for( var target in charts[ id ] ) {
 				req = charts[ id ][ target ];
+				console.log('REDRAW REQ',req);
 				if( 'undefined' === typeof tables[ id ] || ( 'undefined' !== typeof tables[ id ] && tables[ id ].delay !== true ) ) {
 					Public( id ).draw( req );
 				} else {
+					console.log('pending');
 					if( 'undefined' === typeof tables[ id ].pending ) {
 						tables[ id ].pending = [];
 					}
