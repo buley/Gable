@@ -174,8 +174,20 @@ var Gable = (function(){
 		var value = req.value;
 		var row = req.row;
 		var column = req.column;
-		var on_success = req.on_success || null;
-		var on_error = req.on_error || null;
+		var on_success = function( res ) {
+			if( 'function' === typeof req.on_success ) {
+				req.on_success( res );
+			}
+		};
+
+		var on_error = function() {
+			if( 'function' === typeof req.on_error ) {
+				req.on_error();
+			}
+		};
+
+
+
 		console.log('REQ',req);
 		if( 'undefined' !== typeof row && 'undefined' !== typeof column ) {
 			Private.data.cell.update( value, id, row, column, on_success, on_error );
