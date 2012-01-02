@@ -124,10 +124,10 @@ var Gable = (function(){
 
 				chart.draw( dt, options );
 	
-				if( 'undefined' === typeof tables[ id ] || ( 'undefined' !== typeof tables[ id ] ) ) {
-					tables[ id ][ req.target ] = req;
+				if( 'undefined' === typeof tables[ id ] ) {
+				       tables[ id ] = {};
 				}
-
+				tables[ id ][ req.target ] = req;
 
 			}
 
