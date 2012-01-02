@@ -187,7 +187,7 @@ var Gable = (function(){
 		};
 
 		if( 'undefined' !== typeof row && 'undefined' !== typeof column ) {
-			Private.data.cell.update( value, table_id, row, column, id, meta, on_success, on_error );
+			Private.data.cell.update( value, table_id, row, column, on_success, on_error );
 		} else if( 'undefined' !== typeof row ) {
 			Private.data.row.update( value, table_id, row, id, meta, on_success, on_error );
 		} else if( 'undefined' !== typeof column ) {
@@ -290,7 +290,6 @@ var Gable = (function(){
 	Private.charts = Private.charts || {};
 
 	Private.charts.redraw = function( id ) {
-		console.log('REDRAW',id,charts[id]);
 		if( 'undefined' !== typeof charts[ id ] ) {
 			for( var target in charts[ id ] ) {
 				req = charts[ id ][ target ];
