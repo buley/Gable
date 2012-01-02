@@ -220,9 +220,9 @@ document.getElementById( 'example5' ).parentNode.parentNode.childNodes[3].childN
 	       	      , min: 1
 		    }
 		};
-		if( 'undefined' !== typeof data[ 'Hours' ] ) {
+		if( 'undefined' === typeof data[ 'Hours' ] ) {
 			chart.meta.max = 24;
-		} else if( 'undefined' !== typeof data[ 'Minutes' ] || 'undefined' !== typeof data[ 'Seconds' ] ) {
+		} else { 
 			chart.meta.max = 60;	
 		}	
 		Gable( 'time_gauges' + id )
