@@ -1447,7 +1447,7 @@ var Gable = (function(){
 		//TODO: validate column 
 		var table = Private.cache[ table_id ];
 		console.log( "TABLE", table, row, column );
-		console.log( "CELL", table.rows[ row ].value[ column ].value );
+		console.log( "CELL", table.rows[ row ].value[ column ] );
 	};
 
 
