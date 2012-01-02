@@ -291,7 +291,7 @@ var Gable = (function(){
 		if( 'undefined' === typeof charts[ id ] ) {
 			for( var target in charts[ id ] );
 				req = charts[ id ][ target ];
-				if( 'undefined' === typeof tables[ id ] || ( 'undefined' !== typeof tables[ id ] && tables[ id ].delay !== true ) {
+				if( 'undefined' === typeof tables[ id ] || ( 'undefined' !== typeof tables[ id ] && tables[ id ].delay !== true ) ) {
 					Public( id ).draw( req );
 				} else {
 					if( 'undefined' === typeof tables[ id ].pending ) {
