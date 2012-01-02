@@ -166,8 +166,10 @@ var Gable = (function(){
 			}
 			return Public.prototype;
 		}
-		var id = req.id || current_table;
+		var table_id = current_table;
+		var id = req.id;
 		var value = req.value;
+		var value = req.meta;
 		var row = req.row;
 		var column = req.column;
 		var chs = charts[ id ];
@@ -187,13 +189,13 @@ var Gable = (function(){
 
 		console.log('REQ',req);
 		if( 'undefined' !== typeof row && 'undefined' !== typeof column ) {
-			Private.data.cell.update( value, id, row, column, on_success, on_error );
+			Private.data.cell.update( value, table_id, row, column, id, meta, on_success, on_error );
 		} else if( 'undefined' !== typeof row ) {
-			Private.data.row.update( value, id, row, on_success, on_error );
+			Private.data.row.update( value, table_id, row, id, meta, on_success, on_error );
 		} else if( 'undefined' !== typeof column ) {
-			Private.data.column.update( value, id, column, on_success, on_error );
+			Private.data.column.update( value, table_id, column, id, meta, on_success, on_error );
 		} else {
-			Private.data.table.update( value, id, on_success, on_error );
+			Private.data.table.update( value, table_id, id, meta, on_success, on_error );
 		}
 		return Public.prototype;
 	};
@@ -1472,24 +1474,51 @@ var Gable = (function(){
 
 	};
 
-	Private.data.table.update = function( value, table_id, on_success, on_error ) {
+	Private.data.table.update = function( value, table_id, meta, on_success, on_error ) {
 		//TODO: validate cell
-		var table = Private.cache[ table_id ];
-		Private.cache[ table.id ] = table;
+		meta = ( 'undefined' === typeof meta || 'object' !== typeof meta ) ? {} : meta;
+
+		var raw = {};
+		if( Private.data.type.tranformsTo( 'input', 'raw' ) ) {
+			raw = Private.data.types.input.transform.raw( Private.data.types.raw.transform.filter( value ) );
+		}
+
+		var newtable = Private.data.table.create( columns, rows, meta, table_id );
+
+		Private.cache[ table.id ] = newtable;
 
 		if( 'function' === typeof on_success ) {
-			on_success( { 'table': table_id, 'row': row, 'column': column }  );	
+			on_success( { 'table': table_id, 'value': newtable, 'row': row, 'column': column }  );	
 		}
 		if( 'function' === typeof on_error ) {
-			on_error( { 'table': table_id, 'row': row, 'column': column } );	
+			on_error( { 'table': table_id, 'value': newtable, 'row': row, 'column': column } );	
 		}
 
 	};
 
-	Private.data.row.update = function( value, table_id, row, on_success, on_error ) {
+	Private.data.row.update = function( value, table_id, row, row_id, on_success, on_error ) {
 		//TODO: validate row 
 		var table = Private.cache[ table_id ];
+
+		var rw = table.rows[ row ];
+		if( null === rw || 'undefined' === typeof rw ) {
+			return null;
+		}
 		console.log( "ROW", table.rows[ row ].value );
+		if( null === row_id || 'undefined' === typeof row_id ) {
+			row_id = rw.id;
+		}
+		if( null === row_meta || 'undefined' === typeof row_meta ) {
+			row_meta = rw.meta;
+		} else {
+			for( var attr in rw.meta ) {
+				if( rw.meta.hasOwnProperty( attr ) && 'undefined' !== typeof row_meta[ attr ] ) {
+					row_meta[ attr ] = rw.meta[ attr ];
+				}
+			}
+		}
+
+		value = Private.data.column.create( value, row_meta, row_id );
 		table.rows[ row ].value = value;
 
 		if( 'function' === typeof on_success ) {
@@ -1501,10 +1530,30 @@ var Gable = (function(){
 
 	};
 
-	Private.data.column.update = function( value, table_id, column, on_success, on_error ) {
+	Private.data.column.update = function( value, table_id, column, column_id, column_meta, on_success, on_error ) {
 		//TODO: validate column 
 		var table = Private.cache[ table_id ];
+		var col = table.columns[ column ];
+		if( null === col || 'undefined' === typeof col ) {
+			return null;
+		}
 		console.log( "COLUMN", table.columns[ column ].value );
+		if( null === column_id || 'undefined' === typeof column_id ) {
+			column_id = col.id;
+		}
+		if( null === column_meta || 'undefined' === typeof column_meta ) {
+			column_meta = col.meta;
+		} else {
+			for( var attr in col.meta ) {
+				if( col.meta.hasOwnProperty( attr ) && 'undefined' !== typeof column_meta[ attr ] ) {
+					column_meta[ attr ] = col.meta[ attr ];
+				}
+			}
+		}
+
+		var column_type = Private.data.column.type(value);
+		value = Private.data.column.create(column_type, column_id, column_meta);
+
 		table.columns[ column ].value  = value;
 
 		if( 'function' === typeof on_success ) {
