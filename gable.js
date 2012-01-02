@@ -163,24 +163,21 @@ var Gable = (function(){
 			}
 			return;
 		}
-		var id = current_table;
+		var id = req.id || current_table;
 		var value = req.value;
 		var row = req.row;
 		var column = req.column;
+		var on_success = req.on_success || null;
+		var on_error = req.on_error || null;
 		console.log('REQ',req);
 		if( 'undefined' !== typeof row && 'undefined' !== typeof column ) {
-			Private.data.cell.update( value, id, row, column );
+			Private.data.cell.update( value, id, row, column, on_success, on_error );
 		} else if( 'undefined' !== typeof row ) {
-			Private.data.row.update( value, id, row );
+			Private.data.row.update( value, id, row, on_success, on_error );
 		} else if( 'undefined' !== typeof column ) {
-			Private.data.column.update( value, id, column );
+			Private.data.column.update( value, id, column, on_success, on_error );
 		} else {
-			Private.data.table.update( value, id );
-		}
-
-
-		if( 'function' === typeof req.on_success ) {
-			req.on_success( req.id );	
+			Private.data.table.update( value, id, on_success, on_error );
 		}
 		return Public.prototype;
 	};
@@ -1425,32 +1422,63 @@ var Gable = (function(){
 
 	};
 
-	Private.data.table.update = function( value, table_id, row, column ) {
+	Private.data.table.update = function( value, table_id, on_success, on_error ) {
 		//TODO: validate cell
 		var table = Private.cache[ table_id ];
 		Private.cache[ table.id ] = table;
+
+		if( 'function' === typeof on_success ) {
+			on_success( { 'table': table_id, 'row': row, 'column': column }  );	
+		}
+		if( 'function' === typeof on_error ) {
+			on_error( { 'table': table_id, 'row': row, 'column': column } );	
+		}
+
 	};
 
-	Private.data.row.update = function( value, table_id, row ) {
+	Private.data.row.update = function( value, table_id, row, on_success, on_error ) {
 		//TODO: validate row 
 		var table = Private.cache[ table_id ];
 		console.log( "ROW", table.rows[ row ].value );
 		table.rows[ row ].value = value;
+
+		if( 'function' === typeof on_success ) {
+			on_success( { 'table': table_id, 'row': row }  );	
+		}
+		if( 'function' === typeof on_error ) {
+			on_error( { 'table': table_id, 'row': row } );	
+		}
+
 	};
 
-	Private.data.column.update = function( value, table_id, column ) {
+	Private.data.column.update = function( value, table_id, column, on_success, on_error ) {
 		//TODO: validate column 
 		var table = Private.cache[ table_id ];
 		console.log( "COLUMN", table.columns[ column ].value );
 		table.columns[ column ].value  = value;
+
+		if( 'function' === typeof on_success ) {
+			on_success( { 'table': table_id, 'column': column }  );	
+		}
+		if( 'function' === typeof on_error ) {
+			on_error( { 'table': table_id, 'column': column } );	
+		}
+
 	};
 
-	Private.data.cell.update = function( value, table_id, row, column ) {
+	Private.data.cell.update = function( value, table_id, row, column, on_success, on_error ) {
 		//TODO: validate column 
 		var table = Private.cache[ table_id ];
 		console.log( "TABLE", table, row, column );
 		console.log( "CELL", table.rows[ row ].value[ column ] );
 		table.rows[ row ].value[ column ] = value;
+
+		if( 'function' === typeof on_success ) {
+			on_success( { 'table': table_id, 'row': row, 'column': column }  );	
+		}
+		if( 'function' === typeof on_error ) {
+			on_error( { 'table': table_id, 'row': row, 'column': column } );	
+		}
 	};
 
 
