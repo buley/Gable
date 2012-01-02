@@ -232,9 +232,9 @@ document.getElementById( 'example5' ).parentNode.parentNode.childNodes[3].childN
 		.draw( chart );		
 	}	
 
-	doGauge( { 'Hours': datetime.getHours() }, 'example6hours' );
-	doGauge( { 'Minutes': datetime.getMinutes() }, 'example6minutes' );
-	doGauge( { 'Seconds': datetime.getSeconds() }, 'example6seconds' );
+	doGauge( [ { 'Hours': datetime.getHours() } ], 'example6hours' );
+	doGauge( [ { 'Minutes': datetime.getMinutes() } ], 'example6minutes' );
+	doGauge( [ { 'Seconds': datetime.getSeconds() } ], 'example6seconds' );
 
 };
 
