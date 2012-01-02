@@ -273,6 +273,32 @@ Gable( 'taxes_geo' )
 document.getElementById( 'example7' ).parentNode.parentNode.childNodes[3].childNodes[0].innerHTML = document.getElementById( 'example7' ).parentNode.parentNode.childNodes[5].text;
 </script>
 				</span>
+				<h5>Line (<a href='http://jsfiddle.net/taylorbuley/HUG5V/'>fiddle</a>) (<a href='http://www.nber.org/~taxsim/marginal-tax-rates/'>source</a>)</h5>
+				<span class='example'>
+					<span class='g1of2'><div class='exampleViz' id='example8'></div></span>
+					<span class='g1of2 exampleCode'><pre>&nbsp;</pre></span>
+<script type='text/javascript'>
+
+Gable( 'population_line' )
+.add( {
+    value: data
+  , meta: {
+        title: 'Projected Births And Deaths By Year'
+  }
+} )
+.draw( {
+    target: 'example8'
+  , type: 'line'
+  , meta: {
+      backgroundColor: '#FDF6E3'
+    }
+} );
+</script>
+<script type='text/javascript'>
+document.getElementById( 'example8' ).parentNode.parentNode.childNodes[3].childNodes[0].innerHTML = document.getElementById( 'example8' ).parentNode.parentNode.childNodes[5].text;
+</script>
+				</span>
+
 
 				<!-- End Examples --->
 			</span>
