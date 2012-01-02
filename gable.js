@@ -1484,7 +1484,7 @@ var Gable = (function(){
 			raw = Private.data.types.input.transform.raw( Private.data.types.raw.transform.filter( value ) );
 		}
 
-		var newtable = Private.data.table.create( columns, rows, meta, table_id );
+		var newtable = Private.data.table.create( raw.columns, raw.rows, meta, table_id );
 
 		Private.cache[ table.id ] = newtable;
 
