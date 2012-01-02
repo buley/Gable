@@ -289,7 +289,7 @@ var Gable = (function(){
 
 	Private.charts.redraw = function( id, target ) {
 		if( 'undefined' === typeof charts[ id ] ) {
-			for( var target in charts[ id ] );
+			for( var target in charts[ id ] ) {
 				req = charts[ id ][ target ];
 				if( 'undefined' === typeof tables[ id ] || ( 'undefined' !== typeof tables[ id ] && tables[ id ].delay !== true ) ) {
 					Public( id ).draw( req );
@@ -303,7 +303,7 @@ var Gable = (function(){
 				}
 			}
 		}
-	};	
+	}
 
 	Private.utils.clone  = function ( obj ) {
 		var clone = {};
