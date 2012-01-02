@@ -290,6 +290,7 @@ var Gable = (function(){
 	Private.charts = Private.charts || {};
 
 	Private.charts.redraw = function( id ) {
+		console.log('REDRAW',charts[id],id,charts);
 		if( 'undefined' === typeof charts[ id ] ) {
 			for( var target in charts[ id ] ) {
 				req = charts[ id ][ target ];
@@ -1363,7 +1364,6 @@ var Gable = (function(){
 	//Read
 	Private.data.table.get = function( table_id ) {
 		table_id = table_id;
-		console.log('getting',table_id,Private.cache[ table_id ]);
 		if( 'undefined' !== typeof Private.cache[ table_id ] ) {
 			return Private.cache[ table_id ];
 		} 
