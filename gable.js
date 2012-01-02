@@ -1500,11 +1500,14 @@ console.log('REQ', req, value, table_id, row, column, on_success, on_error);
 		//TODO: validate row 
 		var table = Private.cache[ table_id ];
 
+		console.log('INPUT',value);
 		var raw = {};
 		if( Private.data.type.tranformsTo( 'input', 'raw' ) ) {
 			raw = Private.data.types.input.transform.raw( Private.data.types.raw.transform.filter( value ) );
 		}
+
 		value = raw.rows[ 0 ];
+		console.log('INPUT TO RAW',value);
 		var rw = table.rows[ row ];
 
 		if( null === rw || 'undefined' === typeof rw ) {
