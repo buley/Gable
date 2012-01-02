@@ -130,7 +130,7 @@ var Gable = (function(){
 					charts[ id ][ target ]  = {};
 				}
 				
-				charts[ id ][ target ] = req;
+				charts[ id ][ req.target ] = req;
 
 			}
 
