@@ -177,6 +177,7 @@ var Gable = (function(){
 		var column = req.column;
 		var chs = charts[ id ];
 		var on_success = function( res ) {
+			console.log("CHARTS",chs);
 			if( 'function' === typeof req.on_success ) {
 				req.on_success( res );
 			}
