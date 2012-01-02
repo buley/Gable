@@ -156,9 +156,32 @@ var Gable = (function(){
 
 	Public.prototype.update = function() {
 		console.log( 'update', current_table, arguments );
+		var req = arguments[ 0 ];
+		if( 'undefined' === typeof arguments[ 0 ] ) {
+			if( 'function' === typeof req.on_error ) {
+				req.on_error( req );
+			}
+			return;
+		}
+		var id = current_table;
+		var value = req.value;
+		var row;
+		var column;
+		if( 'undefined' !== typeof req.row && 'undefined' !== typeof req.column ) {
+			Private.data.cell.update( value, id, row, column );
+		} else if( 'undefined' !== typeof req.row ) {
+			Private.data.row.update( value, id, row );
+		} else if( 'undefined' !== typeof req.column ) {
+			Private.data.column.update( value, id, column );
+		} else {
+			Private.data.table.update( value, id );
+		}
+
+
+		if( 'function' === typeof req.on_success ) {
+			req.on_success( req.id );	
+		}
 		return Public.prototype;
-		//on_success
-		//on_error
 	};
 
 	Public.prototype.dump = function() {
@@ -1092,6 +1115,14 @@ var Gable = (function(){
 	Private.data.update = function( id, value, meta ) {
 		meta = ( 'undefined' === typeof meta || 'object' !== typeof meta ) ? {} : meta;
 
+		var raw = {};
+		if( Private.data.type.tranformsTo( 'input', 'raw' ) ) {
+			raw = Private.data.types.input.transform.raw( Private.data.types.raw.transform.filter( value ) );
+		}
+
+		var table = Private.data.table.create( raw.columns, raw.rows, meta, id );
+		Private.data.table.update( table );
+		
 	};
 
 
@@ -1393,10 +1424,31 @@ var Gable = (function(){
 
 	};
 
-	Private.data.table.update = function() {};
-	Private.data.row.update = function() {};
-	Private.data.column.update = function() {};
-	Private.data.cell.update = function() {};
+	Private.data.table.update = function( value, table_id, row, column ) {
+		//TODO: validate cell
+		var table = Private.cache[ table_id ];
+		Private.cache[ table.id ] = table;
+	};
+
+	Private.data.row.update = function( value, table_id, row ) {
+		//TODO: validate row 
+		var table = Private.cache[ table_id ];
+		console.log( "ROW", table.rows[ row ] );
+	};
+
+	Private.data.column.update = function( value, table_id, column ) {
+		//TODO: validate column 
+		var table = Private.cache[ table_id ];
+		console.log( "COLUMN", table.columns[ column ] );
+	};
+
+	Private.data.cell.update = function( value, table_id, row, column ) {
+		//TODO: validate column 
+		var table = Private.cache[ table_id ];
+		console.log( "CELL", table.rows[ row ][ column ] );
+	};
+
+
 
 	Private.data.update.value = function() {};
 	Private.data.table.update.value = function() {};
