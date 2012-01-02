@@ -165,14 +165,14 @@ var Gable = (function(){
 		}
 		var id = current_table;
 		var value = req.value;
-		var row;
-		var column;
+		var row = req.row;
+		var column = req.column;
 		console.log('REQ',req);
-		if( 'undefined' !== typeof req.row && 'undefined' !== typeof req.column ) {
+		if( 'undefined' !== typeof row && 'undefined' !== typeof column ) {
 			Private.data.cell.update( value, id, row, column );
-		} else if( 'undefined' !== typeof req.row ) {
+		} else if( 'undefined' !== typeof row ) {
 			Private.data.row.update( value, id, row );
-		} else if( 'undefined' !== typeof req.column ) {
+		} else if( 'undefined' !== typeof column ) {
 			Private.data.column.update( value, id, column );
 		} else {
 			Private.data.table.update( value, id );
