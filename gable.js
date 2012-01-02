@@ -290,8 +290,9 @@ var Gable = (function(){
 	Private.charts = Private.charts || {};
 
 	Private.charts.redraw = function( id ) {
-		console.log('REDRAW',charts[id],id,charts);
+
 		if( 'undefined' === typeof charts[ id ] ) {
+			console.log('REDRAW',charts[id],id,charts);
 			for( var target in charts[ id ] ) {
 				req = charts[ id ][ target ];
 				console.log('REDRAW REQ',req);
