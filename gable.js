@@ -123,7 +123,11 @@ var Gable = (function(){
 				}
 
 				chart.draw( dt, options );
-				Private.charts.redraw( id, req.target );
+	
+				if( 'undefined' === typeof tables[ id ] || ( 'undefined' !== typeof tables[ id ] ) ) {
+					tables[ id ][ req.target ] = req;
+				}
+
 
 			}
 
@@ -1555,13 +1559,6 @@ var Gable = (function(){
 	Private.data.row.update.timestamp = function() {};
 	Private.data.column.update.timestamp = function() {};
 	Private.data.cell.update.timestamp = function() {};
-
-	//Draw
-	Private.data.draw = function() {};
-	Private.data.table.draw = function() {};
-	Private.data.row.draw = function() {};
-	Private.data.column.draw = function() {};
-	Private.data.cell.draw = function() {};
 
 	/* Utilities */
 
