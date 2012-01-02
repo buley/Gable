@@ -168,25 +168,26 @@ var Gable = (function(){
 			if( 'function' === typeof req.on_error ) {
 				req.on_error( req );
 			}
-			return;
+			return Public.prototype;
 		}
 		var id = req.id || current_table;
 		var value = req.value;
 		var row = req.row;
 		var column = req.column;
+		var chs = charts[ id ];
 		var on_success = function( res ) {
+			console.log("CHARTS",chs);
 			if( 'function' === typeof req.on_success ) {
 				req.on_success( res );
 			}
 		};
 
 		var on_error = function() {
+
 			if( 'function' === typeof req.on_error ) {
 				req.on_error();
 			}
 		};
-
-
 
 		console.log('REQ',req);
 		if( 'undefined' !== typeof row && 'undefined' !== typeof column ) {
