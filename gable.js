@@ -498,7 +498,7 @@ console.log('REQ', req, value, table_id, row, column, on_success, on_error);
 		for( x = 0; x < rowcount; x += 1 ) {
 
 			item = rows[ x ];
-			if( null !== item.value ) {
+			if( null !== item && 'undefined' !== typeof item && null !== item.value ) {
 				var colcells = [];
 				
 				if( Private.utils.isArray( item.value ) ) {
