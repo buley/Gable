@@ -465,33 +465,33 @@ var Gable = (function(){
 			var addition = {};
 			if( null === item ) {
 				addition = null;
-			}
-			
-			if( 'undefined' !== typeof item && 'undefined' !== typeof item.id && null !== item.id ) {
-				addition[ 'id' ] = item.id;
-				addition[ 'label' ] = item.id;
-			}
-
-			if( 'undefined' !== typeof item && 'undefined' !== typeof item.meta && 'undefined' !== typeof item.meta.label ) {
-				delete item.meta.label;
-			}
-
-			if( 'undefined' !== typeof item && 'undefined' !== typeof item.meta && 'undefined' !== typeof item.meta.label && null !== item.meta.label ) {
-				addition[ 'label' ] = item.meta.label;
 			} else {
-				if( 'undefined' === typeof addition[ 'label' ] ) {
-					addition[ 'label' ] = '';
+			
+				if( 'undefined' !== typeof item && 'undefined' !== typeof item.id && null !== item.id ) {
+					addition[ 'id' ] = item.id;
+					addition[ 'label' ] = item.id;
+				}
+	
+				if( 'undefined' !== typeof item && 'undefined' !== typeof item.meta && 'undefined' !== typeof item.meta.label ) {
+					delete item.meta.label;
+				}
+	
+				if( 'undefined' !== typeof item && 'undefined' !== typeof item.meta && 'undefined' !== typeof item.meta.label && null !== item.meta.label ) {
+					addition[ 'label' ] = item.meta.label;
+				} else {
+					if( 'undefined' === typeof addition[ 'label' ] ) {
+						addition[ 'label' ] = '';
+					}
+				}
+	
+				if( 'undefined' !== typeof item && 'undefined' !== typeof item.meta && !Private.utils.isEmpty( item.meta ) ) {
+					addition[ 'p' ] = item.meta;
+				}
+	
+				if(  'undefined' !== typeof item && 'undefined' !== typeof item.type && null !== item.type ) {
+					addition[ 'type' ] = item.type;
 				}
 			}
-
-			if( 'undefined' !== typeof item && 'undefined' !== typeof item.meta && !Private.utils.isEmpty( item.meta ) ) {
-				addition[ 'p' ] = item.meta;
-			}
-
-			if(  'undefined' !== typeof item && 'undefined' !== typeof item.type && null !== item.type ) {
-				addition[ 'type' ] = item.type;
-			}
-
 			newcols.push( addition );
 
 		}
