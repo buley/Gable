@@ -1434,20 +1434,20 @@ var Gable = (function(){
 	Private.data.row.update = function( value, table_id, row ) {
 		//TODO: validate row 
 		var table = Private.cache[ table_id ];
-		console.log( "ROW", table.rows[ row ] );
+		console.log( "ROW", table.rows[ row ].value );
 	};
 
 	Private.data.column.update = function( value, table_id, column ) {
 		//TODO: validate column 
 		var table = Private.cache[ table_id ];
-		console.log( "COLUMN", table.columns[ column ] );
+		console.log( "COLUMN", table.columns[ column ].value );
 	};
 
 	Private.data.cell.update = function( value, table_id, row, column ) {
 		//TODO: validate column 
 		var table = Private.cache[ table_id ];
 		console.log( "TABLE", table, row, column );
-		console.log( "CELL", table.rows[ row ].value[ column ] );
+		console.log( "CELL", table.rows[ row ].value[ column ].value );
 	};
 
 
