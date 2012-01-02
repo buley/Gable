@@ -113,6 +113,8 @@ var Gable = (function(){
 					chart = new google.visualization.CandlestickChart( target );
 				} else if( 'bar' === req.type ) {
 					chart = new google.visualization.BarChart( target );
+				} else if( 'stepped' === req.type ) {
+					chart = new google.visualization.SteppedAreaChart( target );
 				} else if( 'area' === req.type ) {
 					chart = new google.visualization.AreaChart( target );
 				} else if( 'column' === req.type ) {
