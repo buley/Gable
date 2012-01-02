@@ -1495,7 +1495,7 @@ var Gable = (function(){
 
 	};
 
-	Private.data.row.update = function( value, table_id, row, row_id, row_meta, on_success, on_error ) {
+	Private.data.row.update = function( val, table_id, row, row_id, row_meta, on_success, on_error ) {
 		//TODO: validate row 
 		var table = Private.cache[ table_id ];
 
@@ -1504,7 +1504,7 @@ var Gable = (function(){
 			raw = Private.data.types.input.transform.raw( Private.data.types.raw.transform.filter( value ) );
 		}
 
-		value = raw.rows[ 0 ];
+		val = raw.rows[ 0 ];
 		var rw = table.rows[ row ];
 
 		if( null === rw || 'undefined' === typeof rw ) {
@@ -1524,13 +1524,13 @@ var Gable = (function(){
 		}
 
 		//value = Private.data.row.create( value, row_meta, row_id );
-		table.rows[ row ] = value;
+		table.rows[ row ] = val;
 
 		if( 'function' === typeof on_success ) {
-			on_success( { 'table': table_id, 'row': row }  );	
+			on_success( { 'table': table_id, 'value': val, 'row': row }  );	
 		}
 		if( 'function' === typeof on_error ) {
-			on_error( { 'table': table_id, 'row': row } );	
+			on_error( { 'table': table_id, 'value': val, 'row': row } );	
 		}
 
 	};
