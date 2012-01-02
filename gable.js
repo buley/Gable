@@ -498,36 +498,37 @@ console.log('REQ', req, value, table_id, row, column, on_success, on_error);
 		for( x = 0; x < rowcount; x += 1 ) {
 
 			item = rows[ x ];
-			var colcells = [];
+			if( null !== item.value ) {
+				var colcells = [];
+				
+				if( Private.utils.isArray( item.value ) ) {
+					var z, arrlen = item.value.length;
+					for( z = 0; z < arrlen; z += 1 ) {
+						if( 'undefined' !== typeof item.value && null !== item.value ) {
+
+							var addition = {};
+
+							if( 'undefined' !== typeof item.meta && 'undefined' !== typeof item.meta.label && null !== item.meta.label ) {
+								addition[ 'f' ] = item.meta.label;
+							}
 			
-			if( Private.utils.isArray( item.value ) ) {
-				var z, arrlen = item.value.length;
-				for( z = 0; z < arrlen; z += 1 ) {
-					if( 'undefined' !== typeof item.value && null !== item.value ) {
+							if( 'undefined' !== typeof item.meta && 'undefined' !== typeof item.meta.label ) {
+								delete item.meta.label;
+							}
 
-						var addition = {};
+							if( 'undefined' !== typeof item.meta && !Private.utils.isEmpty( item.meta ) ) {
+								addition[ 'p' ] = item.meta;
+							}
 
-						if( 'undefined' !== typeof item.meta && 'undefined' !== typeof item.meta.label && null !== item.meta.label ) {
-							addition[ 'f' ] = item.meta.label;
+							addition[ 'v' ] = item.value[  z ];
+							colcells.push( addition );
 						}
-		
-						if( 'undefined' !== typeof item.meta && 'undefined' !== typeof item.meta.label ) {
-							delete item.meta.label;
-						}
+					}	
+				
+				}
 
-						if( 'undefined' !== typeof item.meta && !Private.utils.isEmpty( item.meta ) ) {
-							addition[ 'p' ] = item.meta;
-						}
-
-						addition[ 'v' ] = item.value[  z ];
-						colcells.push( addition );
-					}
-				}	
-			
+				newrows.push( { 'c': colcells } );
 			}
-
-			newrows.push( { 'c': colcells } );
-
 		}
 		var newobj = {
 			'cols': newcols
