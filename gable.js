@@ -327,13 +327,8 @@ var Gable = (function(){
 				req = charts[ id ][ target ];
 				if( 'undefined' === typeof tables[ id ] || ( 'undefined' !== typeof tables[ id ] && tables[ id ].delay !== true ) ) {
 					Public( id ).draw( req );
-				} else {
-					if( 'undefined' === typeof tables[ id ].pending ) {
-						tables[ id ].pending = [];
-					}
-					var pend = {};
-					pend[ target ] = req;
-					tables[ id ].pending.push( pend );
+				} else if( tables[ id ].delay === true ) {
+					tables[ id ] = req;
 				}
 			}
 		}
