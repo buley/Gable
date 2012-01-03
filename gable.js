@@ -15,7 +15,7 @@ var Gable = (function(){
 		that = this;
 		current_table = table_id;
 		tables[ table_id ] = {};
-		tables[ table_id ].delayed = false;
+		tables[ table_id ].delay = false;
 		tables[ table_id ].value = false;
 		if( 'undefined' === typeof google ||  'undefined' === typeof google.visualization ) {
 			var coreload = function() {
@@ -270,13 +270,10 @@ var Gable = (function(){
 		if( 'undefined' !== typeof tables[ id ] && true === tables[ id ].delay  ) {
 			var queuelen = tables[ id ].queue.length;
 			if( queuelen > 0 ) {
-				for( var x = 0; x < queuelen; x += 1 ) {
-					var req = tables[ id ].queue[ x ];
-					for( var attr in req ) {
-						Gable( id ).draw( req[ attr ] );
-					}
-					delete tables[ id ].queue[ x ];
+				for( var attr in tables[ id ].queue ) {
+					Gable( id ).draw( tables[ id ].queue[ attr ] );
 				}
+				tables[ id ].queue = {};
 			}
 		}
 		tables[ id ].delay = false;
@@ -337,11 +334,9 @@ var Gable = (function(){
 					Public( id ).draw( req );
 				} else if( tables[ id ].delay === true ) {
 					if( 'undefined' === typeof tables[ id ].queue ) {
-						tables[ id ].queue = [];
+						tables[ id ].queue = {};
 					}
-					var pend = {};
-					pend[ target ] = req;
-					tables[ id ].queue.push( pend );
+					tables[ id ].queue[ target ] = req;
 				}
 			}
 		}
