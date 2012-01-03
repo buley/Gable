@@ -1737,7 +1737,7 @@ var Gable = (function(){
 	Private.data.cell.remove = function( table_id, row, column, on_success, on_error ) {
 	
 		var table = Private.cache[ table_id ];
-		if( 'undefined' !=== typeof table.rows[ row ].value[ column ] ) {
+		if( 'undefined' !== typeof table.rows[ row ].value[ column ] ) {
 			if( 'function' === typeof on_success ) {
 				on_success( { 'table': table_id, 'row': row, 'column': column }  );	
 			}
