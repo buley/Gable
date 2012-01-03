@@ -1666,13 +1666,16 @@ var Gable = (function(){
 	Private.data.cell.update = function( value, table_id, row, column, on_success, on_error ) {
 		//TODO: validate column 
 		var table = Private.cache[ table_id ];
-		table.rows[ row ].value[ column ] = value;
+		if( 'undefined' === typeof table.rows[ row ] || 'undefined' === table.rows[ row ].value[ column ] ) {
+			if( 'function' === typeof on_error ) {
+				on_error( { 'table': table_id, 'row': row, 'column': column } );	
+			}
+
+			table.rows[ row ].value[ column ] = value;
+		}
 
 		if( 'function' === typeof on_success ) {
 			on_success( { 'table': table_id, 'row': row, 'column': column }  );	
-		}
-		if( 'function' === typeof on_error ) {
-			on_error( { 'table': table_id, 'row': row, 'column': column } );	
 		}
 	};
 	
