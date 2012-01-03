@@ -186,11 +186,17 @@ var Gable = (function(){
 			}
 		};
 
-		if( 'undefined' !== typeof row && 'undefined' !== typeof column ) {
+		if( isNan( column ) ) {
+			column = null;
+		}
+		if( isNan( row ) ) {
+			row = null;
+		}
+		if( 'undefined' !== typeof row && null !== row && 'undefined' !== typeof column && null !== column ) {
 			Private.data.cell.update( value, table_id, row, column, on_success, on_error );
-		} else if( 'undefined' !== typeof row ) {
+		} else if( 'undefined' !== typeof row && null !== column ) {
 			Private.data.row.update( value, table_id, row, id, meta, on_success, on_error );
-		} else if( 'undefined' !== typeof column ) {
+		} else if( 'undefined' !== typeof column && null !== column ) {
 		
 			Private.data.column.update( value, table_id, column, id, meta, on_success, on_error );
 		} else {
@@ -212,6 +218,7 @@ var Gable = (function(){
 		var req = arguments[ 0 ];
 		if( 'undefined' === typeof arguments[ 0 ] ) {
 			if( 'function' === typeof req.on_error ) {
+
 				req.on_error( req );
 			}
 			return Public.prototype;
