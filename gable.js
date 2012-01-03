@@ -896,7 +896,7 @@ var Gable = (function(){
 
 			if( true === wasarray ) {
 				var rw = Private.data.row.create( tmpstack, row_meta, row_id);
-				if( tmpstack > 0 ) {
+				if( tmpstack.length > 0 ) {
 					rows.push(rw);
 					tmpstack = [];
 				}
