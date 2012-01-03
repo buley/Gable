@@ -5,6 +5,7 @@ var Gable = (function(){
 
 	/* This object is returned at the bottom of the function. In between lay the Private object code. */
 
+
 	var current_table = {};
 	var current_element = {};
 	var tables = {};
