@@ -358,7 +358,7 @@ var Gable = (function(){
 			return obj.slice(0);
 		}
 		for( var x in obj ) {
-			if( "object" == typeof obj[ x ] ) {
+			if( "object" === typeof obj[ x ] ) {
 				clone[ x ] = Private.utils.clone( obj[ x ] );
 			} else {
 				clone[ x ] = obj[ x ];
