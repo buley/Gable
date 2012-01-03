@@ -1674,11 +1674,12 @@ var Gable = (function(){
 			}
 
 			table.rows[ row ].value[ column ] = value;
+	
+			if( 'function' === typeof on_success ) {
+				on_success( { 'table': table_id, 'row': row, 'column': column }  );	
+			}
 		}
 
-		if( 'function' === typeof on_success ) {
-			on_success( { 'table': table_id, 'row': row, 'column': column }  );	
-		}
 	};
 	
 	Private.data.remove = function(data, id, type, format, meta,parents,children) {
