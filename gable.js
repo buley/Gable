@@ -1595,6 +1595,11 @@ var Gable = (function(){
 		var rw = table.rows[ row ];
 
 		if( null === rw || 'undefined' === typeof rw ) {
+
+			if( 'function' === typeof on_error ) {
+				on_error( { 'table': table_id, 'value': val, 'row': row } );	
+			}
+
 			return null;
 		}
 		if( null === row_id || 'undefined' === typeof row_id ) {
@@ -1616,10 +1621,7 @@ var Gable = (function(){
 		if( 'function' === typeof on_success ) {
 			on_success( { 'table': table_id, 'value': val, 'row': row }  );	
 		}
-		if( 'function' === typeof on_error ) {
-			on_error( { 'table': table_id, 'value': val, 'row': row } );	
-		}
-
+	
 	};
 
 	Private.data.column.update = function( val, table_id, column, column_id, column_meta, on_success, on_error ) {
