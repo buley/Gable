@@ -1739,7 +1739,7 @@ var Gable = (function(){
 		var col = table.columns[ column ];
 		if( 'undefined' !== typeof col && 'undefined' !== typeof Private.cache[ table_id ] ) {
 
-			Private.cache[ table_id ].columns[ column ].splice( column, 1 );
+			Private.cache[ table_id ].columns.splice( column, 1 );
 			for( var z = 0; z < table.rows.length; z += 1 ) {
 				table.rows.value.splice( column, 1 );
 			}
