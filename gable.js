@@ -850,8 +850,12 @@ var Gable = (function(){
 										colatters.push( val[y][zattr] );
 									}
 								}
-								var rw = Private.data.row.create( colatters, row_meta, row_id );
-								rows.push(rw);
+								if( colatters.length > 1 ) {
+									var rw = Private.data.row.create( colatters, row_meta, row_id );
+									rows.push(rw);
+								} else {
+									tmpstack.push( colatters[0] );
+								}
 
 							} else {
 								tmpstack.push( val[y] );
