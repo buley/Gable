@@ -1747,12 +1747,13 @@ var Gable = (function(){
 				on_success( { 'table': table_id, 'row': row, 'column': column }  );	
 			}
 
-		} if( 'function' === typeof on_error ) {
+		} else {
+			if( 'function' === typeof on_error ) {
 
 			on_error( { 'table': table_id, 'row': row, 'column': column } );	
 
+			}
 		}
-
 	};
 
 
