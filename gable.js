@@ -267,6 +267,9 @@ var Gable = (function(){
 	Public.prototype.commit = function() {
 		var id = current_table;
 		if( 'undefined' !== typeof tables[ id ] && true === tables[ id ].delay  ) {
+			if( 'undefined' === typeof tables[ id ].queue ) {
+				return;
+			}
 			var queuelen = tables[ id ].queue.length;
 			if( queuelen > 0 ) {
 				for( var attr in tables[ id ].queue ) {
