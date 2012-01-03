@@ -267,18 +267,16 @@ var Gable = (function(){
 	Public.prototype.commit = function() {
 		var id = current_table;
 		if( 'undefined' !== typeof tables[ id ] && true === tables[ id ].delay  ) {
-			if( 'undefined' === typeof tables[ id ].queue ) {
-				return;
-			}
-			var queuelen = tables[ id ].queue.length;
-			if( queuelen > 0 ) {
+			if( 'undefined' !== typeof tables[ id ].queue ) {
 				for( var attr in tables[ id ].queue ) {
 					Gable( id ).draw( tables[ id ].queue[ attr ] );
 				}
 				tables[ id ].queue = {};
 			}
+
+			tables[ id ].delay = false;
 		}
-		tables[ id ].delay = false;
+
 		return Public.prototype;
 	};
 
