@@ -267,8 +267,12 @@ var Gable = (function(){
 	Public.prototype.commit = function() {
 		var id = current_table;
 		if( 'undefined' !== typeof tables[ id ] && true === tables[ id ].delay  ) {
-			if( true === tables[ id ].pending ) {
-				Gable( id ).draw( tables[ id ] );
+			if( true === tables[ id ].delay ) {
+				var queuelen = tables[ id ].queue;
+				for( var x = 0; x < in queuelen; x += 1 ) {
+					var req tables[ id ].queue[ x ];
+					Gable( id ).draw( req );
+				}
 			}
 		}
 		tables[ id ].delay = false;
@@ -328,7 +332,12 @@ var Gable = (function(){
 				if( 'undefined' === typeof tables[ id ] || ( 'undefined' !== typeof tables[ id ] && tables[ id ].delay !== true ) ) {
 					Public( id ).draw( req );
 				} else if( tables[ id ].delay === true ) {
-					tables[ id ] = req;
+					if( 'undefined' === typeof tables[ id ].queue ) {
+						tables[ id ].queue = [];
+					}
+					var pend = {};
+					pend[ target ] = req;
+					tables[ id ].queue.push( pend );
 				}
 			}
 		}
