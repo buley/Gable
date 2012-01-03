@@ -1738,6 +1738,7 @@ var Gable = (function(){
 	
 		var table = Private.cache[ table_id ];
 		if( 'undefined' !== typeof table.rows[ row ].value[ column ] ) {
+			delete table.rows[ row ].value[ column ];
 			if( 'function' === typeof on_success ) {
 				on_success( { 'table': table_id, 'row': row, 'column': column }  );	
 			}
