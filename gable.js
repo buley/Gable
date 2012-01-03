@@ -1732,7 +1732,7 @@ var Gable = (function(){
 		}
 	};
 
-	Private.data.column.remove = function( val, table_id, column, column_id, column_meta, on_success, on_error ) {
+	Private.data.column.remove = function( table_id, column, on_success, on_error ) {
 		//TODO: validate column 
 
 		var table = Private.cache[ table_id ];
