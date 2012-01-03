@@ -269,7 +269,6 @@ var Gable = (function(){
 		if( 'undefined' !== typeof tables[ id ] && true === tables[ id ].delay  ) {
 			var queuelen = tables[ id ].queue.length;
 			if( queuelen > 0 ) {
-				console.log('QUEUE',tables[id].queue);
 				for( var x = 0; x < queuelen; x += 1 ) {
 					var req = tables[ id ].queue[ x ];
 					for( var attr in req ) {
