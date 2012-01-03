@@ -241,11 +241,17 @@ var Gable = (function(){
 				req.on_error();
 			}
 		};
-		if( 'undefined' !== typeof row && 'undefined' !== typeof column ) {
+		if( isNan( column ) ) {
+			column = null;
+		}
+		if( isNan( row ) ) {
+			row = null;
+		}
+		if( 'undefined' !== typeof row && null !== row && 'undefined' !== typeof column && null !== column ) {
 			Private.data.cell.remove( table_id, row, column, on_success, on_error );
-		} else if( 'undefined' !== typeof row ) {
+		} else if( 'undefined' !== typeof row && null !== row) {
 			Private.data.row.remove( table_id, row, on_success, on_error );
-		} else if( 'undefined' !== typeof column ) {
+		} else if( 'undefined' !== typeof column && null !== column ) {
 			Private.data.column.remove( table_id, column, on_success, on_error );
 		} else {
 			Private.data.table.remove( table_id, on_success, on_error );
