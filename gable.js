@@ -1720,6 +1720,12 @@ var Gable = (function(){
 			}
 			if( Private.cache[ table_id ].rows.length < 1 && soft !== true ) {
 				Private.data.table.remove( table_id, on_success, on_error );
+				for( var attr in tables[ id ] ) {
+					var node = document.getElementById( attr );
+					node.parentNode.removeChild( node );
+				}
+				tables[ id ] = {};
+				delete tables[ id ];
 			} else {
 				if( 'function' === typeof on_success ) {
 					on_success( { 'table': table_id, 'row': row }  );	
@@ -1745,6 +1751,12 @@ var Gable = (function(){
 			}
 			if( Private.cache[ table_id ].columns.length < 1 && soft !== true ) {
 				Private.data.table.remove( table_id, on_success, on_error );
+				for( var attr in tables[ id ] ) {
+					var node = document.getElementById( attr );
+					node.parentNode.removeChild( node );
+				}
+				tables[ id ] = {};
+				delete tables[ id ];
 			} else {
 
 				if( 'function' === typeof on_success ) {
