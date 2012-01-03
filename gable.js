@@ -1714,7 +1714,7 @@ var Gable = (function(){
 			delete Private.cache[ table_id ].rows[ row ];
 			var count = 0;
 			for( var attr in Private.cache[ table_id ].rows ) {
-				if( Private.cache[ table_id ].rows.hasOwnProperty( attr ) { 
+				if( Private.cache[ table_id ].rows.hasOwnProperty( attr ) ) { 
 					count++;
 				}
 			}
