@@ -232,13 +232,13 @@ var Gable = (function(){
 			}
 		};
 		if( 'undefined' !== typeof row && 'undefined' !== typeof column ) {
-			Private.data.cell.update( value, table_id, row, column, on_success, on_error );
+			Private.data.cell.remove( table_id, row, column, on_success, on_error );
 		} else if( 'undefined' !== typeof row ) {
-			Private.data.row.update( value, table_id, row, id, meta, on_success, on_error );
+			Private.data.row.remove( table_id, row, on_success, on_error );
 		} else if( 'undefined' !== typeof column ) {
-			Private.data.column.update( value, table_id, column, id, meta, on_success, on_error );
+			Private.data.column.remove( table_id, column, on_success, on_error );
 		} else {
-			Private.data.table.update( value, table_id, id, meta, on_success, on_error );
+			Private.data.table.remove( table_id, on_success, on_error );
 		}
 		return Public.prototype;
 	};
