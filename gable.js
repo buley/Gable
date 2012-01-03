@@ -677,10 +677,10 @@ var Gable = (function(){
 				}
 			}
 			if( true === big_flag ) {
-				var valuelen = biggest.length;
 				var column_id = null;
 				var column_type = null;
 				if (Private.utils.isArray(biggest)) {
+					var valuelen = biggest.length;
 					for (var x = 0; x < valuelen; x += 1) {
 						var val = biggest[x];
 						if (null !== val && 'object' === typeof val && !( val instanceof Date ) && !Private.utils.isArray(val)) {
