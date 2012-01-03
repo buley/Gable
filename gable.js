@@ -613,7 +613,6 @@ var Gable = (function(){
 					var valuelen = value[ attr ].length;
 					var nonulls = true;
 					for( var x = 0; x < valuelen; x += 1 ) {
-
 						if( null !== value[ attr ][ x ] && 'object' === typeof value[ attr ][ x ]  && !Private.utils.isArray( value[ attr ][ x ] ) && !( value[ attr ][ x ] instanceof Date ) ) { 
 							valuelen = 0;
 							for( var attr2 in value[ attr ][ x ] ) {
@@ -733,9 +732,13 @@ var Gable = (function(){
 									tmp_val.push( val[attr2] );
 								}
 							}
-							val = tmp_val;
-							var rw = Private.data.row.create(val, row_meta, row_id);
-							rows.push(rw);
+							if( tmp_val.length === 1 ) {
+								tmpstack.push( val[ 0 ] );
+							} else {
+								val = tmp_val;
+								var rw = Private.data.row.create(val, row_meta, row_id);
+								rows.push(rw);
+							}
 						} else {
 
 							wasarray = true;
