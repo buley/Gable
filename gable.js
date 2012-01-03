@@ -169,8 +169,8 @@ var Gable = (function(){
 		var value = req.value;
 		var meta = req.meta || null;
 		var type = req.type;
-		var row = req.row;
-		var column = req.column;
+		var row = req.row - 1; //array indexed at zero
+		var column = req.column - 1;
 		var chs = charts[ id ];
 		var on_success = function( res ) {
 			Private.charts.redraw( table_id );
@@ -1711,11 +1711,19 @@ var Gable = (function(){
 		//TODO: validate row 
 		var table = Private.cache[ table_id ];
 		if( 'undefined' !== typeof table.rows[ row ] ) {
-
 			delete Private.cache[ table_id ].rows[ row ];
-
-			if( 'function' === typeof on_success ) {
-				on_success( { 'table': table_id, 'row': row }  );	
+			var count = 0;
+			for( var attr in Private.cache[ table_id ].rows ) {
+				if( Private.cache[ table_id ].rows.hasOwnProperty( attr ) { 
+					count++;
+				}
+			}
+			if( count < 1 ) {
+				delete tablePrivate.data.row.remove( table_id, on_success, on_error );
+			} else {
+				if( 'function' === typeof on_success ) {
+					on_success( { 'table': table_id, 'row': row }  );	
+				}
 			}
 		} else {
 			if( 'function' === typeof on_error ) {
@@ -1731,7 +1739,10 @@ var Gable = (function(){
 		var col = table.columns[ column ];
 		if( 'undefined' !== typeof col ) {
 
-			delete Private.cache[ table_id ].columns[ column ];
+			Private.cache[ table_id ].columns[ column ].splice( column, 1 );
+			for( var z = 0; z < table.rows.length; z += 1 ) {
+				table.rows.value.splice( column, 1 );
+			}
 
 			if( 'function' === typeof on_success ) {
 				on_success( { 'table': table_id, 'column': column }  );	
@@ -1744,6 +1755,7 @@ var Gable = (function(){
 		}
 
 	};
+
 
 	Private.data.cell.remove = function( table_id, row, column, on_success, on_error ) {
 	
