@@ -1570,15 +1570,13 @@ var Gable = (function(){
 		}
 
 		var newtable = Private.data.table.create( raw.columns, raw.rows, meta, table_id );
-
+i
 		Private.cache[ table_id ] = newtable;
 
 		if( 'function' === typeof on_success ) {
 			on_success( { 'table': table_id, 'value': newtable } );
 		}
-		if( 'function' === typeof on_error ) {
-			on_error( { 'table': table_id, 'value': newtable } );
-		}
+
 
 	};
 
