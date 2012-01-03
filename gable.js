@@ -186,10 +186,10 @@ var Gable = (function(){
 			}
 		};
 
-		if( isNan( column ) ) {
+		if( isNaN( column ) ) {
 			column = null;
 		}
-		if( isNan( row ) ) {
+		if( isNaN( row ) ) {
 			row = null;
 		}
 		if( 'undefined' !== typeof row && null !== row && 'undefined' !== typeof column && null !== column ) {
