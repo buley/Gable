@@ -321,6 +321,7 @@ var Gable = (function(){
 	Private.charts = Private.charts || {};
 
 	Private.charts.redraw = function( id ) {
+		var req;
 		if( 'undefined' !== typeof charts[ id ] ) {
 			for( var target in charts[ id ] ) {
 				req = charts[ id ][ target ];
