@@ -1759,7 +1759,7 @@ var Gable = (function(){
 	/* Utilities */
 
 	Private.utils.isArray = function(obj) {
-		if( obj === null ) {
+		if( 'undefind' === typeof obj || obj === null ) {
 			return false;
 		}
 	    if ( 'undefined' === typeof obj.isArray ) {
