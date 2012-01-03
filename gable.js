@@ -1741,7 +1741,7 @@ var Gable = (function(){
 
 			Private.cache[ table_id ].columns.splice( column, 1 );
 			for( var z = 0; z < table.rows.length; z += 1 ) {
-				table.rows.value.splice( column, 1 );
+				table.rows[ z ].value.splice( column, 1 );
 			}
 
 			if( 'function' === typeof on_success ) {
