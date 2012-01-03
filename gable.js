@@ -738,7 +738,7 @@ var Gable = (function(){
 								val = tmp_val;
 								var rw = Private.data.row.create(val, row_meta, row_id);
 								rows.push(rw);
-							}
+							//}
 						} else {
 
 							wasarray = true;
