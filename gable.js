@@ -216,7 +216,7 @@ var Gable = (function(){
 		var table_id = current_table;
 		var row = req.row;
 		var column = req.column;
-		var chs = charts[ id ];
+		var chs = charts[ table_id ];
 		var on_success = function( res ) {
 			console.log('success remove',res);
 			Private.charts.redraw( table_id );
@@ -495,35 +495,32 @@ var Gable = (function(){
 			item = columns[ x ];
 			
 			var addition = {};
-			if( null === item ) {
-				addition = { type: 'string', 'id': null, 'label':null, 'meta': null };
-			} else {
 			
-				if( 'undefined' !== typeof item && 'undefined' !== typeof item.id && null !== item.id ) {
-					addition[ 'id' ] = item.id;
-					addition[ 'label' ] = item.id;
-				}
-	
-				if( 'undefined' !== typeof item && 'undefined' !== typeof item.meta && 'undefined' !== typeof item.meta.label ) {
-					delete item.meta.label;
-				}
-	
-				if( 'undefined' !== typeof item && 'undefined' !== typeof item.meta && 'undefined' !== typeof item.meta.label && null !== item.meta.label ) {
-					addition[ 'label' ] = item.meta.label;
-				} else {
-					if( 'undefined' === typeof addition[ 'label' ] ) {
-						addition[ 'label' ] = '';
-					}
-				}
-	
-				if( 'undefined' !== typeof item && 'undefined' !== typeof item.meta && !Private.utils.isEmpty( item.meta ) ) {
-					addition[ 'p' ] = item.meta;
-				}
-	
-				if(  'undefined' !== typeof item && 'undefined' !== typeof item.type && null !== item.type ) {
-					addition[ 'type' ] = item.type;
+			if( 'undefined' !== typeof item.id && null !== item.id ) {
+				addition[ 'id' ] = item.id;
+				addition[ 'label' ] = item.id;
+			}
+
+			if( 'undefined' !== typeof item.meta && 'undefined' !== typeof item.meta.label ) {
+				delete item.meta.label;
+			}
+
+			if( 'undefined' !== typeof item.meta && 'undefined' !== typeof item.meta.label && null !== item.meta.label ) {
+				addition[ 'label' ] = item.meta.label;
+			} else {
+				if( 'undefined' === typeof addition[ 'label' ] ) {
+					addition[ 'label' ] = '';
 				}
 			}
+
+			if( 'undefined' !== typeof item.meta && !Private.utils.isEmpty( item.meta ) ) {
+				addition[ 'p' ] = item.meta;
+			}
+
+			if( 'undefined' !== typeof item.type && null !== item.type ) {
+				addition[ 'type' ] = item.type;
+			}
+
 			newcols.push( addition );
 
 		}
@@ -1684,7 +1681,7 @@ var Gable = (function(){
 	/* Utilities */
 
 	Private.utils.isArray = function(obj) {
-		if( obj === null || 'undefined' === typeof obj ) {
+		if( obj === null ) {
 			return false;
 		}
 	    if ( 'undefined' === typeof obj.isArray ) {
