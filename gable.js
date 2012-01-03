@@ -264,7 +264,7 @@ var Gable = (function(){
 	Public.prototype.commit = function() {
 		console.log( 'commit', current_table, arguments );
 		var id = current_table;
-		if( 'undefined' === typeof tables[ id ] && true === tables[ id ].delay  ) {
+		if( 'undefined' !== typeof tables[ id ] && true === tables[ id ].delay  ) {
 			for( var attr in tables[ id ].pending ) {
 				Gable( id ).draw( tables[ id ][ attr ] );
 			}
