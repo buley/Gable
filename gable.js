@@ -271,7 +271,9 @@ var Gable = (function(){
 				var queuelen = tables[ id ].queue;
 				for( var x = 0; x < queuelen; x += 1 ) {
 					var req = tables[ id ].queue[ x ];
-					Gable( id ).draw( req );
+					for( var attr in req ) {
+						Gable( id ).draw( req[ attr ] );
+					}
 				}
 			}
 		}
