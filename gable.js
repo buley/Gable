@@ -14,9 +14,8 @@ var Gable = (function(){
 	var Public = function( table_id ) {
 		that = this;
 		current_table = table_id;
-		tables[ table_id ] = {};
-		tables[ table_id ].delay = false;
-		tables[ table_id ].value = false;
+		tables[ table_id ] = tables[ table_id ] || {};
+		tables[ table_id ].delay = tables[ table_id ].delay || false;
 		if( 'undefined' === typeof google ||  'undefined' === typeof google.visualization ) {
 			var coreload = function() {
 				Private.utils.loadChartType( 'corechart' );
