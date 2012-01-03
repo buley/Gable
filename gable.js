@@ -270,7 +270,7 @@ var Gable = (function(){
 			if( true === tables[ id ].pending ) {
 				var queuelen = tables[ id ].queue;
 				for( var x = 0; x < queuelen; x += 1 ) {
-					var req tables[ id ].queue[ x ];
+					var req = tables[ id ].queue[ x ];
 					Gable( id ).draw( req );
 				}
 			}
