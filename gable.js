@@ -185,15 +185,18 @@ var Gable = (function(){
 				req.on_error();
 			}
 		};
+
 		if( 'undefined' !== typeof row && 'undefined' !== typeof column ) {
 			Private.data.cell.update( value, table_id, row, column, on_success, on_error );
 		} else if( 'undefined' !== typeof row ) {
 			Private.data.row.update( value, table_id, row, id, meta, on_success, on_error );
 		} else if( 'undefined' !== typeof column ) {
+		
 			Private.data.column.update( value, table_id, column, id, meta, on_success, on_error );
 		} else {
 			Private.data.table.update( value, table_id, id, meta, on_success, on_error );
 		}
+
 		return Public.prototype;
 	};
 
@@ -244,7 +247,6 @@ var Gable = (function(){
 	};
 
 	Public.prototype.delay = function( milliseconds ) {
-		console.log( 'delay', current_table, arguments );
 		var id = current_table;
 		if( 'undefined' === typeof tables[ id ] ) {
 			tables[ id ] = {};
@@ -257,12 +259,12 @@ var Gable = (function(){
 	};
 
 	Public.prototype.cancel = function( milliseconds ) {
+		tables[ id ].delay = false;
 		console.log( 'cancel', current_table, arguments );
 		return Public.prototype;
 	};
 
 	Public.prototype.commit = function() {
-		console.log( 'commit', current_table, arguments );
 		var id = current_table;
 		if( 'undefined' !== typeof tables[ id ] && true === tables[ id ].delay  ) {
 			for( var attr in tables[ id ].pending ) {
