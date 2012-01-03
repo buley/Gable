@@ -209,37 +209,36 @@ document.getElementById( 'example5' ).parentNode.parentNode.childNodes[3].childN
 					<span class='g1of2 exampleCode'><pre>&nbsp;</pre></span>
 					<script type='text/javascript'>var tick = function() {
 
-	var datetime = new Date();
-	var doGauge = function( data, id ) {
-		var chart = {
-		    target: id
-		  , type: 'gauge'
-		  , meta: {
-			width: 250
-	       	      , height: 250
-	       	      , min: 1
-		    }
-		};
-		if( 'undefined' !== typeof data[ 'Hours' ] ) {
-			chart.meta.max = 24;
-		} else { 
-			chart.meta.max = 60;	
-		}	
-		Gable( 'time_gauges' + id )
-		.update( { 
-		    value: data
-		} )
-		.draw( chart );		
-	}	
+        var datetime = new Date();
+        var doGauge = function( data, id ) {
+                var chart = {
+                    target: id
+                  , type: 'gauge'
+                  , meta: {
+                      width: 350
+                      , min: 1
+                    }
+                };
+                if( 'undefined' !== typeof data[ 'Hours' ] ) {
+                        chart.meta.max = 24;
+                } else if( 'undefined' !== typeof data[ 'Minutes' ] || 'undefined' !== typeof data[ 'Seconds' ] ) {
+                        chart.meta.max = 60;    
+                }       
+                Gable( 'time_gauges' + id )
+                .add( { //TODO: should be update
+                    value: data
+                } )
+                .draw( chart );         
+        }       
 
-	doGauge( [ { 'Hours': datetime.getHours() } ], 'example6hours' );
-	doGauge( [ { 'Minutes': datetime.getMinutes() } ], 'example6minutes' );
-	doGauge( [ { 'Seconds': datetime.getSeconds() } ], 'example6seconds' );
+        doGauge( { 'Hours': datetime.getHours() }, 'example6hours' );
+        doGauge( { 'Minutes': datetime.getMinutes() }, 'example6minutes' );
+        doGauge( { 'Seconds': datetime.getSeconds() }, 'example6seconds' );
 
 };
+
 tick();
 //window.setInterval( tick, 1000 ); //TODO: Uncomment me
-
 </script>
 <script type='text/javascript'>
 document.getElementById( 'example6' ).parentNode.parentNode.childNodes[3].childNodes[0].innerHTML = document.getElementById( 'example6' ).parentNode.parentNode.childNodes[5].text;
