@@ -205,10 +205,42 @@ var Gable = (function(){
 	};
 
 	Public.prototype.remove = function( args ) {
-		console.log( 'remove', current_table, arguments );
+
+		var req = arguments[ 0 ];
+		if( 'undefined' === typeof arguments[ 0 ] ) {
+			if( 'function' === typeof req.on_error ) {
+				req.on_error( req );
+			}
+			return Public.prototype;
+		}
+		var table_id = current_table;
+		var row = req.row;
+		var column = req.column;
+		var chs = charts[ id ];
+		var on_success = function( res ) {
+			console.log('success remove',res);
+			Private.charts.redraw( table_id );
+			if( 'function' === typeof req.on_success ) {
+				req.on_success( res );
+			}
+		};
+
+		var on_error = function() {
+
+			if( 'function' === typeof req.on_error ) {
+				req.on_error();
+			}
+		};
+		if( 'undefined' !== typeof row && 'undefined' !== typeof column ) {
+			Private.data.cell.update( value, table_id, row, column, on_success, on_error );
+		} else if( 'undefined' !== typeof row ) {
+			Private.data.row.update( value, table_id, row, id, meta, on_success, on_error );
+		} else if( 'undefined' !== typeof column ) {
+			Private.data.column.update( value, table_id, column, id, meta, on_success, on_error );
+		} else {
+			Private.data.table.update( value, table_id, id, meta, on_success, on_error );
+		}
 		return Public.prototype;
-		//on_success
-		//on_error
 	};
 
 	Public.prototype.delay = function( milliseconds ) {
@@ -1453,20 +1485,77 @@ var Gable = (function(){
 		}
 		return null;
 	};
-	//TODO: Next up?
-	//Destroy
-	Private.data.remove = function() {};
-	Private.data.table.remove = function() {};
-	Private.data.row.remove = function() {};
-	Private.data.column.remove = function() {};
-	Private.data.cell.remove = function() {};
 
-	//Replace
-	Private.data.put = function() {};
-	Private.data.table.put = function() {};
-	Private.data.row.put = function() {};
-	Private.data.column.put = function() {};
-	Private.data.cell.put = function() {};
+	//Destroy
+	Private.data.destroy = function(data, id, type, format, meta,parents,children) {
+
+	};
+
+	Private.data.table.destroy = function( table_id, on_success, on_error ) {
+		if( 'undefined' !== typeof Private.cache[ table_id ] ) {	
+			delete Private.cache[ table_id ];
+		} else {
+			if( 'function' === typeof on_error ) {
+				on_error( { 'table': table_id, 'value': newtable } );
+			}
+		}
+
+		if( 'function' === typeof on_success ) {
+			on_success( { 'table': table_id } );
+		}
+
+	};
+
+	Private.data.row.destroy = function( table_id, row, on_success, on_error ) {
+		//TODO: validate 
+		var table = Private.cache[ table_id ];
+
+		if( null === rable.rows[ row ] || 'undefined' !== typeof table.rows[ row ] ) {
+
+			delete table.rows[ row ];
+
+			if( 'function' === typeof on_success ) {
+				on_success( { 'table': table_id, 'value': val, 'row': row }  );	
+			}
+		} else {
+			if( 'function' === typeof on_error ) {
+				on_error( { 'table': table_id, 'value': val, 'row': row } );	
+			}
+		}
+	};
+
+	Private.data.column.destroy = function( val, table_id, column, column_id, column_meta, on_success, on_error ) {
+		//TODO: validate 
+		var table = Private.cache[ table_id ];
+		var col = table.columns[ column ];
+		if( 'undefined' !== typeof col && null !== col ) {
+			delete table.columns;
+			if( 'function' === typeof on_success ) {
+				on_success( { 'table': table_id, 'value': val, 'column': column }  );	
+			} else {
+				if( 'function' === typeof on_error ) {
+					on_error( { 'table': table_id, 'value': val, 'column': column } );	
+				}
+			}
+
+		}
+	};
+
+	Private.data.cell.destroy = function( value, table_id, row, column, on_success, on_error ) {
+
+		//TODO: validate column 
+		var table = Private.cache[ table_id ];	
+		if( 'undefined' !== typeof table.rows[ row ] && 'undefined' !== typeof table.rows[ row ].value[ column ] && null !== table.rows[ row ].value[ column ] ) {
+			table.rows[ row ].value[ column ];	
+			if( 'function' === typeof on_success ) {
+				on_success( { 'table': table_id, 'row': row, 'column': column }  );	
+			}
+		} else {
+			if( 'function' === typeof on_error ) {
+				on_error( { 'table': table_id, 'row': row, 'column': column } );	
+			}
+		}
+	};
 
 	//Update
 	Private.data.update = function(data, id, type, format, meta,parents,children) {
@@ -1549,7 +1638,6 @@ var Gable = (function(){
 		}
 		val = raw.columns[ 0 ];*/
 
-		console.log( "NEW", val, "COLUMN", table.columns[ column ] );
 		if( null === column_id || 'undefined' === typeof column_id ) {
 			column_id = col.id;
 		}
@@ -1580,8 +1668,6 @@ var Gable = (function(){
 	Private.data.cell.update = function( value, table_id, row, column, on_success, on_error ) {
 		//TODO: validate column 
 		var table = Private.cache[ table_id ];
-		console.log( "TABLE", table, row, column );
-		console.log( "CELL", table.rows[ row ].value[ column ] );
 		table.rows[ row ].value[ column ] = value;
 
 		if( 'function' === typeof on_success ) {
@@ -1591,32 +1677,6 @@ var Gable = (function(){
 			on_error( { 'table': table_id, 'row': row, 'column': column } );	
 		}
 	};
-
-
-
-	Private.data.update.value = function() {};
-	Private.data.table.update.value = function() {};
-	Private.data.row.update.value = function() {};
-	Private.data.column.update.value = function() {};
-	Private.data.cell.update.value = function() {};
-
-	Private.data.update.id = function() {};
-	Private.data.table.update.id = function() {};
-	Private.data.row.update.id = function() {};
-	Private.data.column.update.id = function() {};
-	Private.data.cell.update.id = function() {};
-
-	Private.data.update.meta = function() {};
-	Private.data.table.update.meta = function() {};
-	Private.data.row.update.meta = function() {};
-	Private.data.column.update.meta = function() {};
-	Private.data.cell.update.meta = function() {};
-
-	Private.data.update.timestamp = function() {};
-	Private.data.table.update.timestamp = function() {};
-	Private.data.row.update.timestamp = function() {};
-	Private.data.column.update.timestamp = function() {};
-	Private.data.cell.update.timestamp = function() {};
 
 	/* Utilities */
 
