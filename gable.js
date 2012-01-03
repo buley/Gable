@@ -732,9 +732,9 @@ var Gable = (function(){
 									tmp_val.push( val[attr2] );
 								}
 							}
-							if( tmp_val.length === 1 && tmpstack.length > 0 ) {
-								tmpstack.push( val[ 0 ] );
-							} else {
+							//if( tmp_val.length === 1 && tmpstack.length > 0 ) {
+							//	tmpstack.push( val[ 0 ] );
+							//} else {
 								val = tmp_val;
 								var rw = Private.data.row.create(val, row_meta, row_id);
 								rows.push(rw);
