@@ -494,13 +494,13 @@ var Gable = (function(){
 					for( x = 0; x < collen; x += 1 ) {
 						col = cols[ x ];
 						if( find_id === col.id ) {
-							results.push( { 'type': 'column', 'value': col } );
+							results.push( { 'column': x, 'type': 'column', 'value': col } );
 						}	
 					}
 					for( x = 0; x < rowlen; x += 1 ) {
 						row = rows[ x ];
 						if( find_id === row.id ) {
-							results.push( { 'type': 'row', 'value': row } );
+							results.push( { 'row': x, 'type': 'row', 'value': row } );
 						}	
 					}	
 				}
