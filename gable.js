@@ -305,17 +305,19 @@ var Gable = (function(){
 
 		Find.prototype.get = function() {
 			console.log( 'find get', arguments, table_id, find_id );
-
+			var result = Private.utils.find( table_id, find_id );
 		};
 
 		Find.prototype.remove = function() {
 			console.log( 'find remove', arguments, table_id, find_id );
 
+			var result = Private.utils.find( table_id, find_id );
 		};
 
 		Find.prototype.update = function() {
 			console.log( 'find update', arguments, table_id, find_id );
 
+			var result = Private.utils.find( table_id, find_id );
 		};
 
 		return new Find();
@@ -351,7 +353,7 @@ var Gable = (function(){
 
 			var table = Private.cache[ table_id ];
 			console.log('utils.find',table_id, find_id, table );
-
+	
 
 		}	
 
