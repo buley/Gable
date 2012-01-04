@@ -317,7 +317,6 @@ var Gable = (function(){
 				}
 			}
 			//looks like { 'row': int, 'column': int, 'value': value } 
-			console.log('doing find',table_id, find_ids, types );
 			find_result = Private.utils.find( table_id, find_ids, types );
 		};
 
@@ -377,12 +376,10 @@ var Gable = (function(){
 		};
 
 		Find.prototype.get = function() {
-			console.log( 'find get', arguments, find_id, find_result );
-			return find_result;
+			return find_result.value;
 		};
 
 		Find.prototype.remove = function() {
-			console.log( 'find remove', arguments, find_id, find_result );
 			var req = arguments[ 0 ];
 			if( 'undefined' === typeof find_id ) {
 				if( 'function' === typeof req.on_error ) {
