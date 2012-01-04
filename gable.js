@@ -297,21 +297,146 @@ var Gable = (function(){
 		console.log( 'find', current_table, arguments );
 
 		var find_id
+		  , find_ids
 		  , table_id = current_table
-		  , find_result;
+		  , find_result
+		  , types = null;
 		var Find = function() {
 			console.log('find',arguments);
 			find_id = arguments[ 1 ];
-			find_result = Private.utils.find( table_id, find_id );
+
+			if( 'string' === find_id ) {
+				find_ids = [ find_id ];
+			} else if( 'object' === typeof find_id ) {
+				if( Private.utils.isArray( find_id ) ) {
+					//
+					find_ids = find_id;
+				} else if( find_id instanceof Date ) {
+					//
+					find_ids = [ find_id ];
+				} else {	
+					find_ids = [ find_id.id ];
+					types = find_id.types;
+				}
+			}
+			//looks like { 'row': int, 'column': int, 'value': value } 
+			find_result = Private.utils.find( table_id, find_ids, types );
 			
+		};
+
+		Find.prototype.update = function() {
+			var req = arguments[ 0 ];
+			if( 'undefined' === typeof req ) {
+				if( 'function' === typeof req.on_error ) {
+					req.on_error( req );
+				}
+				return Public.prototype;
+			}
+			var x = 0, idlen = find_result, finditem;
+			for( x = 0; x < idlen; x += 1 ) {
+				find_item = find_result[ x ];
+				var row = find_item.row;
+				var column = find_item.column;
+				var value = req.value;
+				var meta = req.meta;
+				var id = req.id;
+
+				var find_update_on_success = function( res ) {
+					Private.charts.redraw( table_id );
+					if( 'function' === typeof req.on_success ) {
+						req.on_success( res );
+					}
+				};
+
+				var find_update_on_error = function() {
+
+					if( 'function' === typeof req.on_error ) {
+						req.on_error();
+					}
+				};
+
+				if( isNaN( column ) ) {
+					column = null;
+				}
+				
+				if( isNaN( row ) ) {
+					row = null;
+				}
+
+				if( 'undefined' !== typeof row && null !== row && 'undefined' !== typeof column && null !== column ) {
+					Private.data.cell.update( value, table_id, row, column, find_update_on_success, find_update_on_error );
+				} else if( 'undefined' !== typeof row && null !== column ) {
+					Private.data.row.update( value, table_id, row, id, meta, find_update_on_success, find_update_on_error );
+				} else if( 'undefined' !== typeof column && null !== column ) {
+				
+					Private.data.column.update( value, table_id, column, id, meta, find_update_on_success, find_update_on_error );
+				} else {
+					Private.data.table.update( value, table_id, id, meta, find_update_on_success, find_update_on_error );
+				}
+
+			}
+
+			return Public.prototype;
 		};
 
 		Find.prototype.get = function() {
 			console.log( 'find get', arguments, find_id, find_result );
+			return find_result;
 		};
 
 		Find.prototype.remove = function() {
 			console.log( 'find remove', arguments, find_id, find_result );
+			var req = arguments[ 0 ];
+			if( 'undefined' === typeof req ) {
+				if( 'function' === typeof req.on_error ) {
+					req.on_error( req );
+				}
+				return Public.prototype;
+			}
+			var x = 0, idlen = find_result, finditem;
+			for( x = 0; x < idlen; x += 1 ) {
+				find_item = find_result[ x ];
+				var row = find_item.row;
+				var column = find_item.column;
+				var value = find_item.value;
+				var chs = charts[ id ];
+
+				var on_success = function( res ) {
+					Private.charts.redraw( table_id );
+					if( 'function' === typeof req.on_success ) {
+						req.on_success( res );
+					}
+				};
+
+				var on_error = function() {
+
+					if( 'function' === typeof req.on_error ) {
+						req.on_error();
+					}
+				};
+
+				if( isNaN( column ) ) {
+					column = null;
+				}
+				
+				if( isNaN( row ) ) {
+					row = null;
+				}
+
+				if( 'undefined' !== typeof row && null !== row && 'undefined' !== typeof column && null !== column ) {
+					Private.data.cell.remove( value, table_id, row, column, on_success, on_error );
+				} else if( 'undefined' !== typeof row && null !== column ) {
+					Private.data.row.remove( value, table_id, row, id, meta, on_success, on_error );
+				} else if( 'undefined' !== typeof column && null !== column ) {
+				
+					Private.data.column.remove( value, table_id, column, id, meta, on_success, on_error );
+				} else {
+					Private.data.table.remove( value, table_id, id, meta, on_success, on_error );
+				}
+
+			}
+
+			return Public.prototype;
 		};
 
 		Find.prototype.update = function() {
@@ -345,13 +470,45 @@ var Gable = (function(){
 	Private.chart = Private.chart || {};
 	Private.charts = Private.charts || {};
 
-	Private.utils.find = function( table_id, find_id ) {
+	Private.utils.find = function( table_id, find_ids ) {
 
 		if( 'undefined' !== typeof Private.cache[ table_id ] ) {
 
 			var table = Private.cache[ table_id ];
-			console.log('utils.find',table_id, find_id, table );
-	
+			console.log('utils.find',table_id, find_ids, table );
+
+			if( !Private.utils.isArray( table.rows ) || !Private.utils.isArray( table.columns ) ) {
+				return null;
+			} else {
+
+				var a, b
+			          , findlen;
+				var rows = table.rows
+				  , rowlen = rows.length;
+				var cols = table.columns
+				  , collen = cols.length;
+			
+				if( 'string' === find_ids ) {
+					
+				} else {
+
+			        	findlen = find_ids.length;
+				}
+				
+				for( a = 0; a < findlen; a += 1 ) {
+
+					var x, y, item;
+					for( x = 0; x < collen; x += 1 ) {
+						item = cols[ x ];
+						if( find_id === 
+					}
+					for( x = 0; x < rowlen; x += 1 ) {
+
+
+					}
+								
+				}
+			}
 
 		}	
 
