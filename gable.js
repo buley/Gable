@@ -498,7 +498,7 @@ var Gable = (function(){
 					for( x = 0; x < collen; x += 1 ) {
 						col = cols[ x ];
 						if( find_id === col.id ) {
-							results.push( { 'type': 'column', 'value': item } );
+							results.push( { 'type': 'column', 'value': col } );
 						}	
 					}
 					for( x = 0; x < rowlen; x += 1 ) {
