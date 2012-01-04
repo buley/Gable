@@ -1846,6 +1846,9 @@ var Gable = (function(){
 			}
 		}
 
+		if( null === val || 'undefined' === typeof val ) {
+			val = rw.value;
+		}
 		val = Private.data.row.create( val, row_meta, row_id );
 		table.rows[ row ] = val;
 
