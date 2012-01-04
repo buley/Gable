@@ -390,6 +390,9 @@ var Gable = (function(){
 				}
 				return Public.prototype;
 			}
+			if( !Private.utils.isArray( find_result ) ) {
+				find_result = [ find_result ];
+			}
 			var x = 0, idlen = find_result.length, finditem;
 			for( x = 0; x < idlen; x += 1 ) {
 				find_item = find_result[ x ];
