@@ -399,7 +399,6 @@ var Gable = (function(){
 				var row = find_item.row;
 				var column = find_item.column;
 				var value = find_item.value;
-				var chs = charts[ id ];
 
 				var on_success = function( res ) {
 					Private.charts.redraw( table_id );
