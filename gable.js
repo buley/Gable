@@ -339,7 +339,7 @@ var Gable = (function(){
 
 				var row = find_item.row;
 				var column = find_item.column;
-				var value = req.value || null;
+				var value = req.value;
 				var type = req.type;
 				var attr;
 				var meta = req.meta;
@@ -358,7 +358,8 @@ var Gable = (function(){
 				}
 
 				if( 'undefined' === typeof value ) {
-					value = find_item.value.value;
+					value = find_item.value;
+					value.type = type;
 				}
 
 				var find_update_on_success = function( res ) {
@@ -1882,7 +1883,7 @@ var Gable = (function(){
 		}
 
 		var column_type = Private.data.column.type(val);
-		column_type = ( null === column_type ) ? 'string' : column_type;
+		
 		val = Private.data.column.create(column_type, column_id, column_meta);
 
 		table.columns[ column ]  = val;
