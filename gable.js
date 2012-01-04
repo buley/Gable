@@ -496,29 +496,22 @@ var Gable = (function(){
 				
 				for( a = 0; a < findlen; a += 1 ) {
 					var find_id = find_ids[ a ];
-					var x, y, item, row, col;
+					var x, row, col;
 					for( x = 0; x < collen; x += 1 ) {
-						item = cols[ x ];
+						col = cols[ x ];
 						if( find_id === item.id ) {
-							results.push( item );
+							results.push( { 'type': 'column', 'value': item } );
 						}	
 					}
 					for( x = 0; x < rowlen; x += 1 ) {
-						//
 						row = rows[ x ];
-						if( 'undefined' !== row.value && null !== row.value ) {
-							collen = row.value.length; //var recycled
-							for( y = 0; y < collen; y += 1 ) {
-								col = row.value[ y ];
-								console.log('collll',row, col);
-							}
-						}
+						if( find_id === row.id ) {
+							results.push( { 'type': 'row', 'value': row } );
+						}	
 					}	
 				}
 			}
-
 		}	
-
 	};
 
 	Private.charts.redraw = function( id ) {
