@@ -320,6 +320,7 @@ var Gable = (function(){
 			find_result = Private.utils.find( table_id, find_ids, types );
 		};
 
+		Find.prototype = Public.prototype;
 		Find.prototype.update = function() {
 			var req = arguments[ 0 ];
 			if( 'undefined' === typeof req ) {
@@ -386,11 +387,20 @@ var Gable = (function(){
 
 			}
 
-			return Public.prototype;
+			return Find.prototype;
 		};
 
 		Find.prototype.get = function() {
-			return find_result.value;
+			var req = arguments[ 0 ];
+			if( 'undefined' === typeof req ) {
+				return find_result.value;
+			} else {	
+				if( 'undefined' !== typeof req.on_success ) {
+					req.on_success( find_result_value );
+				}
+			}
+			return Find.prototype;
+
 		};
 
 		Find.prototype.remove = function() {
