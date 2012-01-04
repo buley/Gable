@@ -339,7 +339,7 @@ var Gable = (function(){
 
 				var row = find_item.row;
 				var column = find_item.column;
-				var value = req.value;
+				var value = req.value || null;
 				var type = req.type;
 				var attr;
 				var meta = req.meta;
