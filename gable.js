@@ -389,9 +389,8 @@ var Gable = (function(){
 					Private.data.cell.update( value, table_id, row, column, find_update_on_success, find_update_on_error );
 				} else if( 'undefined' !== typeof row && null !== row ) {
 					Private.data.row.update( value, table_id, row, id, meta, find_update_on_success, find_update_on_error );
-				} else if( 'undefined' !== typeof column && null !== column ) {
-				
-					Private.data.column.update( table_id, column, id, meta, find_update_on_success, find_update_on_error );
+				} else if( 'undefined' !== typeof column && null !== column ) {	
+					Private.data.column.update( table_id, column, id, type, meta, find_update_on_success, find_update_on_error );
 				} else {
 					Private.data.table.update( value, table_id, id, meta, find_update_on_success, find_update_on_error );
 				}
