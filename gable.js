@@ -402,14 +402,14 @@ var Gable = (function(){
 
 				var on_success = function( res ) {
 					Private.charts.redraw( table_id );
-					if( 'function' === typeof req.on_success ) {
+					if( 'undefined' !== typeof req && 'function' === typeof req.on_success ) {
 						req.on_success( res );
 					}
 				};
 
 				var on_error = function() {
 
-					if( 'function' === typeof req.on_error ) {
+					if( 'undefined' !== typeof req && 'function' === typeof req.on_error ) {
 						req.on_error();
 					}
 				};
