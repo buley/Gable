@@ -329,7 +329,7 @@ var Gable = (function(){
 				}
 				return Public.prototype;
 			}
-			if( !Private.util.isArray( find_result ) {
+			if( !Private.util.isArray( find_result ) ) {
 				find_result = [ find_result ];
 			}
 			var x = 0, idlen = find_result, finditem;
