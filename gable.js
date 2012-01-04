@@ -198,7 +198,7 @@ var Gable = (function(){
 			Private.data.row.update( value, table_id, row, id, meta, on_success, on_error );
 		} else if( 'undefined' !== typeof column && null !== column ) {
 		
-			Private.data.column.update( value, table_id, column, id, type, meta, on_success, on_error );
+			Private.data.column.update( table_id, column, id, type, meta, on_success, on_error );
 		} else {
 			Private.data.table.update( value, table_id, id, meta, on_success, on_error );
 		}
