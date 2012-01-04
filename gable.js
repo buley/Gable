@@ -297,27 +297,25 @@ var Gable = (function(){
 		console.log( 'find', current_table, arguments );
 
 		var find_id
-		  , table_id = current_table;
+		  , table_id = current_table
+		  , find_result;
 		var Find = function() {
 			console.log('find',arguments);
 			find_id = arguments[ 1 ];
+			find_result = Private.utils.find( table_id, find_id );
+			
 		};
 
 		Find.prototype.get = function() {
-			console.log( 'find get', arguments, table_id, find_id );
-			var result = Private.utils.find( table_id, find_id );
+			console.log( 'find get', arguments, find_id, find_result );
 		};
 
 		Find.prototype.remove = function() {
-			console.log( 'find remove', arguments, table_id, find_id );
-
-			var result = Private.utils.find( table_id, find_id );
+			console.log( 'find remove', arguments, find_id, find_result );
 		};
 
 		Find.prototype.update = function() {
-			console.log( 'find update', arguments, table_id, find_id );
-
-			var result = Private.utils.find( table_id, find_id );
+			console.log( 'find update', arguments, find_id, find_result );
 		};
 
 		return new Find();
