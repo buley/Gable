@@ -423,21 +423,17 @@ var Gable = (function(){
 				if( 'undefined' !== typeof row && null !== row && 'undefined' !== typeof column && null !== column ) {
 					Private.data.cell.remove( value, table_id, row, column, on_success, on_error );
 				} else if( 'undefined' !== typeof row && null !== column ) {
-					Private.data.row.remove( value, table_id, row, id, meta, on_success, on_error );
+					Private.data.row.remove( value, table_id, row, on_success, on_error );
 				} else if( 'undefined' !== typeof column && null !== column ) {
 				
-					Private.data.column.remove( value, table_id, column, id, meta, on_success, on_error );
+					Private.data.column.remove( table_id, column, on_success, on_error );
 				} else {
-					Private.data.table.remove( value, table_id, id, meta, on_success, on_error );
+					Private.data.table.remove( table_id, on_success, on_error );
 				}
 
 			}
 
 			return Public.prototype;
-		};
-
-		Find.prototype.update = function() {
-			console.log( 'find update', arguments, find_id, find_result );
 		};
 
 		return new Find();
