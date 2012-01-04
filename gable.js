@@ -390,7 +390,7 @@ var Gable = (function(){
 				}
 				return Public.prototype;
 			}
-			var x = 0, idlen = find_result, finditem;
+			var x = 0, idlen = find_result.length, finditem;
 			for( x = 0; x < idlen; x += 1 ) {
 				find_item = find_result[ x ];
 				var row = find_item.row;
@@ -465,6 +465,9 @@ var Gable = (function(){
 
 	Private.utils.find = function( table_id, find_ids ) {
 		var results = [];
+		if( 'string' === typeof find_ids ) {
+			find_ids = [ find_ids ];
+		}
 		if( 'undefined' !== typeof Private.cache[ table_id ] ) {
 
 			var table = Private.cache[ table_id ];
@@ -506,6 +509,7 @@ var Gable = (function(){
 				}
 			}
 		}	
+
 		return ( 1 === results.length ) ? results[ 0 ] : results;
 	};
 
