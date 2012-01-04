@@ -403,6 +403,9 @@ var Gable = (function(){
 		Find.prototype.get = function() {
 			var req = arguments[ 0 ];
 			if( 'undefined' === typeof req ) {
+				if( Private.utils.isArray( find_result ) ) {
+					return find_result;
+				} 
 				return find_result.value;
 			} else {	
 				if( 'undefined' !== typeof req.on_success ) {
