@@ -384,7 +384,7 @@ var Gable = (function(){
 		Find.prototype.remove = function() {
 			console.log( 'find remove', arguments, find_id, find_result );
 			var req = arguments[ 0 ];
-			if( 'undefined' === typeof req ) {
+			if( 'undefined' === typeof find_id ) {
 				if( 'function' === typeof req.on_error ) {
 					req.on_error( req );
 				}
