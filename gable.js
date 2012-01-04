@@ -302,8 +302,6 @@ var Gable = (function(){
 		  , find_result
 		  , types = null;
 		var Find = function() {
-			console.log('find',arguments);
-			find_id = arguments[ 1 ];
 			console.log('FIND ID',find_id);
 			if( 'string' === find_id ) {
 				find_ids = [ find_id ];
