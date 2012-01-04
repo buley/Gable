@@ -198,7 +198,7 @@ var Gable = (function(){
 			Private.data.row.update( value, table_id, row, id, meta, on_success, on_error );
 		} else if( 'undefined' !== typeof column && null !== column ) {
 		
-			Private.data.column.update( value, table_id, column, id, meta, on_success, on_error );
+			Private.data.column.update( value, table_id, column, id, type, meta, on_success, on_error );
 		} else {
 			Private.data.table.update( value, table_id, id, meta, on_success, on_error );
 		}
@@ -359,7 +359,6 @@ var Gable = (function(){
 
 				if( 'undefined' === typeof value ) {
 					value = find_item.value;
-					value.type = type;
 				}
 
 				var find_update_on_success = function( res ) {
@@ -390,7 +389,7 @@ var Gable = (function(){
 					Private.data.row.update( value, table_id, row, id, meta, find_update_on_success, find_update_on_error );
 				} else if( 'undefined' !== typeof column && null !== column ) {
 				
-					Private.data.column.update( value, table_id, column, id, meta, find_update_on_success, find_update_on_error );
+					Private.data.column.update( table_id, column, id, meta, find_update_on_success, find_update_on_error );
 				} else {
 					Private.data.table.update( value, table_id, id, meta, find_update_on_success, find_update_on_error );
 				}
@@ -1855,11 +1854,14 @@ var Gable = (function(){
 	
 	};
 
-	Private.data.column.update = function( val, table_id, column, column_id, column_meta, on_success, on_error ) {
+	Private.data.column.update = function( table_id, column, column_id, column_type, column_meta, on_success, on_error ) {
 		//TODO: validate column 
 		var table = Private.cache[ table_id ];
 		var col = table.columns[ column ];
 		if( null === col || 'undefined' === typeof col ) {
+			if( 'function' === typeof on_error ) {
+				on_error( { 'table': table_id, 'value': val, 'column': column } );	
+			}
 			return null;
 		}
 /*
@@ -1882,8 +1884,6 @@ var Gable = (function(){
 			}
 		}
 
-		var column_type = Private.data.column.type(val);
-		
 		val = Private.data.column.create(column_type, column_id, column_meta);
 
 		table.columns[ column ]  = val;
@@ -1891,9 +1891,7 @@ var Gable = (function(){
 		if( 'function' === typeof on_success ) {
 			on_success( { 'table': table_id, 'value': val, 'column': column }  );	
 		}
-		if( 'function' === typeof on_error ) {
-			on_error( { 'table': table_id, 'value': val, 'column': column } );	
-		}
+
 
 	};
 
