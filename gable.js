@@ -302,11 +302,9 @@ var Gable = (function(){
 		  , find_result
 		  , types = null;
 		var Find = function() {
-			console.log('FIND ID',find_id);
-			if( 'string' === find_id ) {
+			if( 'string' === typeof find_id ) {
 				find_ids = [ find_id ];
 			} else if( 'object' === typeof find_id ) {
-				console.log('FIND ID',find_id);
 				if( Private.utils.isArray( find_id ) ) {
 					//
 					find_ids = find_id;
@@ -321,7 +319,6 @@ var Gable = (function(){
 			//looks like { 'row': int, 'column': int, 'value': value } 
 			console.log('doing find',table_id, find_ids, types );
 			find_result = Private.utils.find( table_id, find_ids, types );
-			
 		};
 
 		Find.prototype.update = function() {
