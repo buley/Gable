@@ -304,15 +304,18 @@ var Gable = (function(){
 		};
 
 		Find.prototype.get = function() {
-			console.log( 'get', arguments, table_id, find_id );
+			console.log( 'find get', arguments, table_id, find_id );
+
 		};
 
 		Find.prototype.remove = function() {
-			console.log( 'remove', arguments, table_id, find_id );
+			console.log( 'find remove', arguments, table_id, find_id );
+
 		};
 
 		Find.prototype.update = function() {
-			console.log( 'update', arguments, table_id, find_id );
+			console.log( 'find update', arguments, table_id, find_id );
+
 		};
 
 		return new Find();
@@ -341,6 +344,18 @@ var Gable = (function(){
 	Private.data.cell = Private.data.cell || {};
 	Private.chart = Private.chart || {};
 	Private.charts = Private.charts || {};
+
+	Private.utils.find = function( table_id, find_id ) {
+
+		if( 'undefined' !== typeof Private.cache[ table_id ] ) {
+
+			var table = Private.cache[ table_id ];
+			console.log('utils.find',table_id, find_id, table );
+
+
+		}	
+
+	};
 
 	Private.charts.redraw = function( id ) {
 		var req;
