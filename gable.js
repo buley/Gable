@@ -522,13 +522,13 @@ var Gable = (function(){
 					var x, row, col;
 					for( x = 0; x < collen; x += 1 ) {
 						col = cols[ x ];
-						if( find_id === col.id ) {
+						if( null !== col && find_id === col.id ) {
 							results.push( { 'column': x, 'type': 'column', 'value': col } );
 						}	
 					}
 					for( x = 0; x < rowlen; x += 1 ) {
 						row = rows[ x ];
-						if( find_id === row.id ) {
+						if( null !== row && find_id === row.id ) {
 							results.push( { 'row': x, 'type': 'row', 'value': row } );
 						}	
 					}	
