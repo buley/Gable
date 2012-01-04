@@ -423,9 +423,9 @@ var Gable = (function(){
 				}
 
 				if( 'undefined' !== typeof row && null !== row && 'undefined' !== typeof column && null !== column ) {
-					Private.data.cell.remove( value, table_id, row, column, on_success, on_error );
+					Private.data.cell.remove( table_id, row, column, on_success, on_error );
 				} else if( 'undefined' !== typeof row && null !== column ) {
-					Private.data.row.remove( value, table_id, row, on_success, on_error );
+					Private.data.row.remove( table_id, row, on_success, on_error );
 				} else if( 'undefined' !== typeof column && null !== column ) {
 				
 					Private.data.column.remove( table_id, column, on_success, on_error );
