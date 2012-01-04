@@ -295,20 +295,24 @@ var Gable = (function(){
 
 	Public.prototype.find = function() {
 		console.log( 'find', current_table, arguments );
+
+		var find_id
+		  , table_id = current_table;
 		var Find = function() {
 			console.log('find',arguments);
+			find_id = arguments[ 1 ];
 		};
 
 		Find.prototype.get = function() {
-			console.log('get',arguments);
+			console.log( 'get', arguments, table_id, find_id );
 		};
 
 		Find.prototype.remove = function() {
-			console.log('remove',arguments);
+			console.log( 'remove', arguments, table_id, find_id );
 		};
 
 		Find.prototype.update = function() {
-			console.log('update',arguments);
+			console.log( 'update', arguments, table_id, find_id );
 		};
 
 		return new Find();
