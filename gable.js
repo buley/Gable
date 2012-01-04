@@ -320,6 +320,7 @@ var Gable = (function(){
 				}
 			}
 			//looks like { 'row': int, 'column': int, 'value': value } 
+			console.log('doing find',table_id, find_ids, types );
 			find_result = Private.utils.find( table_id, find_ids, types );
 			
 		};
@@ -478,6 +479,7 @@ var Gable = (function(){
 			console.log('utils.find',table_id, find_ids, table );
 
 			if( !Private.utils.isArray( table.rows ) || !Private.utils.isArray( table.columns ) ) {
+				console.log('bailing from find',table);
 				return null;
 			} else {
 
