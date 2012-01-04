@@ -1888,6 +1888,9 @@ var Gable = (function(){
 			}
 		}
 
+		if( null === column_type || 'undefined' === typeof column_type ) {
+			column_type = col.type;
+		}
 		val = Private.data.column.create(column_type, column_id, column_meta);
 
 		table.columns[ column ]  = val;
