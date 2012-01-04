@@ -358,7 +358,9 @@ var Gable = (function(){
 				}
 
 				if( 'undefined' === typeof value ) {
-					value = find_item.value;
+					if( 'undefined' !== typeof find_item.value && 'undefined' !== typeof find_item.value.value ) {
+						value = find_item.value.value;
+					}
 				}
 
 				var find_update_on_success = function( res ) {
