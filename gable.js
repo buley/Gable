@@ -468,7 +468,7 @@ var Gable = (function(){
 	Private.charts = Private.charts || {};
 
 	Private.utils.find = function( table_id, find_ids ) {
-
+		var results = [];
 		if( 'undefined' !== typeof Private.cache[ table_id ] ) {
 
 			var table = Private.cache[ table_id ];
@@ -510,6 +510,7 @@ var Gable = (function(){
 				}
 			}
 		}	
+		return ( 1 === results.length ) ? results[ 0 ] : results;
 	};
 
 	Private.charts.redraw = function( id ) {
