@@ -304,10 +304,11 @@ var Gable = (function(){
 		var Find = function() {
 			console.log('find',arguments);
 			find_id = arguments[ 1 ];
-
+			console.log('FIND ID',find_id);
 			if( 'string' === find_id ) {
 				find_ids = [ find_id ];
 			} else if( 'object' === typeof find_id ) {
+				console.log('FIND ID',find_id);
 				if( Private.utils.isArray( find_id ) ) {
 					//
 					find_ids = find_id;
