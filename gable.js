@@ -488,25 +488,32 @@ var Gable = (function(){
 				var cols = table.columns
 				  , collen = cols.length;
 			
-				if( 'string' === find_ids ) {
-					
+				if( !Private.utils.isArray( find_ids ) ) {
+					return null;	
 				} else {
-
 			        	findlen = find_ids.length;
 				}
 				
 				for( a = 0; a < findlen; a += 1 ) {
-
-					var x, y, item;
+					var find_id = find_ids[ a ];
+					var x, y, item, row, col;
 					for( x = 0; x < collen; x += 1 ) {
 						item = cols[ x ];
-						if( find_id === 
+						if( find_id === item.id ) {
+							results.push( item );
+						}	
 					}
 					for( x = 0; x < rowlen; x += 1 ) {
-
-
-					}
-								
+						//
+						row = rows[ x ];
+						if( 'undefined' !== row.value && null !== row.value ) {
+							collen = row.value.length; //var recycled
+							for( y = 0; y < collen; y += 1 ) {
+								col = row.value[ y ];
+								console.log('collll',row, col);
+							}
+						}
+					}	
 				}
 			}
 
