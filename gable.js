@@ -340,20 +340,25 @@ var Gable = (function(){
 				var row = find_item.row;
 				var column = find_item.column;
 				var value = req.value;
+				var type = req.type;
 				var attr;
 				var meta = req.meta;
 				var id = req.id;
 
-				if( 'undefined' !== typeof id ) {
-					find_item.id = id;
+				if( 'undefined' === typeof id ) {
+					id = find_item.value.id;
 				}
 
-				if( 'undefined' !== typeof meta ) {
-					find_item.meta = meta;
+				if( 'undefined' === typeof type ) {
+					type = find_item.value.type;
 				}
 
-				if( 'undefined' !== typeof meta ) {
-					find_item.value = value;
+				if( 'undefined' === typeof meta ) {
+					meta = find_item.value.meta;
+				}
+
+				if( 'undefined' === typeof value ) {
+					value = find_item.value.value;
 				}
 
 				var find_update_on_success = function( res ) {
@@ -379,14 +384,14 @@ var Gable = (function(){
 				}
 
 				if( 'undefined' !== typeof row && null !== row && 'undefined' !== typeof column && null !== column ) {
-					Private.data.cell.update( find_item, table_id, row, column, find_update_on_success, find_update_on_error );
+					Private.data.cell.update( value, table_id, row, column, find_update_on_success, find_update_on_error );
 				} else if( 'undefined' !== typeof row && null !== row ) {
-					Private.data.row.update( find_item, table_id, row, id, meta, find_update_on_success, find_update_on_error );
+					Private.data.row.update( value, table_id, row, id, meta, find_update_on_success, find_update_on_error );
 				} else if( 'undefined' !== typeof column && null !== column ) {
 				
-					Private.data.column.update( find_item, table_id, column, id, meta, find_update_on_success, find_update_on_error );
+					Private.data.column.update( value, table_id, column, id, meta, find_update_on_success, find_update_on_error );
 				} else {
-					Private.data.table.update( find_item, table_id, id, meta, find_update_on_success, find_update_on_error );
+					Private.data.table.update( value, table_id, id, meta, find_update_on_success, find_update_on_error );
 				}
 
 			}
