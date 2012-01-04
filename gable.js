@@ -296,7 +296,7 @@ var Gable = (function(){
 	Public.prototype.find = function() {
 		console.log( 'find', current_table, arguments );
 
-		var find_id
+		var find_id = arguments[ 0 ]
 		  , find_ids
 		  , table_id = current_table
 		  , find_result
