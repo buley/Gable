@@ -249,7 +249,7 @@ var Gable = (function(){
 		var dump_on_success = function( obj  ) {
 
 			if( 'undefined' !== typeof req ) {
-				given = req.type;
+				given = req.type || 'raw';
 				result = obj;
 				if( 'raw' === given || 'csv' === given ) {
 					result = Private.data.type.transform( type, given, obj )
