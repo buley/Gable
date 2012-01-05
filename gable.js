@@ -776,7 +776,7 @@ var Gable = (function(){
 	Private.data.types.raw.transform = Private.data.types.raw.transform || {};
 	Private.data.types.raw.transform.table = function( obj ) {
 
-		if( null === obj || 'undefined' === typeof obj || 'undefined' !== obj.type || 'undefined' === obj.rows || 'undefined' === obj.columns ) {
+		if( null === obj || 'undefined' === typeof obj || 'undefined' !== obj.type ) {
 			obj.format = 'raw';
 			return obj;
 		} 
@@ -1706,12 +1706,16 @@ var Gable = (function(){
 	//Private.data.cell.add = function() {};
 
 	//Read
-	Private.data.table.get = function( table_id ) {
+	Private.data.table.get = function( table_id, on_success, on_error ) {
 		table_id = table_id;
+		var val;
 		if( 'undefined' !== typeof Private.cache[ table_id ] ) {
-			return Private.cache[ table_id ];
+			val = Private.cache[ table_id ];
 		} 
-		return null;
+		if( 'function' === typeof on_success ) {
+			on_success( val );
+		}
+		return val;
 	};
 
 	//allows for optional lookup by row_id, in which case row_index is ignored and can be set to null
