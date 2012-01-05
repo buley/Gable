@@ -43,6 +43,9 @@ var Gable = (function(){
 	Public.prototype.get = function() {
 		var req = arguments[ 0 ];
 		var res = Private.data.get( current_table );
+		if( 'undefined' === typeof req ) {
+			return res;
+		}
 		if( 'function' === typeof req.on_success ) {
 			req.on_success( res );	
 		}
@@ -208,9 +211,25 @@ var Gable = (function(){
 
 	Public.prototype.dump = function() {
 		console.log( 'export', current_table, arguments );
+		var result, type = 'table', given;
+		if( 'undefined' !== typeof arguments[0] ) {
+			given = arguments[ 0 ].type;
+			if( 'raw' !== given || 'csv' === given ) {
+
+			} else {
+				if( Private.data.type.tranformsTo( 'raw',  given ) ) {
+					result = '';//zzz
+				}
+
+			}
+		}
+
+		req = arguments[ 0 ];
+		if( 'function' === typeof req.on_success ) {
+			req.on_success( result );
+		}
+
 		return Public.prototype;
-		//on_success
-		//on_error
 	};
 
 	Public.prototype.remove = function( args ) {
@@ -1291,18 +1310,20 @@ var Gable = (function(){
 	/* values are composite data types made up of a type and value property. a value can also have an optional timestamp property. */
 
 	/* returns true if an object's own types or one layer connections can convert to a type, else false */
+	//aaa
 	Private.data.value.transformsTo = function(obj, other_type) {
 	    var type = Private.data.value.type(obj);
-	    if (Private.data.value.transformsTo(type, other_type)) {
+	    if (Private.data.value.transform(type, other_type)) {
 	        return true;
 	    }
 	    return false;
 	};
 
 	/* returns true if an object's own types or one layer connections can convert to a type, else false */
+	//bbb
 	Private.data.value.transformsFrom = function(obj, other_type) {
 	    var type = Private.data.value.type(obj);
-	    if (Private.data.value.transformsFrom(type, other_type)) {
+	    if (Private.data.value.transform(type, other_type)) {
 	        return true;
 	    }
 	    return false;
