@@ -1298,11 +1298,11 @@ var Gable = (function(){
 
 							newobj = newobj + v;
 						}
-						if( a !== ( len - 1 ) ) {
+						if( a === ( len - 1 ) ) {
 							newobj = newobj + "\n";
 						}
 					}
-					if( x !== ( len - 1 ) ) {
+					if( x === ( len - 1 ) ) {
 						newobj = newobj + "\n";
 					}
 				}
