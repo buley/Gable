@@ -10,6 +10,7 @@ var Gable = (function(){
 	var current_element = {};
 	var tables = {};
 	var charts = {};
+	var tmp_context = {};
 
 	var Public = function( table_id ) {
 		that = this;
@@ -506,6 +507,7 @@ var Gable = (function(){
 					Private.charts.redraw( table_id );
 					if( 'undefined' !== typeof req && 'function' === typeof req.on_success ) {
 						req.on_success( res );
+
 					}
 				};
 
@@ -1720,6 +1722,7 @@ var Gable = (function(){
 					var tmp = table.rows[ x ];
 					if( 'undefined' !== typeof tmp.id ) {
 						if( tmp.id === row_id ) {
+							Private.tmp_context = tmp;
 							if( 'function' === typeof on_success ) {
 								on_success( tmp );
 							}
@@ -1730,6 +1733,7 @@ var Gable = (function(){
 			} else {
 				row = table.rows[ row_index ];
 				if( 'undefined' !== typeof row ) {
+					Private.tmp_context = row;
 					if( 'function' === typeof on_success ) {
 						on_success( row );
 					}
@@ -1753,6 +1757,7 @@ var Gable = (function(){
 							if( 'function' === typeof on_success ) {
 								on_success( column );
 							}
+							Private.tmp_context = column;
 							return column;
 						}
 					}
@@ -1760,6 +1765,7 @@ var Gable = (function(){
 			} else {
 				column = table.columns[ column_index ];
 				if( 'undefined' !== typeof column ) {
+					Private.tmp_context = column;
 					if( 'function' === typeof on_success ) {
 						on_success( column );
 					}
@@ -1802,6 +1808,9 @@ var Gable = (function(){
 				value = row.value[ column_index ];
 			}
 		}
+		
+		Private.tmp_context = value;
+		
 		if( 'function' === typeof on_success ) {
 			on_success( value );
 		}
