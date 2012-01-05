@@ -249,10 +249,10 @@ var Gable = (function(){
 		var dump_on_success = function( obj  ) {
 
 			if( 'undefined' !== typeof req ) {
-				given = req.type || 'raw';
+				given = 'raw';
 				result = obj;
-				if( 'raw' === given || 'csv' === given ) {
-					result = Private.data.type.transform( type, given, obj )
+				if( 'raw' === req.type || 'csv' === req.type ) {
+					result = Private.data.type.transform( req.type, given, obj )
 				} else {
 					if( Private.data.type.tranformsTo( 'raw',  given ) ) {
 						result = Private.data.type.transform( type, given, obj )
