@@ -1251,36 +1251,9 @@ var Gable = (function(){
 			} else if ( 'table' === type ) {
 				console.log('real deal');
 
-				var x = 0, len = obj.columns.length, item, ids = [], hasHeader = false;
+				var x = 0, len = obj.value.length, item;
 				newobj = '';
-				for( x = 0; x < len; x += 1 ) {
-					item = obj.columns[ x ];
-					if( null !== item.id && 'undefined' !== item.id ) {
-						ids.push( item.id );
-						hasHeader = true;
-					} else {
-						ids.push( '' );
-					}
-				}
-				if( true === hasHeader ) {
-					var headerstr = '', y = 0; idlen = ids.length;
-					for( y = 0; y < idlen; y += 1 ) {
-						newobj = ( newobj + ( ( 0 !== y ) ? ', ' : '' ) );
-						if( 'string' === typeof v ) {
-							newobj = newobj + '"' + v.replace('"', '\"' ) + '"';
-						} else if( v instanceof Date ) {
-
-							newobj = newobj + '"' + v.toString() + '"';
-						} else {
-
-							newobj = newobj + v;
-						}
-
-
-					}
-					newobj = newobj + headerstr + "\n";
-				}
-				len = obj.rows.length;//recycled
+				len = obj.value.length;//recycled
 				for( x = 0; x < len; x += 1 ) {
 					newobj = ( newobj + ( ( 0 !== x ) ? ', ' : '' ) );
 					var v = obj.value[ x ];
