@@ -250,12 +250,13 @@ var Gable = (function(){
 
 			if( 'undefined' !== typeof req ) {
 				given = 'raw';
-				result = obj;
-				if( 'raw' === req.type || 'csv' === req.type ) {
-					result = Private.data.type.transform( req.type, given, obj )
+				if( 'raw' === req.type ) {
+					result = obj;
+				} else if ( 'csv' === req.type ) {
+					result = Private.data.type.transform( given, req.type, obj )
 				} else {
 					if( Private.data.type.tranformsTo( 'raw',  given ) ) {
-						result = Private.data.type.transform( type, given, obj )
+						result = Private.data.type.transform( given, type, obj )
 					} else {
 						if( 'function' === typeof req.on_error ) {
 							req.on_error( { 'value': result, 'message': 'Could not be converted' } );
