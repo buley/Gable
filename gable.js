@@ -276,7 +276,7 @@ var Gable = (function(){
 			}
 		};
 
-		Public.prototype.get();
+		Public.prototype.get( { 'row': req.row, 'column': req.column, 'on_success': req.on_success, 'on_error': req.on_error } );
 
 
 		return Public.prototype;
@@ -2154,4 +2154,5 @@ var Gable = (function(){
 	/* return public API */
 
 	return Public;
+
 }() );
