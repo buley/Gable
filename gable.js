@@ -497,7 +497,7 @@ var Gable = (function(){
 				return find_result.value;
 			} else {	
 				if( 'undefined' !== typeof req.on_success ) {
-					req.on_success( find_result_value );
+					req.on_success( find_result );
 				}
 			}
 			return Find.prototype;
