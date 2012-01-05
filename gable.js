@@ -1710,7 +1710,7 @@ var Gable = (function(){
 	};
 
 	//allows for optional lookup by row_id, in which case row_index is ignored and can be set to null
-	Private.data.row.get = function( table_id, row_index, row_id ) {
+	Private.data.row.get = function( table_id, row_index, on_success, on_error, row_id ) {
 		var table = Private.cache[ table_id ]
 		  , row;
 		if( 'undefined' !== typeof table ) {
@@ -1727,6 +1727,9 @@ var Gable = (function(){
 			} else {
 				row = table.rows[ row_index ];
 				if( 'undefined' !== typeof row ) {
+					if( 'function' !== typeof on_success ) {
+						on_success( row );
+					}
 					return row;
 				}
 			}
