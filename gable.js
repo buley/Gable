@@ -10,7 +10,7 @@ var Gable = (function(){
 	var current_element = {};
 	var tables = {};
 	var charts = {};
-	var tmp_context = {};
+
 
 	var Public = function( table_id ) {
 		that = this;
@@ -244,6 +244,7 @@ var Gable = (function(){
 		
 		var result, type, given;
 		var req = arguments[ 0 ];
+		var res = arguments[ 1 ];
 
 		var dump_on_success = function( obj  ) {
 
@@ -277,10 +278,16 @@ var Gable = (function(){
 			}
 		};
 
-		Public.prototype.get( { 'row': req.row, 'column': req.column, 'on_success': dump_on_success, 'on_error': dump_on_error } );
+		if( null === req ) {
+			if( 'undefined' !== typeof res ) {
+				dump_on_success( res );
+			}
+
+		} else {
+			Public.prototype.get( { 'row': req.row, 'column': req.column, 'on_success': dump_on_success, 'on_error': dump_on_error } );
+		}
+
 	
-
-
 		return Public.prototype;
 	};
 
@@ -392,6 +399,16 @@ var Gable = (function(){
 		};
 
 		Find.prototype = Public.prototype;
+		Find.prototype.update = function() {
+			var req = arguments[ 0 ];
+			if( 'undefined' === typeof req ) {
+				Public.prototype.dump( null, find_items );
+			} else {
+				Public.prototype.dump( req );
+			}
+			return Find.prototype;
+		};
+
 		Find.prototype.update = function() {
 			var req = arguments[ 0 ];
 			if( 'undefined' === typeof req ) {
@@ -570,6 +587,8 @@ var Gable = (function(){
 	Private.chart = Private.chart || {};
 	Private.charts = Private.charts || {};
 
+	Private.tmp_context = {};
+
 	Private.utils.find = function( table_id, find_ids ) {
 		var results = [];
 		if( 'string' === typeof find_ids ) {
@@ -579,6 +598,7 @@ var Gable = (function(){
 
 			var table = Private.cache[ table_id ];
 			console.log('utils.find',table_id, find_ids, table );
+			var context = [];
 
 			if( !Private.utils.isArray( table.rows ) || !Private.utils.isArray( table.columns ) ) {
 				console.log('bailing from find',table);
@@ -605,18 +625,21 @@ var Gable = (function(){
 						col = cols[ x ];
 						if( null !== col && find_id === col.id ) {
 							results.push( { 'column': x, 'type': 'column', 'value': col } );
+							context.push( col );
 						}	
 					}
 					for( x = 0; x < rowlen; x += 1 ) {
 						row = rows[ x ];
 						if( null !== row && find_id === row.id ) {
 							results.push( { 'row': x, 'type': 'row', 'value': row } );
+							context.push( row );
 						}	
 					}	
 				}
 			}
 		}	
 
+		Private.tmp_context = ( 1 === context.length ) ? context[ 0 ] : context;
 		return ( 1 === results.length ) ? results[ 0 ] : results;
 	};
 
