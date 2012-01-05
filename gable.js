@@ -776,7 +776,7 @@ var Gable = (function(){
 	Private.data.types.raw.transform = Private.data.types.raw.transform || {};
 	Private.data.types.raw.transform.table = function( obj ) {
 
-		if( null === obj || 'undefined' === typeof obj || 'undefined' !== obj.type ) {
+		if( null === obj || 'undefined' === typeof obj ) {
 			obj.format = 'raw';
 			return obj;
 		} 
