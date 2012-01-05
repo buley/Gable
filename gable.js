@@ -399,12 +399,15 @@ var Gable = (function(){
 		};
 
 		Find.prototype = Public.prototype;
-		Find.prototype.update = function() {
+		Find.prototype.dump = function() {
 			var req = arguments[ 0 ];
-			if( 'undefined' === typeof req ) {
-				Public.prototype.dump( null, find_items );
-			} else {
-				Public.prototype.dump( req );
+			var find_item, findlen = find_items.length, x = 0;
+			for( var x = 0; x < findlen; x += 1 ) {
+				if( 'undefined' === typeof req ) {
+					Public.prototype.dump( null, find_item );
+				} else {
+					Public.prototype.dump( req );
+				}
 			}
 			return Find.prototype;
 		};
