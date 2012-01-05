@@ -1283,10 +1283,11 @@ var Gable = (function(){
 				}
 				len = obj.rows.length;//recycled
 				for( x = 0; x < len; x += 1 ) {
-					newobj = ( newobj + ( ( 0 !== x ) ? ', ' : '' ) );
+
 					var rwitems = obj.rows[ x ].value, a = 0, rwlen = rwitems.length, rwitem;
 					for( a = 0; a < rwlen; a += 1 ) {
 				
+						newobj = ( newobj + ( ( 0 !== a ) ? ', ' : '' ) );
 						var v = rwitems[ a ];
 						
 						if( 'string' === typeof v && '' !== v ) {
