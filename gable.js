@@ -1265,7 +1265,7 @@ var Gable = (function(){
 				if( true === hasHeader ) {
 					var headerstr = '', y = 0; idlen = ids.length;
 					for( y = 0; y < idlen; y += 1 ) {
-						var v = obj.columns[ y ].id || '';
+						var v = obj.columns[ y ].meta.label || obj.columns[ y ].id || '';
 						newobj = ( newobj + ( ( 0 !== y ) ? ', ' : '' ) );
 						if( 'string' === typeof v && '' !== v ) {
 							newobj = newobj + '"' + v.replace('"', '\"' ) + '"';
