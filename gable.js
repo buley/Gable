@@ -1762,7 +1762,7 @@ var Gable = (function(){
 		  , row_index = ( null !== row_index && 'undefined' !== typeof row_index ) ? row_index - 1 : row_index
 		  , column_index = ( null !== column_index && 'undefined' !== typeof column_index ) ? column_index - 1 : column_index
 		  , row
-		  , value;
+		  , value = null;
 		if( 'undefined' !== typeof table ) {
 			if( 'undefined' !== typeof row_id ) {
 				var rowlen = table.rows.length;
@@ -1793,10 +1793,7 @@ var Gable = (function(){
 				value = row[ column_index ];
 			}
 		}
-		if( 'function' !== typeof on_success ) {
-			on_success( value );
-		}
-		return Public.prototype;
+		return value;
 	};
 
 	//Destroy
