@@ -1284,15 +1284,23 @@ var Gable = (function(){
 				len = obj.rows.length;//recycled
 				for( x = 0; x < len; x += 1 ) {
 					newobj = ( newobj + ( ( 0 !== x ) ? ', ' : '' ) );
-					var v = obj.rows[ x ].value;
-					if( 'string' === typeof v ) {
-						newobj = newobj + '"' + v.replace('"', '\"' ) + '"';
-					} else if( v instanceof Date ) {
+					var rwitems = obj.rows[ x ].value, a = 0, rwlen = rwitems.length, rwitem;
+					for( a = 0; a < rwlen; a += 1 ) {
+				
+						var v = rwitems[ a ].value;
+						
+						if( 'string' === typeof v && '' !== v ) {
+							newobj = newobj + '"' + v.replace('"', '\"' ) + '"';
+						} else if( v instanceof Date ) {
 
-						newobj = newobj + '"' + v.toString() + '"';
-					} else {
+							newobj = newobj + '"' + v.toString() + '"';
+						} else {
 
-						newobj = newobj + v;
+							newobj = newobj + v;
+						}
+						if( a !== ( len - 1 ) ) {
+							newobj = newobj + "\n";
+						}
 					}
 					if( x !== ( len - 1 ) ) {
 						newobj = newobj + "\n";
