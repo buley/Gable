@@ -1288,6 +1288,7 @@ var Gable = (function(){
 					for( a = 0; a < rwlen; a += 1 ) {
 				
 						var v = rwitems[ a ].value;
+						console.log('rdubs',rwitems,a);
 						
 						if( 'string' === typeof v && '' !== v ) {
 							newobj = newobj + '"' + v.replace('"', '\"' ) + '"';
@@ -1298,7 +1299,7 @@ var Gable = (function(){
 
 							newobj = newobj + v;
 						}
-						if( a === ( len - 1 ) ) {
+						if( a === ( rwlen - 1 ) ) {
 							newobj = newobj + "\n";
 						}
 					}
