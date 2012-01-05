@@ -1720,7 +1720,7 @@ var Gable = (function(){
 					var tmp = table.rows[ x ];
 					if( 'undefined' !== typeof tmp.id ) {
 						if( tmp.id === row_id ) {
-							if( 'function' !== typeof on_success ) {
+							if( 'function' === typeof on_success ) {
 								on_success( tmp );
 							}
 							return tmp;
@@ -1730,7 +1730,7 @@ var Gable = (function(){
 			} else {
 				row = table.rows[ row_index ];
 				if( 'undefined' !== typeof row ) {
-					if( 'function' !== typeof on_success ) {
+					if( 'function' === typeof on_success ) {
 						on_success( row );
 					}
 					return row;
@@ -1760,7 +1760,9 @@ var Gable = (function(){
 			} else {
 				column = table.columns[ column_index ];
 				if( 'undefined' !== typeof column ) {
-					return column;
+					if( 'function' === typeof on_success ) {
+						on_success( column );
+					}
 				}
 			}
 		} 
