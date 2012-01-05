@@ -243,7 +243,7 @@ var Gable = (function(){
 	Public.prototype.dump = function() {
 		console.log( 'export', current_table, arguments );
 		
-		var result, type = 'table', given;
+		var result, type, given;
 		var req = arguments[ 0 ];
 
 		var dump_on_success = function( obj  ) {
@@ -255,8 +255,8 @@ var Gable = (function(){
 				} else if ( 'csv' === req.type ) {
 					result = Private.data.type.transform( given, req.type, obj )
 				} else {
-					if( Private.data.type.tranformsTo( 'raw',  given ) ) {
-						result = Private.data.type.transform( given, type, obj )
+					if( Private.data.type.tranformsTo( 'raw',  req.type ) ) {
+						result = Private.data.type.transform( given, req.type, obj )
 					} else {
 						if( 'function' === typeof req.on_error ) {
 							req.on_error( { 'value': result, 'message': 'Could not be converted' } );
