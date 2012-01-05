@@ -1787,7 +1787,7 @@ var Gable = (function(){
 					}
 				}
 			} else {
-				value = row[ column_index ];
+				value = row.value[ column_index ];
 			}
 		}
 		return value;
