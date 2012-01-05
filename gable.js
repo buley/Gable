@@ -1720,7 +1720,10 @@ var Gable = (function(){
 					var tmp = table.rows[ x ];
 					if( 'undefined' !== typeof tmp.id ) {
 						if( tmp.id === row_id ) {
-							return;
+							if( 'function' !== typeof on_success ) {
+								on_success( tmp );
+							}
+							return tmp;
 						}
 					}
 				}
