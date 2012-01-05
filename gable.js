@@ -1733,7 +1733,7 @@ var Gable = (function(){
 		} 
 		return null;
 	};
-	Private.data.column.get = function( table_id, column_index, column_id) {
+	Private.data.column.get = function( table_id, column_index, on_success, on_error, column_id) {
 		var table = Private.cache[ table_id ]
 		  , column;
 		if( 'undefined' !== typeof table ) {
@@ -1741,8 +1741,12 @@ var Gable = (function(){
 				var collen = table.rows.length;
 				for( var x = 0; x < collen; x += 1 ) {
 					column = table.columns[ x ];
-					if( 'undefined' !== typeof columm.id ) {
+					if( 'undefined' !== typeof column && 'undefined' !== typeof column.id ) {
 						if( column.id === column_id ) {
+							
+							if( 'function' === typeof on_success ) {
+								on_success( column );
+							}
 							return column;
 						}
 					}
