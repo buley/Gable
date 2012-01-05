@@ -398,7 +398,6 @@ var Gable = (function(){
 			find_result = Private.utils.find( table_id, find_ids, types );
 		};
 
-		Find.prototype = Public.prototype;
 		Find.prototype.dump = function() {
 			var req = arguments[ 0 ];
 			if( !Private.utils.isArray( find_result ) ) {
