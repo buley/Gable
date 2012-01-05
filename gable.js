@@ -211,16 +211,20 @@ var Gable = (function(){
 
 	Public.prototype.dump = function() {
 		console.log( 'export', current_table, arguments );
-		var result, type = 'table', given;
+		var result, type = 'table', given, obj;
 		if( 'undefined' !== typeof arguments[0] ) {
 			given = arguments[ 0 ].type;
 			if( 'raw' !== given || 'csv' === given ) {
-
+				result = Private.data.type.transform( type, given, obj )
 			} else {
 				if( Private.data.type.tranformsTo( 'raw',  given ) ) {
-					result = '';//zzz
+					result = Private.data.type.transform( type, given, obj )
+				} else {
+					if( 'function' === typeof req.on_error ) {
+						req.on_error( { 'value': result, 'message': 'Could not be converted' } );
+						return;
+					}
 				}
-
 			}
 		}
 
