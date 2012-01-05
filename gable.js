@@ -1793,8 +1793,8 @@ var Gable = (function(){
 				value = row[ column_index ];
 			}
 		}
-		if( 'function' !== typeof req.on_success ) {
-			req.on_success( value );
+		if( 'function' !== typeof on_success ) {
+			on_success( value );
 		}
 		return Public.prototype;
 	};
