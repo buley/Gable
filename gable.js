@@ -1790,7 +1790,11 @@ var Gable = (function(){
 				value = row.value[ column_index ];
 			}
 		}
-		return value;
+		if( 'function' === typeof on_success ) {
+			on_success( value );
+		}
+
+		return null;
 	};
 
 	//Destroy
