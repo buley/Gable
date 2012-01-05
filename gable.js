@@ -1229,7 +1229,7 @@ var Gable = (function(){
 
 			if( 'column' === type ) {
 				on_error( { 'message': 'A column cannot be turned into a complete CSV file.' } );
-			} else if( 'row' === ) {
+			} else if( 'row' === type ) {
 				newobj = '';
 				var x = 0; len = obj.value, item;
 				for( x = 0; x < len; x += 1 ) {
@@ -1238,6 +1238,8 @@ var Gable = (function(){
 						new_obj = new_obj + "\n";
 					}
 				}
+			} else if ( 'table' === type ) {
+				console.log('real deal');
 			}
 
 		}
