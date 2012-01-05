@@ -1718,7 +1718,7 @@ var Gable = (function(){
 				var rowlen = table.rows.length;
 				for( var x = 0; x < rowlen; x += 1 ) {
 					var tmp = table.rows[ x ];
-					if( 'undefined' !== tmp.id ) {
+					if( 'undefined' !== typeof tmp.id ) {
 						if( tmp.id === row_id ) {
 							return;
 						}
@@ -1741,7 +1741,7 @@ var Gable = (function(){
 				var collen = table.rows.length;
 				for( var x = 0; x < collen; x += 1 ) {
 					column = table.columns[ x ];
-					if( 'undefined' !== columm.id ) {
+					if( 'undefined' !== typeof columm.id ) {
 						if( column.id === column_id ) {
 							return column;
 						}
