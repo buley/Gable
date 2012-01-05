@@ -1783,8 +1783,8 @@ var Gable = (function(){
 				var rowlen = table.rows.length;
 				for( var x = 0; x < rowlen; x += 1 ) {
 					var tmp = table.rows[ x ];
-					if( 'undefined' !== row_index ) {
-						if( x === row_index ) {
+					if( 'undefined' !== column_index ) {
+						if( x === column_index ) {
 							value = tmp;
 						}
 					}
