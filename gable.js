@@ -1304,7 +1304,7 @@ var Gable = (function(){
 						}
 					}
 					if( x !== ( len - 1 ) ) {
-						newobj = newobj + "\n";
+						//newobj = newobj + "\n";
 					}
 				}
 
