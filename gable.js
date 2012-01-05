@@ -1766,7 +1766,7 @@ var Gable = (function(){
 				for( var x = 0; x < rowlen; x += 1 ) {
 					var tmp = table.rows[ x ];
 					if( 'undefined' !== typeof tmp.id ) {
-						if( tmp.id === row_id ) {
+						if( x === row_index ) {
 							row = tmp;
 						}
 					}
