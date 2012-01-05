@@ -41,14 +41,44 @@ var Gable = (function(){
 	};
 
 	Public.prototype.get = function() {
+
 		var req = arguments[ 0 ];
-		var res = Private.data.get( current_table );
-		if( 'undefined' === typeof req ) {
-			return res;
+		var table_id = current_table;
+		var row = req.row;
+		var column = req.column;
+		var chs = charts[ table_id ];
+
+		var on_success = function( res ) {
+			console.log('success get',res);
+			if( 'function' === typeof req.on_success ) {
+				req.on_success( res );
+			}
+		};
+
+		var on_error = function() {
+			if( 'function' === typeof req.on_error ) {
+				req.on_error();
+			}
+		};
+		
+		if( isNan( column ) ) {
+			column = null;
 		}
-		if( 'function' === typeof req.on_success ) {
-			req.on_success( res );	
+		
+		if( isNan( row ) ) {
+			row = null;
 		}
+
+		if( 'undefined' !== typeof row && null !== row && 'undefined' !== typeof column && null !== column ) {
+			Private.data.cell.get( table_id, row, column, on_success, on_error );
+		} else if( 'undefined' !== typeof row && null !== row) {
+			Private.data.row.get( table_id, row, on_success, on_error );
+		} else if( 'undefined' !== typeof column && null !== column ) {
+			Private.data.column.get( table_id, column, on_success, on_error );
+		} else {
+			Private.data.table.get( table_id, on_success, on_error );
+		}
+
 		return Public.prototype;
 	};
 
