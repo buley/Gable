@@ -1231,7 +1231,7 @@ var Gable = (function(){
 				on_error( { 'message': 'A column cannot be turned into a complete CSV file.' } );
 			} else if( 'row' === type ) {
 				newobj = '';
-				var x = 0, len = obj.value, item;
+				var x = 0, len = obj.value.length, item;
 				for( x = 0; x < len; x += 1 ) {
 					newobj = ( newobj + ( ( 0 === x ) ? ', ' : '' ) + obj.value[ x ] );
 					if( x === ( len - 1 ) ) {
