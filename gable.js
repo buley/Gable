@@ -1757,7 +1757,7 @@ var Gable = (function(){
 		return null;
 	};
 
-	Private.data.cell.get = function( table_id, row_index, row_id, column_index, column_id ) {
+	Private.data.cell.get = function( table_id, row_index, column_index, column_id ) {
 		var table = Private.cache[ table_id ]
 		  , column, row, value;
 		if( 'undefined' !== typeof table ) {
