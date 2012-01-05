@@ -401,7 +401,10 @@ var Gable = (function(){
 		Find.prototype = Public.prototype;
 		Find.prototype.dump = function() {
 			var req = arguments[ 0 ];
-			var find_item, findlen = find_result.length, x = 0;
+			if( !Private.utils.isArray( find_result ) {
+				find_result =
+			}
+			var find_item, findlen = find_result.value.length, x = 0;
 			for( var x = 0; x < findlen; x += 1 ) {
 				find_item = find_result[ x ];
 				if( 'undefined' === typeof req ) {
