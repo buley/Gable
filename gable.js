@@ -1242,12 +1242,14 @@ var Gable = (function(){
 
 	/* type transformsFrom other_type if other_type transformsTo type */
 	/* returns inverse of Private.data.type.tranformsTo */
+	//eee
 	Private.data.type.tranformsFrom = function(type, other_type) {
 	    //TODO: real implementation
 	    return Private.data.type.tranformsTo(other_type, type);
 	};
 
 	/* returns true if a type can be converted from another type, else false */
+	//ddd
 	Private.data.type.tranformsTo = function(type, other_type) {
 	    if ('undefined' !== typeof Private.data.types[type] && 'undefined' !== typeof Private.data.types[type]['transform'] && 'function' === typeof Private.data.types[type]['transform'][other_type]) {
 	        return true;
@@ -1256,6 +1258,7 @@ var Gable = (function(){
 	};
 
 	/* returns  null if can't be transformed from type to other_type, else returns a transformed object of type to other_type */
+	//ccc
 	Private.data.type.transform = function(type, other_type, obj) {
 	    if (Private.data.type.tranformsTo(type, other_type)) {
 	        return Private.data.types[type]['transform'][other_type](obj);
@@ -1313,7 +1316,7 @@ var Gable = (function(){
 	//aaa
 	Private.data.value.transformsTo = function(obj, other_type) {
 	    var type = Private.data.value.type(obj);
-	    if (Private.data.value.transform(type, other_type)) {
+	    if (Private.data.type.transformsTo(type, other_type)) {
 	        return true;
 	    }
 	    return false;
@@ -1323,7 +1326,7 @@ var Gable = (function(){
 	//bbb
 	Private.data.value.transformsFrom = function(obj, other_type) {
 	    var type = Private.data.value.type(obj);
-	    if (Private.data.value.transform(type, other_type)) {
+	    if (Private.data.type.transformsFrom(type, other_type)) {
 	        return true;
 	    }
 	    return false;
