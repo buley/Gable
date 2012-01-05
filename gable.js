@@ -251,7 +251,7 @@ var Gable = (function(){
 			if( 'undefined' !== typeof req ) {
 				given = req.type;
 				result = obj;
-				if( 'raw' !== given || 'csv' === given ) {
+				if( 'raw' === given || 'csv' === given ) {
 					result = Private.data.type.transform( type, given, obj )
 				} else {
 					if( Private.data.type.tranformsTo( 'raw',  given ) ) {
