@@ -211,27 +211,42 @@ var Gable = (function(){
 
 	Public.prototype.dump = function() {
 		console.log( 'export', current_table, arguments );
+		
 		var result, type = 'table', given, obj;
-		if( 'undefined' !== typeof arguments[0] ) {
-			given = arguments[ 0 ].type;
-			if( 'raw' !== given || 'csv' === given ) {
-				result = Private.data.type.transform( type, given, obj )
-			} else {
-				if( Private.data.type.tranformsTo( 'raw',  given ) ) {
+		var req = arguments[ 0 ];
+
+		var dump_on_success = function() {
+
+			if( 'undefined' !== typeof req ) {
+				given = req.type;
+				if( 'raw' !== given || 'csv' === given ) {
 					result = Private.data.type.transform( type, given, obj )
 				} else {
-					if( 'function' === typeof req.on_error ) {
-						req.on_error( { 'value': result, 'message': 'Could not be converted' } );
-						return;
+					if( Private.data.type.tranformsTo( 'raw',  given ) ) {
+						result = Private.data.type.transform( type, given, obj )
+					} else {
+						if( 'function' === typeof req.on_error ) {
+							req.on_error( { 'value': result, 'message': 'Could not be converted' } );
+							return;
+						}
 					}
 				}
 			}
-		}
 
-		req = arguments[ 0 ];
-		if( 'function' === typeof req.on_success ) {
-			req.on_success( result );
-		}
+			if( 'function' === typeof req.on_success ) {
+				req.on_success( result );
+			}
+
+		};
+
+		var dump_on_error = function() {
+			if( 'undefined' !== typeof req.on_error ) {
+				req.on_error( { 'message': 'error dumping' } );
+			}
+		};
+
+		Public.prototype.get();
+
 
 		return Public.prototype;
 	};
