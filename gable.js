@@ -1287,8 +1287,7 @@ var Gable = (function(){
 					var rwitems = obj.rows[ x ].value, a = 0, rwlen = rwitems.length, rwitem;
 					for( a = 0; a < rwlen; a += 1 ) {
 				
-						var v = rwitems[ a ].value;
-						console.log('rdubs',rwitems,a);
+						var v = rwitems[ a ];
 						
 						if( 'string' === typeof v && '' !== v ) {
 							newobj = newobj + '"' + v.replace('"', '\"' ) + '"';
