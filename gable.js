@@ -276,7 +276,8 @@ var Gable = (function(){
 			}
 		};
 
-		Public.prototype.get( { 'row': req.row, 'column': req.column, 'on_success': req.on_success, 'on_error': req.on_error } );
+		Public.prototype.get( { 'row': req.row, 'column': req.column, 'on_success': dump_on_success, 'on_error': dump_on_error } );
+	
 
 
 		return Public.prototype;
