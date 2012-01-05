@@ -1759,7 +1759,10 @@ var Gable = (function(){
 
 	Private.data.cell.get = function( table_id, row_index, column_index, column_id ) {
 		var table = Private.cache[ table_id ]
-		  , column, row, value;
+		  , row_index = ( null !== row_index && 'undefined' !== typeof row_index ) row_index - 1 : row_index
+		  , column_index = ( null !== column_index && 'undefined' !== typeof column_index ) column_index - 1 : column_index
+		  , row
+		  , value;
 		if( 'undefined' !== typeof table ) {
 			if( 'undefined' !== typeof row_id ) {
 				var rowlen = table.rows.length;
@@ -1790,7 +1793,10 @@ var Gable = (function(){
 				value = row[ column_index ];
 			}
 		}
-		return null;
+		if( 'function' !== typeof req.on_success ) {
+			req.on_success( value );
+		}
+		return Public.prototype;
 	};
 
 	//Destroy
