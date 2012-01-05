@@ -776,9 +776,10 @@ var Gable = (function(){
 	Private.data.types.raw.transform = Private.data.types.raw.transform || {};
 	Private.data.types.raw.transform.table = function( obj ) {
 
-		if( null === obj || 'undefined' === typeof obj || 'undefined' !== obj.type ) {
+		if( null === obj || 'undefined' === typeof obj || 'undefined' !== obj.type || 'undefined' === obj.rows || 'undefined' === obj.columns ) {
+			obj.format = 'raw';
 			return obj;
-		}
+		} 
 		var newcols = [];
 		var newrows = [];
 		var meta = obj.meta;
