@@ -212,10 +212,10 @@ var Gable = (function(){
 	Public.prototype.dump = function() {
 		console.log( 'export', current_table, arguments );
 		
-		var result, type = 'table', given, obj;
+		var result, type = 'table', given;
 		var req = arguments[ 0 ];
 
-		var dump_on_success = function() {
+		var dump_on_success = function( obj  ) {
 
 			if( 'undefined' !== typeof req ) {
 				given = req.type;
