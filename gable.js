@@ -1235,7 +1235,7 @@ var Gable = (function(){
 				for( x = 0; x < len; x += 1 ) {
 					newobj = ( newobj + ( ( 0 === x ) ? ', ' : '' ) + obj.value[ x ] );
 					if( x === ( len - 1 ) ) {
-						new_obj = new_obj + "\n";
+						newobj = newobj + "\n";
 					}
 				}
 			} else if ( 'table' === type ) {
