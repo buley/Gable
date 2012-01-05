@@ -1757,19 +1757,16 @@ var Gable = (function(){
 		return null;
 	};
 
-	Private.data.cell.get = function( table_id, row_index, column_index, column_id ) {
+	Private.data.cell.get = function( table_id, row_index, column_index, on_success, on_error, row_id, column_id ) {
 		var table = Private.cache[ table_id ]
-		  , row_index = ( null !== row_index && 'undefined' !== typeof row_index ) ? row_index - 1 : row_index
-		  , column_index = ( null !== column_index && 'undefined' !== typeof column_index ) ? column_index - 1 : column_index
-		  , row
-		  , value = null;
+		  , column, row, value;
 		if( 'undefined' !== typeof table ) {
-			if( 'undefined' !== typeof row_index ) {
+			if( 'undefined' !== typeof row_id ) {
 				var rowlen = table.rows.length;
 				for( var x = 0; x < rowlen; x += 1 ) {
 					var tmp = table.rows[ x ];
-					if( 'undefined' !== typeof row_index ) {
-						if( x === row_index ) {
+					if( 'undefined' !== typeof tmp.id ) {
+						if( tmp.id === row_id ) {
 							row = tmp;
 						}
 					}
@@ -1779,12 +1776,12 @@ var Gable = (function(){
 			}
 		} 
 		if( 'undefined' !== typeof row ) {
-			if( 'undefined' !== typeof column_index ) {
+			if( 'undefined' !== typeof column_id ) {
 				var rowlen = table.rows.length;
 				for( var x = 0; x < rowlen; x += 1 ) {
 					var tmp = table.rows[ x ];
-					if( 'undefined' !== column_index ) {
-						if( x === column_index ) {
+					if( 'undefined' !== tmp.id ) {
+						if( tmp.id === column_id ) {
 							value = tmp;
 						}
 					}
