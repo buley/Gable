@@ -1233,7 +1233,7 @@ var Gable = (function(){
 				newobj = '';
 				var x = 0, len = obj.value.length, item;
 				for( x = 0; x < len; x += 1 ) {
-					newobj = ( newobj + ( ( 0 === x ) ? ', ' : '' );
+					newobj = ( newobj + ( ( 0 === x ) ? ', ' : '' ) );
 					var v = obj.value[ x ];
 					if( 'string' === typeof v ) {
 						newobj = newobj + '"' + v.replace('"', '\"' );
