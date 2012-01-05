@@ -50,7 +50,6 @@ var Gable = (function(){
 		var chs = charts[ table_id ];
 
 		var on_success = function( res ) {
-			console.log('success get',res);
 			if( 'function' === typeof req.on_success ) {
 				req.on_success( res );
 			}
@@ -777,7 +776,7 @@ var Gable = (function(){
 	Private.data.types.raw.transform = Private.data.types.raw.transform || {};
 	Private.data.types.raw.transform.table = function( obj ) {
 
-		if( null === obj || 'undefined' === typeof obj ) {
+		if( null === obj || 'undefined' === typeof obj || 'undefined' !== obj.type ) {
 			return obj;
 		}
 		var newcols = [];
