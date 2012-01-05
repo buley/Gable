@@ -1215,8 +1215,33 @@ var Gable = (function(){
 
 
 	Private.data.types.raw.transform.csv = function(obj) {
-		console.log("Transform: CSV",obj);
-		return obj;
+		var type, newobj = null;
+		if( 'undefined' !== typeof obj ) {
+			if( 'undefined' !== typeof obj.type ) {
+				type = 'column';
+			} else if( 'undefined' !== typeof obj.value ) {
+				type = 'row';
+			} else if( 'undefined' !== typeof obj.columns && 'undefined' !== obj.rows ) {
+				type = 'table';
+			} else {
+				on_error( { 'message': 'Not a recognized CSV data structure.' } );
+			}
+
+			if( 'column' === type ) {
+				on_error( { 'message': 'A column cannot be turned into a complete CSV file.' } );
+			} else if( 'row' === ) {
+				newobj = '';
+				var x = 0; len = obj.value, item;
+				for( x = 0; x < len; x += 1 ) {
+					newobj = ( newobj + ( ( 0 === x ) ? ', ' : '' ) + obj.value[ x ] );
+					if( x === ( len - 1 ) ) {
+						new_obj = new_obj + "\n";
+					}
+				}
+			}
+
+		}
+		return newobj;
 	};
 
 	Private.data.types.csv.transform.filter = function(obj) {
