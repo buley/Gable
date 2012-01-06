@@ -1335,9 +1335,9 @@ var Gable = (function(){
 				//on_error( { 'message': 'A column cannot be turned into a complete CSV file.' } );
 
 						newobj = '';
-						var x = 0, len = rw.length, item;
-						for( x = 0; x < len; x += 1 ) {
-							var v = rw[ x ];
+						var j = 0, len = rw.length, item;
+						for( j = 0; j < len; j += 1 ) {
+							var v = rw[ j ];
 							if( 'string' === typeof v ) {
 								newobj = newobj + '"' + v.replace('"', '\"' ) + '"';
 							} else if( v instanceof Date ) {
