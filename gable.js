@@ -1287,7 +1287,7 @@ var Gable = (function(){
 
 				if( 'undefined' !== typeof table.rows ) {
 					for( y = 0; y < rowlen; y += 1) {
-						if( 'undefined' !== typeof table.rows[ y ].id ) { 	
+						if( null !== table.rows[ y ].id && 'undefined' !== typeof table.rows[ y ].id ) { 	
 							using_id = true;
 							break;
 						}
