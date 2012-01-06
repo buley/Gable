@@ -1389,9 +1389,10 @@ var Gable = (function(){
 							colindex = x;
 							if( 'undefined' !== typeof table.columns[ x ].meta && 'undefined' !== typeof table.columns[ x ].meta.label ) {
 
-								collids[] = table.columns[ x ].meta.label;
+								collids.push( table.columns[ x ].meta.label );
 							} else {
-								collids[] = table.columns[ x ].id; }
+								collids.push( table.columns[ x ].id );
+							}
 						}
 					}
 				}
