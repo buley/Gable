@@ -1415,16 +1415,21 @@ var Gable = (function(){
 						newobj = newobj + collids.join( ', ' ) + "\n";
 					}
 				}
+
+				var vid = obj.id;
+				if( 'undefined' === typeof vid ) {
+					vid = '';
+				}
+				if( true === using_id ) {
+					newobj = newobj + vid + ', ';
+				}
+
+
 				for( x = 0; x < len; x += 1 ) {
+
 					newobj = ( newobj + ( ( 0 !== x ) ? ', ' : '' ) );
 					var v = obj.value[ x ];
-					var vid = obj.id;
-					if( 'undefined' === typeof vid ) {
-						vid = '';
-					}
-					if( true === using_id ) {
-						newObj = newobj + vid + ', ';
-					}
+
 					if( 'string' === typeof v ) {
 						newobj = newobj + '"' + v.replace('"', '\"' ) + '"';
 					} else if( v instanceof Date ) {
