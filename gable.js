@@ -1299,7 +1299,7 @@ var Gable = (function(){
 						}
 						var id, val;
 						if( true === using_id ) {
-							if( 'undefined' !== typeof table.rows[ y ].id ) { 
+							if( null !== table.rows[ y ].id && 'undefined' !== typeof table.rows[ y ].id ) { 
 								id = table.rows[ y ].id;
 							} else {
 								id = null;
