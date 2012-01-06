@@ -1274,13 +1274,26 @@ var Gable = (function(){
 				var colindex;
 				var collen = table.columns.length;
 				var rowlen = table.rows.length;
-				var x = 0;
+				var x = 0, y = 0;
 				for( x = 0; x < collen; x += 1 ) {
 					console.log( obj.id === table.columns[ x ].id ); 
 					if( obj.id === table.columns[ x ].id ) {
 						console.log( 'breach' );
 						colindex = x;
 						break;
+					}
+					var items = [];
+					if( 'undefined' !== typeof table.rows ) {
+						for( y = 0; x < rowlen; x += 1) {
+
+							var newval = table.rows[ y ].value[ colindex ];
+							if( 'undefined' === typeof newval ) {
+								newval = null;
+							}
+							items.push( newval );
+
+
+						}	
 					}
 				}
 				console.log('INDEX',colindex);
