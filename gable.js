@@ -1420,7 +1420,7 @@ var Gable = (function(){
 					var v = obj.value[ x ];
 					var vid = obj.id;
 					if( 'undefined' === typeof vid ) {
-						vid = null;
+						vid = '';
 					}
 					if( true === using_id ) {
 						newObj = newobj + vid + ', ';
