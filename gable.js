@@ -1249,6 +1249,8 @@ var Gable = (function(){
 
 		if( 'undefined' !== typeof obj ) {
 
+			var structure = [];
+
 			if( 'undefined' !== typeof obj.type ) {
 
 				type = 'column';
@@ -1266,6 +1268,7 @@ var Gable = (function(){
 				on_error( { 'message': 'Not a recognized CSV data structure.' } );
 
 			}
+
 
 			if( 'column' === type ) {
 
@@ -1318,9 +1321,10 @@ var Gable = (function(){
 							items.push( newval );
 						}
 
-					}	
+					}
+					structure.push( items )	
 				}
-				console.log('COLS',items);
+				console.log('structure',structure);
 
 				//on_error( { 'message': 'A column cannot be turned into a complete CSV file.' } );
 				
