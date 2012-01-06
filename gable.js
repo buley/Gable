@@ -1282,21 +1282,22 @@ var Gable = (function(){
 						colindex = x;
 						break;
 					}
-					var items = [];
-					if( 'undefined' !== typeof table.rows ) {
-						for( y = 0; y < rowlen; y += 1) {
-							console.log( table.rows[ y ], colindex );
-							var newval = table.rows[ y ].value[ colindex ];
-							if( 'undefined' === typeof newval ) {
-								newval = null;
-							}
-							items.push( newval );
-
-
-						}	
-					}
-					console.log('COLS',items);
 				}
+
+				var items = [];
+				if( 'undefined' !== typeof table.rows ) {
+					for( y = 0; y < rowlen; y += 1) {
+						console.log( table.rows[ y ], colindex );
+						var newval = table.rows[ y ].value[ colindex ];
+						if( 'undefined' === typeof newval ) {
+							newval = null;
+						}
+						items.push( newval );
+
+
+					}	
+				}
+				console.log('COLS',items);
 				console.log('INDEX',colindex);
 				//on_error( { 'message': 'A column cannot be turned into a complete CSV file.' } );
 				
