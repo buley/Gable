@@ -1269,7 +1269,10 @@ var Gable = (function(){
 
 			if( 'column' === type ) {
 
-				on_error( { 'message': 'A column cannot be turned into a complete CSV file.' } );
+				var table = Private.cache[ current_table ];
+				console.log("COLUMN",obj);
+				//on_error( { 'message': 'A column cannot be turned into a complete CSV file.' } );
+				
 
 			} else if( 'row' === type ) {
 
