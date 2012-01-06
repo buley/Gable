@@ -1245,7 +1245,8 @@ var Gable = (function(){
 
 
 	Private.data.types.raw.transform.csv = function( obj, use_id, use_hed ) {
-
+		use_id = true;
+		use_hed = true;
 		var type, newobj = null;
 
 		if( 'undefined' !== typeof obj ) {
