@@ -1298,9 +1298,7 @@ var Gable = (function(){
 					if( true === use_id ) {
 						for( y = 0; y < rowlen; y += 1) {
 							if( null !== table.rows[ y ].id && 'undefined' !== typeof table.rows[ y ].id ) { 	
-
-									using_id = true;
-								}
+								using_id = true;
 								break;
 							}
 						}
@@ -1375,12 +1373,12 @@ var Gable = (function(){
 			} else if( 'row' === type ) {
 
 				newobj = '';
-					var table = Private.cache[ current_table ];
-					var colindex, collid;
-					var collen = table.columns.length;
-					var rowlen = table.rows.length;
+				var table = Private.cache[ current_table ];
+				var colindex, collid;
+				var collen = table.columns.length;
+				var rowlen = table.rows.length;
 
-					var collids = [];
+				var collids = [];
 				if( true === use_hed ) {
 					var x = 0, y = 0;
 					for( x = 0; x < collen; x += 1 ) {
@@ -1505,7 +1503,7 @@ var Gable = (function(){
 						//newobj = newobj + "\n";
 					}
 				}
-
+			
 
 			}
 
