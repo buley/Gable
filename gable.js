@@ -1270,7 +1270,6 @@ var Gable = (function(){
 			if( 'column' === type ) {
 
 				var table = Private.cache[ current_table ];
-				console.log("COLUMN",obj);
 				var colindex;
 				var collen = table.columns.length;
 				var rowlen = table.rows.length;
@@ -1278,27 +1277,46 @@ var Gable = (function(){
 				for( x = 0; x < collen; x += 1 ) {
 					console.log( obj.id, table.columns[ x ].id, obj.id === table.columns[ x ].id ); 
 					if( obj.id === table.columns[ x ].id ) {
-						console.log( 'breach' );
 						colindex = x;
 						break;
 					}
 				}
 
 				var items = [];
+				var using_id = false;
+
 				if( 'undefined' !== typeof table.rows ) {
 					for( y = 0; y < rowlen; y += 1) {
-						console.log( table.rows[ y ], colindex );
+						if( 'undefined' !== typeof table.rows[ y ].id ) { 	
+							using_id = true;
+							break;
+						}
+					}
+					for( y = 0; y < rowlen; y += 1) {
 						var newval = table.rows[ y ].value[ colindex ];
 						if( 'undefined' === typeof newval ) {
 							newval = null;
 						}
-						items.push( newval );
+						var id, val;
+						if( true === using_id ) {
+							if( 'undefined' !== typeof table.rows[ y ].id ) { 
+								id = table
+							} else {
+								id = null;
+							}
+
+							items.push( [ id, newval ] );
+						} else {
+							items.push( newval );
+						}
+
+
 
 
 					}	
 				}
 				console.log('COLS',items);
-				console.log('INDEX',colindex);
+
 				//on_error( { 'message': 'A column cannot be turned into a complete CSV file.' } );
 				
 
