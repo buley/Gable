@@ -1337,7 +1337,7 @@ var Gable = (function(){
 						var x = 0, len = rw.length, item;
 						for( x = 0; x < len; x += 1 ) {
 							newobj = ( newobj + ( ( 0 !== x ) ? ', ' : '' ) );
-							var v = rw.value[ x ];
+							var v = rw[ x ];
 							if( 'string' === typeof v ) {
 								newobj = newobj + '"' + v.replace('"', '\"' ) + '"';
 							} else if( v instanceof Date ) {
