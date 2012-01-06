@@ -1284,8 +1284,8 @@ var Gable = (function(){
 					}
 					var items = [];
 					if( 'undefined' !== typeof table.rows ) {
-						for( y = 0; x < rowlen; x += 1) {
-							console.log(table.rows[ y ], colindex );
+						for( y = 0; y < rowlen; y += 1) {
+							console.log( table.rows[ y ], colindex );
 							var newval = table.rows[ y ].value[ colindex ];
 							if( 'undefined' === typeof newval ) {
 								newval = null;
