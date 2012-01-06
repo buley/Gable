@@ -1295,6 +1295,7 @@ var Gable = (function(){
 
 						}	
 					}
+					console.log('COLS',items);
 				}
 				console.log('INDEX',colindex);
 				//on_error( { 'message': 'A column cannot be turned into a complete CSV file.' } );
