@@ -1300,7 +1300,7 @@ var Gable = (function(){
 						var id, val;
 						if( true === using_id ) {
 							if( 'undefined' !== typeof table.rows[ y ].id ) { 
-								id = table
+								id = table.id;
 							} else {
 								id = null;
 							}
@@ -1309,9 +1309,6 @@ var Gable = (function(){
 						} else {
 							items.push( newval );
 						}
-
-
-
 
 					}	
 				}
