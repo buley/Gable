@@ -1244,7 +1244,7 @@ var Gable = (function(){
 
 
 
-	Private.data.types.raw.transform.csv = function( obj, use_id ) {
+	Private.data.types.raw.transform.csv = function( obj, use_id, use_hed ) {
 
 		var type, newobj = null;
 
@@ -1305,7 +1305,7 @@ var Gable = (function(){
 							}
 						}
 					}
-					if( null !== collid && 'undefined' !== typeof collid ) {
+					if( null !== collid && 'undefined' !== typeof collid && true === use_hed ) {
 						if( true === using_id ) {
 							items.push( [ null, collid ] );
 						} else {	
@@ -1375,18 +1375,72 @@ var Gable = (function(){
 			} else if( 'row' === type ) {
 
 				newobj = '';
+					var table = Private.cache[ current_table ];
+					var colindex, collid;
+					var collen = table.columns.length;
+					var rowlen = table.rows.length;
+
+					var collids = [];
+				if( true === use_hed ) {
+					var x = 0, y = 0;
+					for( x = 0; x < collen; x += 1 ) {
+						console.log( obj.id, table.columns[ x ].id, obj.id === table.columns[ x ].id ); 
+						if( obj.id === table.columns[ x ].id ) {
+							colindex = x;
+							if( 'undefined' !== typeof table.columns[ x ].meta && 'undefined' !== typeof table.columns[ x ].meta.label ) {
+
+								collids[] = table.columns[ x ].meta.label;
+							} else {
+								collids[] = table.columns[ x ].id; }
+						}
+					}
+				}
+
 				var x = 0, len = obj.value.length, item;
+				var using_id = false;
+				if( true === use_id ) {
+					for( x = 0; x < len; x += 1 ) {
+						
+						var v = obj.value[ x ].id;
+						if( 'undefined' !== id && null !== id ) {
+							using_id = true;
+							break;
+						}
+					}
+				}
+				if( true === use_hed ) {
+					if( true === using_id ) {
+						newobj = newobj + ',' + collids.join( ', ' ) + "\n";
+					} else {
+						newobj = newobj + collids.join( ', ' ) + "\n";
+					}
+				}
 				for( x = 0; x < len; x += 1 ) {
 					newobj = ( newobj + ( ( 0 !== x ) ? ', ' : '' ) );
 					var v = obj.value[ x ];
+					var vid = obj.id;
+					if( 'undefined' === typeof vid ) {
+						vid = null;
+					}
 					if( 'string' === typeof v ) {
-						newobj = newobj + '"' + v.replace('"', '\"' ) + '"';
+						if( true === using_id ) {
+							newobj = newobj + vid + ', "' + v.replace('"', '\"' ) + '"';
+						} else {
+							newobj = newobj + '"' + v.replace('"', '\"' ) + '"';
+						}
 					} else if( v instanceof Date ) {
-
-						newobj = newobj + '"' + v.toString() + '"';
+						if( true === using_id ) {
+							newobj = newobj + vid + ', "' + v.toString() + '"';
+						} else {
+							newobj = newobj + '"' + v.toString() + '"';
+						}
 					} else {
 
-						newobj = newobj + v;
+						if( true === using_id ) {
+							newobj = newobj + vid +', ' + v;
+						} else {
+							newobj = newobj + v;
+						}
 					}
 					if( x === ( len - 1 ) ) {
 						newobj = newobj + "\n";
