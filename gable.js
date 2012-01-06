@@ -1423,7 +1423,7 @@ var Gable = (function(){
 						vid = null;
 					}
 					if( true === using_id ) {
-						newObj = new_obj + vid + ', ';
+						newObj = newobj + vid + ', ';
 					}
 					if( 'string' === typeof v ) {
 						newobj = newobj + '"' + v.replace('"', '\"' ) + '"';
