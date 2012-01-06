@@ -239,7 +239,6 @@ var Gable = (function(){
 	};
 
 	Public.prototype.dump = function() {
-		console.log( 'export', current_table, arguments );
 
 		var result, type, given, options;
 		var req = arguments[ 0 ];
@@ -1284,7 +1283,6 @@ var Gable = (function(){
 				var rowlen = table.rows.length;
 				var x = 0, y = 0;
 				for( x = 0; x < collen; x += 1 ) {
-					console.log( obj.id, table.columns[ x ].id, obj.id === table.columns[ x ].id ); 
 					if( obj.id === table.columns[ x ].id ) {
 						colindex = x;
 						if( 'undefined' !== typeof table.columns[ x ].meta && 'undefined' !== typeof table.columns[ x ].meta.label ) {
