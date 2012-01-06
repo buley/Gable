@@ -1270,7 +1270,7 @@ var Gable = (function(){
 			if( 'column' === type ) {
 
 				var table = Private.cache[ current_table ];
-				var colindex;
+				var colindex, collid;
 				var collen = table.columns.length;
 				var rowlen = table.rows.length;
 				var x = 0, y = 0;
@@ -1278,6 +1278,11 @@ var Gable = (function(){
 					console.log( obj.id, table.columns[ x ].id, obj.id === table.columns[ x ].id ); 
 					if( obj.id === table.columns[ x ].id ) {
 						colindex = x;
+						if( 'undefined' !== typeof table.columns[ x ].meta && 'undefined' !== typeof table.columns[ x ].meta.label ) {
+
+							collid = table.columns[ x ].meta.label;
+						} else {
+							collid = table.columns[ x ].id; }
 						break;
 					}
 				}
@@ -1291,6 +1296,9 @@ var Gable = (function(){
 							using_id = true;
 							break;
 						}
+					}
+					if( true === using_id && 'undefined' !== typeof collid ) {
+						items.push( collid );
 					}
 					for( y = 0; y < rowlen; y += 1) {
 						var newval = table.rows[ y ].value[ colindex ];
