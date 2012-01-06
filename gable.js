@@ -1294,7 +1294,7 @@ var Gable = (function(){
 					}
 					for( y = 0; y < rowlen; y += 1) {
 						var newval = table.rows[ y ].value[ colindex ];
-						if( 'undefined' === typeof newval ) {
+						if( null !== newval && 'undefined' === typeof newval ) {
 							newval = null;
 						}
 						var id, val;
