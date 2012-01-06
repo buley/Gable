@@ -1297,7 +1297,7 @@ var Gable = (function(){
 							break;
 						}
 					}
-					if( 'undefined' !== typeof collid ) {
+					if( null !== collid && 'undefined' !== typeof collid ) {
 						items.push( collid );
 					}
 					for( y = 0; y < rowlen; y += 1) {
