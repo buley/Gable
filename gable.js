@@ -1333,25 +1333,25 @@ var Gable = (function(){
 
 				//on_error( { 'message': 'A column cannot be turned into a complete CSV file.' } );
 
-					newobj = '';
-					var x = 0, len = rw.length, item;
-					for( x = 0; x < len; x += 1 ) {
-						newobj = ( newobj + ( ( 0 !== x ) ? ', ' : '' ) );
-						var v = obj.value[ x ];
-						if( 'string' === typeof v ) {
-							newobj = newobj + '"' + v.replace('"', '\"' ) + '"';
-						} else if( v instanceof Date ) {
+						newobj = '';
+						var x = 0, len = rw.length, item;
+						for( x = 0; x < len; x += 1 ) {
+							newobj = ( newobj + ( ( 0 !== x ) ? ', ' : '' ) );
+							var v = rw.value[ x ];
+							if( 'string' === typeof v ) {
+								newobj = newobj + '"' + v.replace('"', '\"' ) + '"';
+							} else if( v instanceof Date ) {
 
-							newobj = newobj + '"' + v.toString() + '"';
-						} else {
+								newobj = newobj + '"' + v.toString() + '"';
+							} else {
 
-							newobj = newobj + v;
+								newobj = newobj + v;
+							}
+							if( x === ( len - 1 ) ) {
+								newobj = newobj + "\n";
+							}
 						}
-						if( x === ( len - 1 ) ) {
-							newobj = newobj + "\n";
-						}
-					}
-					console.log("NEWOBJ",newobj);
+						console.log("NEWOBJ",newobj);
 				}
 
 			} else if( 'row' === type ) {
