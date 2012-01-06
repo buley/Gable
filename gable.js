@@ -1244,7 +1244,7 @@ var Gable = (function(){
 
 
 
-	Private.data.types.raw.transform.csv = function( obj ) {
+	Private.data.types.raw.transform.csv = function( obj, use_id ) {
 
 		var type, newobj = null;
 
@@ -1295,10 +1295,14 @@ var Gable = (function(){
 				var using_id = false;
 
 				if( 'undefined' !== typeof table.rows ) {
-					for( y = 0; y < rowlen; y += 1) {
-						if( null !== table.rows[ y ].id && 'undefined' !== typeof table.rows[ y ].id ) { 	
-							using_id = true;
-							break;
+					if( true === use_id ) {
+						for( y = 0; y < rowlen; y += 1) {
+							if( null !== table.rows[ y ].id && 'undefined' !== typeof table.rows[ y ].id ) { 	
+
+									using_id = true;
+								}
+								break;
+							}
 						}
 					}
 					if( null !== collid && 'undefined' !== typeof collid ) {
