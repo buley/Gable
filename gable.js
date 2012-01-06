@@ -1271,6 +1271,17 @@ var Gable = (function(){
 
 				var table = Private.cache[ current_table ];
 				console.log("COLUMN",obj);
+				var colindex;
+				var collen = table.columns.length;
+				var rowlen = table.rows.length;
+				var x = 0;
+				for( x = 0; x < collen; x += 1 ) {
+					if( obj.id === table.columns[ x ] ) {
+						colindex = x;
+						break;
+					}
+				}
+				console.log('INDEX',colindex);
 				//on_error( { 'message': 'A column cannot be turned into a complete CSV file.' } );
 				
 
