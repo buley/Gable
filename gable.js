@@ -1383,15 +1383,11 @@ var Gable = (function(){
 				if( true === use_hed ) {
 					var x = 0, y = 0;
 					for( x = 0; x < collen; x += 1 ) {
-						console.log( obj.id, table.columns[ x ].id, obj.id === table.columns[ x ].id ); 
-						if( obj.id === table.columns[ x ].id ) {
-							colindex = x;
-							if( 'undefined' !== typeof table.columns[ x ].meta && 'undefined' !== typeof table.columns[ x ].meta.label ) {
+						if( 'undefined' !== typeof table.columns[ x ].meta && 'undefined' !== typeof table.columns[ x ].meta.label ) {
 
-								collids.push( table.columns[ x ].meta.label );
-							} else {
-								collids.push( table.columns[ x ].id );
-							}
+							collids.push( table.columns[ x ].meta.label );
+						} else {
+							collids.push( table.columns[ x ].id );
 						}
 					}
 				}
