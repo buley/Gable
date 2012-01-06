@@ -283,7 +283,8 @@ var Gable = (function(){
 			}
 
 		} else {
-			Public.prototype.get( { 'row': req.row, 'column': req.column, 'on_success': dump_on_success, 'on_error': dump_on_error } );
+			//zero indexed vs query language with 1 index
+			Public.prototype.get( { 'row': ( req.row - 1 ), 'column': ( req.column - 1 ), 'on_success': dump_on_success, 'on_error': dump_on_error } );
 		}
 
 	
@@ -1349,7 +1350,7 @@ var Gable = (function(){
 									newobj = newobj + v[ 0 ] + ', ' + newobj + v[ 1 ];
 								} else {
 
-								newobj = newobj + v;
+									newobj = newobj + v;
 								}
 							}
 							if( x !== ( len - 1 ) ) {
