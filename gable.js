@@ -1422,25 +1422,15 @@ var Gable = (function(){
 					if( 'undefined' === typeof vid ) {
 						vid = null;
 					}
+					if( true === using_id ) {
+						newObj = new_obj + vid + ', ';
+					}
 					if( 'string' === typeof v ) {
-						if( true === using_id ) {
-							newobj = newobj + vid + ', "' + v.replace('"', '\"' ) + '"';
-						} else {
-							newobj = newobj + '"' + v.replace('"', '\"' ) + '"';
-						}
+						newobj = newobj + '"' + v.replace('"', '\"' ) + '"';
 					} else if( v instanceof Date ) {
-						if( true === using_id ) {
-							newobj = newobj + vid + ', "' + v.toString() + '"';
-						} else {
-							newobj = newobj + '"' + v.toString() + '"';
-						}
+						newobj = newobj + '"' + v.toString() + '"';
 					} else {
-
-						if( true === using_id ) {
-							newobj = newobj + vid +', ' + v;
-						} else {
-							newobj = newobj + v;
-						}
+						newobj = newobj + v;
 					}
 					if( x === ( len - 1 ) ) {
 						newobj = newobj + "\n";
