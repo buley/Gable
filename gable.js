@@ -1336,7 +1336,6 @@ var Gable = (function(){
 						newobj = '';
 						var x = 0, len = rw.length, item;
 						for( x = 0; x < len; x += 1 ) {
-							newobj = ( newobj + ( ( 0 !== x ) ? ', ' : '' ) );
 							var v = rw[ x ];
 							if( 'string' === typeof v ) {
 								newobj = newobj + '"' + v.replace('"', '\"' ) + '"';
@@ -1345,7 +1344,13 @@ var Gable = (function(){
 								newobj = newobj + '"' + v.toString() + '"';
 							} else {
 
+								if( true === using_id && ( Private.utils.isArray( v ) && v.length > 1 ) ) {
+	
+									newobj = newobj + v[ 0 ] + ', ' + newobj + v[ 1 ];
+								} else {
+
 								newobj = newobj + v;
+								}
 							}
 							if( x !== ( len - 1 ) ) {
 								newobj = newobj + "\n";
