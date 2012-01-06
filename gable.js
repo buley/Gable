@@ -1302,7 +1302,11 @@ var Gable = (function(){
 						}
 					}
 					if( null !== collid && 'undefined' !== typeof collid ) {
-						items.push( collid );
+						if( true === using_id ) {
+							items.push( [ null, collid ] );
+						} else {	
+							items.push( collid );
+						}
 					}
 					for( y = 0; y < rowlen; y += 1) {
 						var newval = table.rows[ y ].value[ colindex ];
@@ -1323,16 +1327,14 @@ var Gable = (function(){
 						}
 
 					}
+
 					structure.push( items )	
 				}
-				console.log('structure',structure);
 
 				var rowlen = structure.length, rw, x;
 				var csv = '';
 				for( z = 0; z < rowlen; z += 1 ) {
 					rw = structure[ z ];
-
-				//on_error( { 'message': 'A column cannot be turned into a complete CSV file.' } );
 
 						newobj = '';
 						var j = 0, len = rw.length, item;
@@ -1347,7 +1349,14 @@ var Gable = (function(){
 
 								if( true === using_id && ( Private.utils.isArray( v ) && v.length > 1 ) ) {
 	
-									newobj = newobj + v[ 0 ] + ', ' + v[ 1 ];
+									var one = v[ 0 ], two = v[ 1 ];
+									if( one === null ) {
+										one = '';
+									} 
+									if( two === null ) {
+										two = '';
+																			}
+									newobj = newobj + one + ', ' + two;
 								} else {
 
 									newobj = newobj + v;
@@ -1357,7 +1366,6 @@ var Gable = (function(){
 								newobj = newobj + "\n";
 							}
 						}
-						console.log("NEWOBJ",newobj);
 				}
 
 			} else if( 'row' === type ) {
