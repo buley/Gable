@@ -1347,7 +1347,7 @@ var Gable = (function(){
 
 								if( true === using_id && ( Private.utils.isArray( v ) && v.length > 1 ) ) {
 	
-									newobj = newobj + v[ 0 ] + ', ' + newobj + v[ 1 ];
+									newobj = newobj + v[ 0 ] + ', ' + v[ 1 ];
 								} else {
 
 									newobj = newobj + v;
