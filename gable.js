@@ -240,9 +240,11 @@ var Gable = (function(){
 
 	Public.prototype.dump = function() {
 		console.log( 'export', current_table, arguments );
-		
-		var result, type, given;
+
+		var result, type, given, options;
 		var req = arguments[ 0 ];
+		options = req.options;
+
 		var res = arguments[ 1 ];
 
 		var dump_on_success = function( obj  ) {
@@ -252,10 +254,10 @@ var Gable = (function(){
 				if( 'raw' === req.type ) {
 					result = obj;
 				} else if ( 'csv' === req.type ) {
-					result = Private.data.type.transform( given, req.type, obj )
+					result = Private.data.type.transform( given, req.type, obj, options )
 				} else {
 					if( Private.data.type.tranformsTo( 'raw',  req.type ) ) {
-						result = Private.data.type.transform( given, req.type, obj )
+						result = Private.data.type.transform( given, req.type, obj, options )
 					} else {
 						if( 'function' === typeof req.on_error ) {
 							req.on_error( { 'value': result, 'message': 'Could not be converted' } );
@@ -1244,10 +1246,12 @@ var Gable = (function(){
 
 
 
-	Private.data.types.raw.transform.csv = function( obj, use_id, use_hed ) {
-		use_id = true;
-		use_hed = true;
+	Private.data.types.raw.transform.csv = function( obj, options ) {
+
+		var use_hed = options.header;
+		var use_id = options.id;
 		var type, newobj = null;
+
 
 		if( 'undefined' !== typeof obj ) {
 
@@ -1597,9 +1601,9 @@ var Gable = (function(){
 
 	/* returns  null if can't be transformed from type to other_type, else returns a transformed object of type to other_type */
 	//ccc
-	Private.data.type.transform = function(type, other_type, obj) {
+	Private.data.type.transform = function(type, other_type, obj, options) {
 	    if (Private.data.type.tranformsTo(type, other_type)) {
-	        return Private.data.types[type]['transform'][other_type](obj);
+	        return Private.data.types[type]['transform'][other_type](obj, options);
 	    }
 	    return null;
 	};
@@ -1773,15 +1777,15 @@ var Gable = (function(){
 		meta = ( 'undefined' === typeof meta || 'object' !== typeof meta ) ? {} : meta;
 	};
 
-	Private.data.get = function( id, type ) {
+	Private.data.get = function( id, type, options ) {
 		var table = Private.data.table.get( id );
 		var result = null;
 		if( null === type || 'undefined' === typeof type || 'raw' === type ) {
 			result = table;	
 		} else if( type === 'table' ) {
-			result = Private.data.types.raw.transform.table( Private.data.types.table.transform.filter( table ) );
+			result = Private.data.types.raw.transform.table( Private.data.types.table.transform.filter( table, options ), options );
 		} else if( type === 'csv' ) {
-			result = Private.data.types.raw.transform.csv( Private.data.types.csv.transform.filter( table ) );
+			result = Private.data.types.raw.transform.csv( Private.data.types.csv.transform.filter( table, options ), options );
 		}
 		return result;
 	};
