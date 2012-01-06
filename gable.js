@@ -1347,7 +1347,7 @@ var Gable = (function(){
 
 								newobj = newobj + v;
 							}
-							if( x === ( len - 1 ) ) {
+							if( x !== ( len - 1 ) ) {
 								newobj = newobj + "\n";
 							}
 						}
