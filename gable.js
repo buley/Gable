@@ -1276,7 +1276,7 @@ var Gable = (function(){
 				var rowlen = table.rows.length;
 				var x = 0;
 				for( x = 0; x < collen; x += 1 ) {
-					if( obj.id === table.columns[ x ] ) {
+					if( obj.id === table.columns[ x ].id ) {
 						colindex = x;
 						break;
 					}
