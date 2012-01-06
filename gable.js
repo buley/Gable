@@ -78,7 +78,6 @@ var Gable = (function(){
 		} else {
 			Private.data.table.get( table_id, on_success, on_error );
 		}
-
 		return Public.prototype;
 	};
 
@@ -1244,22 +1243,36 @@ var Gable = (function(){
 
 
 
-	Private.data.types.raw.transform.csv = function(obj) {
+	Private.data.types.raw.transform.csv = function( obj ) {
+
 		var type, newobj = null;
+
 		if( 'undefined' !== typeof obj ) {
+
 			if( 'undefined' !== typeof obj.type ) {
+
 				type = 'column';
+
 			} else if( 'undefined' !== typeof obj.value ) {
+
 				type = 'row';
+
 			} else if( 'undefined' !== typeof obj.columns && 'undefined' !== obj.rows ) {
+
 				type = 'table';
+
 			} else {
+
 				on_error( { 'message': 'Not a recognized CSV data structure.' } );
+
 			}
 
 			if( 'column' === type ) {
+
 				on_error( { 'message': 'A column cannot be turned into a complete CSV file.' } );
+
 			} else if( 'row' === type ) {
+
 				newobj = '';
 				var x = 0, len = obj.value.length, item;
 				for( x = 0; x < len; x += 1 ) {
@@ -1279,7 +1292,6 @@ var Gable = (function(){
 					}
 				}
 			} else if ( 'table' === type ) {
-				console.log('real deal');
 
 				var x = 0, len = obj.columns.length, item, ids = [], hasHeader = false;
 				newobj = '';
