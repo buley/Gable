@@ -2429,11 +2429,11 @@ var Gable = (function(){
 			return -1;
 		}
 		if( Array.indexOf ) {
-			return arr.indexOf( key );
+			return arr.indexOf( val );
 		}
 		var arrlen = arr.length, x, item;
 		for( x = 0; x < arrlen; x += 1 ) {
-			if( arr[ x ] === key ) {
+			if( arr[ x ] === val ) {
 				return x;
 			}
 		}
