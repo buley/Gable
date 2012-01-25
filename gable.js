@@ -753,7 +753,7 @@ var Gable = (function(){
 	};
 
 	Private.utils.chartTypeIsLoaded = function( chart_type ) {
-		if( -1 === Private.charts.loaded.indexOf( chart_type ) ) {
+		if( -1 === Private.utils.arrayIndexOf( Private.charts.loaded, chart_type ) ) {
 			return false;
 		} else {
 			return true;
@@ -1910,7 +1910,7 @@ var Gable = (function(){
 			//no type given
 			return null;
 		} else {
-			if( -1 === Private.data.column.types.indexOf( type ) ) {
+			if( -1 === Private.utils.arrayIndexOf( Private.data.column.types, type ) ) {
 				//not a valid type
 				return null;
 			}
@@ -2423,6 +2423,22 @@ var Gable = (function(){
 
 
 	/* Utilities */
+
+	Private.utils.arrayIndexOf = function( arr, val ) {
+		if( !Private.utils.isArray( arr ) ) {
+			return -1;
+		}
+		if( Array.indexOf ) {
+			return arr.indexOf( key );
+		}
+		var arrlen = arr.length, x, item;
+		for( x = 0; x < arrlen; x += 1 ) {
+			if( arr[ x ] === key ) {
+				return x;
+			}
+		}
+		return -1;
+	}
 
 	Private.utils.isArray = function(obj) {
 		if( 'undefined' === typeof obj || obj === null ) {
