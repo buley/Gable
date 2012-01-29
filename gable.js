@@ -1429,9 +1429,9 @@ var Gable = (function(){
 					var v = obj.value[ x ];
 
 					if( 'string' === typeof v ) {
-						newobj = newobj + '"' + v.replace('"', '\"' ) + '"';
+						newobj = newobj + "'" + v.replace( "'", "\'" ) + "'";
 					} else if( v instanceof Date ) {
-						newobj = newobj + '"' + v.toString() + '"';
+						newobj = newobj + "'" + v.toString() + "'";
 					} else {
 						newobj = newobj + v;
 					}
@@ -1458,10 +1458,10 @@ var Gable = (function(){
 						var v = obj.columns[ y ].meta.label || obj.columns[ y ].id || '';
 						newobj = ( newobj + ( ( 0 !== y ) ? ', ' : '' ) );
 						if( 'string' === typeof v && '' !== v ) {
-							newobj = newobj + '"' + v.replace('"', '\"' ) + '"';
+							newobj = newobj + "'" + v.replace( "'", "\'" ) + "'";
 						} else if( v instanceof Date ) {
 
-							newobj = newobj + '"' + v.toString() + '"';
+							newobj = newobj + "'" + v.toString() + "'";
 						} else {
 
 							newobj = newobj + v;
@@ -1481,10 +1481,10 @@ var Gable = (function(){
 						var v = rwitems[ a ];
 						
 						if( 'string' === typeof v && '' !== v ) {
-							newobj = newobj + '"' + v.replace('"', '\"' ) + '"';
+							newobj = newobj + "'" + v.replace( "'", "\'" ) + "'";
 						} else if( v instanceof Date ) {
 
-							newobj = newobj + '"' + v.toString() + '"';
+							newobj = newobj + "'" + v.toString() + "'";
 						} else {
 
 							newobj = newobj + v;
