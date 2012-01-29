@@ -1346,10 +1346,10 @@ var Gable = (function(){
 						for( j = 0; j < len; j += 1 ) {
 							var v = rw[ j ];
 							if( 'string' === typeof v ) {
-								newobj = newobj + '"' + v.replace('"', '\"' ) + '"';
+								newobj = newobj + "'" + v.replace( "'", "\'" ) + "'";
 							} else if( v instanceof Date ) {
 
-								newobj = newobj + '"' + v.toString() + '"';
+								newobj = newobj + "'" + v.toString() + "'";
 							} else {
 
 								if( true === using_id && ( Private.utils.isArray( v ) && v.length > 1 ) ) {
