@@ -1346,7 +1346,7 @@ var Gable = (function(){
 						for( j = 0; j < len; j += 1 ) {
 							var v = rw[ j ];
 							if( 'string' === typeof v ) {
-								newobj = newobj + '"' + v.replace( /"/gi, '\\"' ).replace( /,/gi, '\\,' ) + '"';
+								newobj = newobj + '"' + v.replace( /"/gi, '""' ) + '"';
 							} else if( v instanceof Date ) {
 
 								newobj = newobj + '"' + v.toString() + '"';
@@ -1429,7 +1429,7 @@ var Gable = (function(){
 					var v = obj.value[ x ];
 
 					if( 'string' === typeof v ) {
-						newobj = newobj + '"' + v.replace( /"/gi, '\\"' ).replace( /,/gi, '\\,' ) + '"';
+						newobj = newobj + '"' + v.replace( /"/gi, '""' ) + '"';
 					} else if( v instanceof Date ) {
 						newobj = newobj + '"' + v.toString() + '"';
 					} else {
@@ -1458,7 +1458,7 @@ var Gable = (function(){
 						var v = obj.columns[ y ].meta.label || obj.columns[ y ].id || '';
 						newobj = ( newobj + ( ( 0 !== y ) ? ', ' : '' ) );
 						if( 'string' === typeof v && '' !== v ) {
-							newobj = newobj + '"' + v.replace( /"/gi, '\\"' ).replace( /,/gi, '\\,' ) + '"';
+							newobj = newobj + '"' + v.replace( /"/gi, '""' ) + '"';
 						} else if( v instanceof Date ) {
 
 							newobj = newobj + '"' + v.toString() + '"';
@@ -1481,7 +1481,7 @@ var Gable = (function(){
 						var v = rwitems[ a ];
 						
 						if( 'string' === typeof v && '' !== v ) {
-							newobj = newobj + '"' + v.replace( /"/gi, '\\"' ).replace( /,/gi, '\\,' ) + '"';
+							newobj = newobj + '"' + v.replace( /"/gi, '""' ) + '"';
 						} else if( v instanceof Date ) {
 
 							newobj = newobj + '"' + v.toString() + '"';
