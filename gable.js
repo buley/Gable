@@ -756,7 +756,7 @@ var Gable = (function(){
 	};
 
 	Private.utils.chartTypeIsLoaded = function( chart_type ) {
-		if( -1 === Private.charts.loaded.indexOf( chart_type ) ) {
+		if( -1 === Private.utils.arrayIndexOf( Private.charts.loaded, chart_type ) ) {
 			return false;
 		} else {
 			return true;
@@ -1349,7 +1349,7 @@ var Gable = (function(){
 						for( j = 0; j < len; j += 1 ) {
 							var v = rw[ j ];
 							if( 'string' === typeof v ) {
-								newobj = newobj + '"' + v.replace('"', '\"' ) + '"';
+								newobj = newobj + '"' + v.replace( /"/gi, '""' ) + '"';
 							} else if( v instanceof Date ) {
 
 								newobj = newobj + '"' + v.toString() + '"';
@@ -1432,7 +1432,7 @@ var Gable = (function(){
 					var v = obj.value[ x ];
 
 					if( 'string' === typeof v ) {
-						newobj = newobj + '"' + v.replace('"', '\"' ) + '"';
+						newobj = newobj + '"' + v.replace( /"/gi, '""' ) + '"';
 					} else if( v instanceof Date ) {
 						newobj = newobj + '"' + v.toString() + '"';
 					} else {
@@ -1461,7 +1461,7 @@ var Gable = (function(){
 						var v = obj.columns[ y ].meta.label || obj.columns[ y ].id || '';
 						newobj = ( newobj + ( ( 0 !== y ) ? ', ' : '' ) );
 						if( 'string' === typeof v && '' !== v ) {
-							newobj = newobj + '"' + v.replace('"', '\"' ) + '"';
+							newobj = newobj + '"' + v.replace( /"/gi, '""' ) + '"';
 						} else if( v instanceof Date ) {
 
 							newobj = newobj + '"' + v.toString() + '"';
@@ -1484,7 +1484,7 @@ var Gable = (function(){
 						var v = rwitems[ a ];
 						
 						if( 'string' === typeof v && '' !== v ) {
-							newobj = newobj + '"' + v.replace('"', '\"' ) + '"';
+							newobj = newobj + '"' + v.replace( /"/gi, '""' ) + '"';
 						} else if( v instanceof Date ) {
 
 							newobj = newobj + '"' + v.toString() + '"';
@@ -1913,7 +1913,7 @@ var Gable = (function(){
 			//no type given
 			return null;
 		} else {
-			if( -1 === Private.data.column.types.indexOf( type ) ) {
+			if( -1 === Private.utils.arrayIndexOf( Private.data.column.types, type ) ) {
 				//not a valid type
 				return null;
 			}
@@ -2426,6 +2426,22 @@ var Gable = (function(){
 
 
 	/* Utilities */
+
+	Private.utils.arrayIndexOf = function( arr, val ) {
+		if( !Private.utils.isArray( arr ) ) {
+			return -1;
+		}
+		if( Array.indexOf ) {
+			return arr.indexOf( val );
+		}
+		var arrlen = arr.length, x, item;
+		for( x = 0; x < arrlen; x += 1 ) {
+			if( arr[ x ] === val ) {
+				return x;
+			}
+		}
+		return -1;
+	}
 
 	Private.utils.isArray = function(obj) {
 		if( 'undefined' === typeof obj || obj === null ) {
