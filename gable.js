@@ -150,6 +150,8 @@ var Gable = (function(){
 					chart = new google.visualization.ColumnChart( target );
 				} else if( 'combo' === req.type ) {
 					chart = new google.visualization.ComboChart( target );
+				} else if( 'sparkline' === req.type ) {
+					chart = new google.visualization.ImageSparkLine( target );
 				}
 
 				chart.draw( dt, options );
@@ -176,7 +178,6 @@ var Gable = (function(){
 			} else {
 				funBody();
 			}
-
 		};
 
 		if( 'undefined' === typeof google ||  'undefined' === typeof google.visualization ) {
@@ -747,6 +748,8 @@ var Gable = (function(){
 			return 'corechart';
 		} else if( 'combo' === type_id ) {
 			return 'corechart';
+		} else if( 'sparkline' === type_id ) {
+			return 'imagesparkline';
 		} else {
 			return null;
 		}
