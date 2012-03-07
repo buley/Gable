@@ -10,6 +10,7 @@ var Gable = (function(){
 	var current_element = {};
 	var tables = {};
 	var charts = {};
+	var instances = {};
 
 
 	var Public = function( table_id ) {
@@ -116,50 +117,64 @@ var Gable = (function(){
 						}
 					}
 				}
-				var chart = {};
-				//attempt to use table id if target not set
+				var chart; 
+				if( 'undefined' !== typeof instances[ id ] && 'undefined' !== typeof instances[ id ][ req.target ] ) { 
+					chart = instances[ id ][ req.target ];
+				} else {
 
-				if( 'undefined' === typeof req.target ) {
-					req.target = id;
-				}
-				var target = document.getElementById( req.target );
-				
-				if( 'line' === req.type ) {
-					chart = new google.visualization.LineChart( target );
-				} else if( 'pie' === req.type ) {
-					chart = new google.visualization.PieChart( target );
-				} else if( 'scatter' === req.type ) {
-					chart = new google.visualization.ScatterChart( target );
-				} else if( 'gauge' === req.type ) {
-					chart = new google.visualization.Gauge( target );
-				} else if( 'geo' === req.type ) {
-					chart = new google.visualization.GeoChart( target );
-				} else if( 'table' === req.type ) {
-					chart = new google.visualization.Table( target );
-				} else if( 'treemap' === req.type ) {
-					chart = new google.visualization.TreeMap( target );
-				} else if( 'candlestick' === req.type ) {
-					chart = new google.visualization.CandlestickChart( target );
-				} else if( 'bar' === req.type ) {
-					chart = new google.visualization.BarChart( target );
-				} else if( 'stepped' === req.type ) {
-					chart = new google.visualization.SteppedAreaChart( target );
-				} else if( 'area' === req.type ) {
-					chart = new google.visualization.AreaChart( target );
-				} else if( 'column' === req.type ) {
-					chart = new google.visualization.ColumnChart( target );
-				} else if( 'combo' === req.type ) {
-					chart = new google.visualization.ComboChart( target );
-				} else if( 'sparkline' === req.type ) {
-					chart = new google.visualization.ImageSparkLine( target );
-				}
+					chart = {};
+			
+					//attempt to use table id if target not set
 
+					if( 'undefined' === typeof req.target ) {
+						req.target = id;
+					}
+					var target = document.getElementById( req.target );
+					
+					if( 'line' === req.type ) {
+						chart = new google.visualization.LineChart( target );
+					} else if( 'pie' === req.type ) {
+						chart = new google.visualization.PieChart( target );
+					} else if( 'scatter' === req.type ) {
+						chart = new google.visualization.ScatterChart( target );
+					} else if( 'gauge' === req.type ) {
+						chart = new google.visualization.Gauge( target );
+					} else if( 'geo' === req.type ) {
+						chart = new google.visualization.GeoChart( target );
+					} else if( 'table' === req.type ) {
+						chart = new google.visualization.Table( target );
+					} else if( 'treemap' === req.type ) {
+						chart = new google.visualization.TreeMap( target );
+					} else if( 'candlestick' === req.type ) {
+						chart = new google.visualization.CandlestickChart( target );
+					} else if( 'bar' === req.type ) {
+						chart = new google.visualization.BarChart( target );
+					} else if( 'stepped' === req.type ) {
+						chart = new google.visualization.SteppedAreaChart( target );
+					} else if( 'area' === req.type ) {
+						chart = new google.visualization.AreaChart( target );
+					} else if( 'column' === req.type ) {
+						chart = new google.visualization.ColumnChart( target );
+					} else if( 'combo' === req.type ) {
+						chart = new google.visualization.ComboChart( target );
+					} else if( 'sparkline' === req.type ) {
+						chart = new google.visualization.ImageSparkLine( target );
+					}
+					
+					if( 'undefined' === typeof instances[ id ] ) {
+						   instances[ id ] = {};
+					}
+
+					instances[ id ][ req.target ] = chart;
+
+				}
 				chart.draw( dt, options );
 	
 				if( 'undefined' === typeof charts[ id ] ) {
 				       charts[ id ] = {};
 				}
 				charts[ id ][ req.target ] = req;
+
 
 			}
 
@@ -233,7 +248,7 @@ var Gable = (function(){
 		
 			Private.data.column.update( table_id, column, id, type, meta, on_success, on_error );
 		} else {
-			Private.data.table.update( value, table_id, id, meta, on_success, on_error );
+			Private.data.table.update( value, table_id, meta, on_success, on_error );
 		}
 
 		return Public.prototype;
@@ -308,7 +323,6 @@ var Gable = (function(){
 		var column = req.column;
 		var chs = charts[ table_id ];
 		var on_success = function( res ) {
-			console.log('success remove',res);
 			Private.charts.redraw( table_id );
 			if( 'function' === typeof req.on_success ) {
 				req.on_success( res );
@@ -372,6 +386,77 @@ var Gable = (function(){
 
 		return Public.prototype;
 	};
+
+	Public.prototype.bind = function( args ) {
+
+		var req = arguments[ 0 ];
+		if( 'undefined' === typeof arguments[ 0 ] ) {
+			if( 'function' === typeof req.on_error ) {
+
+				req.on_error( req );
+			}
+			return Public.prototype;
+		}
+	
+		var on_success = function( res ) {
+			if( 'function' === typeof req.on_success ) {
+				req.on_success( res );
+			}
+		};
+
+		var on_error = function() {
+
+			if( 'function' === typeof req.on_error ) {
+				req.on_error();
+			}
+		};
+
+		var target_id = req.target;	
+		var event_id = req.event;	
+		var callback = req.callback;
+		var arg_obj = req.argument;	
+		var table_id = current_table;
+	
+		Private.charts.bind( table_id, target_id, event_id, callback, on_success, on_error );
+
+		return Public.prototype;
+	};
+
+
+
+	Public.prototype.trigger = function( args ) {
+
+		var req = arguments[ 0 ];
+		if( 'undefined' === typeof arguments[ 0 ] ) {
+			if( 'function' === typeof req.on_error ) {
+
+				req.on_error( req );
+			}
+			return Public.prototype;
+		}
+	
+		var on_success = function( res ) {
+			if( 'function' === typeof req.on_success ) {
+				req.on_success( res );
+			}
+		};
+
+		var on_error = function() {
+			if( 'function' === typeof req.on_error ) {
+				req.on_error();
+			}
+		};
+
+		var target_id = req.target;	
+		var event_id = req.event;	
+		var arg_obj = req.argument;	
+		var table_id = current_table;
+	
+		Private.charts.trigger( table_id, target_id, event_id, arg_obj, on_success, on_error );
+
+		return Public.prototype;
+	};
+
 
 	Public.prototype.find = function() {
 		console.log( 'find', current_table, arguments );
@@ -810,7 +895,10 @@ var Gable = (function(){
 	Private.data.types.raw.transform = Private.data.types.raw.transform || {};
 	Private.data.types.raw.transform.table = function( obj ) {
 
-		if( null === obj || 'undefined' === typeof obj || 'undefined' === typeof obj.rows || 'undefined' === typeof obj.columns ) {
+		if( null === obj || 'undefined' === typeof obj ) {
+			obj = {};
+		}
+		if( 'undefined' === typeof obj.rows || 'undefined' === typeof obj.columns ) {
 			obj.format = 'raw';
 			return obj;
 		} 
@@ -1815,6 +1903,25 @@ var Gable = (function(){
 
 
 	/* Chart utilities */
+
+	Private.charts.bind = function( table_id, target_id, event_id, callback, on_success, on_error ) {
+		var chs = instances[ table_id ];
+		var ch = chs[ target_id ];
+		var res = google.visualization.events.addListener( ch, event_id, callback );
+		if( 'function' === typeof on_success ) {
+			on_success( res );
+		}
+	};
+
+
+	Private.charts.trigger = function( table_id, target_id, event_id, arg_obj, on_success, on_error ) {
+		var chs = instances[ table_id ];
+		var ch = chs[ target_id ];
+		var res = google.visualization.events.trigger( ch, event_id, arg_obj );
+		if( 'function' === typeof on_success ) {
+			on_success( res );
+		}
+	};
 
 	Private.charts.add = function(type, target) {
 
