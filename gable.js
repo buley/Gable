@@ -918,7 +918,7 @@ var Gable = (function(){
 			
 			var addition = {};
 			
-			if( null === item ) {
+			if( null === item || 'undefined' === typeof item ) {
 				addition[ 'id' ] = null;
 				addition[ 'label' ] = null;
 				addition[ 'p' ] = null;
@@ -1360,7 +1360,7 @@ var Gable = (function(){
 
 				type = 'row';
 
-			} else if( 'undefined' !== typeof obj.columns && 'undefined' !== obj.rows ) {
+			} else if( 'undefined' !== typeof obj.columns && 'undefined' !== typeof obj.rows ) {
 
 				type = 'table';
 
@@ -1496,7 +1496,7 @@ var Gable = (function(){
 					for( x = 0; x < len; x += 1 ) {
 						
 						var v = obj.value[ x ].id;
-						if( 'undefined' !== id && null !== id ) {
+						if( 'undefined' !== typeof id && null !== id ) {
 							using_id = true;
 							break;
 						}
@@ -1541,7 +1541,7 @@ var Gable = (function(){
 				newobj = '';
 				for( x = 0; x < len; x += 1 ) {
 					item = obj.columns[ x ];
-					if( null !== item.id && 'undefined' !== item.id ) {
+					if( null !== item && null !== item.id && 'undefined' !== typeof item.id ) {
 						ids.push( item.id );
 						hasHeader = true;
 					} else {
