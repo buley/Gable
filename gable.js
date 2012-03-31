@@ -18,7 +18,7 @@ var Gable = (function(){
 		current_table = table_id;
 		tables[ table_id ] = tables[ table_id ] || {};
 		tables[ table_id ].delay = tables[ table_id ].delay || false;
-		if( 'undefined' === typeof google ||  'undefined' === typeof google.visualization ) {
+		if( 'undefined' === typeof google ||	'undefined' === typeof google.visualization ) {
 			var coreload = function() {
 				Private.utils.loadChartType( 'corechart' );
 			};
@@ -162,7 +162,7 @@ var Gable = (function(){
 					}
 					
 					if( 'undefined' === typeof instances[ id ] ) {
-						   instances[ id ] = {};
+							 instances[ id ] = {};
 					}
 
 					instances[ id ][ req.target ] = chart;
@@ -171,7 +171,7 @@ var Gable = (function(){
 				chart.draw( dt, options );
 	
 				if( 'undefined' === typeof charts[ id ] ) {
-				       charts[ id ] = {};
+						 charts[ id ] = {};
 				}
 				charts[ id ][ req.target ] = req;
 
@@ -195,7 +195,7 @@ var Gable = (function(){
 			}
 		};
 
-		if( 'undefined' === typeof google ||  'undefined' === typeof google.visualization ) {
+		if( 'undefined' === typeof google ||	'undefined' === typeof google.visualization ) {
 			Private.utils.loadVisualizationAPI( { on_success: already_loaded } );
 		} else {
 			already_loaded();
@@ -262,7 +262,7 @@ var Gable = (function(){
 
 		var res = arguments[ 1 ];
 
-		var dump_on_success = function( obj  ) {
+		var dump_on_success = function( obj	) {
 
 			if( 'undefined' !== typeof req ) {
 				given = 'raw';
@@ -271,7 +271,7 @@ var Gable = (function(){
 				} else if ( 'csv' === req.type ) {
 					result = Private.data.type.transform( given, req.type, obj, options )
 				} else {
-					if( Private.data.type.tranformsTo( 'raw',  req.type ) ) {
+					if( Private.data.type.tranformsTo( 'raw',	req.type ) ) {
 						result = Private.data.type.transform( given, req.type, obj, options )
 					} else {
 						if( 'function' === typeof req.on_error ) {
@@ -373,7 +373,7 @@ var Gable = (function(){
 
 	Public.prototype.commit = function() {
 		var id = current_table;
-		if( 'undefined' !== typeof tables[ id ] && true === tables[ id ].delay  ) {
+		if( 'undefined' !== typeof tables[ id ] && true === tables[ id ].delay	) {
 			if( 'undefined' !== typeof tables[ id ].queue ) {
 				for( var attr in tables[ id ].queue ) {
 					Gable( id ).draw( tables[ id ].queue[ attr ] );
@@ -462,10 +462,10 @@ var Gable = (function(){
 		console.log( 'find', current_table, arguments );
 
 		var find_id = arguments[ 0 ]
-		  , find_ids
-		  , table_id = current_table
-		  , find_result
-		  , types = null;
+			, find_ids
+			, table_id = current_table
+			, find_result
+			, types = null;
 		var Find = function() {
 			if( 'string' === typeof find_id ) {
 				find_ids = [ find_id ];
@@ -700,16 +700,16 @@ var Gable = (function(){
 			} else {
 
 				var a, b
-			          , findlen;
+						, findlen;
 				var rows = table.rows
-				  , rowlen = rows.length;
+					, rowlen = rows.length;
 				var cols = table.columns
-				  , collen = cols.length;
+					, collen = cols.length;
 			
 				if( !Private.utils.isArray( find_ids ) ) {
 					return null;	
 				} else {
-			        	findlen = find_ids.length;
+						findlen = find_ids.length;
 				}
 				
 				for( a = 0; a < findlen; a += 1 ) {
@@ -754,7 +754,7 @@ var Gable = (function(){
 		}
 	}
 
-	Private.utils.clone  = function ( obj ) {
+	Private.utils.clone	= function ( obj ) {
 		var clone = {};
 		var num = 0;
 		if( 'number' === typeof obj ) {
@@ -781,30 +781,29 @@ var Gable = (function(){
 
 	Private.utils.loadVisualizationAPI = function( request ) {
 
-    var script = document.createElement( 'script' );
-    	script.src = 'http://www.google.com/jsapi';
-        script.type = "text/javascript";
+		var script = document.createElement( 'script' );
+		script.src = 'http://www.google.com/jsapi';
+		script.type = "text/javascript";
 
-        script.onload = function() { 
-            if ( ! script.onloadDone ) {
-                script.onloadDone = true; 
+		script.onload = function() { 
+			if ( ! script.onloadDone ) {
+				script.onloadDone = true; 
 		if( 'undefined' !== typeof request && 'function' === typeof request.on_success ) {
 			request.on_success();
 		}
-            }
-        };
-        script.onreadystatechange = function() { 
-            if ( ( "loaded" === script.readyState || "complete" === script.readyState ) && ! script.onloadDone ) {
-                script.onloadDone = true; 
-		if( 'undefined' !== typeof request && 'function' === typeof request.on_success ) {
-			request.on_success();
+			}
+		};
+		script.onreadystatechange = function() { 
+			if ( ( "loaded" === script.readyState || "complete" === script.readyState ) && ! script.onloadDone ) {
+				script.onloadDone = true; 
+				if( 'undefined' !== typeof request && 'function' === typeof request.on_success ) {
+					request.on_success();
+				}
+			}
 		}
-            }
-        }
 
-    	var headID = document.getElementsByTagName("head")[0];         
-	headID.appendChild(script);
-
+		var headID = document.getElementsByTagName("head")[0];		 
+		headID.appendChild(script);
 	};
 
 	Private.charts.loaded = [];
@@ -874,8 +873,8 @@ var Gable = (function(){
 			'transform': {
 				'raw': function() {}
 			},
-	        'validate': function() {}
-	    },
+			'validate': function() {}
+		},
 		'raw': {
 			'transform': {
 				'table': function() {},
@@ -906,11 +905,11 @@ var Gable = (function(){
 		var newrows = [];
 		var meta = obj.meta;
 		var x
-		  , columns = obj.columns
-		  , colcount = columns.length
-		  , rows = obj.rows
-		  , rowcount = rows.length
-		  , item;
+			, columns = obj.columns
+			, colcount = columns.length
+			, rows = obj.rows
+			, rowcount = rows.length
+			, item;
 
 		for( x = 0; x < colcount; x += 1 ) {
 			
@@ -977,7 +976,7 @@ var Gable = (function(){
 								addition[ 'p' ] = item.meta;
 							}
 
-							addition[ 'v' ] = item.value[  z ];
+							addition[ 'v' ] = item.value[	z ];
 							colcells.push( addition );
 						}
 					}	
@@ -1002,8 +1001,7 @@ var Gable = (function(){
 	Private.data.types.input = Private.data.types.input || {};
 	Private.data.types.input.transform = Private.data.types.input.transform || {};
 	Private.data.types.input.transform.raw = function(value, table_id, table) {
-	 	column_meta = {};
-		var columns = [];
+		var column_meta = {}, columns = [];
 		var isarray = Private.utils.isArray(value);
 		if ( false === isarray && 'object' === typeof value ) {
 			columns = Private.data.types.input.transform.iterateObjectColumns( value );
@@ -1036,13 +1034,13 @@ var Gable = (function(){
 					var valuelen = value[ attr ].length;
 					var nonulls = true;
 					for( var x = 0; x < valuelen; x += 1 ) {
-						if( null !== value[ attr ][ x ] && 'object' === typeof value[ attr ][ x ]  && !Private.utils.isArray( value[ attr ][ x ] ) && !( value[ attr ][ x ] instanceof Date ) ) { 
+						if( null !== value[ attr ][ x ] && 'object' === typeof value[ attr ][ x ]	&& !Private.utils.isArray( value[ attr ][ x ] ) && !( value[ attr ][ x ] instanceof Date ) ) { 
 							valuelen = 0;
 							for( var attr2 in value[ attr ][ x ] ) {
 								if( null === value[ attr ][ x ][ attr2 ] ) {
 									nonulls = false;
 								}
-								if ( null !== value[attr] && 'object' === typeof value[ attr ]  && !( value[ attr ] instanceof Date ) ) {
+								if ( null !== value[attr] && 'object' === typeof value[ attr ]	&& !( value[ attr ] instanceof Date ) ) {
 									for( var attr3 in value[attr] ) {
 										if( value[attr].hasOwnProperty(attr3) ) {
 											valuelen++;
@@ -1071,7 +1069,7 @@ var Gable = (function(){
 						}
 						biggest_total = valuelen;
 					}
-				} else if( null !== value[attr] && 'object' === typeof value[ attr ]  && !( value[ attr ] instanceof Date ) ) {
+				} else if( null !== value[attr] && 'object' === typeof value[ attr ]	&& !( value[ attr ] instanceof Date ) ) {
 					return Private.data.types.input.transform.iterateObjectColumns(value[attr]);
 					/*var newcols = Private.data.types.input.transform.iterateObjectColumns(value[attr]);
 					for( var x = 0; x < newcols.length; x += 1 ) {
@@ -1176,7 +1174,7 @@ var Gable = (function(){
 						}
 					}
 
-				} else if( null !== value[attr] && 'object' === typeof value[ attr ] && !(  value[ attr ] instanceof Date ) ) {
+				} else if( null !== value[attr] && 'object' === typeof value[ attr ] && !(	value[ attr ] instanceof Date ) ) {
 					var newrows = Private.data.types.input.transform.iterateObjectRows(value[attr], attr );
 					for( var x = 0; x < newrows.length; x += 1 ) {
 						
@@ -1231,7 +1229,7 @@ var Gable = (function(){
 			var tmpstack = [];
 			for (var x = 0; x < valuelen; x += 1) {
 				var val = value[x];
-				if(  'object' === typeof val ) {
+				if(	'object' === typeof val ) {
 					if( Private.utils.isArray(val) ) {
 						
 						var values = ( 'undefined' !== typeof val && null !== Private.data.column.type( val ) && !( Private.utils.isArray( val ) ) ) ? true : false;
@@ -1343,8 +1341,8 @@ var Gable = (function(){
 
 	Private.data.types.raw.transform.csv = function( obj, options ) {
 
-		var use_hed = (  'undefined' !== typeof options && 'undefined' !== typeof options.header ) ? options.header : false;
-		var use_id = (  'undefined' !== typeof options && 'undefined' !== typeof options.id ) ? options.id : false;
+		var use_hed = (	'undefined' !== typeof options && 'undefined' !== typeof options.header ) ? options.header : false;
+		var use_id = (	'undefined' !== typeof options && 'undefined' !== typeof options.id ) ? options.id : false;
 		var type, newobj = null;
 
 
@@ -1396,7 +1394,7 @@ var Gable = (function(){
 				if( 'undefined' !== typeof table.rows ) {
 					if( true === use_id ) {
 						for( y = 0; y < rowlen; y += 1) {
-							if( null !== table.rows[ y ].id && 'undefined' !== typeof table.rows[ y ].id ) { 	
+							if( null !== table.rows[ y ].id && 'undefined' !== typeof table.rows[ y ].id ) {	
 								using_id = true;
 								break;
 							}
@@ -1610,35 +1608,35 @@ var Gable = (function(){
 	};
 
 	Private.data.types.raw.transform.filter = function(obj) {
-	    var newobj = (null !== obj && 'undefined' !== typeof obj) ? obj : {},
-	        objlen = obj.length,
-	        x, current, attr;
-	    if (Private.utils.isArray(obj)) {
+		var newobj = (null !== obj && 'undefined' !== typeof obj) ? obj : {},
+						objlen = obj.length,
+						x, current, attr;
+				if (Private.utils.isArray(obj)) {
 		/*
-	        //zero-indexed array
-	        for (x = objlen - 1; x !== 0; x -= 1) {
-	            current = obj[x];
-	            //forgive non arrays by coercing them into a single item list
-	            if (Private.utils.isArray(current)) {
-	                newobj[x] = current;
-	            } else {
-	                newobj[x] = [current];
-	            }
-	        } */
-	    } else {
-	        //unique id object
-	        for (attr in obj) {
-	            if (obj.hasOwnProperty(attr)) {
-	                current = obj[attr];
-	                if (Private.utils.isArray(current)) {
-	                    newobj[attr] = current;
-	                } else {
-	                    newobj[attr] = [current];
-	                }
-	            }
-	        };
-	    }
-	    return newobj;
+						//zero-indexed array
+						for (x = objlen - 1; x !== 0; x -= 1) {
+								current = obj[x];
+								//forgive non arrays by coercing them into a single item list
+								if (Private.utils.isArray(current)) {
+										newobj[x] = current;
+								} else {
+										newobj[x] = [current];
+								}
+						} */
+				} else {
+						//unique id object
+						for (attr in obj) {
+								if (obj.hasOwnProperty(attr)) {
+										current = obj[attr];
+										if (Private.utils.isArray(current)) {
+												newobj[attr] = current;
+										} else {
+												newobj[attr] = [current];
+										}
+								}
+						};
+				}
+				return newobj;
 	};
 
 	Private.data.types.raw.transform.validate = function(obj) {
@@ -1651,96 +1649,96 @@ var Gable = (function(){
 	/* gets a type; generic */
 	/* returns type object else null if undefined */
 	Private.data.type.get = function(type) {
-	    var types = Private.data.types[type];
-	    return ('undefined' !== typeof types) ? types : null;
+				var types = Private.data.types[type];
+				return ('undefined' !== typeof types) ? types : null;
 	};
 
 	/* sets a type; generic */
 	/* returns false if doesn't validate, else true */
 	Private.data.type.set = function(type, obj) {
-	    //TODO: if has a validate method, use it
-	    if (Private.data.type.validate(type, obj)) {
-	        Private.data.types[type] = obj;
-	        return true;
-	    }
-	    return false;
+				//TODO: if has a validate method, use it
+				if (Private.data.type.validate(type, obj)) {
+						Private.data.types[type] = obj;
+						return true;
+				}
+				return false;
 	};
 
 	/* updates invidiual attributes of a type; generic */
 	/* returns value of Private.data.type.set */
 	Private.data.type.update = function(type, attrs) {
-	    var typeobj = Private.data.type.get(type);
-	    for (var attr in attrs) {
-	        typeobj[attr] = attrs[attr];
-	    }
-	    return Private.data.type.set(type, typeobj);
+				var typeobj = Private.data.type.get(type);
+				for (var attr in attrs) {
+						typeobj[attr] = attrs[attr];
+				}
+				return Private.data.type.set(type, typeobj);
 	};
 
 	/* type transformsFrom other_type if other_type transformsTo type */
 	/* returns inverse of Private.data.type.tranformsTo */
 	//eee
 	Private.data.type.tranformsFrom = function(type, other_type) {
-	    //TODO: real implementation
-	    return Private.data.type.tranformsTo(other_type, type);
+				//TODO: real implementation
+				return Private.data.type.tranformsTo(other_type, type);
 	};
 
 	/* returns true if a type can be converted from another type, else false */
 	//ddd
 	Private.data.type.tranformsTo = function(type, other_type) {
-	    if ('undefined' !== typeof Private.data.types[type] && 'undefined' !== typeof Private.data.types[type]['transform'] && 'function' === typeof Private.data.types[type]['transform'][other_type]) {
-	        return true;
-	    }
-	    return false;
+				if ('undefined' !== typeof Private.data.types[type] && 'undefined' !== typeof Private.data.types[type]['transform'] && 'function' === typeof Private.data.types[type]['transform'][other_type]) {
+						return true;
+				}
+				return false;
 	};
 
 	/* returns  null if can't be transformed from type to other_type, else returns a transformed object of type to other_type */
 	//ccc
 	Private.data.type.transform = function(type, other_type, obj, options) {
-	    if (Private.data.type.tranformsTo(type, other_type)) {
-	        return Private.data.types[type]['transform'][other_type](obj, options);
-	    }
-	    return null;
+				if (Private.data.type.tranformsTo(type, other_type)) {
+						return Private.data.types[type]['transform'][other_type](obj, options);
+				}
+				return null;
 	};
 
 	/* returns true if a type can be validated, else false. note that this is different than testing whether the type object can be validated (which is always true). */
 	Private.data.type.canValidate = function(type) {
-	    var typeobj = Private.data.type.get(type);
-	    if ('function' === typeof typeobj.validate) {
-	        return true;
-	    }
-	    return false;
+				var typeobj = Private.data.type.get(type);
+				if ('function' === typeof typeobj.validate) {
+						return true;
+				}
+				return false;
 	};
 
 
 	/* validates a type object (note that this is different than
-	    validating an object for a type i.e. Private.data.value.validate()) */
+				validating an object for a type i.e. Private.data.value.validate()) */
 	Private.data.type.validate = function(type, obj) {
 
-	    // Check to see if confirms to a vaild type
-	    // using a set of tests. returns false if a test fails.
-	    // Well-formed (if present) methods:
-	    //   obj.validate: fn 
-	    //   obj.transform: { 'optional1': fn }
-	    //   obj.filter: fn
-	    // * Denotes required
-	    if ('undefined' === typeof obj) {
-	        return false;
-	    }
-	    if ('undefined' !== typeof obj.validate && 'function' !== typeof obj.validate) {
-	        return false;
-	    }
-	    if ('undefined' !== typeof obj.filter && 'function' !== typeof obj.filter) {
-	        return false;
-	    }
-	    if ('undefined' !== typeof obj.transform) {
-	        for (var attr in obj.transform) {
-	            if ('undefined' !== typeof obj.transform[attr] && 'function' !== typeof obj.transform[attr]) {
-	                return false;
-	            }
-	        }
-	    }
+				// Check to see if confirms to a vaild type
+				// using a set of tests. returns false if a test fails.
+				// Well-formed (if present) methods:
+				//	 obj.validate: fn 
+				//	 obj.transform: { 'optional1': fn }
+				//	 obj.filter: fn
+				// * Denotes required
+				if ('undefined' === typeof obj) {
+						return false;
+				}
+				if ('undefined' !== typeof obj.validate && 'function' !== typeof obj.validate) {
+						return false;
+				}
+				if ('undefined' !== typeof obj.filter && 'function' !== typeof obj.filter) {
+						return false;
+				}
+				if ('undefined' !== typeof obj.transform) {
+						for (var attr in obj.transform) {
+								if ('undefined' !== typeof obj.transform[attr] && 'function' !== typeof obj.transform[attr]) {
+										return false;
+								}
+						}
+				}
 
-	    return true;
+				return true;
 
 	};
 
@@ -1751,102 +1749,102 @@ var Gable = (function(){
 	/* returns true if an object's own types or one layer connections can convert to a type, else false */
 	//aaa
 	Private.data.value.transformsTo = function(obj, other_type) {
-	    var type = Private.data.value.type(obj);
-	    if (Private.data.type.transformsTo(type, other_type)) {
-	        return true;
-	    }
-	    return false;
+				var type = Private.data.value.type(obj);
+				if (Private.data.type.transformsTo(type, other_type)) {
+						return true;
+				}
+				return false;
 	};
 
 	/* returns true if an object's own types or one layer connections can convert to a type, else false */
 	//bbb
 	Private.data.value.transformsFrom = function(obj, other_type) {
-	    var type = Private.data.value.type(obj);
-	    if (Private.data.type.transformsFrom(type, other_type)) {
-	        return true;
-	    }
-	    return false;
+				var type = Private.data.value.type(obj);
+				if (Private.data.type.transformsFrom(type, other_type)) {
+						return true;
+				}
+				return false;
 	};
 
 	/* returns an object converted to type */
 	Private.data.value.transform = function(obj, other_type) {
-	    var type = Private.data.value.type(obj);
-	    return Private.data.type.transform(type, other_type, obj);
+				var type = Private.data.value.type(obj);
+				return Private.data.type.transform(type, other_type, obj);
 	};
 
 	/* returns type_id for an object or null if not set */
 	Private.data.value.type = function(obj) {
-	    //TODO: Implementation; also: how?
-	    return ('undefined' !== typeof obj.type) ? obj.type : null;
+				//TODO: Implementation; also: how?
+				return ('undefined' !== typeof obj.type) ? obj.type : null;
 	};
 
 	/* returns true if value is valid instance of type, else false */
 	Private.data.value.isType = function(obj, type) {
-	    if (type === Private.data.value.type(obj)) {
-	        return true;
-	    }
-	    return false;
+				if (type === Private.data.value.type(obj)) {
+						return true;
+				}
+				return false;
 	};
 
 	/* returns true if an object can be validated for a type, else false. note that this is different than testing whether the type object can be validated (which is always true). */
 	Private.data.value.canValidate = function(obj) {
-	    var type = Private.data.value.type(obj);
-	    if (Private.data.type.canValidate(type)) {
-	        return Private.data.value.validate(obj, type);
-	    }
+				var type = Private.data.value.type(obj);
+				if (Private.data.type.canValidate(type)) {
+						return Private.data.value.validate(obj, type);
+				}
 	};
 
 	/* returns true if object can and does validate for a type, else false */
 	Private.data.value.validate = function(obj, type) {
-	    if (Private.data.value.canValidate(type)) {
-	        var typeobj = Private.data.type.get(type);
-	        if (typeobj.validate(obj)) {
-	            return true;
-	        }
-	    }
-	    return false;
+				if (Private.data.value.canValidate(type)) {
+						var typeobj = Private.data.type.get(type);
+						if (typeobj.validate(obj)) {
+								return true;
+						}
+				}
+				return false;
 	};
 
 
 	/* Element Types */
 
 	Private.data.elements = {
-	    'table': {
-	        'validate': function() {}
-	    },
-	    'column': {
-	        'validate': function() {}
-	    },
-	    'row': {
-	        'validate': function() {}
-	    },
-	    'cell': {
-	        'validate': function() {}
-	    }
+				'table': {
+						'validate': function() {}
+				},
+				'column': {
+						'validate': function() {}
+				},
+				'row': {
+						'validate': function() {}
+				},
+				'cell': {
+						'validate': function() {}
+				}
 	};
 
 	/* Chart Types */
 
 	Private.charts.types = {
-	    'bar': {
-	        'update*': function(target, table) {},
-	        'remove': function(target, table) {},
+				'bar': {
+						'update*': function(target, table) {},
+						'remove': function(target, table) {},
 
-	        'replace': function(target, table) {},
-	        'add': function(target, table) {}
-	    },
-	    'pie': {
-	        'update*': function(target, table) {},
-	        'remove': function(target, table) {},
-	        'replace': function(target, table) {},
-	        'add': function(target, table) {}
-	    },
-	    'line': {
-	        'update*': function(target, table) {},
-	        'remove': function(target, table) {},
-	        'replace': function(target, table) {},
-	        'add': function(target, table) {}
-	    }
+						'replace': function(target, table) {},
+						'add': function(target, table) {}
+				},
+				'pie': {
+						'update*': function(target, table) {},
+						'remove': function(target, table) {},
+						'replace': function(target, table) {},
+						'add': function(target, table) {}
+				},
+				'line': {
+						'update*': function(target, table) {},
+						'remove': function(target, table) {},
+						'replace': function(target, table) {},
+						'add': function(target, table) {}
+				}
 	};
 
 
@@ -1941,10 +1939,10 @@ var Gable = (function(){
 
 	//Create
 
-	/* returns a well formatted data object for data type or null if there was some sort of error. columns and rows are arrays of column and row objects, respectively.  */
+	/* returns a well formatted data object for data type or null if there was some sort of error. columns and rows are arrays of column and row objects, respectively.	*/
 	Private.data.table.create = function( columns, rows, meta, id, timestamp ) {
 		//columns are rows are required
-		if( 'undefined' === typeof columns || 'undefined' === typeof rows ||  null === columns || null === rows ) {
+		if( 'undefined' === typeof columns || 'undefined' === typeof rows ||	null === columns || null === rows ) {
 			return null;	
 		} else {
 			//columns and rows are formatted as arrays in raw
@@ -1987,11 +1985,11 @@ var Gable = (function(){
 		}
 		//timestamp can be faked
 		timestamp = ( 'number' !== typeof timestamp ) ? new Date().getTime() : timestamp;
-	    	return { 
-	        	'value': value
+					return { 
+							'value': value
 			, 'id': id
 			, 'meta': meta
-	       		, 'timestamp': timestamp
+				 		, 'timestamp': timestamp
 		};
 	};
 
@@ -2021,7 +2019,7 @@ var Gable = (function(){
 
 	Private.data.column.create = function( type, id, meta, timestamp ) {
 		//type is required
-		if( 'undefined' === typeof type ||  null === type ) {
+		if( 'undefined' === typeof type ||	null === type ) {
 			//no type given
 			return null;
 		} else {
@@ -2046,7 +2044,7 @@ var Gable = (function(){
 		return { 
 			'type': type
 			, 'id': id
-	    		, 'meta': meta
+						, 'meta': meta
 			, 'timestamp': timestamp
 		};
 	};
@@ -2075,11 +2073,11 @@ var Gable = (function(){
 		return { 
 			'value': value
 			, 'id': id
-	    		, 'meta': meta
+						, 'meta': meta
 			, 'timestamp': timestamp
 		};
 	};
-	    
+				
 	Private.data.table.add = function( table ) {
 		//TODO: validate table
 		if( 'undefined' === typeof Private.cache[ table.id ] ) {
@@ -2122,7 +2120,7 @@ var Gable = (function(){
 	//allows for optional lookup by row_id, in which case row_index is ignored and can be set to null
 	Private.data.row.get = function( table_id, row_index, on_success, on_error, row_id ) {
 		var table = Private.cache[ table_id ]
-		  , row;
+			, row;
 		if( 'undefined' !== typeof table ) {
 			if( 'undefined' !== typeof row_id ) {
 				var rowlen = table.rows.length;
@@ -2153,7 +2151,7 @@ var Gable = (function(){
 	};
 	Private.data.column.get = function( table_id, column_index, on_success, on_error, column_id) {
 		var table = Private.cache[ table_id ]
-		  , column;
+			, column;
 		if( 'undefined' !== typeof table ) {
 			if( 'undefined' !== typeof column_id ) {
 				var collen = table.rows.length;
@@ -2185,7 +2183,7 @@ var Gable = (function(){
 
 	Private.data.cell.get = function( table_id, row_index, column_index, on_success, on_error, row_id, column_id ) {
 		var table = Private.cache[ table_id ]
-		  , column, row, value;
+			, column, row, value;
 		if( 'undefined' !== typeof table ) {
 			if( 'undefined' !== typeof row_id ) {
 				var rowlen = table.rows.length;
@@ -2255,7 +2253,7 @@ var Gable = (function(){
 			delete table.rows[ row ];
 
 			if( 'function' === typeof on_success ) {
-				on_success( { 'table': table_id, 'value': val, 'row': row }  );	
+				on_success( { 'table': table_id, 'value': val, 'row': row }	);	
 			}
 		} else {
 			if( 'function' === typeof on_error ) {
@@ -2271,7 +2269,7 @@ var Gable = (function(){
 		if( 'undefined' !== typeof col && null !== col ) {
 			delete table.columns;
 			if( 'function' === typeof on_success ) {
-				on_success( { 'table': table_id, 'value': val, 'column': column }  );	
+				on_success( { 'table': table_id, 'value': val, 'column': column }	);	
 			} else {
 				if( 'function' === typeof on_error ) {
 					on_error( { 'table': table_id, 'value': val, 'column': column } );	
@@ -2288,7 +2286,7 @@ var Gable = (function(){
 		if( 'undefined' !== typeof table.rows[ row ] && 'undefined' !== typeof table.rows[ row ].value[ column ] && null !== table.rows[ row ].value[ column ] ) {
 			table.rows[ row ].value[ column ];	
 			if( 'function' === typeof on_success ) {
-				on_success( { 'table': table_id, 'row': row, 'column': column }  );	
+				on_success( { 'table': table_id, 'row': row, 'column': column }	);	
 			}
 		} else {
 			if( 'function' === typeof on_error ) {
@@ -2362,7 +2360,7 @@ var Gable = (function(){
 		table.rows[ row ] = val;
 
 		if( 'function' === typeof on_success ) {
-			on_success( { 'table': table_id, 'value': val, 'row': row }  );	
+			on_success( { 'table': table_id, 'value': val, 'row': row }	);	
 		}
 	
 	};
@@ -2402,10 +2400,10 @@ var Gable = (function(){
 		}
 		val = Private.data.column.create(column_type, column_id, column_meta);
 
-		table.columns[ column ]  = val;
+		table.columns[ column ]	= val;
 
 		if( 'function' === typeof on_success ) {
-			on_success( { 'table': table_id, 'value': val, 'column': column }  );	
+			on_success( { 'table': table_id, 'value': val, 'column': column }	);	
 		}
 
 
@@ -2414,7 +2412,7 @@ var Gable = (function(){
 	Private.data.cell.update = function( value, table_id, row, column, on_success, on_error ) {
 		//TODO: validate column 
 		var table = Private.cache[ table_id ];
-		if( 'undefined' === typeof table ||  'undefined' === typeof table.rows[ row ] || 'undefined' === table.rows[ row ].value[ column ] ) {
+		if( 'undefined' === typeof table ||	'undefined' === typeof table.rows[ row ] || 'undefined' === table.rows[ row ].value[ column ] ) {
 			if( 'function' === typeof on_error ) {
 				on_error( { 'table': table_id, 'row': row, 'column': column } );	
 			}
@@ -2422,7 +2420,7 @@ var Gable = (function(){
 			table.rows[ row ].value[ column ] = value;
 	
 			if( 'function' === typeof on_success ) {
-				on_success( { 'table': table_id, 'row': row, 'column': column }  );	
+				on_success( { 'table': table_id, 'row': row, 'column': column }	);	
 			}
 		}
 
@@ -2470,7 +2468,7 @@ var Gable = (function(){
 				delete tables[ id ];
 			} else {
 				if( 'function' === typeof on_success ) {
-					on_success( { 'table': table_id, 'row': row }  );	
+					on_success( { 'table': table_id, 'row': row }	);	
 				}
 			}
 		} else {
@@ -2502,7 +2500,7 @@ var Gable = (function(){
 			} else {
 
 				if( 'function' === typeof on_success ) {
-					on_success( { 'table': table_id, 'column': column }  );	
+					on_success( { 'table': table_id, 'column': column }	);	
 				}
 			}
 
@@ -2524,7 +2522,7 @@ var Gable = (function(){
 			delete table.rows[ row ].value[ column ];
 
 			if( 'function' === typeof on_success ) {
-				on_success( { 'table': table_id, 'row': row, 'column': column }  );	
+				on_success( { 'table': table_id, 'row': row, 'column': column }	);	
 			}
 
 		} else {
@@ -2559,11 +2557,11 @@ var Gable = (function(){
 		if( 'undefined' === typeof obj || obj === null ) {
 			return false;
 		}
-	    if ( 'undefined' === typeof obj.isArray ) {
-	        return Object.prototype.toString.call( obj ) === '[object Array]';
-	    } else {
-	        return obj.isArray();
-	    }
+				if ( 'undefined' === typeof obj.isArray ) {
+						return Object.prototype.toString.call( obj ) === '[object Array]';
+				} else {
+						return obj.isArray();
+				}
 	}
 
 	Private.utils.isEmpty = function(obj) {
