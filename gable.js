@@ -864,31 +864,31 @@ var Gable = (function(){
 	/* Data Types */
 
 	Private.data.types = {
-	    'table': {
-	        'transform': {
-	            'raw': function() {},
-	        },
+		'table': {
+			'transform': {
+				'raw': function() {}
+			},
+			'validate': function() {}
+		},
+		'input': {
+			'transform': {
+				'raw': function() {}
+			},
 	        'validate': function() {}
 	    },
-	    'input': {
-	        'transform': {
-	            'raw': function() {},
-	        },
-	        'validate': function() {}
-	    },
-	    'raw': {
-	        'transform': {
-	            'table': function() {},
-	            'csv': function() {}
-	        },
-	        'validate': function() {}
-	    },
-	    'csv': {
-	        'transform': {
-	            'raw': function() {},
-	        },
-	        'validate': function() {}	
-	    }
+		'raw': {
+			'transform': {
+				'table': function() {},
+				'csv': function() {}
+			},
+			'validate': function() {}
+		},
+		'csv': {
+			'transform': {
+				'raw': function() {}
+			},
+			'validate': function() {}	
+		}
 	};
 
 	Private.data.types.raw = Private.data.types.raw || {};
