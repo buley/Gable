@@ -1109,7 +1109,7 @@ var	Gable	= (function(){
 	};
 
 	Private.data.types.input.transform.iterateArrayColumns	= function(value) {
-	 	var column_meta = {};
+		var column_meta = {};
 		var columns = [];
 		if (Private.utils.isArray(value)) { 
 		 var valuelen = value.length;
