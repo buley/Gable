@@ -1029,8 +1029,7 @@ var Gable = (function () {
     Private.data.types.input = Private.data.types.input || {};
     Private.data.types.input.transform = Private.data.types.input.transform || {};
     Private.data.types.input.transform.raw = function (value, table_id, table) {
-        var column_meta = {},
-            columns = [];
+		var columns = [];
         var isarray = Private.utils.isArray(value);
         if (false === isarray && 'object' === typeof value) {
             columns = Private.data.types.input.transform.iterateObjectColumns(value);
@@ -1038,11 +1037,9 @@ var Gable = (function () {
         } else if (true === isarray && 'object' === typeof value) {
             columns = Private.data.types.input.transform.iterateArrayColumns(value);
             rows = Private.data.types.input.transform.iterateArrayRows(value);
-
         } else {
             //shouldn't happen but what if
         }
-
         return {
             'rows': rows,
             'columns': columns
@@ -1050,7 +1047,7 @@ var Gable = (function () {
     };
 
     Private.data.types.input.transform.iterateObjectColumns = function (value) {
-        var columns = [];
+        var columns = [], column_meta;
         if (!Private.utils.isArray(value)) {
             var biggest = null;
             var biggest_total = 0;
