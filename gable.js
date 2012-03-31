@@ -1145,7 +1145,7 @@ var	Gable	= (function(){
 		   for( var w = 0; w < valuelen; w += 1 ) {
 		    var val = value[attr][ w ];
 		    row_id = attr;
-		    var row_meta = {};
+			var row_meta = {};
 		    if( null !== val && 'object' === typeof val && !( val instanceof Date ) && !Private.utils.isArray( val ) ) {
 		     var tmp_val = [];
 		     for( var attr2 in val ) {
@@ -1161,10 +1161,8 @@ var	Gable	= (function(){
 		      rows.push(rw);
 		     //}
 		    } else {
-
 		     wasarray = true;
 		     tmpstack.push( val );
-
 		    }
 		   }
 		   if( true === wasarray ) {
@@ -1218,7 +1216,7 @@ var	Gable	= (function(){
 	};
 
 	Private.data.types.input.transform.iterateArrayRows	= function(value,row_id) {
-	 	var row_meta = {};
+		var row_meta = {};
 		var rows = [];
 		if( 'undefined' === typeof row_id ) {
 		 row_id = null;
