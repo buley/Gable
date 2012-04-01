@@ -26,7 +26,7 @@ var Gable = (function () {
                     on_success: coreload
                 });
             }
-            return Public.prototype;
+            return this;
         };
 
     Public.prototype.add = function () {
@@ -41,7 +41,7 @@ var Gable = (function () {
         if ('function' === typeof req.on_success) {
             req.on_success(req.id);
         }
-        return Public.prototype;
+        return this;
     };
 
     Public.prototype.get = function () {
@@ -81,7 +81,7 @@ var Gable = (function () {
         } else {
             Private.data.table.get(table_id, on_success, on_error);
         }
-        return Public.prototype;
+        return this;
     };
 
     //req.type
@@ -204,7 +204,7 @@ var Gable = (function () {
             already_loaded();
         }
 
-        return Public.prototype;
+        return this;
     };
 
     Public.prototype.update = function () {
@@ -213,7 +213,7 @@ var Gable = (function () {
             if ('function' === typeof req.on_error) {
                 req.on_error(req);
             }
-            return Public.prototype;
+            return this;
         }
         var table_id = current_table;
         var id = req.id;
@@ -254,7 +254,7 @@ var Gable = (function () {
             Private.data.table.update(value, table_id, meta, on_success, on_error);
         }
 
-        return Public.prototype;
+        return this;
     };
 
     Public.prototype.dump = function () {
@@ -318,7 +318,7 @@ var Gable = (function () {
         }
 
 
-        return Public.prototype;
+        return this;
     };
 
     Public.prototype.remove = function (args) {
@@ -329,7 +329,7 @@ var Gable = (function () {
 
                 req.on_error(req);
             }
-            return Public.prototype;
+            return this;
         }
         var table_id = current_table;
         var row = req.row;
@@ -363,7 +363,7 @@ var Gable = (function () {
         } else {
             Private.data.table.remove(table_id, on_success, on_error);
         }
-        return Public.prototype;
+        return this;
     };
 
     Public.prototype.delay = function (milliseconds) {
@@ -375,13 +375,13 @@ var Gable = (function () {
         if ('number' === typeof milliseconds) {
             setTimeout(Public.prototype.commit, milliseconds);
         }
-        return Public.prototype;
+        return this;
     };
 
     Public.prototype.cancel = function (milliseconds) {
         tables[id].delay = false;
         console.log('cancel', current_table, arguments);
-        return Public.prototype;
+        return this;
     };
 
     Public.prototype.commit = function () {
@@ -397,7 +397,7 @@ var Gable = (function () {
             tables[id].delay = false;
         }
 
-        return Public.prototype;
+        return this;
     };
 
     Public.prototype.bind = function (args) {
@@ -408,7 +408,7 @@ var Gable = (function () {
 
                 req.on_error(req);
             }
-            return Public.prototype;
+            return this;
         }
 
         var on_success = function (res) {
@@ -432,7 +432,7 @@ var Gable = (function () {
 
         Private.charts.bind(table_id, target_id, event_id, callback, on_success, on_error);
 
-        return Public.prototype;
+        return this;
     };
 
 
@@ -445,7 +445,7 @@ var Gable = (function () {
 
                 req.on_error(req);
             }
-            return Public.prototype;
+            return this;
         }
 
         var on_success = function (res) {
@@ -467,7 +467,7 @@ var Gable = (function () {
 
         Private.charts.trigger(table_id, target_id, event_id, arg_obj, on_success, on_error);
 
-        return Public.prototype;
+        return this;
     };
 
 
@@ -521,7 +521,7 @@ var Gable = (function () {
                 if ('function' === typeof req.on_error) {
                     req.on_error(req);
                 }
-                return Public.prototype;
+                return this;
             }
             if (!Private.utils.isArray(find_result)) {
                 find_result = [find_result];
@@ -618,7 +618,7 @@ var Gable = (function () {
                 if ('function' === typeof req.on_error) {
                     req.on_error(req);
                 }
-                return Public.prototype;
+                return this;
             }
             if (!Private.utils.isArray(find_result)) {
                 find_result = [find_result];
@@ -667,7 +667,7 @@ var Gable = (function () {
 
             }
 
-            return Public.prototype;
+            return this;
         };
 
         return new Find();
@@ -2701,6 +2701,6 @@ var Gable = (function () {
 
     /*	return public API */
 
-    return Public;
+    return new Public();
 
 }());
