@@ -12,7 +12,6 @@ var Gable = (function () {
     var charts = {};
     var instances = {};
 
-
     var Public = function (table_id) {
             that = this;
             current_table = table_id;
@@ -26,7 +25,7 @@ var Gable = (function () {
                     on_success: coreload
                 });
             }
-            return this;
+            return this.prototype;
         };
 
     Public.prototype.add = function () {
