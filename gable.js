@@ -13,33 +13,20 @@ var Gable = (function () {
     var instances = {};
 
     var Public = function (table_id) {
-            var that = this;
-            current_table = table_id;
-            tables[table_id] = tables[table_id] || {};
-            tables[table_id].delay = tables[table_id].delay || false;
-            if ('undefined' === typeof google || 'undefined' === typeof google.visualization) {
-                var coreload = function () {
-                        Private.utils.loadChartType('corechart');
-                    };
-                Private.utils.loadVisualizationAPI({
-                    on_success: coreload
-                });
-            }
-            return function( table_id ) {
-				current_table = table_id;
-				tables[table_id] = tables[table_id] || {};
-				tables[table_id].delay = tables[table_id].delay || false;
-				if ('undefined' === typeof google || 'undefined' === typeof google.visualization) {
-					var coreload = function () {
-							Private.utils.loadChartType('corechart');
-						};
-					Private.utils.loadVisualizationAPI({
-						on_success: coreload
-					});
-				}
-				return Public.prototype;
-			};
-        };
+		var that = this;
+		current_table = table_id;
+		tables[table_id] = tables[table_id] || {};
+		tables[table_id].delay = tables[table_id].delay || false;
+		if ('undefined' === typeof google || 'undefined' === typeof google.visualization) {
+			var coreload = function () {
+					Private.utils.loadChartType('corechart');
+				};
+			Private.utils.loadVisualizationAPI({
+				on_success: coreload
+			});
+		}
+		return Public.prototype;
+    };
 
     Public.prototype.add = function () {
         var req = arguments[0];
@@ -2713,6 +2700,6 @@ var Gable = (function () {
 
     /*	return public API */
 
-    return new Public();
+    return Public;
 
 }());
