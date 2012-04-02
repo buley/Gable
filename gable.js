@@ -25,7 +25,20 @@ var Gable = (function () {
                     on_success: coreload
                 });
             }
-            return this.prototype;
+            return function( table_id ) {
+				that = this;
+				current_table = table_id;
+				tables[table_id] = tables[table_id] || {};
+				tables[table_id].delay = tables[table_id].delay || false;
+				if ('undefined' === typeof google || 'undefined' === typeof google.visualization) {
+					var coreload = function () {
+							Private.utils.loadChartType('corechart');
+						};
+					Private.utils.loadVisualizationAPI({
+						on_success: coreload
+					});
+				}
+			};
         };
 
     Public.prototype.add = function () {
