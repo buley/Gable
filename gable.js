@@ -13,7 +13,7 @@ var Gable = (function () {
     var instances = {};
 
     var Public = function (table_id) {
-            that = this;
+            var that = this;
             current_table = table_id;
             tables[table_id] = tables[table_id] || {};
             tables[table_id].delay = tables[table_id].delay || false;
@@ -26,7 +26,6 @@ var Gable = (function () {
                 });
             }
             return function( table_id ) {
-				that = this;
 				current_table = table_id;
 				tables[table_id] = tables[table_id] || {};
 				tables[table_id].delay = tables[table_id].delay || false;
@@ -38,6 +37,7 @@ var Gable = (function () {
 						on_success: coreload
 					});
 				}
+				return that;
 			};
         };
 
