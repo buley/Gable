@@ -37,7 +37,7 @@ var Gable = (function () {
 						on_success: coreload
 					});
 				}
-				return that.prototype;
+				return Public.prototype;
 			};
         };
 
